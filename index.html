@@ -3,735 +3,242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tasarruf Finansman Analiz Stüdyosu</title>
+  <title>Tasarruf Finansmanı Maliyet Analizi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260423-reference1" />
+  <link rel="stylesheet" href="styles.css?v=20260423-clean1" />
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero-card">
-      <div class="top-shell hero-top">
-        <div class="brand-block">
-          <span>
-            <span class="kicker">Yerel Sürüm</span>
-            <strong>Tasarruf Finansman Analiz Stüdyosu</strong>
-          </span>
-        </div>
-        <nav class="nav-links">
-          <a href="#marketData">Veri Endeksi</a>
-          <a href="#krediOraniPanel">Kredi Limit</a>
-          <a href="#manuelAnaliz">Manuel Analiz</a>
-          <a href="#calculator">Hesaplayıcı</a>
-          <a href="#offerCompare">Teklif Karşılaştırma</a>
-          <a href="#results">Kredi Kıyas</a>
-          <a href="#details">Metodoloji</a>
-        </nav>
-        <button id="themeToggle" class="ghost-button" type="button" title="Koyu/Açık tema">Koyu Mod</button>
-      </div>
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="Ana sayfa">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Tasarruf Finansmanı</span>
+    </a>
 
-      <section class="hero-strip">
-        <div class="hero-copy">
-          <span class="kicker">Yerel analiz ekranı</span>
-          <h1>Tasarruf Finansmanı Maliyet Hesaplayıcı</h1>
-          <p>Sözleşme verilerini girin, kredi limiti, teklif kıyası ve bugünkü değer sonucunu tek ekranda okuyun.</p>
-        </div>
-        <div class="hero-metrics" aria-hidden="true">
-          <article>
-            <span>Hesaplama</span>
-            <strong>Net maliyet</strong>
-          </article>
-          <article>
-            <span>Karşılaştırma</span>
-            <strong>Teklif kıyası</strong>
-          </article>
-          <article>
-            <span>Limit</span>
-            <strong>Azami kredi</strong>
-          </article>
-          <article>
-            <span>Analiz</span>
-            <strong>Bugünkü değer</strong>
-          </article>
-        </div>
-      </section>
-    </header>
+    <nav class="site-nav" aria-label="Ana menü">
+      <a href="#calculator">Hesaplayıcı</a>
+      <a href="#loanLimit">Kredi Limit</a>
+      <a href="#offerCompare">Teklifleri Karşılaştır</a>
+      <a href="#marketData">Endeks</a>
+      <a href="#method">Nasıl Çalışır?</a>
+    </nav>
 
-    <section id="marketData" class="panel market-panel">
-      <div class="section-head">
-        <div>
-          <span class="kicker">Yeni Veri Sayfası</span>
-          <h2>Konut & taşıt piyasa endeksi</h2>
-          <p class="subtle">
-            Bitcoin'deki fear/greed mantığı gibi, kredi ve tasarruf finansman kararını haftalık veriyle tek göstergeye indiriyoruz.
-          </p>
+    <a class="header-cta" href="#calculator">Analize Başla</a>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Banka kredisi ile karşılaştırmalı analiz</span>
+        <h1>Tasarruf finansmanının <span>gerçek maliyetini</span> hesaplayın</h1>
+        <p>
+          Enflasyon, teslim süresi, kira etkisi, organizasyon bedeli ve banka kredisi aynı ekranda.
+          Hangi teklifin gerçekten mantıklı olduğunu dakikalar içinde görün.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#calculator">Hemen Hesapla</a>
+          <a class="secondary-action" href="#offerCompare">Teklif Karşılaştır</a>
         </div>
       </div>
 
-      <div class="market-dashboard compact-market-dashboard">
-        <div class="fear-gauge-card">
-          <div class="gauge-shell" aria-label="Konut Kredisi Tasarruf Finansman Endeksi">
-            <div class="gauge-ring">
-              <div class="gauge-needle" id="marketGaugeNeedle"></div>
-              <div class="gauge-center">
-                <span id="marketIndexLabel">Endeks</span>
-                <strong id="marketIndexScore">56</strong>
-              </div>
-            </div>
-            <div class="gauge-scale">
-              <span>Tasarruf</span>
-              <span>Geçiş</span>
-              <span>Kredi</span>
-            </div>
-          </div>
-          <div class="gauge-copy">
-            <span class="status-pill" id="marketIndexSeason">Geçiş / Kararsız</span>
-            <h3>Haftalık karar termometresi</h3>
-            <p id="marketIndexComment">
-              Endeks 100'e yaklaştıkça banka kredisi, 0'a yaklaştıkça tasarruf finansman tarafı güçlenir.
-            </p>
-          </div>
-        </div>
-
-        <div id="marketGroupCards" class="market-group-cards"></div>
+      <div class="hero-board" aria-label="Analiz özellikleri">
+        <article>
+          <span class="board-icon"></span>
+          <strong>Hesaplama</strong>
+          <p>Net bugünkü maliyet ve toplam ödeme.</p>
+        </article>
+        <article>
+          <span class="board-icon"></span>
+          <strong>Karşılaştırma</strong>
+          <p>Banka kredisi ve tasarruf planı yan yana.</p>
+        </article>
+        <article>
+          <span class="board-icon"></span>
+          <strong>Limit</strong>
+          <p>Konut değerine göre azami kredi alanı.</p>
+        </article>
+        <article>
+          <span class="board-icon"></span>
+          <strong>Endeks</strong>
+          <p>Konut ve taşıt piyasası karar sinyali.</p>
+        </article>
       </div>
+    </section>
 
-      <div id="marketSnapshot" class="market-snapshot"></div>
-
-      <div class="market-tabs" role="tablist" aria-label="Veri detayları">
-        <button class="market-tab active" type="button" data-market-tab="credit">Kredi</button>
-        <button class="market-tab" type="button" data-market-tab="housing">Konut</button>
-        <button class="market-tab" type="button" data-market-tab="auto">Taşıt</button>
-      </div>
-
-      <article class="market-card market-detail-card">
-        <div class="market-detail-head">
+    <section id="calculator" class="calculator-shell">
+      <div class="calculator-card">
+        <div class="section-title compact-title">
           <div>
-            <span id="marketDetailEyebrow" class="market-eyebrow">Konut Kredileri</span>
-            <h3 id="marketDetailTitle">BDDK haftalık kredi stoku</h3>
+            <span class="eyebrow">Sözleşme bilgileri</span>
+            <h2>Tasarruf Finansmanı Maliyet Hesaplayıcı</h2>
           </div>
-          <p id="marketDetailNote" class="subtle">Ana metrikler tek panelde; diğer kırılımlar sekmelerde.</p>
-        </div>
-        <div id="marketDetailCards" class="mini-metric-grid compact-metric-grid"></div>
-        <div id="autoBrandBars" class="brand-bars compact-brand-bars"></div>
-      </article>
-
-      <div class="source-strip">
-        <strong>Kaynak akışı:</strong>
-        <span>TÜİK konut satışları</span>
-        <span>BDDK haftalık bülten</span>
-        <span>ODMD otomobil satışları</span>
-        <span>TCMB / TÜFE / faiz göstergeleri</span>
-      </div>
-    </section>
-
-    <section id="krediOraniPanel" class="panel kredi-panel">
-      <div class="section-head">
-        <div>
-          <span class="kicker">Kredi Limit Hesaplayıcı</span>
-          <h2>Ekspertiz değeri ile azami kredi tutarınızı öğrenin</h2>
-          <p class="subtle">
-            Konutun ekspertiz değerini ve özelliklerini girin, bankadan alabileceğiniz max krediyi görün.
-          </p>
-        </div>
-      </div>
-      <div class="kredi-grid">
-        <div class="kredi-inputs">
-          <div class="field-grid field-grid-3">
-            <label>
-              Ekspertiz Değeri (TL)
-              <input id="ekspertizDegeri" type="text" inputmode="numeric" value="" placeholder="5.000.000" data-default="5000000" data-format="grouped-int" />
-            </label>
-            <label>
-              Enerji Sınıfı
-              <select id="enerjiSinifi">
-                <option value="A-B">A - B</option>
-                <option value="C">C</option>
-                <option value="Diger">Diğer</option>
-              </select>
-            </label>
-            <label>
-              Başka Evi Var mı?
-              <select id="baskaEviVar">
-                <option value="Hayır">Hayır</option>
-                <option value="Evet">Evet</option>
-              </select>
-            </label>
-          </div>
-        </div>
-        <div class="kredi-sonuclar">
-          <div class="kredi-result-card">
-            <span>Kredi Oranı</span>
-            <strong id="krediOraniSonuc">%90.0</strong>
-          </div>
-          <div class="kredi-result-card kredi-result-primary">
-            <span>Azami Kredi Tutarı</span>
-            <strong id="azamiKrediTutari">4.500.000 TL</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="manuelAnaliz" class="panel manual-panel">
-      <div class="section-head">
-        <div>
-          <span class="kicker">Manuel Bugünkü Değer</span>
-          <h2>Serbest vadeli ödeme planı</h2>
-          <p class="subtle">
-            Vade satırlarını istediğiniz kadar artırın. Her ödeme için ay ve tutar girildiğinde bugünkü değer
-            ve tekabül eden faiz oranı otomatik hesaplanır.
-          </p>
-        </div>
-        <div class="section-actions">
-          <button id="manualLoadExample" class="ghost-button" type="button">Excel örneğini yükle</button>
-          <button id="manualAddRow" class="ghost-button" type="button">Satır ekle</button>
-          <button id="manualClearRows" class="ghost-button ghost-button-muted" type="button">Temizle</button>
-        </div>
-      </div>
-
-      <div class="manual-layout">
-        <div class="manual-controls">
-          <div class="field-grid field-grid-3">
-            <label>
-              Alınacak Varlık Değeri (TL)
-              <input id="manualAssetValue" type="text" inputmode="numeric" value="" placeholder="4.008.163" data-default="4008163" data-format="grouped-int" />
-            </label>
-            <label>
-              Organizasyon Ücret Oranı (%)
-              <input id="manualOrgRate" type="text" inputmode="decimal" value="" placeholder="9.0" data-default="9" data-format="decimal-dot" />
-            </label>
-            <label>
-              Tahmini Enflasyon (%)
-              <input id="manualInflation" type="text" inputmode="decimal" value="" placeholder="28.5" data-default="28.5" data-format="decimal-dot" />
-            </label>
-            <label>
-              Satır Üretilecek Vade (Ay)
-              <input id="manualTermRows" type="text" inputmode="numeric" value="" placeholder="23" data-default="23" data-format="grouped-int" />
-            </label>
-            <div class="manual-generate">
-              <button id="manualGenerateRows" class="ghost-button ghost-button-muted" type="button">Vade satırlarını üret</button>
-            </div>
-          </div>
-
-          <div class="manual-results">
-            <article class="manual-result-card">
-              <span>Aylık İskonto</span>
-              <strong id="manualMonthlyDiscount">%0.0</strong>
-            </article>
-            <article class="manual-result-card">
-              <span>Taksitlerin Bugünkü Değeri</span>
-              <strong id="manualPresentValue">₺0</strong>
-            </article>
-            <article class="manual-result-card">
-              <span>Toplam Nominal Ödeme</span>
-              <strong id="manualNominalTotal">₺0</strong>
-            </article>
-            <article class="manual-result-card">
-              <span>Tekabül Eden Yıllık Faiz</span>
-              <strong id="manualAnnualRate">%0.0</strong>
-            </article>
-          </div>
-        </div>
-
-        <div class="manual-table-wrap">
-          <table class="manual-table">
-            <thead>
-              <tr>
-                <th>Ay</th>
-                <th>Ödeme Tutarı</th>
-                <th>Bugünkü Değer</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="manualPaymentRows"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-    <section id="visualPanel" class="panel visuals-panel">
-      <div class="section-head">
-        <div>
-          <span class="kicker">Görsel Analiz</span>
-          <h2>Nakit akışını görsel olarak inceleyin</h2>
-          <p class="subtle">Net bugünkü maliyetin aylık eğilimini ve temel trendleri görsellerle anlayın.</p>
-        </div>
-      </div>
-      <div class="visual-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-        <div id="totalOutflowChart" class="visual-chart" aria-label="Toplam Outflow Chart"></div>
-        <div id="discountedOutflowChart" class="visual-chart" aria-label="İskonto ile Aylık Outflow Chart"></div>
-      </div>
-    </section>
-
-    <main class="workspace easy-workspace">
-      <section id="calculator" class="panel form-panel">
-        <div class="section-head">
-          <div>
-            <span class="kicker">Sözleşme Bilgileri</span>
-            <h2>Önce temel alanları doldurun</h2>
-            <p class="subtle">
-              Kutuların içindeki soluk değerler sadece örnek. Yazmaya başladığınız anda gerçek girişiniz kullanılır.
-            </p>
-          </div>
-        <div class="section-actions">
-            <select id="exampleScenario" aria-label="Örnek Senaryo" style="margin-right:8px; padding:10px 12px; border-radius:999px; border:1px solid var(--line); background:#fff; color:#333; font-weight:700;">
+          <div class="quick-actions">
+            <select id="exampleScenario" aria-label="Örnek senaryo seç">
               <option value="A">Senaryo A</option>
               <option value="B">Senaryo B</option>
               <option value="C">Senaryo C</option>
-              <option value="D">Senaryo D</option>
-              <option value="E">Senaryo E</option>
-              <option value="F">Senaryo F</option>
             </select>
-            <button id="fillExample" class="ghost-button quick-fill-button" type="button">Örnek Senaryoyu Doldur</button>
-            <button id="clearForm" class="ghost-button ghost-button-muted" type="button">Temizle</button>
+            <button id="fillExample" type="button">Örnek Senaryoyu Doldur</button>
+            <button id="clearForm" type="button">Temizle</button>
           </div>
         </div>
 
-        <form id="calculator-form" class="stack">
-          <section class="input-card calculator-card">
-            <h3>Tasarruf Finansmanı Maliyet Hesaplayıcı</h3>
-            <div class="calculator-segments">
-              <label>
-                Varlık Türü
-                <div class="segmented-control" data-target-select="assetType">
-                  <button class="segment-option active" type="button" data-value="konut">Konut</button>
-                  <button class="segment-option" type="button" data-value="arac">Araba</button>
-                </div>
-                <select id="assetType">
-                  <option value="konut">Konut</option>
-                  <option value="arac">Araç</option>
-                </select>
-              </label>
+        <form id="calculator-form" class="calculator-form">
+          <div class="choice-grid">
+            <label>
+              Varlık Tipi
+              <select id="assetType">
+                <option value="konut">Konut</option>
+                <option value="arac">Araba</option>
+              </select>
+            </label>
+            <label>
+              Finansman Modeli
+              <select id="planModel">
+                <option value="cekilissiz">Çekilişsiz</option>
+                <option value="cekilisli">Çekilişli</option>
+              </select>
+            </label>
+            <label>
+              Şirket Seçimi
+              <select id="company">
+                <option>Eminevim</option>
+                <option>Fuzul Ev</option>
+                <option>Katılımevim</option>
+                <option>Birevim</option>
+                <option selected>Diğer</option>
+              </select>
+            </label>
+          </div>
 
-              <label>
-                Model
-                <div class="segmented-control" data-target-select="planModel">
-                  <button class="segment-option active" type="button" data-value="cekilissiz">Çekilişsiz</button>
-                  <button class="segment-option" type="button" data-value="cekilisli">Çekilişli</button>
-                </div>
-                <select id="planModel">
-                  <option value="cekilissiz">Çekilişsiz</option>
-                  <option value="cekilisli">Çekilişli</option>
-                </select>
-              </label>
+          <div class="field-grid">
+            <label>Varlık Fiyatı (TL)<input id="assetPrice" type="text" inputmode="numeric" placeholder="3.000.000" data-default="3000000" /></label>
+            <label>Peşinat (TL)<input id="downPayment" type="text" inputmode="numeric" placeholder="1.000.000" data-default="1000000" /></label>
+            <label>Taksit Sayısı (Ay)<input id="installmentCount" type="text" inputmode="numeric" placeholder="48" data-default="48" /></label>
+            <label>Aylık Ödeme (TL)<input id="monthlyPayment" type="text" inputmode="numeric" placeholder="41.667" data-default="41667" /></label>
+            <label>Tahmini Teslim<input id="deliveryMonth" type="text" inputmode="numeric" placeholder="13" data-default="13" /></label>
+            <label>Hizmet Bedeli (%)<input id="organizationFeeRate" type="text" inputmode="decimal" placeholder="7.5" data-default="7.5" /></label>
+            <label>Kira (TL/Ay)<input id="monthlyRent" type="text" inputmode="numeric" placeholder="25.000" data-default="25000" /></label>
+            <label>Yıllık Enflasyon (%)<input id="annualInflation" type="text" inputmode="decimal" placeholder="32" data-default="32" /></label>
+            <label>İskonto / Sermaye Maliyeti (%)<input id="discountRate" type="text" inputmode="decimal" placeholder="28" data-default="28" /></label>
+            <label>Kredi Faizi (% / ay)<input id="loanRate" type="text" inputmode="decimal" placeholder="3.19" data-default="3.19" /></label>
+            <label>Yıllık Taksit Artışı (%)<input id="graduatedIncreaseRate" type="text" inputmode="decimal" placeholder="15" data-default="15" /></label>
+            <label class="toggle-line"><input id="useGraduatedPlan" type="checkbox" /> Artışlı taksit planı kullan</label>
+          </div>
 
-              <label>
-                Şirket
-                <select id="company">
-                  <option>Eminevim</option>
-                  <option>Fuzul Ev</option>
-                  <option>Katılımevim</option>
-                  <option>Sinpaş YTS</option>
-                  <option>Emlak Katılım TF</option>
-                  <option>Birevim</option>
-                  <option>İyi Finans</option>
-                  <option>İmece</option>
-                  <option>Albayrak Finans</option>
-                  <option selected>Diğer</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="easy-divider"></div>
-
-            <div class="field-grid calculator-main-grid">
-              <label>
-                Varlık Fiyatı (TL)
-                <input id="assetPrice" type="text" inputmode="numeric" value="" placeholder="5.000.000" data-default="5000000" data-format="grouped-int" />
-              </label>
-
-              <label>
-                Peşinat (TL)
-                <input id="downPayment" type="text" inputmode="numeric" value="" placeholder="0" data-default="0" data-format="grouped-int" />
-              </label>
-
-              <label>
-                Taksit Sayısı (Ay)
-                <input id="installmentCount" type="text" inputmode="numeric" value="" placeholder="90" data-default="90" data-format="grouped-int" />
-              </label>
-
-              <label>
-                Aylık Ödeme (TL)
-                <input id="monthlyPayment" type="text" inputmode="numeric" value="" placeholder="55.556" data-default="55556" data-format="grouped-int" />
-              </label>
-
-              <label>
-                Başlangıç Kira (TL/Ay)
-                <input id="monthlyRent" type="text" inputmode="numeric" value="" placeholder="25.000" data-default="25000" data-format="grouped-int" />
-              </label>
-
-              <label>
-                Teslim Ayı
-                <input id="deliveryMonth" type="text" inputmode="numeric" value="" placeholder="12" data-default="12" data-format="grouped-int" />
-              </label>
-            </div>
-
-            <div class="easy-toggle-row">
-              <label class="switch-row">
-                <input id="useGraduatedPlan" type="checkbox" />
-                <span></span>
-                Artışlı Taksit Planı
-              </label>
-
-              <label class="switch-row">
-                <input id="compareWithLoan" type="checkbox" />
-                <span></span>
-                Konut Kredisi ile Kıyasla
-              </label>
-            </div>
-
-            <details class="advanced-box easy-advanced">
-              <summary>Gelişmiş parametreler</summary>
-              <div class="field-grid field-grid-2 advanced-grid">
-                <label>
-                  Organizasyon Ücreti (%)
-                  <input id="organizationFeeRate" type="text" inputmode="decimal" value="" placeholder="8.0" data-default="8" data-format="decimal-dot" />
-                </label>
-
-                <label>
-                  Yıllık Enflasyon (%)
-                  <input id="annualInflation" type="text" inputmode="decimal" value="" placeholder="32.0" data-default="32" data-format="decimal-dot" />
-                </label>
-
-                <label>
-                  İskonto / Sermaye Maliyeti (%)
-                  <input id="discountRate" type="text" inputmode="decimal" value="" placeholder="28.0" data-default="28" data-format="decimal-dot" />
-                </label>
-
-                <label>
-                  Kredi Faizi (% / ay)
-                  <input id="loanRate" type="text" inputmode="decimal" value="" placeholder="3.19" data-default="3.19" data-format="decimal-dot" />
-                </label>
-
-                <label>
-                  Yıllık Taksit Artışı (%)
-                  <input id="graduatedIncreaseRate" type="text" inputmode="decimal" value="" placeholder="15.0" data-default="15" data-format="decimal-dot" />
-                </label>
-              </div>
-            </details>
-
-            <button class="calculate-cta" type="button" data-scroll-target="#results">Hesapla ve Sonuçları Göster</button>
-          </section>
+          <button class="calculate-button" type="submit">Hesapla ve Sonuçları Göster</button>
         </form>
-      </section>
+      </div>
 
-      <aside id="results" class="panel results-panel easy-results-panel">
-        <div class="section-head">
-          <div>
-            <span class="kicker">Canlı Sonuçlar</span>
-            <h2>Karar vermek için gerekli özet</h2>
-          </div>
-        </div>
-
-        <div id="headlineStats" class="headline-stats"></div>
-
-        <div class="results-block">
-          <h3>Tüm metrikler</h3>
-          <div id="summaryCards" class="summary-cards"></div>
-        </div>
-
-        <div class="results-block">
-          <h3>Kredi kıyası</h3>
-          <div id="comparisonBox" class="comparison-box"></div>
-        </div>
+      <aside id="results" class="results-panel">
+        <span class="eyebrow">Canlı sonuç</span>
+        <h2>Karar özeti</h2>
+        <div id="headlineStats" class="result-stack"></div>
+        <div id="summaryCards" class="result-stack"></div>
+        <div id="comparisonBox" class="comparison-box"></div>
       </aside>
-    </main>
-
-    <section id="offerCompare" class="panel compare-panel">
-      <details class="compare-toggle">
-        <summary>
-          <div>
-            <span class="kicker">Teklif Karşılaştırma</span>
-            <h2>Üç farklı teklifi yan yana görün</h2>
-            <p class="subtle">İhtiyacınız olduğunda açın, sayfa sade kalsın.</p>
-          </div>
-        </summary>
-
-        <div class="compare-inner">
-          <div class="section-head">
-            <div>
-              <p class="subtle">
-                Aynı varlık için üç ayrı şirket veya plan senaryosunu girin. Sistem her teklifin net bugünkü maliyetini
-                ve toplam nominal maliyetini aynı tabloda karşılaştırsın.
-              </p>
-            </div>
-            <div class="section-actions">
-              <button id="fillCompareExamples" class="ghost-button" type="button">Karşılaştırma örneği doldur</button>
-              <button id="clearCompare" class="ghost-button ghost-button-muted" type="button">Teklifleri temizle</button>
-            </div>
-          </div>
-
-          <div class="offer-grid">
-            <section class="offer-card">
-              <div class="offer-head">
-                <span class="offer-badge">Teklif 1</span>
-              </div>
-              <div class="field-grid field-grid-2">
-                <label>
-                  Şirket
-                  <select id="offer1Company">
-                    <option>Eminevim</option>
-                    <option>Fuzul Ev</option>
-                    <option>Katılımevim</option>
-                    <option>Sinpaş YTS</option>
-                    <option>Emlak Katılım TF</option>
-                    <option>Birevim</option>
-                    <option>İyi Finans</option>
-                    <option>İmece</option>
-                    <option>Albayrak Finans</option>
-                    <option selected>Diğer</option>
-                  </select>
-                </label>
-                <label>
-                  Model
-                  <select id="offer1PlanModel">
-                    <option value="cekilissiz">Çekilişsiz</option>
-                    <option value="cekilisli">Çekilişli</option>
-                  </select>
-                </label>
-                <label>
-                  Varlık Fiyatı (TL)
-                  <input id="offer1AssetPrice" type="text" inputmode="numeric" value="" placeholder="5.000.000" data-default="5000000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Peşinat (TL)
-                  <input id="offer1DownPayment" type="text" inputmode="numeric" value="" placeholder="500.000" data-default="500000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Taksit Sayısı
-                  <input id="offer1InstallmentCount" type="text" inputmode="numeric" value="" placeholder="90" data-default="90" data-format="grouped-int" />
-                </label>
-                <label>
-                  Aylık Ödeme (TL)
-                  <input id="offer1MonthlyPayment" type="text" inputmode="numeric" value="" placeholder="52.500" data-default="52500" data-format="grouped-int" />
-                </label>
-                <label>
-                  Teslim Ayı
-                  <input id="offer1DeliveryMonth" type="text" inputmode="numeric" value="" placeholder="12" data-default="12" data-format="grouped-int" />
-                </label>
-                <label>
-                  Organizasyon Ücreti (%)
-                  <input id="offer1OrganizationFeeRate" type="text" inputmode="decimal" value="" placeholder="8.0" data-default="8" data-format="decimal-dot" />
-                </label>
-                <label>
-                  Kira (TL/Ay)
-                  <input id="offer1MonthlyRent" type="text" inputmode="numeric" value="" placeholder="25.000" data-default="25000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Kredi Faizi (% / ay)
-                  <input id="offer1LoanRate" type="text" inputmode="decimal" value="" placeholder="3.19" data-default="3.19" data-format="decimal-dot" />
-                </label>
-              </div>
-            </section>
-
-            <section class="offer-card">
-              <div class="offer-head">
-                <span class="offer-badge">Teklif 2</span>
-              </div>
-              <div class="field-grid field-grid-2">
-                <label>
-                  Şirket
-                  <select id="offer2Company">
-                    <option>Eminevim</option>
-                    <option selected>Fuzul Ev</option>
-                    <option>Katılımevim</option>
-                    <option>Sinpaş YTS</option>
-                    <option>Emlak Katılım TF</option>
-                    <option>Birevim</option>
-                    <option>İyi Finans</option>
-                    <option>İmece</option>
-                    <option>Albayrak Finans</option>
-                    <option>Diğer</option>
-                  </select>
-                </label>
-                <label>
-                  Model
-                  <select id="offer2PlanModel">
-                    <option value="cekilissiz">Çekilişsiz</option>
-                    <option value="cekilisli">Çekilişli</option>
-                  </select>
-                </label>
-                <label>
-                  Varlık Fiyatı (TL)
-                  <input id="offer2AssetPrice" type="text" inputmode="numeric" value="" placeholder="5.000.000" data-default="5000000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Peşinat (TL)
-                  <input id="offer2DownPayment" type="text" inputmode="numeric" value="" placeholder="750.000" data-default="750000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Taksit Sayısı
-                  <input id="offer2InstallmentCount" type="text" inputmode="numeric" value="" placeholder="84" data-default="84" data-format="grouped-int" />
-                </label>
-                <label>
-                  Aylık Ödeme (TL)
-                  <input id="offer2MonthlyPayment" type="text" inputmode="numeric" value="" placeholder="58.000" data-default="58000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Teslim Ayı
-                  <input id="offer2DeliveryMonth" type="text" inputmode="numeric" value="" placeholder="10" data-default="10" data-format="grouped-int" />
-                </label>
-                <label>
-                  Organizasyon Ücreti (%)
-                  <input id="offer2OrganizationFeeRate" type="text" inputmode="decimal" value="" placeholder="7.5" data-default="7.5" data-format="decimal-dot" />
-                </label>
-                <label>
-                  Kira (TL/Ay)
-                  <input id="offer2MonthlyRent" type="text" inputmode="numeric" value="" placeholder="25.000" data-default="25000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Kredi Faizi (% / ay)
-                  <input id="offer2LoanRate" type="text" inputmode="decimal" value="" placeholder="3.19" data-default="3.19" data-format="decimal-dot" />
-                </label>
-              </div>
-            </section>
-
-            <section class="offer-card">
-              <div class="offer-head">
-                <span class="offer-badge">Teklif 3</span>
-              </div>
-              <div class="field-grid field-grid-2">
-                <label>
-                  Şirket
-                  <select id="offer3Company">
-                    <option>Eminevim</option>
-                    <option>Fuzul Ev</option>
-                    <option selected>Katılımevim</option>
-                    <option>Sinpaş YTS</option>
-                    <option>Emlak Katılım TF</option>
-                    <option>Birevim</option>
-                    <option>İyi Finans</option>
-                    <option>İmece</option>
-                    <option>Albayrak Finans</option>
-                    <option>Diğer</option>
-                  </select>
-                </label>
-                <label>
-                  Model
-                  <select id="offer3PlanModel">
-                    <option value="cekilissiz">Çekilişsiz</option>
-                    <option value="cekilisli">Çekilişli</option>
-                  </select>
-                </label>
-                <label>
-                  Varlık Fiyatı (TL)
-                  <input id="offer3AssetPrice" type="text" inputmode="numeric" value="" placeholder="5.000.000" data-default="5000000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Peşinat (TL)
-                  <input id="offer3DownPayment" type="text" inputmode="numeric" value="" placeholder="1.000.000" data-default="1000000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Taksit Sayısı
-                  <input id="offer3InstallmentCount" type="text" inputmode="numeric" value="" placeholder="72" data-default="72" data-format="grouped-int" />
-                </label>
-                <label>
-                  Aylık Ödeme (TL)
-                  <input id="offer3MonthlyPayment" type="text" inputmode="numeric" value="" placeholder="64.000" data-default="64000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Teslim Ayı
-                  <input id="offer3DeliveryMonth" type="text" inputmode="numeric" value="" placeholder="8" data-default="8" data-format="grouped-int" />
-                </label>
-                <label>
-                  Organizasyon Ücreti (%)
-                  <input id="offer3OrganizationFeeRate" type="text" inputmode="decimal" value="" placeholder="6.8" data-default="6.8" data-format="decimal-dot" />
-                </label>
-                <label>
-                  Kira (TL/Ay)
-                  <input id="offer3MonthlyRent" type="text" inputmode="numeric" value="" placeholder="25.000" data-default="25000" data-format="grouped-int" />
-                </label>
-                <label>
-                  Kredi Faizi (% / ay)
-                  <input id="offer3LoanRate" type="text" inputmode="decimal" value="" placeholder="3.19" data-default="3.19" data-format="decimal-dot" />
-                </label>
-              </div>
-            </section>
-          </div>
-
-          <div id="offerCompareSummary" class="offer-compare-summary"></div>
-        </div>
-      </details>
     </section>
 
-    <section id="details" class="panel detail-panel">
-      <details class="compare-toggle">
-        <summary>
-          <div>
-            <span class="kicker">Detaylar</span>
-            <h2>Aylık nakit akışı</h2>
-            <p class="subtle">Her ay cebinizden çıkacak toplam tutarı tablo halinde görün.</p>
-          </div>
-        </summary>
-
-        <div class="compare-inner">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Ay</th>
-                  <th>Taksit</th>
-                  <th>Kira</th>
-                  <th>Diğer</th>
-                  <th>Toplam Çıkış</th>
-                  <th>Kümülatif</th>
-                </tr>
-              </thead>
-              <tbody id="cashflowBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </details>
-    </section>
-
-<!--
-<section class="notes-grid">
-      <article class="panel note-card">
-        <span class="kicker">Nasıl okunur?</span>
-        <h2>En kritik 3 sonuç</h2>
-        <ul class="feature-list">
-          <li>Tahmini teslim ayı: konuta veya araca ne zaman ulaşacağınızı gösterir.</li>
-          <li>Net bugünkü maliyet: bugünün parasıyla gerçek maliyet etkisini gösterir.</li>
-          <li>Kredi kıyası: aynı senaryoda banka tarafının nominal maliyetini karşılaştırır.</li>
-        </ul>
-      </article>
-
-      <article class="panel note-card">
-        <span class="kicker">Sade yaklaşım</span>
-        <h2>Gereksiz yükü azalttık</h2>
-        <p class="body-copy">
-          Nadir kullanılan alanlar "Gelişmiş varsayımlar" altında toplandı. Sonuçlar canlı güncellenir,
-          detay tablo ise yalnızca ihtiyaç duyduğunuzda açılır.
-        </p>
-      </article>
-    </section>
-
--->
-    <section id="fullComparison" class="panel compare-full-panel">
-      <div class="section-head">
+    <section id="loanLimit" class="panel">
+      <div class="section-title">
         <div>
-          <span class="kicker">Tam Karşılaştırma</span>
-          <h2>6 farklı senaryo yan yana</h2>
-          <p class="subtle">Ekspertiz değerini yukarıda girdiğinizde tüm senaryolar otomatik hesaplanır.</p>
+          <span class="eyebrow">Kredi limit alanı</span>
+          <h2>Bankadan kullanılabilecek azami kredi tutarını görün</h2>
         </div>
       </div>
+      <div class="loan-grid">
+        <label>Ekspertiz Değeri (TL)<input id="ekspertizDegeri" type="text" inputmode="numeric" placeholder="5.000.000" data-default="5000000" /></label>
+        <label>Enerji Sınıfı
+          <select id="enerjiSinifi">
+            <option value="A-B">A - B</option>
+            <option value="C">C</option>
+            <option value="Diger">Diğer</option>
+          </select>
+        </label>
+        <label>Başka Evi Var mı?
+          <select id="baskaEviVar">
+            <option value="Hayır">Hayır</option>
+            <option value="Evet">Evet</option>
+          </select>
+        </label>
+        <article class="loan-result"><span>Kredi Oranı</span><strong id="krediOraniSonuc">%90.0</strong></article>
+        <article class="loan-result primary"><span>Azami Kredi</span><strong id="azamiKrediTutari">4.500.000 TL</strong></article>
+      </div>
     </section>
-  </div>
-  <section id="onboarding" class="onboarding" aria-hidden="true" style="display:none;">
-    <div class="onboarding-card">
-      <h3>Hoşgeldiniz</h3>
-      <ol>
-        <li>Kullanıcı hesabınızı kaydedin ve kaldığınız yerden devam edin.</li>
-        <li>Karar desteği için sonuçları inceleyin ve CSV olarak dışa aktarın.</li>
-        <li>Ayarlar > Koyu Mod ile temasını seçin.</li>
-      </ol>
-      <button id="onboardClose" class="ghost-button" type="button">Başlayalım</button>
-    </div>
-  </section>
 
-  <script src="app.js?v=20260423-reference1"></script>
+    <section id="offerCompare" class="panel">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Teklif karşılaştırma</span>
+          <h2>Üç teklifi aynı kriterlerle yan yana koyun</h2>
+        </div>
+        <div class="quick-actions">
+          <button id="fillCompareExamples" type="button">Örnekleri Doldur</button>
+          <button id="clearCompare" type="button">Temizle</button>
+        </div>
+      </div>
+
+      <div class="offer-grid">
+        <article class="offer-card" data-offer="1"></article>
+        <article class="offer-card" data-offer="2"></article>
+        <article class="offer-card" data-offer="3"></article>
+      </div>
+      <div id="offerCompareSummary" class="offer-summary"></div>
+    </section>
+
+    <section id="marketData" class="panel">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Piyasa endeksi</span>
+          <h2>Konut & taşıt karar termometresi</h2>
+          <p>Haftalık veri setinden üretilen erken uyarı skoru.</p>
+        </div>
+      </div>
+      <div class="market-layout">
+        <div class="gauge-card">
+          <div class="gauge"><span id="marketIndexScore">47.5</span></div>
+          <strong id="marketIndexSeason">Geçiş / Kararsız Dönem</strong>
+          <p id="marketIndexComment">Kredi şartları pahalı; konut ve risk verileri dengede.</p>
+        </div>
+        <div id="marketGroupCards" class="market-groups"></div>
+      </div>
+    </section>
+
+    <section id="method" class="panel method-panel">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Nasıl çalışır?</span>
+          <h2>Kararı tek bir sayıya indirgemeyiz; maliyetin zamanını da gösteririz.</h2>
+        </div>
+      </div>
+      <div class="method-grid">
+        <article><strong>1</strong><span>Sözleşme verileri girilir.</span></article>
+        <article><strong>2</strong><span>Teslim öncesi kira ve hizmet bedeli hesaba katılır.</span></article>
+        <article><strong>3</strong><span>Banka kredisi aynı koşullarla karşılaştırılır.</span></article>
+        <article><strong>4</strong><span>Net bugünkü değer karar diline çevrilir.</span></article>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ay</th>
+              <th>Taksit</th>
+              <th>Kira</th>
+              <th>Diğer</th>
+              <th>Toplam Çıkış</th>
+              <th>Kümülatif</th>
+            </tr>
+          </thead>
+          <tbody id="cashflowBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js?v=20260423-clean1"></script>
 </body>
 </html>
