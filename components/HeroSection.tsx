@@ -1,8 +1,8 @@
 const cards = [
-  ["Hesaplama", "Net maliyetinizi anında hesaplayın"],
-  ["Karşılaştır", "2 teklifi yan yana kıyaslayın"],
-  ["Firmalar", "Lisanslı kurumları birlikte görün"],
-  ["Danışmanlık Al", "Ücretsiz teklif talebi oluşturun"],
+  ["Hesaplama", "Net maliyetinizi anında hesaplayın", "#calculator"],
+  ["Karşılaştır", "2 teklifi yan yana kıyaslayın", "#calculator"],
+  ["Firmalar", "Lisanslı kurumları birlikte görün", "#blog"],
+  ["Danışmanlık Al", "Ücretsiz teklif talebi oluşturun", "#faq"],
 ];
 
 export function HeroSection() {
@@ -33,14 +33,14 @@ export function HeroSection() {
         <div className="relative z-10 flex items-center justify-center">
           <div className="absolute right-4 top-2 h-64 w-72 rotate-6 rounded-[28px] bg-emerald-900/10" />
           <div className="grid w-full max-w-[540px] grid-cols-1 gap-4 sm:grid-cols-2">
-            {cards.map(([title, text]) => (
-              <article className="min-h-[146px] rounded-2xl border border-slate-100 bg-white/90 p-7 text-center shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur" key={title}>
+            {cards.map(([title, text, href]) => (
+              <a className="min-h-[146px] rounded-2xl border border-slate-100 bg-white/90 p-7 text-center shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur transition hover:-translate-y-1 hover:border-emerald-200" href={href} key={title}>
                 <div className="mx-auto mb-5 grid h-12 w-12 place-items-center rounded-xl border border-emerald-200 bg-emerald-50 text-2xl font-black text-[var(--green)]">
                   ▥
                 </div>
                 <h2 className="text-xl font-black text-slate-950">{title}</h2>
                 <p className="mt-2 text-sm font-bold text-slate-600">{text}</p>
-              </article>
+              </a>
             ))}
           </div>
         </div>

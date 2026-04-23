@@ -22,9 +22,9 @@ export function ExampleScenarioSection() {
           <p className="mt-4 max-w-md text-base leading-7 text-slate-600">
             Gerçekçi bir konut senaryosu ile peşinat, vade, teslim ve hizmet bedelinin sonuç üzerindeki etkisini hızlıca görün.
           </p>
-          <button className="mt-7 rounded-lg bg-[var(--green)] px-6 py-3 text-sm font-black text-white" type="button">
+          <a className="mt-7 inline-flex rounded-lg bg-[var(--green)] px-6 py-3 text-sm font-black text-white" href="#calculator">
             Bu senaryoyu çalıştır
-          </button>
+          </a>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {scenarioValues.map(([label, value]) => (

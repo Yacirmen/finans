@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-const navItems = ["Ana Sayfa", "Firmalar", "Nasıl Çalışır?", "Hakkımızda", "Blog"];
+const navItems = [
+  { label: "Ana Sayfa", href: "#" },
+  { label: "Firmalar", href: "#calculator" },
+  { label: "Nasıl Çalışır?", href: "#faq" },
+  { label: "Hakkımızda", href: "#faq" },
+  { label: "Blog", href: "#blog" },
+];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -26,10 +32,10 @@ export function Header() {
               className={`rounded-lg px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-[var(--green-soft)] hover:text-[var(--green-dark)] ${
                 index === 0 ? "bg-[var(--green-soft)] text-[var(--green-dark)]" : ""
               }`}
-              href={index === 0 ? "#" : `#${item.toLowerCase().replaceAll(" ", "-")}`}
-              key={item}
+              href={item.href}
+              key={item.label}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>
@@ -63,8 +69,8 @@ export function Header() {
         <div className="border-t border-slate-200 bg-white lg:hidden">
           <div className="page-container grid gap-2 py-4">
             {navItems.map((item) => (
-              <a className="rounded-lg px-3 py-3 text-sm font-bold text-slate-700" href="#" key={item}>
-                {item}
+              <a className="rounded-lg px-3 py-3 text-sm font-bold text-slate-700" href={item.href} key={item.label} onClick={() => setOpen(false)}>
+                {item.label}
               </a>
             ))}
             <a className="rounded-lg bg-[var(--blue)] px-4 py-3 text-center text-sm font-extrabold text-white" href="#calculator">

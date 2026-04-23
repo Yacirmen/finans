@@ -35,7 +35,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section id="nasıl-çalışır?" className="page-container mt-12">
+    <section id="faq" className="page-container mt-12">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-black tracking-[-0.04em] text-slate-950">Sıkça Sorulan Sorular</h2>
         <p className="mt-3 text-base text-slate-600">Sistem hakkında merak edilen temel kavramlar ve hesaplama mantığı.</p>
