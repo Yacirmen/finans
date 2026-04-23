@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 type FormState = {
   assetType: "Konut" | "Araba";
@@ -90,7 +90,9 @@ function Toggle({
 
 export function CalculatorSection() {
   const [form, setForm] = useState<FormState>(exampleForm);
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
+  const [resultPulse, setResultPulse] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const result = useMemo(() => {
     const assetPrice = parseNumber(form.assetPrice);
@@ -122,13 +124,22 @@ export function CalculatorSection() {
 
   const fillExample = () => {
     setForm(exampleForm);
-    setShowResult(true);
+    setShowResult(false);
     document.getElementById("calculator")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const clearForm = () => {
     setForm(emptyForm);
     setShowResult(false);
+  };
+
+  const calculate = () => {
+    setShowResult(true);
+    setResultPulse(true);
+    window.setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 80);
+    window.setTimeout(() => setResultPulse(false), 1200);
   };
 
   return (
@@ -242,13 +253,18 @@ export function CalculatorSection() {
             <div className="mb-6">
               <Toggle checked={form.compareBank} label="Tasarruf Finansmanı ile Konut Kredisini Kıyasla" onClick={() => update("compareBank", !form.compareBank)} />
             </div>
-            <button className="h-14 w-full rounded-xl bg-[var(--green)] text-base font-black text-white shadow-[0_16px_30px_rgba(6,148,95,0.2)]" onClick={() => setShowResult(true)} type="button">
+            <button className="h-14 w-full rounded-xl bg-[var(--green)] text-base font-black text-white shadow-[0_16px_30px_rgba(6,148,95,0.2)] transition hover:-translate-y-0.5 hover:bg-[var(--green-dark)]" onClick={calculate} type="button">
               HESAPLA VE SONUÇLARI GÖSTER
             </button>
           </div>
 
           {showResult ? (
-            <div className="grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 md:grid-cols-4">
+            <div
+              ref={resultRef}
+              className={`grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 transition md:grid-cols-4 ${
+                resultPulse ? "scale-[1.015] shadow-[0_0_0_6px_rgba(6,148,95,0.14),0_18px_34px_rgba(6,148,95,0.16)]" : ""
+              }`}
+            >
               <div>
                 <span className="text-xs font-black uppercase tracking-wide text-slate-500">Net maliyet</span>
                 <strong className="mt-2 block text-xl font-black text-slate-950">{formatMoney(result.estimatedNet)}</strong>
