@@ -35,10 +35,10 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <a className="rounded-lg bg-[var(--blue)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_22px_rgba(47,124,246,0.22)]" href="#calculator">
+          <a className="rounded-lg bg-[var(--blue)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_22px_rgba(47,124,246,0.22)]" href="#calculator" data-compare-cta>
             Teklifleri Karşılaştır
           </a>
-          <a className="rounded-lg border-2 border-[var(--green)] px-7 py-[10px] text-sm font-extrabold text-[var(--green-dark)]" href="#login">
+          <a className="rounded-lg border-2 border-[var(--green)] px-7 py-[10px] text-sm font-extrabold text-[var(--green-dark)]" href="#login" data-login-button>
             Giriş Yap
           </a>
         </div>
@@ -55,10 +55,10 @@ export function Header() {
               {item.label}
             </a>
           ))}
-          <a className="rounded-lg bg-[var(--blue)] px-4 py-3 text-center text-sm font-extrabold text-white" href="#calculator">
+          <a className="rounded-lg bg-[var(--blue)] px-4 py-3 text-center text-sm font-extrabold text-white" href="#calculator" data-compare-cta>
             Teklifleri Karşılaştır
           </a>
-          <a className="rounded-lg border border-[var(--green)] px-4 py-3 text-center text-sm font-extrabold text-[var(--green-dark)]" href="#login">
+          <a className="rounded-lg border border-[var(--green)] px-4 py-3 text-center text-sm font-extrabold text-[var(--green-dark)]" href="#login" data-login-button>
             Giriş Yap / Üye Ol
           </a>
         </div>

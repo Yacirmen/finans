@@ -118,6 +118,7 @@ export function CalculatorSection() {
           </details>
 
           <div className="border-t border-slate-200 pt-5">
+            <p className="mb-4 hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-bold text-red-700" data-form-error />
             <div className="mb-6">
               <Toggle checked={true} label="Tasarruf Finansmanı ile Konut Kredisini Kıyasla" name="compareBank" />
             </div>

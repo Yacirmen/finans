@@ -62,6 +62,16 @@ export function InteractionScript() {
       const serviceFeeRate = parseNumber(field("serviceFee")?.value);
       const rent = parseNumber(field("rent")?.value);
       const compareBank = calculator.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
+      const error = calculator.querySelector("[data-form-error]");
+      if (!assetPrice || !term || !monthly) {
+        if (error) {
+          error.textContent = "Lütfen varlık fiyatı, taksit sayısı ve aylık ödeme alanlarını doldurun.";
+          error.classList.remove("hidden");
+          error.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
+      error?.classList.add("hidden");
       const serviceFeeAmount = assetPrice * serviceFeeRate / 100;
       const totalPaid = downPayment + serviceFeeAmount + monthly * term;
       const waitingCost = delivery * rent;
@@ -107,6 +117,7 @@ export function InteractionScript() {
       calculator.querySelector('[data-segment="model"][data-value="Çekilişsiz"]')?.classList.add("active");
       calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, toggle.dataset.toggle === "compareBank"));
       calculator.querySelector("[data-result-panel]")?.classList.add("hidden");
+      calculator.querySelector("[data-form-error]")?.classList.add("hidden");
       updateDeliveryBar();
       calculator.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -114,11 +125,51 @@ export function InteractionScript() {
     calculator?.querySelector("[data-clear-form]")?.addEventListener("click", () => {
       calculator.querySelectorAll("[data-field]").forEach((input) => { input.value = ""; });
       calculator.querySelector("[data-result-panel]")?.classList.add("hidden");
+      calculator.querySelector("[data-form-error]")?.classList.add("hidden");
       calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, false));
       updateDeliveryBar();
     });
 
     calculator?.querySelector("[data-calculate]")?.addEventListener("click", renderResult);
+    document.querySelectorAll("[data-compare-cta]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const compareToggle = calculator?.querySelector('[data-toggle="compareBank"]');
+        if (compareToggle) setToggle(compareToggle, true);
+        setTimeout(() => calculator?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
+      });
+    });
+
+    document.querySelectorAll("[data-login-button]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const existing = document.querySelector("[data-login-modal]");
+        if (existing) existing.remove();
+        const modal = document.createElement("div");
+        modal.dataset.loginModal = "true";
+        modal.className = "fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4";
+        modal.innerHTML = '<div class="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"><h2 class="text-2xl font-black text-slate-950">Giriş alanı</h2><p class="mt-3 text-sm leading-6 text-slate-600">Demo arayüzde hesap girişi bağlanmadı; teklif karşılaştırma ve hesaplama araçlarını kullanabilirsiniz.</p><button class="mt-5 h-11 w-full rounded-xl bg-[var(--green)] text-sm font-black text-white" data-close-login>Kapat</button></div>';
+        document.body.appendChild(modal);
+        modal.querySelector("[data-close-login]")?.addEventListener("click", () => modal.remove());
+        modal.addEventListener("click", (modalEvent) => {
+          if (modalEvent.target === modal) modal.remove();
+        });
+      });
+    });
+
+    document.querySelectorAll("[data-blog-read]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const detail = link.closest("[data-blog-card]")?.querySelector("[data-blog-detail]");
+        detail?.classList.toggle("hidden");
+        link.textContent = detail?.classList.contains("hidden") ? "Devamını Oku →" : "Kapat ↑";
+      });
+    });
+
+    document.querySelector("[data-blog-all]")?.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.querySelectorAll("[data-blog-detail]").forEach((detail) => detail.classList.remove("hidden"));
+      document.querySelectorAll("[data-blog-read]").forEach((link) => { link.textContent = "Kapat ↑"; });
+    });
     updateDeliveryBar();
 
     const menuButton = document.querySelector("[data-mobile-menu-button]");

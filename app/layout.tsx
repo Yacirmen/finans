@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Finansman Maliyet Hesaplama",
   description:
     "Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

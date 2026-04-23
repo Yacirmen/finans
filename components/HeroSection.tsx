@@ -1,8 +1,8 @@
 const cards = [
-  ["Hesaplama", "Net maliyetinizi anında hesaplayın", "#calculator"],
-  ["Karşılaştır", "2 teklifi yan yana kıyaslayın", "#calculator"],
-  ["Firmalar", "Lisanslı kurumları birlikte görün", "#blog"],
-  ["Danışmanlık Al", "Ücretsiz teklif talebi oluşturun", "#faq"],
+  ["Hesaplama", "Net maliyetinizi anında hesaplayın", "#calculator", ""],
+  ["Karşılaştır", "2 teklifi yan yana kıyaslayın", "#calculator", "compare"],
+  ["Firmalar", "Lisanslı kurumları birlikte görün", "#faq", ""],
+  ["Danışmanlık Al", "Ücretsiz teklif talebi oluşturun", "#login", "login"],
 ];
 
 export function HeroSection() {
@@ -31,10 +31,23 @@ export function HeroSection() {
         </div>
 
         <div className="relative z-10 flex items-center justify-center">
-          <div className="absolute right-4 top-2 h-64 w-72 rotate-6 rounded-[28px] bg-emerald-900/10" />
+          <div className="absolute right-2 top-1 h-72 w-80 rotate-6 rounded-[28px] bg-emerald-900/10" />
+          <div className="absolute bottom-4 right-12 hidden h-24 w-52 rounded-full bg-[var(--green)]/20 blur-2xl lg:block" />
+          <div className="absolute right-8 top-10 hidden h-52 w-72 overflow-hidden rounded-[28px] border border-emerald-100 bg-gradient-to-br from-emerald-50 to-slate-100 opacity-70 lg:block">
+            <span className="absolute left-8 top-12 h-24 w-28 -skew-y-6 rounded-t-xl bg-slate-300/70" />
+            <span className="absolute left-16 top-20 h-24 w-36 rounded-lg bg-white/80 shadow-sm" />
+            <span className="absolute bottom-8 right-8 h-12 w-32 rounded-full bg-emerald-700/30" />
+            <span className="absolute bottom-12 right-16 h-10 w-28 rounded-t-full bg-slate-500/20" />
+          </div>
           <div className="grid w-full max-w-[540px] grid-cols-1 gap-4 sm:grid-cols-2">
-            {cards.map(([title, text, href]) => (
-              <a className="min-h-[146px] rounded-2xl border border-slate-100 bg-white/90 p-7 text-center shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur transition hover:-translate-y-1 hover:border-emerald-200" href={href} key={title}>
+            {cards.map(([title, text, href, action]) => (
+              <a
+                className="min-h-[146px] rounded-2xl border border-slate-100 bg-white/90 p-7 text-center shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur transition hover:-translate-y-1 hover:border-emerald-200"
+                href={href}
+                key={title}
+                data-compare-cta={action === "compare" ? true : undefined}
+                data-login-button={action === "login" ? true : undefined}
+              >
                 <div className="mx-auto mb-5 grid h-12 w-12 place-items-center rounded-xl border border-emerald-200 bg-emerald-50 text-2xl font-black text-[var(--green)]">
                   ▥
                 </div>
