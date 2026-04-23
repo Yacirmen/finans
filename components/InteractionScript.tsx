@@ -35,6 +35,17 @@ export function InteractionScript() {
     };
     const formatMoney = (value) => "₺ " + money.format(Math.max(0, Math.round(value || 0)));
     const field = (name) => calculator?.querySelector('[data-field="' + name + '"]');
+    const scrollToHash = () => {
+      if (!location.hash) return;
+      const target = document.querySelector(location.hash);
+      const run = () => {
+        if (!target) return;
+        const top = target.getBoundingClientRect().top + window.scrollY - 92;
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      };
+      setTimeout(run, 80);
+      setTimeout(run, 500);
+    };
 
     const setToggle = (button, active) => {
       button.dataset.on = String(active);
@@ -185,6 +196,9 @@ export function InteractionScript() {
         menuButton?.setAttribute("aria-expanded", "false");
       });
     });
+
+    window.addEventListener("hashchange", scrollToHash);
+    scrollToHash();
   });
 })();
 `;

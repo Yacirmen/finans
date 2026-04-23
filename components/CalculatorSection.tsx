@@ -11,8 +11,8 @@ function Toggle({ checked, label, name }: { checked: boolean; label: string; nam
 
 export function CalculatorSection() {
   return (
-    <section id="calculator" className="page-container relative z-20 mt-8" data-calculator>
-      <div className="mx-auto max-w-[900px] rounded-2xl border border-slate-200 bg-white p-6 soft-shadow md:p-8">
+    <section id="calculator" className="page-container relative z-20 -mt-28 scroll-mt-24 lg:-mt-56" data-calculator>
+      <div className="mx-auto max-w-[900px] rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.12)] md:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-5">
           <div>
             <h2 className="text-2xl font-black tracking-[-0.03em] text-slate-950">Tasarruf Finansmanı Maliyet Hesaplayıcı</h2>
