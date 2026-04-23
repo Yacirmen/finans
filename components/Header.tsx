@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 const navItems = [
   { label: "Ana Sayfa", href: "#" },
   { label: "Firmalar", href: "#calculator" },
@@ -11,8 +7,6 @@ const navItems = [
 ];
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-[0_2px_14px_rgba(15,23,42,0.12)] backdrop-blur">
       <div className="page-container flex min-h-[78px] items-center justify-between gap-5">
@@ -41,47 +35,34 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <a
-            className="rounded-lg bg-[var(--blue)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_22px_rgba(47,124,246,0.22)]"
-            href="#calculator"
-          >
+          <a className="rounded-lg bg-[var(--blue)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_22px_rgba(47,124,246,0.22)]" href="#calculator">
             Teklifleri Karşılaştır
           </a>
-          <a
-            className="rounded-lg border-2 border-[var(--green)] px-7 py-[10px] text-sm font-extrabold text-[var(--green-dark)]"
-            href="#login"
-          >
+          <a className="rounded-lg border-2 border-[var(--green)] px-7 py-[10px] text-sm font-extrabold text-[var(--green-dark)]" href="#login">
             Giriş Yap
           </a>
         </div>
 
-        <button
-          className="rounded-lg border border-slate-200 px-4 py-3 text-sm font-extrabold text-slate-700 lg:hidden"
-          onClick={() => setOpen((value) => !value)}
-          type="button"
-          aria-expanded={open}
-        >
+        <button className="rounded-lg border border-slate-200 px-4 py-3 text-sm font-extrabold text-slate-700 lg:hidden" data-mobile-menu-button type="button" aria-expanded="false">
           Menü
         </button>
       </div>
 
-      {open ? (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
-          <div className="page-container grid gap-2 py-4">
-            {navItems.map((item) => (
-              <a className="rounded-lg px-3 py-3 text-sm font-bold text-slate-700" href={item.href} key={item.label} onClick={() => setOpen(false)}>
-                {item.label}
-              </a>
-            ))}
-            <a className="rounded-lg bg-[var(--blue)] px-4 py-3 text-center text-sm font-extrabold text-white" href="#calculator">
-              Teklifleri Karşılaştır
+      <div className="hidden border-t border-slate-200 bg-white lg:hidden" data-mobile-menu>
+        <div className="page-container grid gap-2 py-4">
+          {navItems.map((item) => (
+            <a className="rounded-lg px-3 py-3 text-sm font-bold text-slate-700" href={item.href} key={item.label}>
+              {item.label}
             </a>
-            <a className="rounded-lg border border-[var(--green)] px-4 py-3 text-center text-sm font-extrabold text-[var(--green-dark)]" href="#login">
-              Giriş Yap / Üye Ol
-            </a>
-          </div>
+          ))}
+          <a className="rounded-lg bg-[var(--blue)] px-4 py-3 text-center text-sm font-extrabold text-white" href="#calculator">
+            Teklifleri Karşılaştır
+          </a>
+          <a className="rounded-lg border border-[var(--green)] px-4 py-3 text-center text-sm font-extrabold text-[var(--green-dark)]" href="#login">
+            Giriş Yap / Üye Ol
+          </a>
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }
