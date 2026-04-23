@@ -9,7 +9,7 @@ import { InteractionScript } from "../components/InteractionScript";
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <Header active="home" />
       <main>
         <HeroSection />
         <CalculatorSection />

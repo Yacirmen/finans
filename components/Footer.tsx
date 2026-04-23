@@ -1,8 +1,36 @@
-const groups: { title: string; links: string[] }[] = [
-  { title: "Sayfalar", links: ["Ana Sayfa", "Nasıl Çalışır?", "Hakkımızda", "Blog"] },
-  { title: "Araçlar", links: ["Maliyet Hesaplama", "Teklifleri Karşılaştır", "Çekiliş Simülasyonu"] },
-  { title: "İletişim", links: ["bilgi@example.com", "Sorularınız için bize ulaşın."] },
-  { title: "Yasal", links: ["Kullanım Koşulları", "Gizlilik Politikası", "KVKK Aydınlatma Metni"] },
+const groups = [
+  {
+    title: "Sayfalar",
+    links: [
+      { label: "Ana Sayfa", href: "/" },
+      { label: "Endeks", href: "/veri" },
+      { label: "Nasıl Çalışır?", href: "/#faq" },
+      { label: "Blog", href: "/#blog" },
+    ],
+  },
+  {
+    title: "Araçlar",
+    links: [
+      { label: "Maliyet Hesaplama", href: "/#calculator" },
+      { label: "Teklifleri Karşılaştır", href: "/#calculator" },
+      { label: "Piyasa Veri Paneli", href: "/veri" },
+    ],
+  },
+  {
+    title: "İletişim",
+    links: [
+      { label: "bilgi@example.com", href: "mailto:bilgi@example.com" },
+      { label: "Sorularınız için bize ulaşın", href: "#footer" },
+    ],
+  },
+  {
+    title: "Yasal",
+    links: [
+      { label: "Kullanım Koşulları", href: "#footer" },
+      { label: "Gizlilik Politikası", href: "#footer" },
+      { label: "KVKK Aydınlatma Metni", href: "#footer" },
+    ],
+  },
 ];
 
 export function Footer() {
@@ -12,8 +40,7 @@ export function Footer() {
         <h2 className="text-xl font-black text-slate-950">Tasarruf finansmanı sistemi nasıl okunmalı?</h2>
         <p className="mt-4 max-w-5xl text-sm leading-7 text-slate-600">
           Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi,
-          hizmet bedeli, kira etkisi ve banka kredisi alternatifiyle birlikte değerlendirmek için hazırlanmıştır. Amaç,
-          kullanıcıya tek ekranda pratik ve karşılaştırılabilir bir karar zemini sunmaktır.
+          hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.
         </p>
       </div>
       <div className="page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
@@ -23,7 +50,7 @@ export function Footer() {
             Finansman Rehberi
           </div>
           <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">
-            Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi ve karşılaştırmalı karar desteğiyle inceleyin.
+            Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin.
           </p>
         </div>
         {groups.map(({ title, links }) => (
@@ -31,9 +58,9 @@ export function Footer() {
             <h2 className="text-sm font-black text-slate-950">{title}</h2>
             <ul className="mt-4 grid gap-3 text-sm text-slate-600">
               {links.map((link) => (
-                <li key={link}>
-                  <a href={title === "Araçlar" ? "#calculator" : title === "Sayfalar" && link === "Blog" ? "#blog" : title === "Sayfalar" ? "#faq" : "#footer"}>
-                    {link}
+                <li key={link.label}>
+                  <a className="transition hover:text-[var(--green-dark)]" href={link.href}>
+                    {link.label}
                   </a>
                 </li>
               ))}
