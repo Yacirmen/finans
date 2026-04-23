@@ -39,6 +39,7 @@ export function InteractionScript() {
 
     const integerFields = ["assetPrice", "downPayment", "monthlyPayment", "rent"];
     const integerBankFields = ["amount"];
+    const integerLimitFields = ["housingValue", "vehicleValue", "needValue"];
 
     const getCalculator = () => document.querySelector("[data-calculator]");
     const getCalculatorCard = () => getCalculator()?.querySelector("[data-calculator-card]");
@@ -122,6 +123,91 @@ export function InteractionScript() {
       const monthlyRate = rate / 100;
       const factor = Math.pow(1 + monthlyRate, term);
       return principal * monthlyRate * factor / (factor - 1);
+    };
+
+    const getLimitSection = () => document.querySelector("[data-loan-limit]");
+    const limitField = (name) => getLimitSection()?.querySelector('[data-limit-field="' + name + '"]');
+    const limitPreview = (name) => getLimitSection()?.querySelector('[data-limit-preview="' + name + '"]');
+    const activeLimitTab = () => getLimitSection()?.querySelector('[data-limit-tab-button][data-active="true"]')?.dataset.limitTabButton || "housing";
+
+    const setLimitPreviewText = (name, value) => {
+      const node = limitPreview(name);
+      if (!node) return;
+      if (node.textContent !== value) {
+        node.textContent = value;
+        pulse(node, "preview-swap", 300);
+      }
+    };
+
+    const calculateHousingLimit = (value, energyClass, hasAnotherHome) => {
+      const safeValue = Math.max(0, value || 0);
+      const rules = [
+        { max: 5000000, noHome: { "A-B": 0.9, C: 0.8, Diger: 0.7 }, hasHome: { "A-B": 0.225, C: 0.2, Diger: 0.175 } },
+        { max: 7000000, noHome: { "A-B": 0.8, C: 0.7, Diger: 0.6 }, hasHome: { "A-B": 0.2, C: 0.175, Diger: 0.15 } },
+        { max: 10000000, noHome: { "A-B": 0.7, C: 0.6, Diger: 0.5 }, hasHome: { "A-B": 0.175, C: 0.15, Diger: 0.125 } },
+        { max: 20000000, noHome: { "A-B": 0.5, C: 0.4, Diger: 0.3 }, hasHome: { "A-B": 0.125, C: 0.1, Diger: 0.075 } },
+        { max: Number.POSITIVE_INFINITY, noHome: { "A-B": 0.4, C: 0.3, Diger: 0.2 }, hasHome: { "A-B": 0.1, C: 0.075, Diger: 0.05 } },
+      ];
+      const rule = rules.find((item) => safeValue <= item.max) || rules[rules.length - 1];
+      const ratio = hasAnotherHome ? rule.hasHome[energyClass] : rule.noHome[energyClass];
+      return { ratio, amount: safeValue * ratio };
+    };
+
+    const calculateVehicleLimit = (value) => {
+      const safeValue = Math.max(0, value || 0);
+      if (safeValue > 2000000) {
+        return { eligible: false, ratio: 0, amount: 0, message: "2.000.000 TL üstü taşıt bedelinde kredi kullandırılamaz." };
+      }
+      let ratio = 0.7;
+      if (safeValue > 1200000) ratio = 0.2;
+      else if (safeValue > 800000) ratio = 0.3;
+      else if (safeValue > 400000) ratio = 0.5;
+      return { eligible: true, ratio, amount: safeValue * ratio, message: "" };
+    };
+
+    const calculateNeedTerm = (value) => {
+      const safeValue = Math.max(0, value || 0);
+      if (safeValue <= 125000) return 36;
+      if (safeValue <= 250000) return 24;
+      return 12;
+    };
+
+    const syncLoanLimit = () => {
+      const section = getLimitSection();
+      if (!section) return;
+
+      const tab = activeLimitTab();
+      section.querySelectorAll("[data-limit-panel]").forEach((panel) => panel.classList.toggle("hidden", panel.dataset.limitPanel !== tab));
+      section.querySelectorAll("[data-limit-summary]").forEach((panel) => panel.classList.toggle("hidden", panel.dataset.limitSummary !== tab));
+
+      if (tab === "housing") {
+        const value = parseNumber(limitField("housingValue")?.value);
+        const energyClass = limitField("energyClass")?.value || "A-B";
+        const hasAnotherHome = (limitField("homeOwnership")?.value || "yok") === "var";
+        const result = calculateHousingLimit(value, energyClass, hasAnotherHome);
+        setLimitPreviewText("title", "Konut kredi modülü");
+        setLimitPreviewText("housingRatio", "%" + decimal.format(result.ratio * 100));
+        setLimitPreviewText("housingAmount", formatMoney(result.amount));
+      }
+
+      if (tab === "vehicle") {
+        const value = parseNumber(limitField("vehicleValue")?.value);
+        const result = calculateVehicleLimit(value);
+        setLimitPreviewText("title", "Taşıt kredi modülü");
+        setLimitPreviewText("vehicleAmount", result.eligible ? formatMoney(result.amount) : "Kredi yok");
+        setLimitPreviewText("vehicleMessage", result.eligible ? "Uygulanan oran: %" + decimal.format(result.ratio * 100) : result.message);
+      }
+
+      if (tab === "need") {
+        const value = parseNumber(limitField("needValue")?.value);
+        const term = calculateNeedTerm(value);
+        setLimitPreviewText("title", "İhtiyaç kredi modülü");
+        setLimitPreviewText("needTerm", term + " ay");
+        setLimitPreviewText(
+          "needMessage",
+          value <= 125000 ? "0 - 125.000 TL bandı için 36 ay" : value <= 250000 ? "125.000,01 - 250.000 TL bandı için 24 ay" : "250.000 TL üstü için 12 ay",
+        );
+      }
     };
 
     const syncCompanySelect = () => {
@@ -526,6 +612,18 @@ export function InteractionScript() {
         return;
       }
 
+      const limitTabButton = target.closest("[data-limit-tab-button]");
+      if (limitTabButton instanceof HTMLElement) {
+        const section = getLimitSection();
+        section?.querySelectorAll("[data-limit-tab-button]").forEach((button) => {
+          button.dataset.active = String(button === limitTabButton);
+        });
+        pulse(limitTabButton);
+        acknowledge(section);
+        syncLoanLimit();
+        return;
+      }
+
       const mobileMenuLink = target.closest("[data-mobile-menu] a");
       if (mobileMenuLink instanceof HTMLElement) {
         menu?.classList.add("hidden");
@@ -541,6 +639,13 @@ export function InteractionScript() {
     document.addEventListener("input", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) return;
+      if (target.matches("[data-limit-field]")) {
+        if (integerLimitFields.includes(target.dataset.limitField)) {
+          formatThousandsInput(target);
+        }
+        syncLoanLimit();
+        return;
+      }
       if (!target.matches("[data-field], [data-bank-field]")) return;
       if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {
         formatThousandsInput(target);
@@ -549,8 +654,24 @@ export function InteractionScript() {
       syncSummary();
     });
 
+    document.addEventListener("change", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLSelectElement)) return;
+      if (target.matches("[data-limit-field]")) {
+        syncLoanLimit();
+      }
+    });
+
     document.addEventListener("focusout", (event) => {
       const target = event.target;
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+      if (target instanceof HTMLInputElement && target.matches("[data-limit-field]")) {
+        if (integerLimitFields.includes(target.dataset.limitField)) {
+          formatThousandsInput(target);
+        }
+        syncLoanLimit();
+        return;
+      }
       if (!(target instanceof HTMLInputElement)) return;
       if (!target.matches("[data-field], [data-bank-field]")) return;
       if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {
@@ -585,6 +706,12 @@ export function InteractionScript() {
 
     syncCompanySelect();
     applyScenario();
+    document.querySelectorAll("[data-limit-field]").forEach((input) => {
+      if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
+        formatThousandsInput(input);
+      }
+    });
+    syncLoanLimit();
     window.addEventListener("hashchange", scrollToHash);
     scrollToHash();
   });

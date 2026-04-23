@@ -5,6 +5,7 @@ import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { HeroSection } from "../components/HeroSection";
 import { InteractionScript } from "../components/InteractionScript";
+import { LoanLimitSection } from "../components/LoanLimitSection";
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Header active="home" />
       <main>
         <HeroSection />
+        <LoanLimitSection />
         <CalculatorSection />
         <FAQSection />
         <BlogSection />
