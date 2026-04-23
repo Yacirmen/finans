@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f9fb;
+  --background: #f6f8fb;
   --surface: #ffffff;
   --surface-soft: #f4f7f6;
   --ink: #111827;
   --text: #4b5563;
   --muted: #8a95a4;
   --line: #e5eaf0;
-  --green: #06945f;
-  --green-dark: #075f3f;
-  --green-soft: #e5f8ee;
+  --green: #18a05a;
+  --green-dark: #11663a;
+  --green-soft: #e8fbef;
   --blue: #2f7cf6;
 }
 
@@ -51,29 +51,29 @@ a {
 .form-label {
   display: block;
   margin-bottom: 8px;
-  color: #637083;
+  color: #72819a;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .form-control {
   width: 100%;
-  height: 48px;
-  border: 1px solid #dbe3ec;
-  border-radius: 11px;
-  background: #f8fafc;
+  height: 44px;
+  border: 1px solid #d9e4ee;
+  border-radius: 14px;
+  background: #f8fbfe;
   padding: 0 14px;
-  color: #111827;
+  color: #182132;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .form-control::placeholder {
-  color: #96a1b1;
+  color: #a1afbf;
 }
 
 .form-control:focus {
@@ -84,30 +84,42 @@ a {
 
 .segment-button {
   display: inline-flex;
-  min-height: 42px;
+  min-height: 38px;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 9px;
+  border-radius: 11px;
   padding: 0 22px;
-  color: #334155;
+  color: #526071;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   transition: transform 0.18s ease, color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .segment-button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-0.5px);
 }
 
 .segment-button:active {
-  transform: translateY(1px) scale(0.985);
+  transform: translateY(0.5px) scale(0.992);
 }
 
 .segment-button.active {
   color: #fff;
   background: var(--green);
-  box-shadow: 0 10px 22px rgba(6, 148, 95, 0.2);
+  box-shadow: 0 10px 22px rgba(24, 160, 90, 0.22);
+}
+
+.button-ack {
+  animation: button-ack 0.28s ease-out;
+}
+
+.surface-ack {
+  animation: surface-ack 0.44s ease-out;
+}
+
+.preview-swap {
+  animation: preview-swap 0.3s ease-out;
 }
 
 [data-fill-example],
@@ -127,7 +139,7 @@ a {
 [data-compare-cta]:hover,
 [data-login-button]:hover,
 [data-mobile-menu-button]:hover {
-  transform: translateY(-1px);
+  transform: translateY(-0.5px);
 }
 
 [data-fill-example]:active,
@@ -137,29 +149,51 @@ a {
 [data-compare-cta]:active,
 [data-login-button]:active,
 [data-mobile-menu-button]:active {
-  transform: translateY(1px) scale(0.99);
-}
-
-.choice-pop {
-  animation: choice-pop 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(0.5px) scale(0.994);
 }
 
 .calculator-focus {
-  animation: calculator-focus 1.15s ease both;
+  animation: calculator-focus 0.95s ease both;
 }
 
-@keyframes choice-pop {
+@keyframes button-ack {
   0% {
-    box-shadow: 0 0 0 0 rgba(6, 148, 95, 0);
-    transform: scale(1);
+    transform: translateY(0) scale(1);
+    filter: saturate(1);
   }
-  42% {
-    box-shadow: 0 0 0 7px rgba(6, 148, 95, 0.18), 0 14px 28px rgba(6, 148, 95, 0.2);
-    transform: scale(1.025);
+  40% {
+    transform: translateY(1px) scale(0.988);
+    filter: saturate(1.08);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(6, 148, 95, 0);
-    transform: scale(1);
+    transform: translateY(0) scale(1);
+    filter: saturate(1);
+  }
+}
+
+@keyframes surface-ack {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 160, 90, 0);
+    border-color: rgba(220, 231, 226, 1);
+  }
+  45% {
+    box-shadow: 0 0 0 4px rgba(22, 160, 90, 0.08);
+    border-color: rgba(159, 229, 189, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 160, 90, 0);
+    border-color: rgba(220, 231, 226, 1);
+  }
+}
+
+@keyframes preview-swap {
+  0% {
+    opacity: 0.7;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -169,8 +203,8 @@ a {
     transform: translateY(0);
   }
   24% {
-    box-shadow: 0 0 0 8px rgba(6, 148, 95, 0.12), 0 30px 80px rgba(6, 148, 95, 0.18);
-    transform: translateY(-3px);
+    box-shadow: 0 0 0 5px rgba(6, 148, 95, 0.08), 0 28px 72px rgba(15, 23, 42, 0.10);
+    transform: translateY(-1px);
   }
   100% {
     box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);

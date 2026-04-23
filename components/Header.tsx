@@ -1,51 +1,74 @@
-const navItems = [
+const homeNavItems = [
   { key: "home", label: "Ana Sayfa", href: "/" },
-  { key: "calculator", label: "Hesaplayıcı", href: "/#calculator" },
-  { key: "data", label: "Endeks", href: "/veri" },
+  { key: "firms", label: "Firmalar", href: "/#faq" },
   { key: "faq", label: "Nasıl Çalışır?", href: "/#faq" },
+  { key: "about", label: "Hakkımızda", href: "/#blog" },
   { key: "blog", label: "Blog", href: "/#blog" },
+  { key: "data", label: "Endeks", href: "/veri" },
 ] as const;
 
-type ActiveNav = (typeof navItems)[number]["key"];
+type ActiveNav = "home" | "calculator" | "firms" | "faq" | "about" | "blog" | "data";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
+  const navItems = homeNavItems;
+
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-[0_2px_14px_rgba(15,23,42,0.12)] backdrop-blur">
-      <div className="page-container flex min-h-[78px] items-center justify-between gap-5">
-        <a href="/" className="flex items-center gap-3 text-[17px] font-black text-[var(--green-dark)]">
-          <span className="relative h-9 w-9" aria-hidden="true">
-            <span className="absolute left-1 top-4 h-1 w-8 -rotate-45 rounded-full bg-[var(--green)]" />
-            <span className="absolute bottom-1 left-2 h-4 w-1 rounded-full bg-[var(--green)]" />
-            <span className="absolute bottom-1 left-4 h-7 w-1 rounded-full bg-[var(--green)]" />
-            <span className="absolute bottom-1 left-6 h-5 w-1 rounded-full bg-[var(--green)]" />
+    <header className="sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur">
+      <div className="page-container flex min-h-[72px] items-center justify-between gap-6">
+        <a href="/" className="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]">
+          <span className="relative h-8 w-8" aria-hidden="true">
+            <span className="absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]" />
+            <span className="absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]" />
+            <span className="absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]" />
+            <span className="absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]" />
           </span>
-          Finansman Rehberi
+          Tasarruf Finansmanı
         </a>
 
-        <nav className="hidden items-center gap-2 lg:flex" aria-label="Ana menü">
-          {navItems.map((item) => (
-            <a
-              className={`rounded-lg px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-[var(--green-soft)] hover:text-[var(--green-dark)] ${
-                active === item.key ? "bg-[var(--green-soft)] text-[var(--green-dark)]" : ""
-              }`}
-              href={item.href}
-              key={item.key}
-            >
-              {item.label}
-            </a>
-          ))}
+        <div className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana menü">
+          {navItems.map((item) => {
+            const isActive = active === item.key || (active === "home" && item.key === "home");
+            return (
+              <a
+                key={item.key}
+                href={item.href}
+                className={`rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
+                  isActive ? "bg-[#e9fbef] text-[#1b804d]" : "text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
-          <a className="rounded-lg bg-[var(--blue)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_22px_rgba(47,124,246,0.22)]" href="/#calculator" data-compare-cta>
+        <div className="hidden h-8 w-px bg-[#e4e9ee] lg:block" />
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <a
+            className="rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]"
+            href="/#calculator"
+            data-compare-cta
+          >
             Teklifleri Karşılaştır
           </a>
-          <a className="rounded-lg border-2 border-[var(--green)] px-7 py-[10px] text-sm font-extrabold text-[var(--green-dark)]" href="#login" data-login-button>
+          <a
+            className="rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]"
+            href="#login"
+            data-login-button
+          >
             Giriş Yap
           </a>
         </div>
+        </div>
 
-        <button className="rounded-lg border border-slate-200 px-4 py-3 text-sm font-extrabold text-slate-700 lg:hidden" data-mobile-menu-button type="button" aria-expanded="false">
+        <button
+          className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden"
+          data-mobile-menu-button
+          type="button"
+          aria-expanded="false"
+        >
           Menü
         </button>
       </div>
@@ -53,15 +76,15 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
       <div className="hidden border-t border-slate-200 bg-white lg:hidden" data-mobile-menu>
         <div className="page-container grid gap-2 py-4">
           {navItems.map((item) => (
-            <a className="rounded-lg px-3 py-3 text-sm font-bold text-slate-700" href={item.href} key={item.key}>
+            <a className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href={item.href} key={item.key}>
               {item.label}
             </a>
           ))}
-          <a className="rounded-lg bg-[var(--blue)] px-4 py-3 text-center text-sm font-extrabold text-white" href="/#calculator" data-compare-cta>
+          <a className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href="/#calculator" data-compare-cta>
             Teklifleri Karşılaştır
           </a>
-          <a className="rounded-lg border border-[var(--green)] px-4 py-3 text-center text-sm font-extrabold text-[var(--green-dark)]" href="#login" data-login-button>
-            Giriş Yap / Üye Ol
+          <a className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]" href="#login" data-login-button>
+            Giriş Yap
           </a>
         </div>
       </div>
