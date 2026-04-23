@@ -126,7 +126,7 @@ export function InteractionScript() {
       return Number.isFinite(number) && number >= 0 ? number : 0;
     };
 
-    const formatMoney = (value) => "₺" + money.format(Math.max(0, Math.round(value || 0)));
+    const formatMoney = (value) => "₺" + money.format(Math.round(value || 0));
     const formatSignedMoney = (value) => {
       const safe = Math.round(value || 0);
       return (safe < 0 ? "-₺" : "₺") + money.format(Math.abs(safe));
@@ -319,6 +319,8 @@ export function InteractionScript() {
       return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);
     };
 
+    const compareDiscountRate = (annualInflation) => annualInflation / 12 / 100;
+
     const getCompareRoot = () => document.querySelector("[data-compare-root]");
 
     const buildCompareSchedule = (state) => {
@@ -351,7 +353,7 @@ export function InteractionScript() {
       const serviceFeeRate = parseNumber(state.serviceFee);
       const rent = parseNumber(state.rent);
       const inflation = parseNumber(state.inflation) || 25;
-      const discountRate = monthlyDiscountRate(inflation);
+      const discountRate = compareDiscountRate(inflation);
       const suggestedDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
       const deliveryInput = Math.round(parseNumber(state.delivery));
       const delivery = Math.max(0, deliveryInput || suggestedDelivery);
@@ -431,11 +433,17 @@ export function InteractionScript() {
     };
 
     const collectCompareState = (root, offerIndex, assetType) => {
-      const getValue = (field, fallback = "") => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]')?.value || fallback;
+      const getValue = (field, fallback = "") => {
+        const element = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]');
+        if (element instanceof HTMLSelectElement) {
+          return element.value || element.selectedOptions?.[0]?.value || fallback;
+        }
+        return element?.value || fallback;
+      };
       const getToggle = (name) => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-toggle-button="' + name + '"]')?.dataset.on === "true";
       const modelButton = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-model].active');
       return {
-        company: getValue("company", "Diger"),
+        company: getValue("company", "Diğer"),
         model: modelButton?.dataset.compareModel || "cekilissiz",
         assetPrice: getValue("assetPrice"),
         downPayment: getValue("downPayment"),
@@ -510,7 +518,7 @@ export function InteractionScript() {
       setField("delivery", parseNumber(result.state.delivery) + ". ay");
       setField("suggestedDelivery", result.suggestedDelivery + ". ay");
       setField("pvBenefit", formatMoney(result.pvBenefit));
-      setField("score", formatMoney(result.score), "text-[#168b53]");
+        setField("score", formatSignedMoney(result.score), "text-[#168b53]");
 
       const bankSummary = card.querySelector("[data-compare-bank-summary]");
       if (result.bankSummary && bankSummary) {
@@ -566,6 +574,16 @@ export function InteractionScript() {
       const root = getCompareRoot();
       if (!(root instanceof HTMLElement) || root.dataset.compareFallbackReady === "true") return;
       root.dataset.compareFallbackReady = "true";
+
+      root.querySelectorAll('select[data-compare-field]').forEach((select) => {
+        if (!(select instanceof HTMLSelectElement)) return;
+        const initialValue = select.dataset.initialValue;
+        if (initialValue && Array.from(select.options).some((option) => option.value === initialValue)) {
+          select.value = initialValue;
+        } else if (!select.value && Array.from(select.options).some((option) => option.value === "Diğer")) {
+          select.value = "Diğer";
+        }
+      });
 
       const render = () => {
         const assetType = root.querySelector("[data-compare-asset-button].active")?.dataset.compareAssetButton || "Konut";

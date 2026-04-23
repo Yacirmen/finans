@@ -119,6 +119,7 @@ function ComparisonInputCard({
           <select
             className={`${inputClass} relative z-10 cursor-pointer`}
             data-compare-field="company"
+            data-initial-value={offer.company}
             data-compare-offer={offerIndex}
             onChange={(event) => onChange({ company: event.target.value })}
             value={offer.company}
@@ -338,6 +339,7 @@ function ComparisonInputCard({
                   <select
                     className={`${inputClass} relative z-10 cursor-pointer`}
                     data-compare-field="bankHousingStatus"
+                    data-initial-value={offer.bankHousingStatus}
                     data-compare-offer={offerIndex}
                     onChange={(event) => onChange({ bankHousingStatus: event.target.value as OfferState["bankHousingStatus"] })}
                     value={offer.bankHousingStatus}
@@ -581,7 +583,7 @@ export function OfferComparisonPage() {
   const resultsRef = useRef<HTMLElement | null>(null);
   const [assetType, setAssetType] = useState<AssetType>("Konut");
   const [offerOne, setOfferOne] = useState<OfferState>(DEFAULT_OFFER);
-  const [offerTwo, setOfferTwo] = useState<OfferState>({ ...DEFAULT_OFFER, company: "Diger" });
+  const [offerTwo, setOfferTwo] = useState<OfferState>({ ...DEFAULT_OFFER, company: "Diğer" });
   const [calculated, setCalculated] = useState(false);
   const [activePulse, setActivePulse] = useState<string | null>(null);
   const [calculatingAck, setCalculatingAck] = useState(false);
