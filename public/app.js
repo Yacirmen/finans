@@ -308,11 +308,18 @@ function calculateOffers() {
 }
 
 function renderMarket() {
-  document.getElementById("marketIndexScore").textContent = marketData.indexScore.toFixed(1);
+  const score = marketData.indexScore;
+  const gauge = document.querySelector(".gauge");
+  const needleAngle = Math.max(-78, Math.min(78, (score - 50) * 1.56));
+
+  document.getElementById("marketIndexScore").textContent = score.toFixed(1);
   document.getElementById("marketIndexSeason").textContent = marketData.season;
   document.getElementById("marketIndexComment").textContent = marketData.comment;
+  if (gauge) {
+    gauge.style.setProperty("--needle-angle", `${needleAngle}deg`);
+  }
   document.getElementById("marketGroupCards").innerHTML = marketData.groups.map((group) => `
-    <article class="market-group">
+    <article class="market-group" style="--group-score: ${group.score}%">
       <strong>${group.name}</strong>
       <span>${group.score.toFixed(1)}</span>
       <p>${group.note}</p>

@@ -203,15 +203,25 @@
       <div class="section-title">
         <div>
           <span class="eyebrow">Piyasa endeksi</span>
-          <h2>Konut & taşıt karar termometresi</h2>
-          <p>Haftalık veri setinden üretilen erken uyarı skoru.</p>
+          <h2>Konut & taşıt piyasası karar radarı</h2>
+          <p>Haftalık veriyi tek bakışta okunur bir karar sinyaline çeviriyoruz.</p>
         </div>
       </div>
       <div class="market-layout">
         <div class="gauge-card">
-          <div class="gauge"><span id="marketIndexScore">47.5</span></div>
-          <strong id="marketIndexSeason">Geçiş / Kararsız Dönem</strong>
-          <p id="marketIndexComment">Kredi şartları pahalı; konut ve risk verileri dengede.</p>
+          <div class="gauge-shell">
+            <div class="gauge"><span id="marketIndexScore">47.5</span></div>
+            <div class="gauge-scale">
+              <span>Tasarruf</span>
+              <span>Denge</span>
+              <span>Kredi</span>
+            </div>
+          </div>
+          <div class="market-verdict">
+            <span>Bu haftanın sinyali</span>
+            <strong id="marketIndexSeason">Geçiş / Kararsız Dönem</strong>
+            <p id="marketIndexComment">Kredi şartları pahalı; konut ve risk verileri dengede.</p>
+          </div>
         </div>
         <div id="marketGroupCards" class="market-groups"></div>
       </div>
