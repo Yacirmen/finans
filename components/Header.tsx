@@ -9,7 +9,7 @@ const homeNavItems = [
   { key: "data", label: "Endeks", href: withBasePath("/veri") },
 ] as const;
 
-type ActiveNav = "home" | "calculator" | "firms" | "faq" | "about" | "blog" | "data";
+type ActiveNav = "home" | "calculator" | "firms" | "faq" | "about" | "blog" | "data" | "compare";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
   const navItems = homeNavItems;
@@ -50,7 +50,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
           <div className="hidden items-center gap-3 lg:flex">
             <a
               className="rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]"
-              href={withBasePath("/#calculator")}
+              href={withBasePath("/teklifleri-karsilastir")}
               data-compare-cta
             >
               Teklifleri Karşılaştır
@@ -82,7 +82,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               {item.label}
             </a>
           ))}
-          <a className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href={withBasePath("/#calculator")} data-compare-cta>
+          <a className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href={withBasePath("/teklifleri-karsilastir")} data-compare-cta>
             Teklifleri Karşılaştır
           </a>
           <a className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]" href="#login" data-login-button>

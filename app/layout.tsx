@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { InteractionScript } from "../components/InteractionScript";
 import "./globals.css";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body>{children}</body>
+      <body>
+        {children}
+        <InteractionScript />
+      </body>
     </html>
   );
 }

@@ -1,19 +1,22 @@
+import { withBasePath } from "../lib/sitePaths";
+
 const groups = [
   {
     title: "Sayfalar",
     links: [
-      { label: "Ana Sayfa", href: "/" },
-      { label: "Endeks", href: "/veri" },
-      { label: "Nasıl Çalışır?", href: "/#faq" },
-      { label: "Blog", href: "/#blog" },
+      { label: "Ana Sayfa", href: withBasePath("/") },
+      { label: "Endeks", href: withBasePath("/veri") },
+      { label: "Teklifleri Karşılaştır", href: withBasePath("/teklifleri-karsilastir") },
+      { label: "Nasıl Çalışır?", href: withBasePath("/#faq") },
+      { label: "Blog", href: withBasePath("/#blog") },
     ],
   },
   {
     title: "Araçlar",
     links: [
-      { label: "Maliyet Hesaplama", href: "/#calculator" },
-      { label: "Teklifleri Karşılaştır", href: "/#calculator" },
-      { label: "Piyasa Veri Paneli", href: "/veri" },
+      { label: "Maliyet Hesaplama", href: withBasePath("/#calculator") },
+      { label: "Teklifleri Karşılaştır", href: withBasePath("/teklifleri-karsilastir") },
+      { label: "Piyasa Veri Paneli", href: withBasePath("/veri") },
     ],
   },
   {
@@ -31,7 +34,7 @@ const groups = [
       { label: "KVKK Aydınlatma Metni", href: "#footer" },
     ],
   },
-];
+] as const;
 
 export function Footer() {
   return (
@@ -39,8 +42,7 @@ export function Footer() {
       <div className="page-container border-b border-slate-200 py-10">
         <h2 className="text-xl font-black text-slate-950">Tasarruf finansmanı sistemi nasıl okunmalı?</h2>
         <p className="mt-4 max-w-5xl text-sm leading-7 text-slate-600">
-          Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi,
-          hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.
+          Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.
         </p>
       </div>
       <div className="page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
@@ -68,9 +70,7 @@ export function Footer() {
           </div>
         ))}
       </div>
-      <div className="border-t border-slate-200 py-5 text-center text-sm text-slate-500">
-        © 2026 Finansman Rehberi. Tüm hakları saklıdır.
-      </div>
+      <div className="border-t border-slate-200 py-5 text-center text-sm text-slate-500">© 2026 Finansman Rehberi. Tüm hakları saklıdır.</div>
     </footer>
   );
 }

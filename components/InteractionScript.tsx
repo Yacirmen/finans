@@ -319,6 +319,333 @@ export function InteractionScript() {
       return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);
     };
 
+    const getCompareRoot = () => document.querySelector("[data-compare-root]");
+
+    const buildCompareSchedule = (state) => {
+      const baseMonthlyPayment = parseNumber(state.monthlyPayment);
+      const yearlyIncrease = parseNumber(state.yearlyIncrease);
+
+      if (state.manualPlan) {
+        const parts = String(state.manualPlanText || "")
+          .split(/[\n,;]+/)
+          .map((item) => parseNumber(item))
+          .filter((value) => value > 0);
+        if (parts.length > 0) {
+          return Array.from({ length: state.term }, (_, index) => parts[index] || parts[parts.length - 1]);
+        }
+      }
+
+      if (state.escalating) {
+        return Array.from({ length: state.term }, (_, index) => baseMonthlyPayment * Math.pow(1 + yearlyIncrease / 100, Math.floor(index / 12)));
+      }
+
+      return Array.from({ length: state.term }, () => baseMonthlyPayment);
+    };
+
+    const calculateCompareOffer = (assetType, state) => {
+      const rawTerm = Math.max(1, Math.round(parseNumber(state.term)));
+      const term = assetType === "Araba" ? Math.min(rawTerm, 60) : Math.min(rawTerm, 120);
+      const assetPrice = parseNumber(state.assetPrice);
+      const downPayment = parseNumber(state.downPayment);
+      const monthlyPayment = parseNumber(state.monthlyPayment);
+      const serviceFeeRate = parseNumber(state.serviceFee);
+      const rent = parseNumber(state.rent);
+      const inflation = parseNumber(state.inflation) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+      const suggestedDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
+      const deliveryInput = Math.round(parseNumber(state.delivery));
+      const delivery = Math.max(0, deliveryInput || suggestedDelivery);
+      const feeAmount = assetPrice * serviceFeeRate / 100;
+      const initialOutflow = downPayment + feeAmount;
+      const schedule = buildCompareSchedule(state);
+
+      let cumulative = initialOutflow;
+      let pvInstallments = 0;
+      let pvRent = 0;
+      const cashflow = [{
+        month: 0,
+        installment: 0,
+        rent: 0,
+        serviceFee: initialOutflow,
+        cumulativeOutflow: cumulative,
+        presentValue: initialOutflow,
+      }];
+
+      schedule.forEach((payment, index) => {
+        const month = index + 1;
+        const rentAmount = month <= delivery ? rent * Math.pow(1 + inflation / 100, Math.floor((month - 1) / 12)) : 0;
+        const pvInstallment = presentValue(payment, month, discountRate);
+        const pvRentAmount = presentValue(rentAmount, month, discountRate);
+        pvInstallments += pvInstallment;
+        pvRent += pvRentAmount;
+        cumulative += payment + rentAmount;
+        cashflow.push({
+          month,
+          installment: payment,
+          rent: rentAmount,
+          serviceFee: 0,
+          cumulativeOutflow: cumulative,
+          presentValue: pvInstallment + pvRentAmount,
+        });
+      });
+
+      const contractAmount = Math.max(assetPrice - downPayment, 0);
+      const totalRepayment = schedule.reduce((sum, value) => sum + value, 0);
+      const totalOutflow = initialOutflow + totalRepayment + cashflow.slice(1).reduce((sum, row) => sum + row.rent, 0);
+      const pvBenefit = presentValue(assetPrice, delivery, discountRate);
+      const score = pvBenefit - initialOutflow - pvInstallments - pvRent;
+      const nbm = -score;
+      const bankSummary = state.compareBank
+        ? (() => {
+            const config = getBankConfig(assetType, state.bankHousingStatus);
+            const summary = calculateCreditModule({
+              principal: parseNumber(state.bankAmount),
+              rate: parseNumber(state.bankRate),
+              term: Math.max(1, Math.round(parseNumber(state.bankTerm))),
+              fee: config.fee,
+              bsmv: config.bsmv,
+              kkdf: config.kkdf,
+            });
+            return {
+              installment: summary.installment,
+              totalRepayment: summary.totalRepayment,
+              annualEffectiveCost: summary.annualEffectiveCost,
+            };
+          })()
+        : null;
+
+      return {
+        state,
+        contractAmount,
+        initialOutflow,
+        feeAmount,
+        totalRepayment,
+        totalOutflow,
+        pvBenefit,
+        score,
+        nbm,
+        suggestedDelivery,
+        cashflow,
+        bankSummary,
+      };
+    };
+
+    const collectCompareState = (root, offerIndex, assetType) => {
+      const getValue = (field, fallback = "") => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]')?.value || fallback;
+      const getToggle = (name) => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-toggle-button="' + name + '"]')?.dataset.on === "true";
+      const modelButton = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-model].active');
+      return {
+        company: getValue("company", "Diger"),
+        model: modelButton?.dataset.compareModel || "cekilissiz",
+        assetPrice: getValue("assetPrice"),
+        downPayment: getValue("downPayment"),
+        term: getValue("term"),
+        monthlyPayment: getValue("monthlyPayment"),
+        escalating: getToggle("escalating"),
+        manualPlan: getToggle("manualPlan"),
+        manualPlanText: getValue("manualPlanText"),
+        delivery: getValue("delivery"),
+        serviceFee: getValue("serviceFee"),
+        rent: getValue("rent"),
+        inflation: getValue("inflation", "25"),
+        creditRate: getValue("creditRate", "3.19"),
+        yearlyIncrease: getValue("yearlyIncrease", "15"),
+        compareBank: getToggle("compareBank"),
+        bankAmount: getValue("bankAmount", assetType === "Konut" ? "2.000.000" : "1.000.000"),
+        bankRate: getValue("bankRate", assetType === "Konut" ? "2.85" : "3.45"),
+        bankTerm: getValue("bankTerm", assetType === "Konut" ? "60" : "12"),
+        bankHousingStatus: getValue("bankHousingStatus", "yok"),
+      };
+    };
+
+    const setCompareToggleVisual = (button, active) => {
+      if (!(button instanceof HTMLElement)) return;
+      button.dataset.on = active ? "true" : "false";
+      button.setAttribute("aria-pressed", String(active));
+      const track = button.querySelector("span");
+      const knob = track?.querySelector("span");
+      track?.classList.toggle("bg-[#18a05a]", active);
+      track?.classList.toggle("bg-[#d7e3ef]", !active);
+      knob?.classList.toggle("left-6", active);
+      knob?.classList.toggle("left-1", !active);
+    };
+
+    const setCompareResultCard = (root, offerIndex, result, highlighted) => {
+      const card = root.querySelector('[data-compare-result-card="' + offerIndex + '"]');
+      if (!(card instanceof HTMLElement)) return;
+      const empty = card.querySelector("[data-compare-result-empty]");
+      const content = card.querySelector("[data-compare-result-content]");
+      const winner = card.querySelector("[data-compare-result-winner]");
+      empty?.classList.add("hidden");
+      content?.classList.remove("hidden");
+      winner?.classList.toggle("hidden", !highlighted);
+      card.dataset.highlighted = highlighted ? "true" : "false";
+      card.classList.toggle("border-[#b8ebcc]", highlighted);
+      card.classList.toggle("bg-[linear-gradient(180deg,#fbfffd_0%,#f0fbf5_100%)]", highlighted);
+      card.classList.toggle("shadow-[0_18px_48px_rgba(24,160,90,0.14)]", highlighted);
+      card.classList.toggle("border-[#dce7e2]", !highlighted);
+      card.classList.toggle("bg-white", !highlighted);
+
+      const setField = (name, value, extraClass) => {
+        const node = card.querySelector('[data-compare-result-field="' + name + '"]');
+        if (node) {
+          node.textContent = value;
+          if (extraClass) {
+            node.classList.toggle(extraClass, highlighted);
+          }
+        }
+      };
+
+      setField("company", result.state.company);
+      setField("model", result.state.model === "cekilisli" ? "Cekilisli model" : "Cekilissiz model");
+      setField("initialOutflow", formatMoney(result.initialOutflow));
+      setField("term", parseNumber(result.state.term) + " ay");
+      setField("monthlyPayment", formatMoney(parseNumber(result.state.monthlyPayment)));
+      setField("totalRepayment", formatMoney(result.totalRepayment));
+      setField("totalOutflow", formatMoney(result.totalOutflow));
+      setField("nbm", formatMoney(result.nbm), "text-[#168b53]");
+      setField("downPayment", formatMoney(parseNumber(result.state.downPayment)));
+      setField("serviceFee", formatPercent(parseNumber(result.state.serviceFee)));
+      setField("contractAmount", formatMoney(result.contractAmount));
+      setField("delivery", parseNumber(result.state.delivery) + ". ay");
+      setField("suggestedDelivery", result.suggestedDelivery + ". ay");
+      setField("pvBenefit", formatMoney(result.pvBenefit));
+      setField("score", formatMoney(result.score), "text-[#168b53]");
+
+      const bankSummary = card.querySelector("[data-compare-bank-summary]");
+      if (result.bankSummary && bankSummary) {
+        bankSummary.classList.remove("hidden");
+        setField("bankInstallment", formatMoney(result.bankSummary.installment));
+        setField("bankTotalRepayment", formatMoney(result.bankSummary.totalRepayment));
+        setField("bankAnnualEffectiveCost", formatPercent(result.bankSummary.annualEffectiveCost * 100, 2));
+      } else {
+        bankSummary?.classList.add("hidden");
+      }
+    };
+
+    const setCompareCashflow = (root, offerIndex, rows) => {
+      const block = root.querySelector('[data-compare-cashflow-root="' + offerIndex + '"]');
+      if (!(block instanceof HTMLElement)) return;
+      const empty = block.querySelector("[data-compare-cashflow-empty]");
+      const tableWrap = block.querySelector("[data-compare-cashflow-table]");
+      const body = block.querySelector("[data-compare-cashflow-body]");
+      const exportButton = block.querySelector('[data-compare-export="' + offerIndex + '"]');
+      empty?.classList.add("hidden");
+      tableWrap?.classList.remove("hidden");
+      exportButton?.classList.remove("hidden");
+      if (!(body instanceof HTMLElement)) return;
+      body.innerHTML = rows.map((row) => {
+        return '<tr class="border-t border-[#edf2f7]">' +
+          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + formatMoney(row.installment) + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + formatMoney(row.rent) + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + formatMoney(row.serviceFee) + '</td>' +
+          '<td class="px-4 py-4 text-sm font-medium text-[#1c2433]">' + formatMoney(row.cumulativeOutflow) + '</td>' +
+          '<td class="px-4 py-4 text-sm font-medium text-[#168b53]">' + formatMoney(row.presentValue) + '</td>' +
+        '</tr>';
+      }).join("");
+      body.dataset.csv = JSON.stringify(rows);
+    };
+
+    const exportCompareRows = (filename, rows) => {
+      const csv = ["Ay,Taksit,Kira,Hizmet Bedeli,Kumulatif Cikis,Bugunku Deger"]
+        .concat(rows.map((row) => [row.month, Math.round(row.installment), Math.round(row.rent), Math.round(row.serviceFee), Math.round(row.cumulativeOutflow), Math.round(row.presentValue)].join(",")))
+        .join("\\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    };
+
+    const initCompareFallback = () => {
+      const root = getCompareRoot();
+      if (!(root instanceof HTMLElement) || root.dataset.compareFallbackReady === "true") return;
+      root.dataset.compareFallbackReady = "true";
+
+      const render = () => {
+        const assetType = root.querySelector("[data-compare-asset-button].active")?.dataset.compareAssetButton || "Konut";
+        const offerOneState = collectCompareState(root, 1, assetType);
+        const offerTwoState = collectCompareState(root, 2, assetType);
+        const offerOneResult = calculateCompareOffer(assetType, offerOneState);
+        const offerTwoResult = calculateCompareOffer(assetType, offerTwoState);
+        const winnerIndex = offerOneResult.nbm <= offerTwoResult.nbm ? 1 : 2;
+
+        setCompareResultCard(root, 1, offerOneResult, winnerIndex === 1);
+        setCompareResultCard(root, 2, offerTwoResult, winnerIndex === 2);
+        setCompareCashflow(root, 1, offerOneResult.cashflow);
+        setCompareCashflow(root, 2, offerTwoResult.cashflow);
+
+        const resultsSection = root.querySelector("[data-compare-results-section]");
+        if (resultsSection instanceof HTMLElement) {
+          pulse(resultsSection, "surface-ack", 520);
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        root.dataset.compareResults = JSON.stringify({
+          1: offerOneResult.cashflow,
+          2: offerTwoResult.cashflow,
+        });
+      };
+
+      root.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const assetButton = target.closest("[data-compare-asset-button]");
+        if (assetButton instanceof HTMLElement) {
+          root.querySelectorAll("[data-compare-asset-button]").forEach((button) => button.classList.remove("active"));
+          assetButton.classList.add("active");
+          pulse(assetButton);
+          return;
+        }
+
+        const modelButton = target.closest("[data-compare-model]");
+        if (modelButton instanceof HTMLElement) {
+          const offerIndex = modelButton.dataset.compareOffer;
+          root.querySelectorAll('[data-compare-offer="' + offerIndex + '"][data-compare-model]').forEach((button) => button.classList.remove("active"));
+          modelButton.classList.add("active");
+          pulse(modelButton);
+          return;
+        }
+
+        const toggleButton = target.closest("[data-compare-toggle-button]");
+        if (toggleButton instanceof HTMLElement) {
+          setCompareToggleVisual(toggleButton, toggleButton.dataset.on !== "true");
+          pulse(toggleButton);
+          return;
+        }
+
+        const calculateButton = target.closest("[data-compare-calculate]");
+        if (calculateButton instanceof HTMLElement) {
+          pulse(calculateButton);
+          render();
+          return;
+        }
+
+        const exportButton = target.closest("[data-compare-export]");
+        if (exportButton instanceof HTMLElement) {
+          const offerIndex = exportButton.dataset.compareExport;
+          const payload = JSON.parse(root.dataset.compareResults || "{}");
+          const rows = payload[offerIndex];
+          if (rows) exportCompareRows("teklif-" + offerIndex + "-nakit-akisi.csv", rows);
+        }
+      });
+
+      root.addEventListener("input", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+        const name = target.dataset.compareField;
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(name)) {
+          formatThousandsInput(target);
+        }
+      });
+    };
+
     const calculateComparisonScenarios = () => {
       const assetPrice = parseNumber(field("assetPrice")?.value);
       const downPayment = parseNumber(field("downPayment")?.value);
@@ -1097,6 +1424,7 @@ export function InteractionScript() {
     syncComparisonInputs();
     renderComparison();
     renderCashflow();
+    initCompareFallback();
     document.querySelectorAll("[data-limit-field]").forEach((input) => {
       if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
         formatThousandsInput(input);
