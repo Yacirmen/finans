@@ -1,4 +1,5 @@
 import { autoTopBrands, autoTotals, creditRows, currentIndicators, financingIndex, housingSales, sourceCatalog, topIndexDrivers } from "../lib/marketData";
+import { withBasePath } from "../lib/sitePaths";
 
 const numberFormatter = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
 const decimalFormatter = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 1 });
@@ -102,7 +103,7 @@ function HeroIndex() {
                 </div>
               </div>
 
-              <a className="mx-auto mt-6 inline-flex rounded-[13px] bg-[#16a05a] px-7 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(22,160,90,0.18)] transition hover:-translate-y-0.5 hover:bg-[#12874b]" href="/#calculator">
+              <a className="mx-auto mt-6 inline-flex rounded-[13px] bg-[#16a05a] px-7 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(22,160,90,0.18)] transition hover:-translate-y-0.5 hover:bg-[#12874b]" href={withBasePath("/#calculator")}>
                 Bu sinyalle hesaplama yap
               </a>
             </div>
@@ -226,7 +227,7 @@ function MarketEvidence() {
                   </div>
                 ))}
               </div>
-              <a className="mt-5 inline-flex rounded-[12px] bg-white px-4 py-2 text-sm font-medium text-[#49556a] shadow-sm transition hover:-translate-y-0.5 hover:text-[#179253]" href="/#calculator">
+              <a className="mt-5 inline-flex rounded-[12px] bg-white px-4 py-2 text-sm font-medium text-[#49556a] shadow-sm transition hover:-translate-y-0.5 hover:text-[#179253]" href={withBasePath("/#calculator")}>
                 Kredi kıyası hesapla
               </a>
             </div>

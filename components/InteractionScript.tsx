@@ -56,6 +56,12 @@ export function InteractionScript() {
     const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
     const activeSegmentValue = (segmentName) => calculator.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
 
+    const companySelect = calculator.querySelector("[data-company-select]");
+    const companyTrigger = companySelect?.querySelector("[data-company-trigger]");
+    const companyMenu = companySelect?.querySelector("[data-company-menu]");
+    const companyLabel = companySelect?.querySelector("[data-company-label]");
+    const companyChevron = companySelect?.querySelector("[data-company-chevron]");
+
     const pulse = (element, className = "button-ack", duration = 320) => {
       if (!element) return;
       element.classList.remove(className);
@@ -75,6 +81,28 @@ export function InteractionScript() {
 
     const integerFields = ["assetPrice", "downPayment", "monthlyPayment", "rent"];
     const integerBankFields = ["amount"];
+
+    const syncCompanySelect = () => {
+      const currentValue = field("company")?.value || "Diğer";
+      if (companyLabel) companyLabel.textContent = currentValue;
+      companySelect?.querySelectorAll("[data-company-option]").forEach((option) => {
+        option.dataset.active = String(option.dataset.value === currentValue);
+      });
+    };
+
+    const closeCompanyMenu = () => {
+      if (!companyMenu || !companyTrigger) return;
+      companyMenu.classList.add("hidden");
+      companyTrigger.setAttribute("aria-expanded", "false");
+      companyChevron?.classList.remove("rotate-180");
+    };
+
+    const openCompanyMenu = () => {
+      if (!companyMenu || !companyTrigger) return;
+      companyMenu.classList.remove("hidden");
+      companyTrigger.setAttribute("aria-expanded", "true");
+      companyChevron?.classList.add("rotate-180");
+    };
 
     const setToggle = (button, active) => {
       button.dataset.on = String(active);
@@ -97,7 +125,7 @@ export function InteractionScript() {
 
     const formatThousandsInput = (input) => {
       if (!input) return;
-      const digits = String(input.value || "").replace(/\D/g, "");
+      const digits = String(input.value || "").replace(/\\D/g, "");
       if (!digits) {
         input.value = "";
         return;
@@ -219,6 +247,7 @@ export function InteractionScript() {
 
       updateBankPanelVisibility();
       updateDeliveryBar();
+      syncCompanySelect();
       syncSummary();
     };
 
@@ -283,6 +312,35 @@ export function InteractionScript() {
       });
     });
 
+    companyTrigger?.addEventListener("click", () => {
+      const isOpen = companyTrigger.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeCompanyMenu();
+      else openCompanyMenu();
+      pulse(companyTrigger);
+    });
+
+    companySelect?.querySelectorAll("[data-company-option]").forEach((option) => {
+      option.addEventListener("click", () => {
+        const input = field("company");
+        if (!input) return;
+        input.value = option.dataset.value || "Diğer";
+        syncCompanySelect();
+        closeCompanyMenu();
+        pulse(companyTrigger);
+        acknowledge(calculatorCard, document.querySelector("[data-summary-panel]"));
+        syncSummary();
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!companySelect || companySelect.contains(event.target)) return;
+      closeCompanyMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeCompanyMenu();
+    });
+
     calculator.querySelectorAll("[data-field], [data-bank-field]").forEach((input) => {
       input.addEventListener("input", () => {
         if (integerFields.includes(input.dataset.field) || integerBankFields.includes(input.dataset.bankField)) {
@@ -311,6 +369,7 @@ export function InteractionScript() {
       calculator.querySelector('[data-segment="assetType"][data-value="Konut"]')?.classList.add("active");
       calculator.querySelector('[data-segment="model"][data-value="cekilisli"]')?.classList.add("active");
       calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, toggle.dataset.toggle === "compareBank"));
+      syncCompanySelect();
       applyScenario();
       calculator.scrollIntoView({ behavior: "smooth", block: "start" });
       focusCalculator();
@@ -327,6 +386,8 @@ export function InteractionScript() {
       document.querySelector("[data-result-panel]")?.classList.add("hidden");
       calculator.querySelector("[data-form-error]")?.classList.add("hidden");
       calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, false));
+      syncCompanySelect();
+      closeCompanyMenu();
       updateBankPanelVisibility();
       updateDeliveryBar();
       syncSummary();
@@ -465,6 +526,7 @@ export function InteractionScript() {
       }
     });
 
+    syncCompanySelect();
     applyScenario();
     window.addEventListener("hashchange", scrollToHash);
     scrollToHash();
