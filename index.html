@@ -10,7 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260423-market1" />
+  <link rel="stylesheet" href="styles.css?v=20260423-compact2" />
 </head>
 <body>
   <div class="page-shell">
@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      <div class="market-dashboard">
+      <div class="market-dashboard compact-market-dashboard">
         <div class="fear-gauge-card">
           <div class="gauge-shell" aria-label="Konut Kredisi Tasarruf Finansman Endeksi">
             <div class="gauge-ring">
@@ -98,26 +98,25 @@
         <div id="marketGroupCards" class="market-group-cards"></div>
       </div>
 
-      <div class="market-grid">
-        <article class="market-card market-card-wide">
-          <span class="market-eyebrow">Konut Kredileri</span>
-          <h3>BDDK haftalık kredi stoku</h3>
-          <div id="housingCreditCards" class="mini-metric-grid"></div>
-        </article>
+      <div id="marketSnapshot" class="market-snapshot"></div>
 
-        <article class="market-card">
-          <span class="market-eyebrow">TÜİK Konut Satış</span>
-          <h3>Mart 2026 satış resmi</h3>
-          <div id="housingSalesCards" class="mini-metric-grid"></div>
-        </article>
-
-        <article class="market-card market-card-wide">
-          <span class="market-eyebrow">Otomobil Pazarı</span>
-          <h3>Ocak-Mart 2026 marka tablosu</h3>
-          <div id="autoMarketCards" class="mini-metric-grid"></div>
-          <div id="autoBrandBars" class="brand-bars"></div>
-        </article>
+      <div class="market-tabs" role="tablist" aria-label="Veri detayları">
+        <button class="market-tab active" type="button" data-market-tab="credit">Kredi</button>
+        <button class="market-tab" type="button" data-market-tab="housing">Konut</button>
+        <button class="market-tab" type="button" data-market-tab="auto">Taşıt</button>
       </div>
+
+      <article class="market-card market-detail-card">
+        <div class="market-detail-head">
+          <div>
+            <span id="marketDetailEyebrow" class="market-eyebrow">Konut Kredileri</span>
+            <h3 id="marketDetailTitle">BDDK haftalık kredi stoku</h3>
+          </div>
+          <p id="marketDetailNote" class="subtle">Ana metrikler tek panelde; diğer kırılımlar sekmelerde.</p>
+        </div>
+        <div id="marketDetailCards" class="mini-metric-grid compact-metric-grid"></div>
+        <div id="autoBrandBars" class="brand-bars compact-brand-bars"></div>
+      </article>
 
       <div class="source-strip">
         <strong>Kaynak akışı:</strong>

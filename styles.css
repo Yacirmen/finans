@@ -202,9 +202,9 @@ a {
   grid-template-columns: minmax(0, 1fr) 520px;
   gap: 42px;
   width: min(1216px, calc(100% - 32px));
-  min-height: 496px;
+  min-height: 430px;
   margin: 18px auto 0;
-  padding: 56px 24px;
+  padding: 42px 24px;
   overflow: hidden;
   border: 1px solid #dff2e7;
   border-radius: 16px;
@@ -262,7 +262,7 @@ a {
   margin: 22px 0 18px;
   color: #101828;
   font-family: var(--font-display);
-  font-size: clamp(52px, 6vw, 76px);
+  font-size: clamp(48px, 5.4vw, 68px);
   line-height: 0.96;
   letter-spacing: -0.065em;
 }
@@ -294,7 +294,7 @@ a {
 .hero-metrics article {
   display: grid;
   place-items: center;
-  min-height: 154px;
+  min-height: 132px;
   padding: 22px;
   text-align: center;
   border: 1px solid rgba(224, 231, 238, 0.85);
@@ -414,10 +414,19 @@ a {
     #fff;
 }
 
+.market-panel .section-head {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+
+.market-panel .section-head h2 {
+  font-size: clamp(24px, 2.6vw, 32px);
+}
+
 .market-dashboard {
   display: grid;
-  grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1.05fr);
-  gap: 20px;
+  grid-template-columns: minmax(420px, 1fr) minmax(420px, 1fr);
+  gap: 16px;
   align-items: stretch;
 }
 
@@ -433,10 +442,10 @@ a {
 
 .fear-gauge-card {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 14px;
   align-items: center;
-  padding: 22px;
+  padding: 18px;
   background:
     linear-gradient(135deg, #f7fffb, #fff),
     radial-gradient(circle at 0 0, rgba(7, 147, 95, 0.08), transparent 18rem);
@@ -449,8 +458,8 @@ a {
 
 .gauge-ring {
   position: relative;
-  width: 240px;
-  height: 140px;
+  width: 206px;
+  height: 118px;
   overflow: hidden;
   border-radius: 240px 240px 28px 28px;
   background:
@@ -460,10 +469,10 @@ a {
 .gauge-ring::after {
   content: "";
   position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: -74px;
-  height: 178px;
+  left: 25px;
+  right: 25px;
+  bottom: -64px;
+  height: 150px;
   border-radius: 180px 180px 20px 20px;
   background: #fff;
 }
@@ -474,7 +483,7 @@ a {
   bottom: 0;
   z-index: 2;
   width: 4px;
-  height: 102px;
+  height: 86px;
   border-radius: 999px;
   background: #101828;
   transform-origin: 50% 100%;
@@ -500,7 +509,7 @@ a {
 .gauge-center strong {
   color: var(--green-dark);
   font-family: var(--font-display);
-  font-size: 52px;
+  font-size: 44px;
   line-height: 1;
 }
 
@@ -515,10 +524,10 @@ a {
 .gauge-copy h3,
 .market-card h3,
 .group-score-card h3 {
-  margin: 10px 0 8px;
+  margin: 8px 0 6px;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: -0.04em;
 }
 
@@ -545,25 +554,25 @@ a {
 .market-group-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 10px;
 }
 
 .group-score-card {
-  padding: 18px;
+  padding: 15px;
 }
 
 .group-score-card strong {
   display: block;
-  margin-top: 12px;
+  margin-top: 10px;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 31px;
   letter-spacing: -0.04em;
 }
 
 .score-track {
   height: 9px;
-  margin-top: 14px;
+  margin-top: 10px;
   overflow: hidden;
   border-radius: 999px;
   background: #edf2f7;
@@ -580,6 +589,127 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
   margin-top: 18px;
+}
+
+.market-snapshot {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.snapshot-card {
+  min-height: 96px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #f8fafc;
+}
+
+.snapshot-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.snapshot-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: -0.045em;
+}
+
+.snapshot-card em {
+  display: block;
+  margin-top: 5px;
+  color: var(--green);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.snapshot-card em.negative {
+  color: var(--danger);
+}
+
+.market-tabs {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #f8fafc;
+}
+
+.market-tab {
+  min-height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 950;
+}
+
+.market-tab.active {
+  color: #fff;
+  background: var(--green);
+  box-shadow: 0 8px 18px rgba(7, 147, 95, 0.2);
+}
+
+.market-detail-card {
+  margin-top: 12px;
+  padding: 16px;
+}
+
+.market-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.market-detail-head h3 {
+  margin-bottom: 0;
+}
+
+.compact-metric-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.market-detail-card .mini-metric {
+  padding: 12px;
+}
+
+.market-detail-card .mini-metric strong {
+  font-size: 21px;
+}
+
+.compact-brand-bars {
+  display: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.compact-brand-bars .brand-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.market-detail-card.show-brands .compact-brand-bars {
+  display: grid;
 }
 
 .market-card {
@@ -1244,7 +1374,10 @@ body.dark .hero-metrics article {
   }
 
   .market-grid,
-  .market-group-cards {
+  .market-group-cards,
+  .market-snapshot,
+  .compact-metric-grid,
+  .compact-brand-bars {
     grid-template-columns: 1fr;
   }
 

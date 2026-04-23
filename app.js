@@ -1823,9 +1823,75 @@ function renderMarketData() {
       .join("");
   }
 
-  renderMiniMetrics("housingCreditCards", MARKET_DATA.housingCredit);
-  renderMiniMetrics("housingSalesCards", MARKET_DATA.housingSales);
-  renderMiniMetrics("autoMarketCards", MARKET_DATA.autoMarket);
+  const snapshotContainer = document.getElementById("marketSnapshot");
+  if (snapshotContainer) {
+    const snapshotItems = [
+      MARKET_DATA.housingCredit[0],
+      MARKET_DATA.housingCredit[1],
+      MARKET_DATA.housingSales[0],
+      MARKET_DATA.housingSales[1],
+      MARKET_DATA.autoMarket[0],
+      MARKET_DATA.autoMarket[1],
+    ];
+    snapshotContainer.innerHTML = snapshotItems
+      .map(
+        (item) => `
+          <article class="snapshot-card">
+            <span>${item.label}</span>
+            <strong>${item.value}</strong>
+            <em class="${item.negative ? "negative" : ""}">${item.delta}</em>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  const tabData = {
+    credit: {
+      eyebrow: "Konut Kredileri",
+      title: "BDDK haftalık kredi stoku",
+      note: "Konut ve taşıt kredi stokundaki yön, finansman iştahını okumak için ana sinyal.",
+      metrics: MARKET_DATA.housingCredit,
+      showBrands: false,
+    },
+    housing: {
+      eyebrow: "TÜİK Konut Satış",
+      title: "Mart 2026 satış resmi",
+      note: "Toplam satış, ipotekli pay ve ilk el oranı konut talebinin nabzını verir.",
+      metrics: MARKET_DATA.housingSales,
+      showBrands: false,
+    },
+    auto: {
+      eyebrow: "Otomobil Pazarı",
+      title: "Ocak-Mart 2026 marka tablosu",
+      note: "Taşıt tarafında pazar hacmi ve marka sıralaması manuel güncelleme ile izlenir.",
+      metrics: MARKET_DATA.autoMarket,
+      showBrands: true,
+    },
+  };
+
+  const renderTab = (key) => {
+    const data = tabData[key] || tabData.credit;
+    const eyebrow = document.getElementById("marketDetailEyebrow");
+    const title = document.getElementById("marketDetailTitle");
+    const note = document.getElementById("marketDetailNote");
+    const detailCard = document.querySelector(".market-detail-card");
+    if (eyebrow) eyebrow.textContent = data.eyebrow;
+    if (title) title.textContent = data.title;
+    if (note) note.textContent = data.note;
+    if (detailCard) detailCard.classList.toggle("show-brands", data.showBrands);
+    renderMiniMetrics("marketDetailCards", data.metrics);
+  };
+
+  document.querySelectorAll("[data-market-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll("[data-market-tab]").forEach((tab) => tab.classList.remove("active"));
+      button.classList.add("active");
+      renderTab(button.dataset.marketTab);
+    });
+  });
+
+  renderTab("credit");
 
   const brandContainer = document.getElementById("autoBrandBars");
   if (brandContainer) {
