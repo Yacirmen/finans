@@ -10,24 +10,24 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260423-inter1" />
+  <link rel="stylesheet" href="styles.css?v=20260423-tabs1" />
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#hero" aria-label="Ana sayfa">
+    <a class="brand" href="#hero" data-home-tab aria-label="Ana sayfa">
       <span class="brand-mark" aria-hidden="true"></span>
       <span>Tasarruf Finansmanı</span>
     </a>
 
     <nav class="site-nav" aria-label="Ana menü">
-      <a href="#calculator">Hesaplayıcı</a>
-      <a href="#loanLimit">Kredi Limit</a>
-      <a href="#offerCompare">Teklifleri Karşılaştır</a>
-      <a href="#marketData">Endeks</a>
-      <a href="#method">Nasıl Çalışır?</a>
+      <a href="#calculator" data-section-tab="calculator">Hesaplayıcı</a>
+      <a href="#loanLimit" data-section-tab="loanLimit">Kredi Limit</a>
+      <a href="#offerCompare" data-section-tab="offerCompare">Teklifleri Karşılaştır</a>
+      <a href="#marketData" data-section-tab="marketData">Endeks</a>
+      <a href="#method" data-section-tab="method">Nasıl Çalışır?</a>
     </nav>
 
-    <a class="header-cta" href="#calculator">Analize Başla</a>
+    <a class="header-cta" href="#calculator" data-section-tab="calculator">Analize Başla</a>
   </header>
 
   <main>
@@ -40,8 +40,8 @@
           Hangi teklifin gerçekten mantıklı olduğunu dakikalar içinde görün.
         </p>
         <div class="hero-actions">
-          <a class="primary-action" href="#calculator">Hemen Hesapla</a>
-          <a class="secondary-action" href="#offerCompare">Teklif Karşılaştır</a>
+          <a class="primary-action" href="#calculator" data-section-tab="calculator">Hemen Hesapla</a>
+          <a class="secondary-action" href="#offerCompare" data-section-tab="offerCompare">Teklif Karşılaştır</a>
         </div>
       </div>
 
@@ -78,7 +78,7 @@
       </div>
     </section>
 
-    <section id="calculator" class="calculator-shell">
+    <section id="calculator" class="calculator-shell page-section" data-section="calculator">
       <div class="calculator-card">
         <div class="section-title compact-title">
           <div>
@@ -152,7 +152,7 @@
       </aside>
     </section>
 
-    <section id="loanLimit" class="panel">
+    <section id="loanLimit" class="panel page-section" data-section="loanLimit" hidden>
       <div class="section-title">
         <div>
           <span class="eyebrow">Kredi limit alanı</span>
@@ -179,7 +179,7 @@
       </div>
     </section>
 
-    <section id="offerCompare" class="panel">
+    <section id="offerCompare" class="panel page-section" data-section="offerCompare" hidden>
       <div class="section-title">
         <div>
           <span class="eyebrow">Teklif karşılaştırma</span>
@@ -199,7 +199,7 @@
       <div id="offerCompareSummary" class="offer-summary"></div>
     </section>
 
-    <section id="marketData" class="panel">
+    <section id="marketData" class="panel page-section" data-section="marketData" hidden>
       <div class="section-title">
         <div>
           <span class="eyebrow">Piyasa endeksi</span>
@@ -227,7 +227,7 @@
       </div>
     </section>
 
-    <section id="method" class="panel method-panel">
+    <section id="method" class="panel method-panel page-section" data-section="method" hidden>
       <div class="section-title">
         <div>
           <span class="eyebrow">Nasıl çalışır?</span>
@@ -258,6 +258,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=20260423-inter1"></script>
+  <script src="app.js?v=20260423-tabs1"></script>
 </body>
 </html>

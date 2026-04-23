@@ -327,17 +327,85 @@ function renderMarket() {
   `).join("");
 }
 
-function setupNavigationFlash() {
-  document.querySelectorAll(".site-nav a, .hero-actions a, .header-cta").forEach((link) => {
-    link.addEventListener("click", () => {
-      const target = document.querySelector(link.getAttribute("href"));
-      if (!target) return;
-      window.setTimeout(() => {
-        target.classList.add("target-flash");
-        window.setTimeout(() => target.classList.remove("target-flash"), 1800);
-      }, 250);
+function setupSectionTabs() {
+  const sections = [...document.querySelectorAll("[data-section]")];
+  const tabLinks = [...document.querySelectorAll("[data-section-tab]")];
+  const homeLinks = [...document.querySelectorAll("[data-home-tab]")];
+  const validSections = new Set(sections.map((section) => section.dataset.section));
+
+  const setActiveSection = (sectionId, shouldPushState = true) => {
+    if (!validSections.has(sectionId)) return;
+
+    document.body.classList.add("workspace-mode");
+    sections.forEach((section) => {
+      const isActive = section.dataset.section === sectionId;
+      section.hidden = !isActive;
+      section.classList.toggle("active-section", isActive);
+      if (isActive) {
+        section.classList.remove("target-flash");
+        window.requestAnimationFrame(() => section.classList.add("target-flash"));
+        window.setTimeout(() => section.classList.remove("target-flash"), 900);
+      }
+    });
+
+    tabLinks.forEach((link) => {
+      const isActive = link.dataset.sectionTab === sectionId;
+      link.classList.toggle("active", isActive);
+      link.setAttribute("aria-current", isActive ? "page" : "false");
+    });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (shouldPushState) {
+      history.pushState({ sectionId }, "", `#${sectionId}`);
+    }
+  };
+
+  const showHome = (shouldPushState = true) => {
+    document.body.classList.remove("workspace-mode");
+    sections.forEach((section) => {
+      const isCalculator = section.dataset.section === "calculator";
+      section.hidden = !isCalculator;
+      section.classList.toggle("active-section", isCalculator);
+    });
+    tabLinks.forEach((link) => {
+      link.classList.toggle("active", link.dataset.sectionTab === "calculator");
+      link.setAttribute("aria-current", link.dataset.sectionTab === "calculator" ? "page" : "false");
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (shouldPushState) {
+      history.pushState({ sectionId: "home" }, "", "#hero");
+    }
+  };
+
+  tabLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      setActiveSection(link.dataset.sectionTab);
     });
   });
+
+  homeLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      showHome();
+    });
+  });
+
+  window.addEventListener("popstate", () => {
+    const sectionId = window.location.hash.replace("#", "");
+    if (validSections.has(sectionId)) {
+      setActiveSection(sectionId, false);
+    } else {
+      showHome(false);
+    }
+  });
+
+  const initialSection = window.location.hash.replace("#", "");
+  if (validSections.has(initialSection)) {
+    setActiveSection(initialSection, false);
+  } else {
+    showHome(false);
+  }
 }
 
 function setupHeroTabs() {
@@ -366,12 +434,12 @@ function setupHeroTabs() {
   panel.addEventListener("click", (event) => {
     const link = event.target.closest("a");
     if (!link) return;
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target) return;
-    window.setTimeout(() => {
-      target.classList.add("target-flash");
-      window.setTimeout(() => target.classList.remove("target-flash"), 1800);
-    }, 250);
+    const targetId = link.getAttribute("href")?.replace("#", "");
+    const tabLink = document.querySelector(`[data-section-tab="${targetId}"]`);
+    if (tabLink) {
+      event.preventDefault();
+      tabLink.click();
+    }
   });
 }
 
@@ -383,7 +451,7 @@ function boot() {
   renderLoanLimit();
   calculateOffers();
   setupHeroTabs();
-  setupNavigationFlash();
+  setupSectionTabs();
 
   document.getElementById("calculator-form").addEventListener("submit", (event) => {
     event.preventDefault();
