@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
 16:I[484,[],"OutletBoundary"]
 17:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[[["$","header",null,{"className":"sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur","children":[["$","div",null,{"className":"page-container flex min-h-[72px] items-center justify-between gap-6","children":[["$","a",null,{"href":"/finans/","className":"flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]","children":[["$","span",null,{"className":"relative h-8 w-8","aria-hidden":"true","children":[["$","span",null,{"className":"absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]"}]]}],"Tasarruf Finansmanı"]}],["$","div",null,{"className":"hidden items-center gap-8 lg:flex","children":[["$","nav",null,{"className":"hidden items-center gap-1 lg:flex","aria-label":"Ana menü","children":[["$","a","home",{"href":"/finans/","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 bg-[#e9fbef] text-[#1b804d]","children":"Ana Sayfa"}],["$","a","firms",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Firmalar"}],["$","a","faq",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Nasıl Çalışır?"}],["$","a","about",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Hakkımızda"}],["$","a","blog",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Blog"}],["$","a","data",{"href":"/finans/veri","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Endeks"}]]}],["$","div",null,{"className":"hidden h-8 w-px bg-[#e4e9ee] lg:block"}],["$","div",null,{"className":"hidden items-center gap-3 lg:flex","children":[["$","a",null,{"className":"rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]","href":"/finans/#calculator","data-compare-cta":true,"children":"Teklifleri Karşılaştır"}],["$","a",null,{"className":"rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]]}]]}],["$","button",null,{"className":"rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden","data-mobile-menu-button":true,"type":"button","aria-expanded":"false","children":"Menü"}]]}],["$","div",null,{"className":"hidden border-t border-slate-200 bg-white lg:hidden","data-mobile-menu":true,"children":["$","div",null,{"className":"page-container grid gap-2 py-4","children":[[["$","a","home",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/","children":"Ana Sayfa"}],["$","a","firms",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Firmalar"}],"$L2","$L3","$L4","$L5"],"$L6","$L7"]}]}]]}],"$L8","$L9","$La"],null,"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DU21HQYPvZ06sNS1_RlJQ"}
+0:{"rsc":["$","$1","c",{"children":[[["$","header",null,{"className":"sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur","children":[["$","div",null,{"className":"page-container flex min-h-[72px] items-center justify-between gap-6","children":[["$","a",null,{"href":"/finans/","className":"flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]","children":[["$","span",null,{"className":"relative h-8 w-8","aria-hidden":"true","children":[["$","span",null,{"className":"absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]"}]]}],"Tasarruf Finansmanı"]}],["$","div",null,{"className":"hidden items-center gap-8 lg:flex","children":[["$","nav",null,{"className":"hidden items-center gap-1 lg:flex","aria-label":"Ana menü","children":[["$","a","home",{"href":"/finans/","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 bg-[#e9fbef] text-[#1b804d]","children":"Ana Sayfa"}],["$","a","firms",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Firmalar"}],["$","a","faq",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Nasıl Çalışır?"}],["$","a","about",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Hakkımızda"}],["$","a","blog",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Blog"}],["$","a","data",{"href":"/finans/veri","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Endeks"}]]}],["$","div",null,{"className":"hidden h-8 w-px bg-[#e4e9ee] lg:block"}],["$","div",null,{"className":"hidden items-center gap-3 lg:flex","children":[["$","a",null,{"className":"rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]","href":"/finans/#calculator","data-compare-cta":true,"children":"Teklifleri Karşılaştır"}],["$","a",null,{"className":"rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]]}]]}],["$","button",null,{"className":"rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden","data-mobile-menu-button":true,"type":"button","aria-expanded":"false","children":"Menü"}]]}],["$","div",null,{"className":"hidden border-t border-slate-200 bg-white lg:hidden","data-mobile-menu":true,"children":["$","div",null,{"className":"page-container grid gap-2 py-4","children":[[["$","a","home",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/","children":"Ana Sayfa"}],["$","a","firms",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Firmalar"}],"$L2","$L3","$L4","$L5"],"$L6","$L7"]}]}]]}],"$L8","$L9","$La"],null,"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"YeQzgZLTK3K9x49ZQq4GD"}
 2:["$","a","faq",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Nasıl Çalışır?"}]
 3:["$","a","about",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#blog","children":"Hakkımızda"}]
 4:["$","a","blog",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#blog","children":"Blog"}]
@@ -10,18 +10,17 @@
 7:["$","a",null,{"className":"rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]
 8:["$","main",null,{"children":[["$","section",null,{"className":"page-container mt-5","children":["$","div",null,{"className":"overflow-hidden rounded-[30px] border border-[#dcefe4] bg-white shadow-[0_12px_34px_rgba(36,61,50,0.07)]","children":["$","div",null,{"className":"relative grid min-h-[472px] gap-10 px-6 py-7 md:px-10 md:py-9 lg:grid-cols-[1.03fr_0.97fr] lg:px-12 lg:py-10","children":[["$","div",null,{"className":"absolute inset-0 bg-[radial-gradient(circle_at_7%_14%,rgba(104,246,189,0.22),transparent_22%),radial-gradient(circle_at_88%_82%,rgba(118,242,201,0.18),transparent_20%),linear-gradient(180deg,#f8fffb_0%,#f9fbff_100%)]"}],["$","div",null,{"className":"absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(28,164,102,0.12)_1px,transparent_1px)] [background-size:20px_20px]"}],["$","div",null,{"className":"relative z-10 flex min-h-[320px] flex-col justify-center pt-2","children":[["$","span",null,{"className":"mb-6 inline-flex w-fit rounded-full border border-[#d8f5e5] bg-[#f4fff8] px-4 py-2 text-[14px] font-semibold text-[#228a52] shadow-[0_6px_16px_rgba(22,160,90,0.07)]","children":"Banka Kredisi ile Karşılaştırmalı Analiz"}],["$","h1",null,{"className":"max-w-[560px] text-[clamp(44px,6vw,72px)] font-black leading-[0.9] tracking-[-0.065em] text-[#09132a]","children":["Tasarruf",["$","br",null,{}],"Finansmanının",["$","br",null,{}],["$","span",null,{"className":"text-[#189b57]","children":"Gerçek Maliyetini"}],["$","br",null,{}],"Hesaplayın"]}],["$","p",null,{"className":"mt-6 max-w-[590px] text-[18px] leading-8 text-[#55657b]","children":[["$","span",null,{"className":"font-bold text-[#1c9857]","children":"Enflasyondan"}]," arındırılmış net maliyet analizi, banka kredisi karşılaştırması ve peşinat optimizasyonu"," ","tek hesaplamada."]}],["$","p",null,{"className":"mt-4 max-w-[480px] text-[14px] leading-7 text-[#718198]","children":"Sözleşme koşullarını tek ekranda görün, toplam yükü aynı zeminde ölçün ve kararınızı sayısal güvenle verin."}]]}],["$","div",null,{"className":"relative z-10 flex items-center justify-center lg:justify-end","children":[["$","div",null,{"className":"pointer-events-none absolute inset-y-3 right-0 hidden w-[94%] rounded-[34px] bg-[radial-gradient(circle_at_84%_83%,rgba(92,236,180,0.28),transparent_25%),linear-gradient(145deg,rgba(219,250,233,0.62),rgba(247,251,255,0.08))] lg:block"}],["$","div",null,{"className":"pointer-events-none absolute right-[8%] top-[2%] hidden h-[90%] w-[68%] lg:block","children":[["$","div",null,{"className":"absolute right-[10%] top-[1%] h-[61%] w-[58%] rotate-[18deg] rounded-[18px] bg-[linear-gradient(180deg,rgba(163,192,197,0.22),rgba(104,145,150,0.38))]"}],["$","div",null,{"className":"absolute right-[22%] top-[8%] h-[8%] w-[8%] rounded-t-[5px] bg-white/80 shadow-[0_8px_14px_rgba(19,37,30,0.08)]"}],["$","div",null,{"className":"absolute right-[31%] top-[44%] h-[26%] w-[34%] rounded-[16px] bg-white/60 shadow-[0_18px_38px_rgba(36,62,50,0.12)]"}],["$","div",null,{"className":"absolute bottom-[8%] right-[4%] h-[22%] w-[36%] rounded-[999px_999px_18px_18px] bg-[linear-gradient(90deg,rgba(238,255,249,0.96),rgba(163,234,210,0.94))] opacity-95"}],["$","div",null,{"className":"absolute bottom-[2%] right-[6%] h-[20%] w-[38%] rounded-full bg-[radial-gradient(circle,rgba(93,235,182,0.34),transparent_68%)] blur-2xl"}]]}],["$","div",null,{"className":"grid w-full max-w-[460px] gap-4 sm:grid-cols-2 lg:translate-x-[6px]","children":[["$","a","Hesaplama",{"href":"#calculator","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":["$Lc","$Ld","$Le"]}],"$Lf","$L10","$L11"]}]]}]]}]}]}],"$L12","$L13","$L14"]}]
 9:["$","footer",null,{"id":"footer","className":"mt-16 border-t border-slate-200 bg-white","children":[["$","div",null,{"className":"page-container border-b border-slate-200 py-10","children":[["$","h2",null,{"className":"text-xl font-black text-slate-950","children":"Tasarruf finansmanı sistemi nasıl okunmalı?"}],["$","p",null,{"className":"mt-4 max-w-5xl text-sm leading-7 text-slate-600","children":"Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır."}]]}],["$","div",null,{"className":"page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]","children":[["$","div",null,{"children":[["$","div",null,{"className":"flex items-center gap-3 text-lg font-black text-[var(--green-dark)]","children":[["$","span",null,{"className":"grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]","children":"▥"}],"Finansman Rehberi"]}],["$","p",null,{"className":"mt-4 max-w-sm text-sm leading-7 text-slate-600","children":"Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin."}]]}],[["$","div","Sayfalar",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Sayfalar"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Ana Sayfa",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/","children":"Ana Sayfa"}]}],["$","li","Endeks",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/veri","children":"Endeks"}]}],["$","li","Nasıl Çalışır?",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#faq","children":"Nasıl Çalışır?"}]}],["$","li","Blog",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#blog","children":"Blog"}]}]]}]]}],["$","div","Araçlar",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Araçlar"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Maliyet Hesaplama",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#calculator","children":"Maliyet Hesaplama"}]}],["$","li","Teklifleri Karşılaştır",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#calculator","children":"Teklifleri Karşılaştır"}]}],["$","li","Piyasa Veri Paneli",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/veri","children":"Piyasa Veri Paneli"}]}]]}]]}],["$","div","İletişim",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"İletişim"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","bilgi@example.com",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"mailto:bilgi@example.com","children":"bilgi@example.com"}]}],["$","li","Sorularınız için bize ulaşın",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Sorularınız için bize ulaşın"}]}]]}]]}],["$","div","Yasal",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Yasal"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Kullanım Koşulları",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Kullanım Koşulları"}]}],["$","li","Gizlilik Politikası",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Gizlilik Politikası"}]}],["$","li","KVKK Aydınlatma Metni",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"KVKK Aydınlatma Metni"}]}]]}]]}]]]}],["$","div",null,{"className":"border-t border-slate-200 py-5 text-center text-sm text-slate-500","children":"© 2026 Finansman Rehberi. Tüm hakları saklıdır."}]]}]
-15:T5c7c,
+15:T6352,
 (() => {
   const ready = (fn) => {
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn, { once: true });
-    else fn();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn, { once: true });
+    } else {
+      fn();
+    }
   };
 
   ready(() => {
-    const calculator = document.querySelector("[data-calculator]");
-    const calculatorCard = calculator?.querySelector("[data-calculator-card]");
-    if (!calculator) return;
-
     const money = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
     const decimal = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
@@ -49,6 +48,21 @@
       cekilisli: { deliveryDelta: -1, feeDelta: 4.3, monthlyDelta: 0 },
     };
 
+    const integerFields = ["assetPrice", "downPayment", "monthlyPayment", "rent"];
+    const integerBankFields = ["amount"];
+
+    const getCalculator = () => document.querySelector("[data-calculator]");
+    const getCalculatorCard = () => getCalculator()?.querySelector("[data-calculator-card]");
+    const getCompanySelect = () => getCalculator()?.querySelector("[data-company-select]");
+    const getCompanyTrigger = () => getCompanySelect()?.querySelector("[data-company-trigger]");
+    const getCompanyMenu = () => getCompanySelect()?.querySelector("[data-company-menu]");
+    const getCompanyLabel = () => getCompanySelect()?.querySelector("[data-company-label]");
+    const getCompanyChevron = () => getCompanySelect()?.querySelector("[data-company-chevron]");
+    const field = (name) => getCalculator()?.querySelector('[data-field="' + name + '"]');
+    const bankField = (name) => getCalculator()?.querySelector('[data-bank-field="' + name + '"]');
+    const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
+    const activeSegmentValue = (segmentName) => getCalculator()?.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
+
     const parseNumber = (value) => {
       const raw = String(value || "").trim();
       const normalized = raw.includes(",")
@@ -62,16 +76,6 @@
 
     const formatMoney = (value) => "₺" + money.format(Math.max(0, Math.round(value || 0)));
     const formatPercent = (value) => "%" + decimal.format(value || 0);
-    const field = (name) => calculator.querySelector('[data-field="' + name + '"]');
-    const bankField = (name) => calculator.querySelector('[data-bank-field="' + name + '"]');
-    const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
-    const activeSegmentValue = (segmentName) => calculator.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
-
-    const companySelect = calculator.querySelector("[data-company-select]");
-    const companyTrigger = companySelect?.querySelector("[data-company-trigger]");
-    const companyMenu = companySelect?.querySelector("[data-company-menu]");
-    const companyLabel = companySelect?.querySelector("[data-company-label]");
-    const companyChevron = companySelect?.querySelector("[data-company-chevron]");
 
     const pulse = (element, className = "button-ack", duration = 320) => {
       if (!element) return;
@@ -81,38 +85,14 @@
       window.setTimeout(() => element.classList.remove(className), duration);
     };
 
-    const focusCalculator = () => {
-      if (!calculatorCard) return;
-      pulse(calculatorCard, "calculator-focus", 980);
-    };
-
     const acknowledge = (...elements) => {
-      elements.filter(Boolean).forEach((element) => pulse(element, "surface-ack", 460));
+      elements.filter(Boolean).forEach((element) => pulse(element, "surface-ack", 420));
     };
 
-    const integerFields = ["assetPrice", "downPayment", "monthlyPayment", "rent"];
-    const integerBankFields = ["amount"];
-
-    const syncCompanySelect = () => {
-      const currentValue = field("company")?.value || "Diğer";
-      if (companyLabel) companyLabel.textContent = currentValue;
-      companySelect?.querySelectorAll("[data-company-option]").forEach((option) => {
-        option.dataset.active = String(option.dataset.value === currentValue);
-      });
-    };
-
-    const closeCompanyMenu = () => {
-      if (!companyMenu || !companyTrigger) return;
-      companyMenu.classList.add("hidden");
-      companyTrigger.setAttribute("aria-expanded", "false");
-      companyChevron?.classList.remove("rotate-180");
-    };
-
-    const openCompanyMenu = () => {
-      if (!companyMenu || !companyTrigger) return;
-      companyMenu.classList.remove("hidden");
-      companyTrigger.setAttribute("aria-expanded", "true");
-      companyChevron?.classList.add("rotate-180");
+    const focusCalculator = () => {
+      const card = getCalculatorCard();
+      if (!card) return;
+      pulse(card, "calculator-focus", 980);
     };
 
     const setToggle = (button, active) => {
@@ -137,11 +117,7 @@
     const formatThousandsInput = (input) => {
       if (!input) return;
       const digits = String(input.value || "").replace(/\D/g, "");
-      if (!digits) {
-        input.value = "";
-        return;
-      }
-      input.value = money.format(Number(digits));
+      input.value = digits ? money.format(Number(digits)) : "";
     };
 
     const monthlyDiscountRate = (annualInflation) => Math.pow(1 + annualInflation / 100, 1 / 12) - 1;
@@ -159,19 +135,52 @@
       return principal * monthlyRate * factor / (factor - 1);
     };
 
+    const syncCompanySelect = () => {
+      const currentValue = field("company")?.value || "Diğer";
+      const label = getCompanyLabel();
+      const select = getCompanySelect();
+      if (label) label.textContent = currentValue;
+      select?.querySelectorAll("[data-company-option]").forEach((option) => {
+        option.dataset.active = String(option.dataset.value === currentValue);
+      });
+    };
+
+    const closeCompanyMenu = () => {
+      const menu = getCompanyMenu();
+      const trigger = getCompanyTrigger();
+      const chevron = getCompanyChevron();
+      if (!menu || !trigger) return;
+      menu.classList.add("hidden");
+      trigger.setAttribute("aria-expanded", "false");
+      chevron?.classList.remove("rotate-180");
+    };
+
+    const openCompanyMenu = () => {
+      const menu = getCompanyMenu();
+      const trigger = getCompanyTrigger();
+      const chevron = getCompanyChevron();
+      if (!menu || !trigger) return;
+      menu.classList.remove("hidden");
+      trigger.setAttribute("aria-expanded", "true");
+      chevron?.classList.add("rotate-180");
+    };
+
     const updateDeliveryBar = () => {
+      const bar = getCalculator()?.querySelector("[data-delivery-bar]");
       const delivery = parseNumber(field("delivery")?.value);
-      const bar = calculator.querySelector("[data-delivery-bar]");
       if (bar) bar.style.width = Math.min(100, Math.max(18, delivery * 5.2)) + "%";
     };
 
     const updateBankPanelVisibility = () => {
-      const compareBank = calculator.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
-      const bankPanel = calculator.querySelector("[data-bank-panel]");
+      const compareBank = getCalculator()?.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
+      const bankPanel = getCalculator()?.querySelector("[data-bank-panel]");
       if (bankPanel) bankPanel.classList.toggle("hidden", !compareBank);
     };
 
     const syncSummary = () => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+
       const assetType = activeSegmentValue("assetType") || "Konut";
       const model = activeSegmentValue("model") || "cekilissiz";
       const assetPrice = parseNumber(field("assetPrice")?.value);
@@ -210,6 +219,7 @@
       const bankRate = parseNumber(bankField("rate")?.value);
       const bankTerm = parseNumber(bankField("term")?.value);
       const bankInstallment = calculateBankInstallment(bankAmount, bankRate, bankTerm);
+
       setPreviewText("bankAmount", compareBank ? formatMoney(bankAmount) : "Kapalı");
       setPreviewText("bankRate", compareBank ? formatPercent(bankRate) : "Kapalı");
       setPreviewText("bankTerm", compareBank ? bankTerm + " ay" : "Kapalı");
@@ -217,6 +227,9 @@
     };
 
     const applyScenario = (changedByUser = false) => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+
       const assetType = activeSegmentValue("assetType") || "Konut";
       const model = activeSegmentValue("model") || "cekilissiz";
       const preset = assetPresets[assetType] || assetPresets.Konut;
@@ -246,14 +259,12 @@
 
       if (!changedByUser) {
         const bankAmount = Math.max(0, parseNumber(field("assetPrice")?.value) - parseNumber(field("downPayment")?.value));
-        const bankRate = preset.bankRate;
-        const bankTerm = preset.bankTerm;
         if (bankField("amount")) {
           bankField("amount").value = String(bankAmount);
           formatThousandsInput(bankField("amount"));
         }
-        if (bankField("rate")) bankField("rate").value = String(bankRate);
-        if (bankField("term")) bankField("term").value = String(bankTerm);
+        if (bankField("rate")) bankField("rate").value = String(preset.bankRate);
+        if (bankField("term")) bankField("term").value = String(preset.bankTerm);
       }
 
       updateBankPanelVisibility();
@@ -263,13 +274,16 @@
     };
 
     const renderResult = () => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+
       const assetPrice = parseNumber(field("assetPrice")?.value);
       const downPayment = parseNumber(field("downPayment")?.value);
       const term = parseNumber(field("term")?.value);
       const monthly = parseNumber(field("monthlyPayment")?.value);
       const delivery = parseNumber(field("delivery")?.value);
-      const serviceFeeRate = parseNumber(field("serviceFee")?.value);
       const rent = parseNumber(field("rent")?.value);
+      const serviceFeeRate = parseNumber(field("serviceFee")?.value);
       const compareBank = calculator.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
       const error = calculator.querySelector("[data-form-error]");
 
@@ -282,6 +296,7 @@
       }
 
       error?.classList.add("hidden");
+
       const serviceFeeAmount = assetPrice * serviceFeeRate / 100;
       const totalPaid = downPayment + serviceFeeAmount + monthly * term;
       const waitingCost = delivery * rent;
@@ -297,144 +312,28 @@
         ["Hizmet bedeli", formatMoney(serviceFeeAmount)],
         ["Banka kıyası", compareBank ? formatMoney(bankComparison) : "Kapalı"],
       ]
-        .map(([label, value]) => '<div><span class="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">' + label + '</span><strong class="mt-2 block text-xl font-bold text-slate-900">' + value + '</strong></div>')
+        .map(([label, value]) => '<div><span class="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">' + label + '</span><strong class="mt-2 block text-xl font-bold text-slate-900">' + value + "</strong></div>")
         .join("");
 
       pulse(panel, "choice-pop", 520);
       syncSummary();
     };
 
-    calculator.querySelectorAll("[data-segment]").forEach((button) => {
-      button.addEventListener("click", () => {
-        calculator.querySelectorAll('[data-segment="' + button.dataset.segment + '"]').forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        pulse(button);
-        acknowledge(calculatorCard, document.querySelector("[data-summary-panel]"));
-        applyScenario();
+    const openLoginModal = () => {
+      const existing = document.querySelector("[data-login-modal]");
+      if (existing) existing.remove();
+      const modal = document.createElement("div");
+      modal.dataset.loginModal = "true";
+      modal.className = "fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4";
+      modal.innerHTML = '<div class="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"><h2 class="text-2xl font-bold text-slate-950">Giriş alanı</h2><p class="mt-3 text-sm leading-6 text-slate-600">Demo arayüzde hesap girişi bağlanmadı; teklif karşılaştırma ve hesaplama araçlarını kullanabilirsiniz.</p><button class="mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white" data-close-login>Kapat</button></div>';
+      document.body.appendChild(modal);
+      modal.querySelector("[data-close-login]")?.addEventListener("click", () => modal.remove());
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) modal.remove();
       });
-    });
+    };
 
-    calculator.querySelectorAll("[data-toggle]").forEach((button) => {
-      button.addEventListener("click", () => {
-        setToggle(button, button.dataset.on !== "true");
-        pulse(button);
-        acknowledge(calculator.querySelector("[data-bank-panel]"), document.querySelector("[data-summary-panel]"));
-        applyScenario(true);
-      });
-    });
-
-    companyTrigger?.addEventListener("click", () => {
-      const isOpen = companyTrigger.getAttribute("aria-expanded") === "true";
-      if (isOpen) closeCompanyMenu();
-      else openCompanyMenu();
-      pulse(companyTrigger);
-    });
-
-    companySelect?.querySelectorAll("[data-company-option]").forEach((option) => {
-      option.addEventListener("click", () => {
-        const input = field("company");
-        if (!input) return;
-        input.value = option.dataset.value || "Diğer";
-        syncCompanySelect();
-        closeCompanyMenu();
-        pulse(companyTrigger);
-        acknowledge(calculatorCard, document.querySelector("[data-summary-panel]"));
-        syncSummary();
-      });
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!companySelect || companySelect.contains(event.target)) return;
-      closeCompanyMenu();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeCompanyMenu();
-    });
-
-    calculator.querySelectorAll("[data-field], [data-bank-field]").forEach((input) => {
-      input.addEventListener("input", () => {
-        if (integerFields.includes(input.dataset.field) || integerBankFields.includes(input.dataset.bankField)) {
-          formatThousandsInput(input);
-        }
-        updateDeliveryBar();
-        syncSummary();
-      });
-      input.addEventListener("blur", () => {
-        if (integerFields.includes(input.dataset.field) || integerBankFields.includes(input.dataset.bankField)) {
-          formatThousandsInput(input);
-        }
-      });
-    });
-
-    calculator.querySelector("[data-fill-example]")?.addEventListener("click", () => {
-      pulse(calculator.querySelector("[data-fill-example]"));
-      Object.entries(example).forEach(([name, value]) => {
-        const input = field(name);
-        if (input) {
-          input.value = value;
-          if (integerFields.includes(name)) formatThousandsInput(input);
-        }
-      });
-      calculator.querySelectorAll("[data-segment]").forEach((item) => item.classList.remove("active"));
-      calculator.querySelector('[data-segment="assetType"][data-value="Konut"]')?.classList.add("active");
-      calculator.querySelector('[data-segment="model"][data-value="cekilisli"]')?.classList.add("active");
-      calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, toggle.dataset.toggle === "compareBank"));
-      syncCompanySelect();
-      applyScenario();
-      calculator.scrollIntoView({ behavior: "smooth", block: "start" });
-      focusCalculator();
-    });
-
-    calculator.querySelector("[data-clear-form]")?.addEventListener("click", () => {
-      pulse(calculator.querySelector("[data-clear-form]"));
-      calculator.querySelectorAll("[data-field]").forEach((input) => {
-        input.value = "";
-      });
-      calculator.querySelectorAll("[data-bank-field]").forEach((input) => {
-        input.value = "";
-      });
-      document.querySelector("[data-result-panel]")?.classList.add("hidden");
-      calculator.querySelector("[data-form-error]")?.classList.add("hidden");
-      calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, false));
-      syncCompanySelect();
-      closeCompanyMenu();
-      updateBankPanelVisibility();
-      updateDeliveryBar();
-      syncSummary();
-    });
-
-    calculator.querySelector("[data-calculate]")?.addEventListener("click", (event) => {
-      pulse(event.currentTarget);
-      acknowledge(document.querySelector("[data-summary-panel]"));
-      renderResult();
-    });
-
-    document.querySelector("[data-run-scenario]")?.addEventListener("click", (event) => {
-      pulse(event.currentTarget);
-      calculator.querySelector("[data-fill-example]")?.dispatchEvent(new Event("click", { bubbles: true }));
-      window.setTimeout(() => {
-        calculator.querySelector("[data-calculate]")?.dispatchEvent(new Event("click", { bubbles: true }));
-      }, 160);
-    });
-
-    document.querySelectorAll("[data-compare-cta]").forEach((link) => {
-      link.addEventListener("click", () => {
-        pulse(link);
-        const compareToggle = calculator.querySelector('[data-toggle="compareBank"]');
-        if (compareToggle) setToggle(compareToggle, true);
-        window.setTimeout(() => {
-          calculator.scrollIntoView({ behavior: "smooth", block: "start" });
-          focusCalculator();
-          updateBankPanelVisibility();
-          syncSummary();
-        }, 40);
-      });
-    });
-
-    document.querySelector("[data-net-info]")?.addEventListener("click", (event) => {
-      const button = event.currentTarget;
-      pulse(button);
+    const openNetInfoModal = () => {
       const existing = document.querySelector("[data-net-modal]");
       if (existing) existing.remove();
       const modal = document.createElement("div");
@@ -443,95 +342,253 @@
       modal.innerHTML = '<div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"><h2 class="text-xl font-bold text-slate-900">Net Maliyet</h2><p class="mt-3 text-sm leading-7 text-slate-600">Net başlangıç maliyeti; peşinat, organizasyon ücreti ve bugünkü değer etkisini aynı zeminde toplayan karşılaştırma katmanıdır.</p><button class="mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white" data-close-net>Kapat</button></div>';
       document.body.appendChild(modal);
       modal.querySelector("[data-close-net]")?.addEventListener("click", () => modal.remove());
-      modal.addEventListener("click", (modalEvent) => {
-        if (modalEvent.target === modal) modal.remove();
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) modal.remove();
       });
-    });
+    };
 
-    document.querySelector("[data-download-pdf]")?.addEventListener("click", (event) => {
-      pulse(event.currentTarget);
-      window.print();
-    });
+    document.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
 
-    document.querySelector("[data-copy-link]")?.addEventListener("click", async (event) => {
-      const button = event.currentTarget;
-      pulse(button);
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        const original = button.textContent;
-        button.textContent = "Link Kopyalandı";
+      const calculator = getCalculator();
+      const calculatorCard = getCalculatorCard();
+      const summaryPanel = document.querySelector("[data-summary-panel]");
+      const menuButton = document.querySelector("[data-mobile-menu-button]");
+      const menu = document.querySelector("[data-mobile-menu]");
+
+      const segmentButton = target.closest("[data-segment]");
+      if (segmentButton instanceof HTMLElement && calculator) {
+        calculator.querySelectorAll('[data-segment="' + segmentButton.dataset.segment + '"]').forEach((item) => item.classList.remove("active"));
+        segmentButton.classList.add("active");
+        pulse(segmentButton);
+        acknowledge(calculatorCard, summaryPanel);
+        applyScenario();
+        return;
+      }
+
+      const toggleButton = target.closest("[data-toggle]");
+      if (toggleButton instanceof HTMLElement && calculator) {
+        setToggle(toggleButton, toggleButton.dataset.on !== "true");
+        pulse(toggleButton);
+        acknowledge(calculator.querySelector("[data-bank-panel]"), summaryPanel);
+        applyScenario(true);
+        return;
+      }
+
+      const companyTrigger = target.closest("[data-company-trigger]");
+      if (companyTrigger instanceof HTMLElement) {
+        const isOpen = companyTrigger.getAttribute("aria-expanded") === "true";
+        if (isOpen) closeCompanyMenu();
+        else openCompanyMenu();
+        pulse(companyTrigger);
+        return;
+      }
+
+      const companyOption = target.closest("[data-company-option]");
+      if (companyOption instanceof HTMLElement) {
+        const input = field("company");
+        if (input) {
+          input.value = companyOption.dataset.value || "Diğer";
+          syncCompanySelect();
+          closeCompanyMenu();
+          pulse(getCompanyTrigger());
+          acknowledge(calculatorCard, summaryPanel);
+          syncSummary();
+        }
+        return;
+      }
+
+      const fillExampleButton = target.closest("[data-fill-example]");
+      if (fillExampleButton instanceof HTMLElement && calculator) {
+        pulse(fillExampleButton);
+        Object.entries(example).forEach(([name, value]) => {
+          const input = field(name);
+          if (input) {
+            input.value = value;
+            if (integerFields.includes(name)) formatThousandsInput(input);
+          }
+        });
+        calculator.querySelectorAll("[data-segment]").forEach((item) => item.classList.remove("active"));
+        calculator.querySelector('[data-segment="assetType"][data-value="Konut"]')?.classList.add("active");
+        calculator.querySelector('[data-segment="model"][data-value="cekilisli"]')?.classList.add("active");
+        calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, toggle.dataset.toggle === "compareBank"));
+        syncCompanySelect();
+        applyScenario();
+        calculator.scrollIntoView({ behavior: "smooth", block: "start" });
+        focusCalculator();
+        return;
+      }
+
+      const clearButton = target.closest("[data-clear-form]");
+      if (clearButton instanceof HTMLElement && calculator) {
+        pulse(clearButton);
+        calculator.querySelectorAll("[data-field]").forEach((input) => {
+          input.value = "";
+        });
+        calculator.querySelectorAll("[data-bank-field]").forEach((input) => {
+          input.value = "";
+        });
+        document.querySelector("[data-result-panel]")?.classList.add("hidden");
+        calculator.querySelector("[data-form-error]")?.classList.add("hidden");
+        calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, false));
+        syncCompanySelect();
+        closeCompanyMenu();
+        updateBankPanelVisibility();
+        updateDeliveryBar();
+        syncSummary();
+        return;
+      }
+
+      const calculateButton = target.closest("[data-calculate]");
+      if (calculateButton instanceof HTMLElement) {
+        pulse(calculateButton);
+        acknowledge(summaryPanel);
+        renderResult();
+        return;
+      }
+
+      const runScenarioButton = target.closest("[data-run-scenario]");
+      if (runScenarioButton instanceof HTMLElement && calculator) {
+        pulse(runScenarioButton);
+        calculator.querySelector("[data-fill-example]")?.dispatchEvent(new Event("click", { bubbles: true }));
         window.setTimeout(() => {
-          button.textContent = original;
-        }, 1400);
-      } catch (error) {
-        console.warn("copy failed", error);
+          calculator.querySelector("[data-calculate]")?.dispatchEvent(new Event("click", { bubbles: true }));
+        }, 160);
+        return;
+      }
+
+      const compareCta = target.closest("[data-compare-cta]");
+      if (compareCta instanceof HTMLElement && calculator) {
+        pulse(compareCta);
+        const compareToggle = calculator.querySelector('[data-toggle="compareBank"]');
+        if (compareToggle) setToggle(compareToggle, true);
+        window.setTimeout(() => {
+          calculator.scrollIntoView({ behavior: "smooth", block: "start" });
+          focusCalculator();
+          updateBankPanelVisibility();
+          syncSummary();
+        }, 40);
+        return;
+      }
+
+      const loginButton = target.closest("[data-login-button]");
+      if (loginButton instanceof HTMLElement) {
+        event.preventDefault();
+        pulse(loginButton);
+        openLoginModal();
+        return;
+      }
+
+      const netInfoButton = target.closest("[data-net-info]");
+      if (netInfoButton instanceof HTMLElement) {
+        pulse(netInfoButton);
+        openNetInfoModal();
+        return;
+      }
+
+      const downloadPdfButton = target.closest("[data-download-pdf]");
+      if (downloadPdfButton instanceof HTMLElement) {
+        pulse(downloadPdfButton);
+        window.print();
+        return;
+      }
+
+      const copyLinkButton = target.closest("[data-copy-link]");
+      if (copyLinkButton instanceof HTMLElement) {
+        pulse(copyLinkButton);
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const original = copyLinkButton.textContent;
+          copyLinkButton.textContent = "Link Kopyalandı";
+          window.setTimeout(() => {
+            copyLinkButton.textContent = original;
+          }, 1400);
+        } catch (error) {
+          console.warn("copy failed", error);
+        }
+        return;
+      }
+
+      const blogRead = target.closest("[data-blog-read]");
+      if (blogRead instanceof HTMLElement) {
+        event.preventDefault();
+        const detail = blogRead.closest("[data-blog-card]")?.querySelector("[data-blog-detail]");
+        detail?.classList.toggle("hidden");
+        blogRead.textContent = detail?.classList.contains("hidden") ? "Devamını Oku →" : "Kapat ↑";
+        return;
+      }
+
+      const blogAll = target.closest("[data-blog-all]");
+      if (blogAll instanceof HTMLElement) {
+        event.preventDefault();
+        document.querySelectorAll("[data-blog-detail]").forEach((detail) => detail.classList.remove("hidden"));
+        document.querySelectorAll("[data-blog-read]").forEach((link) => {
+          link.textContent = "Kapat ↑";
+        });
+        return;
+      }
+
+      const mobileMenuButton = target.closest("[data-mobile-menu-button]");
+      if (mobileMenuButton instanceof HTMLElement) {
+        const isOpen = !menu?.classList.contains("hidden");
+        menu?.classList.toggle("hidden", isOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+        return;
+      }
+
+      const mobileMenuLink = target.closest("[data-mobile-menu] a");
+      if (mobileMenuLink instanceof HTMLElement) {
+        menu?.classList.add("hidden");
+        menuButton?.setAttribute("aria-expanded", "false");
+        return;
+      }
+
+      const companySelect = getCompanySelect();
+      if (!companySelect || companySelect.contains(target)) return;
+      closeCompanyMenu();
+    });
+
+    document.addEventListener("input", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.matches("[data-field], [data-bank-field]")) return;
+      if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {
+        formatThousandsInput(target);
+      }
+      updateDeliveryBar();
+      syncSummary();
+    });
+
+    document.addEventListener("focusout", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.matches("[data-field], [data-bank-field]")) return;
+      if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {
+        formatThousandsInput(target);
       }
     });
 
-    document.querySelectorAll("[data-login-button]").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        pulse(link);
-        const existing = document.querySelector("[data-login-modal]");
-        if (existing) existing.remove();
-        const modal = document.createElement("div");
-        modal.dataset.loginModal = "true";
-        modal.className = "fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4";
-        modal.innerHTML = '<div class="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"><h2 class="text-2xl font-bold text-slate-950">Giriş alanı</h2><p class="mt-3 text-sm leading-6 text-slate-600">Demo arayüzde hesap girişi bağlanmadı; teklif karşılaştırma ve hesaplama araçlarını kullanabilirsiniz.</p><button class="mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white" data-close-login>Kapat</button></div>';
-        document.body.appendChild(modal);
-        modal.querySelector("[data-close-login]")?.addEventListener("click", () => modal.remove());
-        modal.addEventListener("click", (modalEvent) => {
-          if (modalEvent.target === modal) modal.remove();
-        });
-      });
-    });
-
-    document.querySelectorAll("[data-blog-read]").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const detail = link.closest("[data-blog-card]")?.querySelector("[data-blog-detail]");
-        detail?.classList.toggle("hidden");
-        link.textContent = detail?.classList.contains("hidden") ? "Devamını Oku →" : "Kapat ↑";
-      });
-    });
-
-    document.querySelector("[data-blog-all]")?.addEventListener("click", (event) => {
-      event.preventDefault();
-      document.querySelectorAll("[data-blog-detail]").forEach((detail) => detail.classList.remove("hidden"));
-      document.querySelectorAll("[data-blog-read]").forEach((link) => {
-        link.textContent = "Kapat ↑";
-      });
-    });
-
-    const menuButton = document.querySelector("[data-mobile-menu-button]");
-    const menu = document.querySelector("[data-mobile-menu]");
-    menuButton?.addEventListener("click", () => {
-      const isOpen = !menu?.classList.contains("hidden");
-      menu?.classList.toggle("hidden", isOpen);
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-    });
-
-    menu?.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menu.classList.add("hidden");
-        menuButton?.setAttribute("aria-expanded", "false");
-      });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeCompanyMenu();
+      }
     });
 
     const scrollToHash = () => {
       if (!location.hash) return;
       const target = document.querySelector(location.hash);
+      if (!(target instanceof HTMLElement)) return;
       const run = () => {
-        if (!target) return;
         const top = target.getBoundingClientRect().top + window.scrollY - 92;
         window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-        if (target === calculator) focusCalculator();
+        if (target === getCalculator()) focusCalculator();
       };
       setTimeout(run, 80);
       setTimeout(run, 500);
     };
 
-    calculator.querySelectorAll("[data-field], [data-bank-field]").forEach((input) => {
+    document.querySelectorAll("[data-field], [data-bank-field]").forEach((input) => {
       if (integerFields.includes(input.dataset.field) || integerBankFields.includes(input.dataset.bankField)) {
         formatThousandsInput(input);
       }
