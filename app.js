@@ -57,6 +57,37 @@ const marketData = {
   ],
 };
 
+const heroTabs = {
+  calculation: {
+    label: "Hesaplama",
+    title: "Net maliyetinizi anında görün",
+    text: "Peşinat, teslim süresi, kira ve organizasyon bedeli tek modelde toplanır.",
+    cta: "Hesaplayıcıyı aç",
+    target: "#calculator",
+  },
+  compare: {
+    label: "Karşılaştırma",
+    title: "Teklifleri aynı zeminde kıyaslayın",
+    text: "Aylık ödeme, teslim ayı, hizmet bedeli ve toplam maliyet tek tabloda karşılaştırılır.",
+    cta: "Teklifleri incele",
+    target: "#offerCompare",
+  },
+  limit: {
+    label: "Kredi Limit",
+    title: "Bankadan çıkabilecek maksimum tutarı hesaplayın",
+    text: "Ekspertiz değeri, enerji sınıfı ve ikinci konut bilgisine göre azami kredi alanı görünür.",
+    cta: "Limit alanına bak",
+    target: "#loanLimit",
+  },
+  index: {
+    label: "Endeks",
+    title: "Piyasanın kredi mi tasarruf mu dediğini okuyun",
+    text: "Konut, taşıt, kredi ve risk sinyalleri karar termometresinde tek skor haline gelir.",
+    cta: "Endeksi gör",
+    target: "#marketData",
+  },
+};
+
 const loanTable = [
   { max: 5000000, firstHome: { "A-B": 0.9, C: 0.8, Diger: 0.7 }, otherHome: { "A-B": 0.225, C: 0.2, Diger: 0.175 } },
   { max: 7000000, firstHome: { "A-B": 0.8, C: 0.7, Diger: 0.6 }, otherHome: { "A-B": 0.2, C: 0.175, Diger: 0.15 } },
@@ -302,6 +333,41 @@ function setupNavigationFlash() {
   });
 }
 
+function setupHeroTabs() {
+  const panel = document.getElementById("heroTabPanel");
+  if (!panel) return;
+
+  const render = (key) => {
+    const data = heroTabs[key] || heroTabs.calculation;
+    panel.innerHTML = `
+      <span class="eyebrow">${data.label}</span>
+      <h2>${data.title}</h2>
+      <p>${data.text}</p>
+      <a href="${data.target}">${data.cta}</a>
+    `;
+    document.querySelectorAll(".hero-tab").forEach((button) => {
+      const isActive = button.dataset.heroTab === key;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-selected", String(isActive));
+    });
+  };
+
+  document.querySelectorAll(".hero-tab").forEach((button) => {
+    button.addEventListener("click", () => render(button.dataset.heroTab));
+  });
+
+  panel.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+    window.setTimeout(() => {
+      target.classList.add("target-flash");
+      window.setTimeout(() => target.classList.remove("target-flash"), 1800);
+    }, 250);
+  });
+}
+
 function boot() {
   formatInputs();
   renderOffers();
@@ -309,6 +375,7 @@ function boot() {
   fillScenario("A");
   renderLoanLimit();
   calculateOffers();
+  setupHeroTabs();
   setupNavigationFlash();
 
   document.getElementById("calculator-form").addEventListener("submit", (event) => {

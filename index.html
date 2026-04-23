@@ -45,26 +45,35 @@
         </div>
       </div>
 
-      <div class="hero-board" aria-label="Analiz özellikleri">
-        <article>
-          <span class="board-icon"></span>
-          <strong>Hesaplama</strong>
-          <p>Net bugünkü maliyet ve toplam ödeme.</p>
-        </article>
-        <article>
-          <span class="board-icon"></span>
-          <strong>Karşılaştırma</strong>
-          <p>Banka kredisi ve tasarruf planı yan yana.</p>
-        </article>
-        <article>
-          <span class="board-icon"></span>
-          <strong>Limit</strong>
-          <p>Konut değerine göre azami kredi alanı.</p>
-        </article>
-        <article>
-          <span class="board-icon"></span>
-          <strong>Endeks</strong>
-          <p>Konut ve taşıt piyasası karar sinyali.</p>
+      <div class="hero-board" aria-label="Analiz sekmeleri">
+        <div class="hero-tab-grid" role="tablist" aria-label="Banner analiz sekmeleri">
+          <button class="hero-tab active" type="button" role="tab" aria-selected="true" data-hero-tab="calculation">
+            <span class="board-icon"></span>
+            <strong>Hesaplama</strong>
+            <small>Net maliyet</small>
+          </button>
+          <button class="hero-tab" type="button" role="tab" aria-selected="false" data-hero-tab="compare">
+            <span class="board-icon"></span>
+            <strong>Karşılaştırma</strong>
+            <small>Yan yana analiz</small>
+          </button>
+          <button class="hero-tab" type="button" role="tab" aria-selected="false" data-hero-tab="limit">
+            <span class="board-icon"></span>
+            <strong>Limit</strong>
+            <small>Azami kredi</small>
+          </button>
+          <button class="hero-tab" type="button" role="tab" aria-selected="false" data-hero-tab="index">
+            <span class="board-icon"></span>
+            <strong>Endeks</strong>
+            <small>Piyasa sinyali</small>
+          </button>
+        </div>
+
+        <article id="heroTabPanel" class="hero-tab-panel" aria-live="polite">
+          <span class="eyebrow">Hesaplama</span>
+          <h2>Net maliyetinizi anında görün</h2>
+          <p>Peşinat, teslim süresi, kira ve organizasyon bedeli tek modelde toplanır.</p>
+          <a href="#calculator">Hesaplayıcıyı aç</a>
         </article>
       </div>
     </section>
