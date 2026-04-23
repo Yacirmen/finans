@@ -14,8 +14,8 @@
   --shadow: 0 22px 60px rgba(16, 24, 40, 0.08);
   --shadow-sm: 0 10px 26px rgba(16, 24, 40, 0.06);
   --radius: 18px;
-  --font: "DM Sans", sans-serif;
-  --display: "Space Grotesk", "DM Sans", sans-serif;
+  --font: "Inter", Arial, sans-serif;
+  --display: "Inter", Arial, sans-serif;
 }
 
 * {
@@ -40,6 +40,13 @@ button,
 input,
 select {
   font: inherit;
+}
+
+body,
+button,
+input,
+select {
+  letter-spacing: -0.01em;
 }
 
 button,
@@ -209,7 +216,7 @@ h1,
 h2,
 h3 {
   margin: 0;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.045em;
 }
 
 .hero h1 {
