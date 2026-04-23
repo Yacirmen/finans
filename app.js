@@ -1911,3 +1911,38 @@ function renderMarketData() {
 }
 
 renderMarketData();
+
+function setupEasyCalculatorControls() {
+  document.querySelectorAll(".segmented-control").forEach((control) => {
+    const select = document.getElementById(control.dataset.targetSelect || "");
+    if (!select) return;
+    const sync = (value) => {
+      control.querySelectorAll(".segment-option").forEach((button) => {
+        button.classList.toggle("active", button.dataset.value === value);
+      });
+    };
+    control.querySelectorAll(".segment-option").forEach((button) => {
+      button.addEventListener("click", () => {
+        select.value = button.dataset.value || select.value;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        sync(select.value);
+        if (typeof updateView === "function") updateView();
+      });
+    });
+    select.addEventListener("change", () => sync(select.value));
+    sync(select.value);
+  });
+
+  document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (typeof updateView === "function") updateView();
+      const target = document.querySelector(button.dataset.scrollTarget);
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.classList.add("target-flash");
+      window.setTimeout(() => target.classList.remove("target-flash"), 1900);
+    });
+  });
+}
+
+setupEasyCalculatorControls();

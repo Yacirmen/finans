@@ -10,7 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260423-compact3" />
+  <link rel="stylesheet" href="styles.css?v=20260423-easycalc1" />
 </head>
 <body>
   <div class="page-shell">
@@ -283,17 +283,21 @@
               <option value="E">Senaryo E</option>
               <option value="F">Senaryo F</option>
             </select>
-            <button id="fillExample" class="ghost-button" type="button">Örnek senaryoyu doldur</button>
+            <button id="fillExample" class="ghost-button quick-fill-button" type="button">Örnek Senaryoyu Doldur</button>
             <button id="clearForm" class="ghost-button ghost-button-muted" type="button">Temizle</button>
           </div>
         </div>
 
         <form id="calculator-form" class="stack">
-          <section class="input-card">
-            <h3>Plan özeti</h3>
-            <div class="field-grid field-grid-3">
+          <section class="input-card calculator-card">
+            <h3>Tasarruf Finansmanı Maliyet Hesaplayıcı</h3>
+            <div class="calculator-segments">
               <label>
                 Varlık Türü
+                <div class="segmented-control" data-target-select="assetType">
+                  <button class="segment-option active" type="button" data-value="konut">Konut</button>
+                  <button class="segment-option" type="button" data-value="arac">Araba</button>
+                </div>
                 <select id="assetType">
                   <option value="konut">Konut</option>
                   <option value="arac">Araç</option>
@@ -302,6 +306,10 @@
 
               <label>
                 Model
+                <div class="segmented-control" data-target-select="planModel">
+                  <button class="segment-option active" type="button" data-value="cekilissiz">Çekilişsiz</button>
+                  <button class="segment-option" type="button" data-value="cekilisli">Çekilişli</button>
+                </div>
                 <select id="planModel">
                   <option value="cekilissiz">Çekilişsiz</option>
                   <option value="cekilisli">Çekilişli</option>
@@ -324,11 +332,10 @@
                 </select>
               </label>
             </div>
-          </section>
 
-          <section class="input-card">
-            <h3>Temel maliyet alanları</h3>
-            <div class="field-grid field-grid-2">
+            <div class="easy-divider"></div>
+
+            <div class="field-grid calculator-main-grid">
               <label>
                 Varlık Fiyatı (TL)
                 <input id="assetPrice" type="text" inputmode="numeric" value="" placeholder="5.000.000" data-default="5000000" data-format="grouped-int" />
@@ -348,12 +355,7 @@
                 Aylık Ödeme (TL)
                 <input id="monthlyPayment" type="text" inputmode="numeric" value="" placeholder="55.556" data-default="55556" data-format="grouped-int" />
               </label>
-            </div>
-          </section>
 
-          <section class="input-card">
-            <h3>Bekleme dönemi etkileri</h3>
-            <div class="field-grid field-grid-2">
               <label>
                 Başlangıç Kira (TL/Ay)
                 <input id="monthlyRent" type="text" inputmode="numeric" value="" placeholder="25.000" data-default="25000" data-format="grouped-int" />
@@ -364,42 +366,53 @@
                 <input id="deliveryMonth" type="text" inputmode="numeric" value="" placeholder="12" data-default="12" data-format="grouped-int" />
               </label>
             </div>
-          </section>
 
-          <details class="advanced-box">
-            <summary>Gelişmiş varsayımlar</summary>
-            <div class="field-grid field-grid-2 advanced-grid">
-              <label>
-                Organizasyon Ücreti (%)
-                <input id="organizationFeeRate" type="text" inputmode="decimal" value="" placeholder="8.0" data-default="8" data-format="decimal-dot" />
-              </label>
-
-              <label>
-                Yıllık Enflasyon (%)
-                <input id="annualInflation" type="text" inputmode="decimal" value="" placeholder="32.0" data-default="32" data-format="decimal-dot" />
-              </label>
-
-              <label>
-                İskonto / Sermaye Maliyeti (%)
-                <input id="discountRate" type="text" inputmode="decimal" value="" placeholder="28.0" data-default="28" data-format="decimal-dot" />
-              </label>
-
-              <label>
-                Kredi Faizi (% / ay)
-                <input id="loanRate" type="text" inputmode="decimal" value="" placeholder="3.19" data-default="3.19" data-format="decimal-dot" />
-              </label>
-
-              <label class="checkbox">
+            <div class="easy-toggle-row">
+              <label class="switch-row">
                 <input id="useGraduatedPlan" type="checkbox" />
-                Artışlı taksit planı kullan
+                <span></span>
+                Artışlı Taksit Planı
               </label>
 
-              <label>
-                Yıllık Taksit Artışı (%)
-                <input id="graduatedIncreaseRate" type="text" inputmode="decimal" value="" placeholder="15.0" data-default="15" data-format="decimal-dot" />
+              <label class="switch-row">
+                <input id="compareWithLoan" type="checkbox" />
+                <span></span>
+                Konut Kredisi ile Kıyasla
               </label>
             </div>
-          </details>
+
+            <details class="advanced-box easy-advanced">
+              <summary>Gelişmiş parametreler</summary>
+              <div class="field-grid field-grid-2 advanced-grid">
+                <label>
+                  Organizasyon Ücreti (%)
+                  <input id="organizationFeeRate" type="text" inputmode="decimal" value="" placeholder="8.0" data-default="8" data-format="decimal-dot" />
+                </label>
+
+                <label>
+                  Yıllık Enflasyon (%)
+                  <input id="annualInflation" type="text" inputmode="decimal" value="" placeholder="32.0" data-default="32" data-format="decimal-dot" />
+                </label>
+
+                <label>
+                  İskonto / Sermaye Maliyeti (%)
+                  <input id="discountRate" type="text" inputmode="decimal" value="" placeholder="28.0" data-default="28" data-format="decimal-dot" />
+                </label>
+
+                <label>
+                  Kredi Faizi (% / ay)
+                  <input id="loanRate" type="text" inputmode="decimal" value="" placeholder="3.19" data-default="3.19" data-format="decimal-dot" />
+                </label>
+
+                <label>
+                  Yıllık Taksit Artışı (%)
+                  <input id="graduatedIncreaseRate" type="text" inputmode="decimal" value="" placeholder="15.0" data-default="15" data-format="decimal-dot" />
+                </label>
+              </div>
+            </details>
+
+            <button class="calculate-cta" type="button" data-scroll-target="#results">Hesapla ve Sonuçları Göster</button>
+          </section>
         </form>
       </section>
 
