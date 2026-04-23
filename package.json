@@ -1,0 +1,39 @@
+{
+  "name": "tasarrufinansman",
+  "version": "1.0.0",
+  "description": "Premium tasarruf finansman analiz ve karşılaştırma arayüzü.",
+  "main": "app.js",
+  "scripts": {
+    "predev": "node scripts/sync-public.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/sync-public.mjs",
+    "build": "next build",
+    "start": "next start",
+    "check": "next lint || next build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yacirmen/finans.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Yacirmen/finans/issues"
+  },
+  "homepage": "https://github.com/Yacirmen/finans#readme",
+  "dependencies": {
+    "next": "^16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "25.6.0",
+    "@types/react": "19.2.14",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.4",
+    "typescript": "6.0.3"
+  }
+}

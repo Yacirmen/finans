@@ -8,3 +8,11 @@ logo-preview.png
 entext.txt
 ingilizce metinler.txt
 styles_backup.css
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-preview.png
+local-reference-pass.png
+reference-live.png
+reference-compare-live.png
