@@ -8,6 +8,7 @@ export function InteractionScript() {
 
   ready(() => {
     const calculator = document.querySelector("[data-calculator]");
+    const calculatorCard = calculator?.querySelector("[data-calculator-card]");
     const money = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
     const example = {
       company: "Diğer",
@@ -35,6 +36,14 @@ export function InteractionScript() {
     };
     const formatMoney = (value) => "₺ " + money.format(Math.max(0, Math.round(value || 0)));
     const field = (name) => calculator?.querySelector('[data-field="' + name + '"]');
+    const pulse = (element, className = "choice-pop", duration = 460) => {
+      if (!element) return;
+      element.classList.remove(className);
+      void element.offsetWidth;
+      element.classList.add(className);
+      window.setTimeout(() => element.classList.remove(className), duration);
+    };
+    const focusCalculator = () => pulse(calculatorCard, "calculator-focus", 1180);
     const scrollToHash = () => {
       if (!location.hash) return;
       const target = document.querySelector(location.hash);
@@ -42,6 +51,7 @@ export function InteractionScript() {
         if (!target) return;
         const top = target.getBoundingClientRect().top + window.scrollY - 92;
         window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+        if (target === calculator) focusCalculator();
       };
       setTimeout(run, 80);
       setTimeout(run, 500);
@@ -107,11 +117,15 @@ export function InteractionScript() {
       button.addEventListener("click", () => {
         calculator.querySelectorAll('[data-segment="' + button.dataset.segment + '"]').forEach((item) => item.classList.remove("active"));
         button.classList.add("active");
+        pulse(button);
       });
     });
 
     calculator?.querySelectorAll("[data-toggle]").forEach((button) => {
-      button.addEventListener("click", () => setToggle(button, button.dataset.on !== "true"));
+      button.addEventListener("click", () => {
+        setToggle(button, button.dataset.on !== "true");
+        pulse(button);
+      });
     });
 
     calculator?.querySelectorAll("[data-field]").forEach((input) => {
@@ -119,6 +133,7 @@ export function InteractionScript() {
     });
 
     calculator?.querySelector("[data-fill-example]")?.addEventListener("click", () => {
+      pulse(calculator.querySelector("[data-fill-example]"));
       Object.entries(example).forEach(([name, value]) => {
         const input = field(name);
         if (input) input.value = value;
@@ -131,9 +146,11 @@ export function InteractionScript() {
       calculator.querySelector("[data-form-error]")?.classList.add("hidden");
       updateDeliveryBar();
       calculator.scrollIntoView({ behavior: "smooth", block: "start" });
+      focusCalculator();
     });
 
     calculator?.querySelector("[data-clear-form]")?.addEventListener("click", () => {
+      pulse(calculator.querySelector("[data-clear-form]"));
       calculator.querySelectorAll("[data-field]").forEach((input) => { input.value = ""; });
       calculator.querySelector("[data-result-panel]")?.classList.add("hidden");
       calculator.querySelector("[data-form-error]")?.classList.add("hidden");
@@ -141,18 +158,26 @@ export function InteractionScript() {
       updateDeliveryBar();
     });
 
-    calculator?.querySelector("[data-calculate]")?.addEventListener("click", renderResult);
+    calculator?.querySelector("[data-calculate]")?.addEventListener("click", (event) => {
+      pulse(event.currentTarget);
+      renderResult();
+    });
     document.querySelectorAll("[data-compare-cta]").forEach((link) => {
       link.addEventListener("click", () => {
+        pulse(link);
         const compareToggle = calculator?.querySelector('[data-toggle="compareBank"]');
         if (compareToggle) setToggle(compareToggle, true);
-        setTimeout(() => calculator?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
+        setTimeout(() => {
+          calculator?.scrollIntoView({ behavior: "smooth", block: "start" });
+          focusCalculator();
+        }, 40);
       });
     });
 
     document.querySelectorAll("[data-login-button]").forEach((link) => {
       link.addEventListener("click", (event) => {
         event.preventDefault();
+        pulse(link);
         const existing = document.querySelector("[data-login-modal]");
         if (existing) existing.remove();
         const modal = document.createElement("div");

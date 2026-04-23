@@ -92,6 +92,15 @@ a {
   color: #334155;
   font-size: 14px;
   font-weight: 800;
+  transition: transform 0.18s ease, color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.segment-button:hover {
+  transform: translateY(-1px);
+}
+
+.segment-button:active {
+  transform: translateY(1px) scale(0.985);
 }
 
 .segment-button.active {
@@ -100,6 +109,89 @@ a {
   box-shadow: 0 10px 22px rgba(6, 148, 95, 0.2);
 }
 
+[data-fill-example],
+[data-clear-form],
+[data-calculate],
+[data-toggle],
+[data-compare-cta],
+[data-login-button],
+[data-mobile-menu-button] {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+[data-fill-example]:hover,
+[data-clear-form]:hover,
+[data-calculate]:hover,
+[data-toggle]:hover,
+[data-compare-cta]:hover,
+[data-login-button]:hover,
+[data-mobile-menu-button]:hover {
+  transform: translateY(-1px);
+}
+
+[data-fill-example]:active,
+[data-clear-form]:active,
+[data-calculate]:active,
+[data-toggle]:active,
+[data-compare-cta]:active,
+[data-login-button]:active,
+[data-mobile-menu-button]:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.choice-pop {
+  animation: choice-pop 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.calculator-focus {
+  animation: calculator-focus 1.15s ease both;
+}
+
+@keyframes choice-pop {
+  0% {
+    box-shadow: 0 0 0 0 rgba(6, 148, 95, 0);
+    transform: scale(1);
+  }
+  42% {
+    box-shadow: 0 0 0 7px rgba(6, 148, 95, 0.18), 0 14px 28px rgba(6, 148, 95, 0.2);
+    transform: scale(1.025);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 148, 95, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes calculator-focus {
+  0% {
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+    transform: translateY(0);
+  }
+  24% {
+    box-shadow: 0 0 0 8px rgba(6, 148, 95, 0.12), 0 30px 80px rgba(6, 148, 95, 0.18);
+    transform: translateY(-3px);
+  }
+  100% {
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+    transform: translateY(0);
+  }
+}
+
 .soft-shadow {
   box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }
