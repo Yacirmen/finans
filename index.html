@@ -10,7 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260421-2231" />
+  <link rel="stylesheet" href="styles.css?v=20260423-market1" />
 </head>
 <body>
   <div class="page-shell">
@@ -21,6 +21,7 @@
           <strong>Tasarruf Finansman Analiz Stüdyosu</strong>
         </div>
         <nav class="nav-links">
+          <a href="#marketData">Veri Endeksi</a>
           <a href="#krediOraniPanel">Kredi Limit</a>
           <a href="#manuelAnaliz">Manuel Analiz</a>
           <a href="#calculator">Hesaplayıcı</a>
@@ -57,6 +58,75 @@
         </div>
       </section>
     </header>
+
+    <section id="marketData" class="panel market-panel">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Yeni Veri Sayfası</span>
+          <h2>Konut & taşıt piyasa endeksi</h2>
+          <p class="subtle">
+            Bitcoin'deki fear/greed mantığı gibi, kredi ve tasarruf finansman kararını haftalık veriyle tek göstergeye indiriyoruz.
+          </p>
+        </div>
+      </div>
+
+      <div class="market-dashboard">
+        <div class="fear-gauge-card">
+          <div class="gauge-shell" aria-label="Konut Kredisi Tasarruf Finansman Endeksi">
+            <div class="gauge-ring">
+              <div class="gauge-needle" id="marketGaugeNeedle"></div>
+              <div class="gauge-center">
+                <span id="marketIndexLabel">Endeks</span>
+                <strong id="marketIndexScore">56</strong>
+              </div>
+            </div>
+            <div class="gauge-scale">
+              <span>Tasarruf</span>
+              <span>Geçiş</span>
+              <span>Kredi</span>
+            </div>
+          </div>
+          <div class="gauge-copy">
+            <span class="status-pill" id="marketIndexSeason">Geçiş / Kararsız</span>
+            <h3>Haftalık karar termometresi</h3>
+            <p id="marketIndexComment">
+              Endeks 100'e yaklaştıkça banka kredisi, 0'a yaklaştıkça tasarruf finansman tarafı güçlenir.
+            </p>
+          </div>
+        </div>
+
+        <div id="marketGroupCards" class="market-group-cards"></div>
+      </div>
+
+      <div class="market-grid">
+        <article class="market-card market-card-wide">
+          <span class="market-eyebrow">Konut Kredileri</span>
+          <h3>BDDK haftalık kredi stoku</h3>
+          <div id="housingCreditCards" class="mini-metric-grid"></div>
+        </article>
+
+        <article class="market-card">
+          <span class="market-eyebrow">TÜİK Konut Satış</span>
+          <h3>Mart 2026 satış resmi</h3>
+          <div id="housingSalesCards" class="mini-metric-grid"></div>
+        </article>
+
+        <article class="market-card market-card-wide">
+          <span class="market-eyebrow">Otomobil Pazarı</span>
+          <h3>Ocak-Mart 2026 marka tablosu</h3>
+          <div id="autoMarketCards" class="mini-metric-grid"></div>
+          <div id="autoBrandBars" class="brand-bars"></div>
+        </article>
+      </div>
+
+      <div class="source-strip">
+        <strong>Kaynak akışı:</strong>
+        <span>TÜİK konut satışları</span>
+        <span>BDDK haftalık bülten</span>
+        <span>ODMD otomobil satışları</span>
+        <span>TCMB / TÜFE / faiz göstergeleri</span>
+      </div>
+    </section>
 
     <section id="krediOraniPanel" class="panel kredi-panel">
       <div class="section-head">

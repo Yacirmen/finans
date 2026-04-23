@@ -1735,3 +1735,113 @@ function setupManualAnalysis() {
 }
 
 setupManualAnalysis();
+
+const MARKET_DATA = {
+  indexScore: 56.1,
+  season: "Geçiş / Kararsız",
+  comment:
+    "Kredi şartları hâlâ pahalı; ancak konut ve risk verileri tam tasarruf lehine kopuş göstermiyor. Bu ekran haftalık güncellenen erken uyarı paneli gibi çalışır.",
+  groups: [
+    { name: "Kredi", score: 40.3, note: "Faiz ve kredi büyümesi tasarruf tarafını destekliyor." },
+    { name: "Risk", score: 53.6, note: "Makro risk nötr bölgede; veri izlenmeli." },
+    { name: "Konut", score: 49.4, note: "Talep ve maliyet sinyalleri dengede." },
+  ],
+  housingCredit: [
+    { label: "Konut kredi stoku", value: "₺752.738 mn", delta: "+%0,76 haftalık" },
+    { label: "Yıl sonundan beri", value: "+%11,70", delta: "Konut kredisi değişimi" },
+    { label: "Taşıt kredi stoku", value: "₺45.607 mn", delta: "-%1,21 haftalık", negative: true },
+    { label: "Taşıt YTD", value: "-%11,14", delta: "Daralma sürüyor", negative: true },
+  ],
+  housingSales: [
+    { label: "Toplam satış", value: "113.367", delta: "2026 Mart" },
+    { label: "İpotekli pay", value: "%22,9", delta: "25.978 adet" },
+    { label: "İlk el payı", value: "%31,5", delta: "35.725 adet" },
+    { label: "Diğer satış", value: "87.389", delta: "Nakit / diğer kanal" },
+  ],
+  autoMarket: [
+    { label: "Toplam pazar", value: "262.728", delta: "2026 Ocak-Mart" },
+    { label: "2025 aynı dönem", value: "275.151", delta: "-%4,51 yıllık", negative: true },
+    { label: "Yerli satış", value: "88.252", delta: "%33,6 pay" },
+    { label: "İthal satış", value: "174.476", delta: "%66,4 pay" },
+  ],
+  brands: [
+    { name: "Renault", value: 34244, change: "+%12,9" },
+    { name: "Toyota", value: 23982, change: "+%34,9" },
+    { name: "Fiat", value: 22748, change: "+%3,2" },
+    { name: "Volkswagen", value: 19166, change: "-%4,4" },
+    { name: "Peugeot", value: 18049, change: "-%7,9" },
+  ],
+};
+
+function renderMiniMetrics(containerId, items) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = items
+    .map(
+      (item) => `
+        <article class="mini-metric">
+          <span>${item.label}</span>
+          <strong>${item.value}</strong>
+          <em class="${item.negative ? "negative" : ""}">${item.delta}</em>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderMarketData() {
+  const panel = document.getElementById("marketData");
+  if (!panel) return;
+
+  const score = MARKET_DATA.indexScore;
+  const scoreEl = document.getElementById("marketIndexScore");
+  const seasonEl = document.getElementById("marketIndexSeason");
+  const commentEl = document.getElementById("marketIndexComment");
+  const needleEl = document.getElementById("marketGaugeNeedle");
+
+  if (scoreEl) scoreEl.textContent = score.toFixed(0);
+  if (seasonEl) seasonEl.textContent = MARKET_DATA.season;
+  if (commentEl) commentEl.textContent = MARKET_DATA.comment;
+  if (needleEl) {
+    const degrees = -90 + (Math.max(0, Math.min(100, score)) / 100) * 180;
+    needleEl.style.transform = `translateX(-50%) rotate(${degrees}deg)`;
+  }
+
+  const groupContainer = document.getElementById("marketGroupCards");
+  if (groupContainer) {
+    groupContainer.innerHTML = MARKET_DATA.groups
+      .map(
+        (group) => `
+          <article class="group-score-card">
+            <span class="market-eyebrow">${group.name}</span>
+            <strong>${group.score.toFixed(1)}</strong>
+            <p class="subtle">${group.note}</p>
+            <div class="score-track"><div class="score-fill" style="width:${group.score}%"></div></div>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  renderMiniMetrics("housingCreditCards", MARKET_DATA.housingCredit);
+  renderMiniMetrics("housingSalesCards", MARKET_DATA.housingSales);
+  renderMiniMetrics("autoMarketCards", MARKET_DATA.autoMarket);
+
+  const brandContainer = document.getElementById("autoBrandBars");
+  if (brandContainer) {
+    const max = Math.max(...MARKET_DATA.brands.map((brand) => brand.value));
+    brandContainer.innerHTML = MARKET_DATA.brands
+      .map(
+        (brand) => `
+          <div class="brand-row">
+            <span>${brand.name}</span>
+            <div class="brand-track"><div class="brand-fill" style="width:${(brand.value / max) * 100}%"></div></div>
+            <strong>${brand.value.toLocaleString("tr-TR")}</strong>
+          </div>
+        `,
+      )
+      .join("");
+  }
+}
+
+renderMarketData();
