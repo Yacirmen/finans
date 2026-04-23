@@ -177,7 +177,12 @@ export function CalculatorSection() {
                   ].map(([key, label, placeholder, value]) => (
                     <label key={key}>
                       <span className="form-label">{label}</span>
-                      <input className="form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium" placeholder={placeholder} defaultValue={key === "assetPrice" ? "3.000.000" : key === "downPayment" ? "1.000.000" : key === "monthlyPayment" ? "41.667" : value} data-field={key} />
+                      <input
+                        className="form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium"
+                        placeholder={placeholder}
+                        defaultValue={key === "assetPrice" ? "3.000.000" : key === "downPayment" ? "1.000.000" : key === "monthlyPayment" ? "41.667" : value}
+                        data-field={key}
+                      />
                     </label>
                   ))}
                 </div>
@@ -229,13 +234,13 @@ export function CalculatorSection() {
 
               <div className="border-t border-[#e8eef5] pt-4">
                 <div className="mb-5">
-                  <Toggle checked={true} label="Tasarruf Finansmanı ile Konut Kredisini Kıyasla" name="compareBank" />
+                  <Toggle checked={true} label="Tasarruf Finansmanı ile Banka Kredisini Kıyasla" name="compareBank" />
                 </div>
 
                 <div className="rounded-[18px] border border-[#dbe6f1] bg-[#f9fbfe] p-5" data-bank-panel>
                   <div className="flex items-center gap-3 text-[#263246]">
                     <span className="grid h-8 w-8 place-items-center rounded-xl bg-[#ecfff3] text-[#1aa35d]">⌂</span>
-                    <h3 className="text-[16px] font-bold">Konut Kredisi Karşılaştırması</h3>
+                    <h3 className="text-[16px] font-bold" data-preview="bankPanelTitle">Konut Kredisi Karşılaştırması</h3>
                   </div>
 
                   <div className="mt-6 grid gap-4 md:grid-cols-[1.15fr_0.6fr_0.6fr]">
@@ -245,18 +250,28 @@ export function CalculatorSection() {
                     </label>
                     <label>
                       <span className="form-label">Aylık Faiz (%)</span>
-                      <input className="form-control !h-[40px] !rounded-[14px] !bg-white !font-medium" data-bank-field="rate" defaultValue="2.8" />
+                      <input className="form-control !h-[40px] !rounded-[14px] !bg-white !font-medium" data-bank-field="rate" defaultValue="2.85" />
                     </label>
                     <label>
                       <span className="form-label">Vade (Ay)</span>
-                      <input className="form-control !h-[40px] !rounded-[14px] !bg-white !font-medium" data-bank-field="term" defaultValue="120" />
+                      <input className="form-control !h-[40px] !rounded-[14px] !bg-white !font-medium" data-bank-field="term" defaultValue="60" />
+                    </label>
+                  </div>
+
+                  <div className="mt-4 hidden max-w-[260px]" data-bank-housing-status>
+                    <label>
+                      <span className="form-label">Konut Sahipliği</span>
+                      <select className="form-control !h-[40px] !rounded-[14px] !bg-white !font-medium" data-bank-field="housingStatus" defaultValue="yok">
+                        <option value="yok">Evi yok</option>
+                        <option value="var">Evi var</option>
+                      </select>
                     </label>
                   </div>
 
                   <div className="mt-5">
                     <span className="form-label">Hesaplanan Taksit (TL)</span>
                     <div className="rounded-[14px] border border-[#cdeedc] bg-[#e8fbef] px-5 py-3 text-[16px] font-bold text-[#177d4e]" data-preview="bankInstallment">
-                      ₺58.114
+                      ₺17.490
                     </div>
                   </div>
                 </div>

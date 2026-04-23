@@ -28,8 +28,8 @@ export function InteractionScript() {
     };
 
     const assetPresets = {
-      Konut: { assetPrice: 3000000, downPayment: 1000000, term: 48, monthlyPayment: 41667, delivery: 13, serviceFee: 7.5, rent: 25000, bankRate: 2.8, bankTerm: 120 },
-      Araba: { assetPrice: 1850000, downPayment: 550000, term: 36, monthlyPayment: 38250, delivery: 6, serviceFee: 6.2, rent: 12000, bankRate: 3.15, bankTerm: 48 },
+      Konut: { assetPrice: 3000000, downPayment: 1000000, term: 48, monthlyPayment: 41667, delivery: 13, serviceFee: 7.5, rent: 25000, bankRate: 2.85, bankTerm: 60 },
+      Araba: { assetPrice: 1850000, downPayment: 550000, term: 36, monthlyPayment: 38250, delivery: 6, serviceFee: 6.2, rent: 12000, bankRate: 3.45, bankTerm: 12 },
     };
 
     const modelTweaks = {
@@ -118,11 +118,80 @@ export function InteractionScript() {
       return Array.from({ length: term }).reduce((sum, _, index) => sum + payment / Math.pow(1 + r, index + 1), 0);
     };
 
-    const calculateBankInstallment = (principal, rate, term) => {
-      if (!principal || !rate || !term) return 0;
-      const monthlyRate = rate / 100;
+    const calculatePayment = (principal, monthlyRate, term) => {
+      if (!principal || !term) return 0;
+      if (!monthlyRate) return principal / term;
       const factor = Math.pow(1 + monthlyRate, term);
       return principal * monthlyRate * factor / (factor - 1);
+    };
+
+    const solveMonthlyRate = (payment, term, presentValue) => {
+      if (!payment || !term || !presentValue) return 0;
+      let low = 0;
+      let high = 1;
+      for (let i = 0; i < 80; i += 1) {
+        const mid = (low + high) / 2;
+        const guess = calculatePayment(presentValue, mid, term);
+        if (guess > payment) high = mid;
+        else low = mid;
+      }
+      return (low + high) / 2;
+    };
+
+    const getBankConfig = (assetType, housingStatus) => {
+      if (assetType === "Araba") {
+        return { title: "Taşıt Kredisi Karşılaştırması", fee: 925.92, bsmv: 15, kkdf: 15, defaultRate: 3.45, defaultTerm: 12 };
+      }
+
+      return {
+        title: "Konut Kredisi Karşılaştırması",
+        fee: 39100,
+        bsmv: housingStatus === "var" ? 15 : 0,
+        kkdf: 0,
+        defaultRate: 2.85,
+        defaultTerm: 60,
+      };
+    };
+
+    const calculateCreditModule = ({ principal, rate, term, fee, bsmv, kkdf }) => {
+      const safePrincipal = Math.max(0, principal || 0);
+      const safeRate = Math.max(0, rate || 0);
+      const safeTerm = Math.max(0, term || 0);
+      const safeFee = Math.max(0, fee || 0);
+      const nominalMonthlyRate = safeRate / 100;
+      const taxedMonthlyRate = nominalMonthlyRate * (1 + (bsmv + kkdf) / 100);
+      const installment = calculatePayment(safePrincipal, taxedMonthlyRate, safeTerm);
+
+      let balance = safePrincipal;
+      let totalBaseInterest = 0;
+      let totalBsmv = 0;
+      let totalKkdf = 0;
+
+      for (let i = 0; i < safeTerm; i += 1) {
+        const baseInterest = balance * nominalMonthlyRate;
+        const kkdfAmount = baseInterest * kkdf / 100;
+        const bsmvAmount = baseInterest * bsmv / 100;
+        const principalPart = installment - baseInterest - kkdfAmount - bsmvAmount;
+        balance = Math.max(0, balance - principalPart);
+        totalBaseInterest += baseInterest;
+        totalBsmv += bsmvAmount;
+        totalKkdf += kkdfAmount;
+      }
+
+      const totalRepaymentWithoutFees = safePrincipal + totalBaseInterest;
+      const totalRepayment = totalRepaymentWithoutFees + safeFee;
+      const netDisbursed = safePrincipal - safeFee;
+      const effectiveMonthlyRate = solveMonthlyRate(installment, safeTerm, netDisbursed);
+      const annualEffectiveCost = Math.pow(1 + effectiveMonthlyRate, 12) - 1;
+
+      return {
+        installment,
+        totalBaseInterest,
+        totalRepaymentWithoutFees,
+        totalRepayment,
+        netDisbursed,
+        annualEffectiveCost,
+      };
     };
 
     const getLimitSection = () => document.querySelector("[data-loan-limit]");
@@ -250,6 +319,9 @@ export function InteractionScript() {
       const compareBank = getCalculator()?.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
       const bankPanel = getCalculator()?.querySelector("[data-bank-panel]");
       if (bankPanel) bankPanel.classList.toggle("hidden", !compareBank);
+      const housingStatusWrap = getCalculator()?.querySelector("[data-bank-housing-status]");
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      if (housingStatusWrap) housingStatusWrap.classList.toggle("hidden", assetType !== "Konut");
     };
 
     const syncSummary = () => {
@@ -293,12 +365,22 @@ export function InteractionScript() {
       const bankAmount = parseNumber(bankField("amount")?.value);
       const bankRate = parseNumber(bankField("rate")?.value);
       const bankTerm = parseNumber(bankField("term")?.value);
-      const bankInstallment = calculateBankInstallment(bankAmount, bankRate, bankTerm);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
 
+      setPreviewText("bankPanelTitle", bankConfig.title);
       setPreviewText("bankAmount", compareBank ? formatMoney(bankAmount) : "Kapalı");
       setPreviewText("bankRate", compareBank ? formatPercent(bankRate) : "Kapalı");
       setPreviewText("bankTerm", compareBank ? bankTerm + " ay" : "Kapalı");
-      setPreviewText("bankInstallment", compareBank ? formatMoney(bankInstallment) : "Kapalı");
+      setPreviewText("bankInstallment", compareBank ? formatMoney(bankResult.installment) : "Kapalı");
     };
 
     const applyScenario = (changedByUser = false) => {
@@ -334,12 +416,13 @@ export function InteractionScript() {
 
       if (!changedByUser) {
         const bankAmount = Math.max(0, parseNumber(field("assetPrice")?.value) - parseNumber(field("downPayment")?.value));
+        const bankConfig = getBankConfig(assetType, bankField("housingStatus")?.value || "yok");
         if (bankField("amount")) {
           bankField("amount").value = String(bankAmount);
           formatThousandsInput(bankField("amount"));
         }
-        if (bankField("rate")) bankField("rate").value = String(preset.bankRate);
-        if (bankField("term")) bankField("term").value = String(preset.bankTerm);
+        if (bankField("rate")) bankField("rate").value = String(preset.bankRate || bankConfig.defaultRate);
+        if (bankField("term")) bankField("term").value = String(preset.bankTerm || bankConfig.defaultTerm);
       }
 
       updateBankPanelVisibility();
@@ -376,7 +459,20 @@ export function InteractionScript() {
       const totalPaid = downPayment + serviceFeeAmount + monthly * term;
       const waitingCost = delivery * rent;
       const netCost = totalPaid + waitingCost - assetPrice;
-      const bankComparison = parseNumber(bankField("amount")?.value) * 1.08;
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
       const panel = document.querySelector("[data-result-panel]");
       if (!panel) return;
 
@@ -385,7 +481,9 @@ export function InteractionScript() {
         ["Net maliyet", formatMoney(netCost)],
         ["Toplam ödeme", formatMoney(totalPaid)],
         ["Hizmet bedeli", formatMoney(serviceFeeAmount)],
-        ["Banka kıyası", compareBank ? formatMoney(bankComparison) : "Kapalı"],
+        ["Kredi taksiti", compareBank ? formatMoney(bankResult.installment) : "Kapalı"],
+        ["Kredi toplam geri ödeme", compareBank ? formatMoney(bankResult.totalRepayment) : "Kapalı"],
+        ["Net ele geçen kredi", compareBank ? formatMoney(bankResult.netDisbursed) : "Kapalı"],
       ]
         .map(([label, value]) => '<div><span class="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">' + label + '</span><strong class="mt-2 block text-xl font-bold text-slate-900">' + value + "</strong></div>")
         .join("");
@@ -659,6 +757,11 @@ export function InteractionScript() {
       if (!(target instanceof HTMLSelectElement)) return;
       if (target.matches("[data-limit-field]")) {
         syncLoanLimit();
+        return;
+      }
+      if (target.matches('[data-bank-field="housingStatus"]')) {
+        updateBankPanelVisibility();
+        syncSummary();
       }
     });
 
@@ -705,6 +808,7 @@ export function InteractionScript() {
     });
 
     syncCompanySelect();
+    updateBankPanelVisibility();
     applyScenario();
     document.querySelectorAll("[data-limit-field]").forEach((input) => {
       if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
