@@ -84,7 +84,23 @@ function UtilityCard({
 export function CalculatorSection() {
   return (
     <section id="calculator" className="page-container relative z-20 mt-8 scroll-mt-24" data-calculator>
-      <div className="grid items-start gap-7 lg:grid-cols-[1.14fr_0.86fr]">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-4 rounded-[22px] border border-[#dce7e2] bg-white px-5 py-4 shadow-[0_12px_30px_rgba(31,43,37,0.06)]">
+        <div>
+          <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">Modül seçimi</span>
+          <p className="mt-1 text-sm text-[#6f7d94]">İstersen hesaplayıcıda kal, istersen teklif kıyas görünümüne geç.</p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-1 rounded-[14px] bg-[#eef3f8] p-1" data-calc-view-switcher>
+          <button className="segment-button active !px-5" data-calc-view-tab="main" type="button">
+            Hesaplayıcı
+          </button>
+          <button className="segment-button !px-5" data-calc-view-tab="comparison" type="button">
+            Teklif Kıyas
+          </button>
+        </div>
+      </div>
+
+      <div className="grid items-start gap-7 lg:grid-cols-[1.14fr_0.86fr]" data-calc-view-panel="main">
         <div className="space-y-6">
           <div className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6" data-calculator-card>
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4">
@@ -324,7 +340,7 @@ export function CalculatorSection() {
             <MetricBox label="Teslim Ayı" value="13" previewKey="delivery" />
           </div>
 
-          <div className="mt-5 rounded-[18px] border border-[#dbe6f1] bg-white overflow-hidden">
+          <div className="mt-5 overflow-hidden rounded-[18px] border border-[#dbe6f1] bg-white">
             <div className="px-5 py-4">
               <h4 className="text-[16px] font-bold text-[#243045]">NET MALİYET (NBM) DETAYI</h4>
               <div className="mt-3">
@@ -356,6 +372,208 @@ export function CalculatorSection() {
 
           <div className="mt-5 hidden grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 transition md:grid-cols-2" data-result-panel />
         </aside>
+      </div>
+
+      <div className="mt-7 hidden space-y-6" data-calc-view-panel="comparison">
+        <div id="comparison" className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#e8eef5] pb-4">
+            <div>
+              <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">Teklif kıyas modülü</span>
+              <h3 className="mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]">
+                Banka kredisi ile tasarruf finansmanını aynı zeminde karşılaştırın
+              </h3>
+            </div>
+          </div>
+
+          <div className="mt-5 rounded-[20px] border border-[#dbe6f1] bg-[#fbfdff] p-5">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {[
+                ["assetPrice", "Ev değeri", "3.000.000"],
+                ["downPayment", "Peşinat", "1.000.000"],
+                ["term", "Vade (Ay)", "48"],
+                ["monthlyPayment", "Aylık ödeme", "41.667"],
+                ["delivery", "Teslim ayı", "12"],
+                ["serviceFee", "Hizmet bedeli (%)", "11.8"],
+                ["rent", "Kira", "25.000"],
+                ["bankAmount", "Kredi tutarı", "2.000.000"],
+                ["bankRate", "Kredi faizi (%)", "2.85"],
+                ["bankTerm", "Kredi vadesi", "60"],
+              ].map(([key, label, value]) => (
+                <label key={key}>
+                  <span className="form-label">{label}</span>
+                  <input
+                    className="form-control !h-[42px] !rounded-[14px] !bg-white !font-medium"
+                    data-compare-input={key}
+                    defaultValue={value}
+                  />
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-5 xl:grid-cols-[1fr_1fr_0.8fr]">
+            <article className="rounded-[20px] border border-[#dbe6f1] bg-[#fbfdff] p-5 shadow-[0_12px_28px_rgba(27,39,51,0.05)]">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">Senaryo A</span>
+                  <h4 className="mt-1 text-[17px] font-bold text-[#1c2433]">Banka Kredisi</h4>
+                </div>
+                <span className="rounded-full bg-[#eef4ff] px-3 py-1 text-[12px] font-semibold text-[#3b63d1]">Kredi</span>
+              </div>
+
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <div className="rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Başlangıç Çıkışı</span>
+                  <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]" data-compare-bank-initial>
+                    TL 1.000.000
+                  </strong>
+                </div>
+                <div className="rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Finansman Tutarı</span>
+                  <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]" data-compare-bank-financed>
+                    TL 2.000.000
+                  </strong>
+                </div>
+                <div className="rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Aylık Taksit</span>
+                  <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#182133]" data-compare-bank-installment>
+                    TL 58.114
+                  </strong>
+                </div>
+                <div className="rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Toplam Geri Ödeme</span>
+                  <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#182133]" data-compare-bank-total>
+                    TL 3.428.000
+                  </strong>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-[18px] border border-[#d8e3f1] bg-[#f7fbff] px-4 py-4">
+                <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Bugünkü Değer Skoru</span>
+                <strong className="mt-2 block text-[28px] font-black tracking-[-0.05em] text-[#1a2435]" data-compare-bank-npv>
+                  TL 0
+                </strong>
+              </div>
+            </article>
+
+            <article className="rounded-[20px] border border-[#d6efe2] bg-[linear-gradient(180deg,#fbfffd_0%,#f6fff9_100%)] p-5 shadow-[0_12px_28px_rgba(24,160,90,0.07)]">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#6c8b78]">Senaryo B</span>
+                  <h4 className="mt-1 text-[17px] font-bold text-[#1c2433]">Tasarruf Finansmanı</h4>
+                </div>
+                <span className="rounded-full bg-[#ebfbf1] px-3 py-1 text-[12px] font-semibold text-[#168b53]">NBM</span>
+              </div>
+
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <div className="rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Başlangıç Çıkışı</span>
+                  <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#136f45]" data-compare-savings-initial>
+                    TL 1.225.000
+                  </strong>
+                </div>
+                <div className="rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Finansman Tutarı</span>
+                  <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#136f45]" data-compare-savings-financed>
+                    TL 2.000.000
+                  </strong>
+                </div>
+                <div className="rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Aylık Ödeme</span>
+                  <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#136f45]" data-compare-savings-installment>
+                    TL 41.667
+                  </strong>
+                </div>
+                <div className="rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Teslim Ayı</span>
+                  <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#136f45]" data-compare-savings-delivery>
+                    12. ay
+                  </strong>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-[18px] border border-[#cdeedc] bg-[#e8fbef] px-4 py-4">
+                <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#168b53]">Bugünkü Değer Skoru</span>
+                <strong className="mt-2 block text-[28px] font-black tracking-[-0.05em] text-[#136f45]" data-compare-savings-npv>
+                  TL 0
+                </strong>
+              </div>
+            </article>
+
+            <article className="rounded-[20px] border border-[#e6edf5] bg-white p-5 shadow-[0_12px_28px_rgba(27,39,51,0.05)]">
+              <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">Teslim otomasyonu</span>
+              <h4 className="mt-1 text-[17px] font-bold text-[#1c2433]">Otomatik teslim senaryosu</h4>
+
+              <div className="mt-4 space-y-4">
+                <div className="rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Önerilen Teslim</span>
+                  <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]" data-compare-auto-delivery>
+                    5. ay
+                  </strong>
+                </div>
+
+                <div className="rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-4 py-4">
+                  <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Skor Farkı</span>
+                  <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]" data-compare-best-delta>
+                    TL 0
+                  </strong>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-[18px] border border-[#dce7e2] bg-[#fcfffd] px-4 py-4">
+                <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Öne Çıkan Tercih</span>
+                <strong className="mt-2 block text-[18px] font-bold text-[#1c2433]" data-compare-best>
+                  Tasarruf finansmanı daha avantajlı
+                </strong>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <details className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6" data-cashflow-details>
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433]">
+            <span>Detaylı Nakit Akışı Tablosunu Gör</span>
+            <span className="text-[#97a5b8]">⌄</span>
+          </summary>
+
+          <div className="mt-5 space-y-4">
+            <p className="rounded-[14px] border border-[#edf2f7] bg-[#fbfdff] px-4 py-3 text-sm leading-6 text-[#6f7d94]">
+              Aşağıdaki tablo nominal Türk Lirası cinsinden cepten çıkan tutarları ve bunların bugünkü değer etkisini gösterir.
+            </p>
+
+            <div className="overflow-x-auto rounded-[18px] border border-[#edf2f7]">
+              <table className="min-w-full text-left">
+                <thead className="bg-[#f8fbff]">
+                  <tr className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">
+                    <th className="px-5 py-4">Ay</th>
+                    <th className="px-5 py-4">Aylık Taksit</th>
+                    <th className="px-5 py-4">Net Nakit Akışı</th>
+                    <th className="px-5 py-4">Bugünkü Değer</th>
+                  </tr>
+                </thead>
+                <tbody data-cashflow-body>
+                  <tr className="border-t border-[#edf2f7]">
+                    <td className="px-5 py-4 text-sm text-[#1c2433]">0</td>
+                    <td className="px-5 py-4 text-sm text-[#ff4d4f]">-TL 1.225.000</td>
+                    <td className="px-5 py-4 text-sm text-[#ff4d4f]">-TL 1.225.000</td>
+                    <td className="px-5 py-4 text-sm font-semibold text-[#ff4d4f]">-TL 1.225.000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-[#708096]">
+              <span data-cashflow-footnote>İlk 18 satır gösteriliyor.</span>
+              <button
+                className="rounded-[12px] bg-[#16a05a] px-5 py-3 text-[14px] font-bold text-white shadow-[0_12px_22px_rgba(22,160,90,0.18)] transition-all duration-300 hover:bg-[#12874b]"
+                data-download-cashflow
+                type="button"
+              >
+                Excel Olarak İndir
+              </button>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
   );

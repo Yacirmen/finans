@@ -43,6 +43,7 @@ export function InteractionScript() {
 
     const getCalculator = () => document.querySelector("[data-calculator]");
     const getCalculatorCard = () => getCalculator()?.querySelector("[data-calculator-card]");
+    const getCalcViewTab = () => getCalculator()?.querySelector('[data-calc-view-tab].active')?.dataset.calcViewTab || "main";
     const getCompanySelect = () => getCalculator()?.querySelector("[data-company-select]");
     const getCompanyTrigger = () => getCompanySelect()?.querySelector("[data-company-trigger]");
     const getCompanyMenu = () => getCompanySelect()?.querySelector("[data-company-menu]");
@@ -50,8 +51,69 @@ export function InteractionScript() {
     const getCompanyChevron = () => getCompanySelect()?.querySelector("[data-company-chevron]");
     const field = (name) => getCalculator()?.querySelector('[data-field="' + name + '"]');
     const bankField = (name) => getCalculator()?.querySelector('[data-bank-field="' + name + '"]');
+    const compareInput = (name) => getCalculator()?.querySelector('[data-compare-input="' + name + '"]');
     const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
     const activeSegmentValue = (segmentName) => getCalculator()?.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
+
+    const setCalcView = (view) => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+      calculator.querySelectorAll("[data-calc-view-tab]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.calcViewTab === view);
+      });
+      calculator.querySelectorAll("[data-calc-view-panel]").forEach((panel) => {
+        panel.classList.toggle("hidden", panel.dataset.calcViewPanel !== view);
+      });
+    };
+
+    const syncComparisonInputs = () => {
+      const mappings = [
+        ["assetPrice", field("assetPrice")?.value || ""],
+        ["downPayment", field("downPayment")?.value || ""],
+        ["term", field("term")?.value || ""],
+        ["monthlyPayment", field("monthlyPayment")?.value || ""],
+        ["delivery", field("delivery")?.value || ""],
+        ["serviceFee", field("serviceFee")?.value || ""],
+        ["rent", field("rent")?.value || ""],
+        ["bankAmount", bankField("amount")?.value || ""],
+        ["bankRate", bankField("rate")?.value || ""],
+        ["bankTerm", bankField("term")?.value || ""],
+      ];
+
+      mappings.forEach(([key, value]) => {
+        const input = compareInput(key);
+        if (input && input.value !== value) input.value = value;
+      });
+    };
+
+    const syncFromComparisonInput = (target) => {
+      const key = target.dataset.compareInput;
+      if (!key) return;
+      const mainMap = {
+        assetPrice: "assetPrice",
+        downPayment: "downPayment",
+        term: "term",
+        monthlyPayment: "monthlyPayment",
+        delivery: "delivery",
+        serviceFee: "serviceFee",
+        rent: "rent",
+      };
+      const bankMap = {
+        bankAmount: "amount",
+        bankRate: "rate",
+        bankTerm: "term",
+      };
+
+      if (mainMap[key]) {
+        const input = field(mainMap[key]);
+        if (input) input.value = target.value;
+      }
+
+      if (bankMap[key]) {
+        const input = bankField(bankMap[key]);
+        if (input) input.value = target.value;
+      }
+    };
 
     const parseNumber = (value) => {
       const raw = String(value || "").trim();
@@ -65,6 +127,10 @@ export function InteractionScript() {
     };
 
     const formatMoney = (value) => "₺" + money.format(Math.max(0, Math.round(value || 0)));
+    const formatSignedMoney = (value) => {
+      const safe = Math.round(value || 0);
+      return (safe < 0 ? "-₺" : "₺") + money.format(Math.abs(safe));
+    };
     const formatPercent = (value) => "%" + decimal.format(value || 0);
 
     const pulse = (element, className = "button-ack", duration = 320) => {
@@ -111,6 +177,11 @@ export function InteractionScript() {
     };
 
     const monthlyDiscountRate = (annualInflation) => Math.pow(1 + annualInflation / 100, 1 / 12) - 1;
+    const presentValue = (amount, period, rate) => {
+      if (!amount) return 0;
+      if (!rate) return amount;
+      return amount / Math.pow(1 + rate, Math.max(0, period));
+    };
 
     const calculatePvPayments = (payment, term, annualInflation) => {
       const r = monthlyDiscountRate(annualInflation);
@@ -239,6 +310,150 @@ export function InteractionScript() {
       if (safeValue <= 125000) return 36;
       if (safeValue <= 250000) return 24;
       return 12;
+    };
+
+    const calculateAutoDelivery = ({ assetPrice, downPayment, monthlyPayment, term }) => {
+      if (!assetPrice || !term || !monthlyPayment) return 0;
+      const fortyPercentGap = Math.max(0, term * (0.4 - downPayment / assetPrice));
+      const monthlyGap = Math.max(0, ((assetPrice * 0.4) - downPayment) / monthlyPayment);
+      return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);
+    };
+
+    const calculateComparisonScenarios = () => {
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+
+      const feeAmount = assetPrice * serviceFee / 100;
+      const savingsInitial = downPayment + feeAmount;
+      const savingsFinanced = Math.max(0, assetPrice - downPayment);
+      const savingsPaymentsPv = Array.from({ length: term }).reduce((sum, _, index) => sum + presentValue(monthlyPayment, index + 1, discountRate), 0);
+      const savingsRentPv = Array.from({ length: delivery }).reduce((sum, _, index) => sum + presentValue(rent, index + 1, discountRate), 0);
+      const savingsBenefitPv = presentValue(assetPrice, delivery, discountRate);
+      const savingsScore = savingsBenefitPv - savingsInitial - savingsPaymentsPv - savingsRentPv;
+
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
+      const bankInitial = downPayment;
+      const bankPaymentsPv = Array.from({ length: bankTerm }).reduce((sum, _, index) => sum + presentValue(bankResult.installment, index + 1, discountRate), 0);
+      const bankScore = assetPrice - bankInitial - bankPaymentsPv;
+
+      const autoDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
+      const autoRentPv = Array.from({ length: autoDelivery }).reduce((sum, _, index) => sum + presentValue(rent, index + 1, discountRate), 0);
+      const autoBenefitPv = presentValue(assetPrice, autoDelivery, discountRate);
+      const autoScore = autoBenefitPv - savingsInitial - savingsPaymentsPv - autoRentPv;
+
+      return {
+        bank: {
+          initial: bankInitial,
+          financed: bankAmount,
+          installment: bankResult.installment,
+          total: bankInitial + bankResult.totalRepayment,
+          score: bankScore,
+        },
+        savings: {
+          initial: savingsInitial,
+          financed: savingsFinanced,
+          installment: monthlyPayment,
+          delivery,
+          score: savingsScore,
+        },
+        auto: {
+          delivery: autoDelivery,
+          score: autoScore,
+        },
+      };
+    };
+
+    const renderComparison = () => {
+      const comparison = calculateComparisonScenarios();
+      const setNode = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (!node) return;
+        if (node.textContent !== value) {
+          node.textContent = value;
+          pulse(node, "preview-swap", 300);
+        }
+      };
+
+      setNode("[data-compare-bank-initial]", formatMoney(comparison.bank.initial));
+      setNode("[data-compare-bank-financed]", formatMoney(comparison.bank.financed));
+      setNode("[data-compare-bank-installment]", formatMoney(comparison.bank.installment));
+      setNode("[data-compare-bank-total]", formatMoney(comparison.bank.total));
+      setNode("[data-compare-bank-npv]", formatMoney(comparison.bank.score));
+      setNode("[data-compare-savings-initial]", formatMoney(comparison.savings.initial));
+      setNode("[data-compare-savings-financed]", formatMoney(comparison.savings.financed));
+      setNode("[data-compare-savings-installment]", formatMoney(comparison.savings.installment));
+      setNode("[data-compare-savings-delivery]", comparison.savings.delivery + ". ay");
+      setNode("[data-compare-savings-npv]", formatMoney(comparison.savings.score));
+      setNode("[data-compare-auto-delivery]", comparison.auto.delivery + ". ay");
+
+      const candidates = [
+        { label: "Banka kredisi daha avantajlı", score: comparison.bank.score },
+        { label: "Tasarruf finansmanı daha avantajlı", score: comparison.savings.score },
+        { label: "Otomatik teslim senaryosu öne çıkıyor", score: comparison.auto.score },
+      ].sort((a, b) => b.score - a.score);
+
+      setNode("[data-compare-best]", candidates[0].label);
+      setNode("[data-compare-best-delta]", formatMoney(Math.max(0, candidates[0].score - candidates[1].score)));
+    };
+
+    const renderCashflow = () => {
+      const body = document.querySelector("[data-cashflow-body]");
+      const footnote = document.querySelector("[data-cashflow-footnote]");
+      if (!(body instanceof HTMLElement) || !(footnote instanceof HTMLElement)) return;
+
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+      const feeAmount = assetPrice * serviceFee / 100;
+
+      const rows = [{ month: 0, payment: downPayment + feeAmount, net: downPayment + feeAmount, pv: downPayment + feeAmount }];
+      for (let month = 1; month <= term; month += 1) {
+        const rentFlow = month <= delivery ? rent : 0;
+        const net = monthlyPayment + rentFlow;
+        rows.push({ month, payment: monthlyPayment, net, pv: presentValue(net, month, discountRate) });
+      }
+
+      const visibleRows = rows.slice(0, 19);
+      body.innerHTML = visibleRows
+        .map((row) => {
+          const highlight = row.month === delivery ? ' bg-[#edfdf3]' : "";
+          return '<tr class="border-t border-[#edf2f7]' + highlight + '">' +
+            '<td class="px-5 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
+            '<td class="px-5 py-4 text-sm font-medium text-[#ff4d4f]">' + formatSignedMoney(-row.payment) + '</td>' +
+            '<td class="px-5 py-4 text-sm font-medium text-[#ff4d4f]">' + formatSignedMoney(-row.net) + '</td>' +
+            '<td class="px-5 py-4 text-sm font-semibold text-[#ff4d4f]">' + formatSignedMoney(-row.pv) + '</td>' +
+          '</tr>';
+        })
+        .join("");
+
+      footnote.textContent = rows.length > visibleRows.length ? "Ilk " + visibleRows.length + " satir gosteriliyor. Kalan " + (rows.length - visibleRows.length) + " satir Excel ciktiya eklenir." : "Tum satirlar gosteriliyor.";
+      body.dataset.csv = JSON.stringify(rows);
     };
 
     const syncLoanLimit = () => {
@@ -381,6 +596,8 @@ export function InteractionScript() {
       setPreviewText("bankRate", compareBank ? formatPercent(bankRate) : "Kapalı");
       setPreviewText("bankTerm", compareBank ? bankTerm + " ay" : "Kapalı");
       setPreviewText("bankInstallment", compareBank ? formatMoney(bankResult.installment) : "Kapalı");
+      renderComparison();
+      renderCashflow();
     };
 
     const applyScenario = (changedByUser = false) => {
@@ -428,6 +645,7 @@ export function InteractionScript() {
       updateBankPanelVisibility();
       updateDeliveryBar();
       syncCompanySelect();
+      syncComparisonInputs();
       syncSummary();
     };
 
@@ -489,7 +707,10 @@ export function InteractionScript() {
         .join("");
 
       pulse(panel, "choice-pop", 520);
+      syncComparisonInputs();
       syncSummary();
+      renderComparison();
+      renderCashflow();
     };
 
     const openLoginModal = () => {
@@ -537,6 +758,17 @@ export function InteractionScript() {
         pulse(segmentButton);
         acknowledge(calculatorCard, summaryPanel);
         applyScenario();
+        return;
+      }
+
+      const calcViewTab = target.closest("[data-calc-view-tab]");
+      if (calcViewTab instanceof HTMLElement && calculator) {
+        pulse(calcViewTab);
+        setCalcView(calcViewTab.dataset.calcViewTab || "main");
+        window.setTimeout(() => {
+          const focusTarget = calcViewTab.dataset.calcViewTab === "comparison" ? document.querySelector("#comparison") : calculator;
+          focusTarget?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 40);
         return;
       }
 
@@ -636,8 +868,10 @@ export function InteractionScript() {
         pulse(compareCta);
         const compareToggle = calculator.querySelector('[data-toggle="compareBank"]');
         if (compareToggle) setToggle(compareToggle, true);
+        setCalcView("comparison");
         window.setTimeout(() => {
-          calculator.scrollIntoView({ behavior: "smooth", block: "start" });
+          const comparisonSection = document.querySelector("#comparison");
+          (comparisonSection || calculator).scrollIntoView({ behavior: "smooth", block: "start" });
           focusCalculator();
           updateBankPanelVisibility();
           syncSummary();
@@ -680,6 +914,30 @@ export function InteractionScript() {
         } catch (error) {
           console.warn("copy failed", error);
         }
+        return;
+      }
+
+      const downloadCashflowButton = target.closest("[data-download-cashflow]");
+      if (downloadCashflowButton instanceof HTMLElement) {
+        pulse(downloadCashflowButton);
+        const body = document.querySelector("[data-cashflow-body]");
+        const rows = body?.dataset.csv ? JSON.parse(body.dataset.csv) : [];
+        const csv = ["Ay,Aylik Taksit,Net Nakit Akisi,Bugunku Deger"]
+          .concat(
+            rows.map((row) =>
+              [row.month, Math.round(row.payment || 0), Math.round(row.net || 0), Math.round(row.pv || 0)].join(","),
+            ),
+          )
+          .join("\\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "nakit-akisi.csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
         return;
       }
 
@@ -737,6 +995,15 @@ export function InteractionScript() {
     document.addEventListener("input", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) return;
+      if (target.matches("[data-compare-input]")) {
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(target.dataset.compareInput)) {
+          formatThousandsInput(target);
+        }
+        syncFromComparisonInput(target);
+        updateDeliveryBar();
+        syncSummary();
+        return;
+      }
       if (target.matches("[data-limit-field]")) {
         if (integerLimitFields.includes(target.dataset.limitField)) {
           formatThousandsInput(target);
@@ -768,6 +1035,14 @@ export function InteractionScript() {
     document.addEventListener("focusout", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+      if (target instanceof HTMLInputElement && target.matches("[data-compare-input]")) {
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(target.dataset.compareInput)) {
+          formatThousandsInput(target);
+        }
+        syncFromComparisonInput(target);
+        syncSummary();
+        return;
+      }
       if (target instanceof HTMLInputElement && target.matches("[data-limit-field]")) {
         if (integerLimitFields.includes(target.dataset.limitField)) {
           formatThousandsInput(target);
@@ -790,6 +1065,9 @@ export function InteractionScript() {
 
     const scrollToHash = () => {
       if (!location.hash) return;
+      if (location.hash === "#comparison") {
+        setCalcView("comparison");
+      }
       const target = document.querySelector(location.hash);
       if (!(target instanceof HTMLElement)) return;
       const run = () => {
@@ -806,10 +1084,19 @@ export function InteractionScript() {
         formatThousandsInput(input);
       }
     });
+    document.querySelectorAll("[data-compare-input]").forEach((input) => {
+      if (input instanceof HTMLInputElement && ["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(input.dataset.compareInput)) {
+        formatThousandsInput(input);
+      }
+    });
 
     syncCompanySelect();
     updateBankPanelVisibility();
+    setCalcView("main");
     applyScenario();
+    syncComparisonInputs();
+    renderComparison();
+    renderCashflow();
     document.querySelectorAll("[data-limit-field]").forEach((input) => {
       if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
         formatThousandsInput(input);
