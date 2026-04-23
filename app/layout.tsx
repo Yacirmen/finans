@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Tasarruf Finansman Analiz Stüdyosu",
+  title: "Finansman Maliyet Hesaplama",
   description:
-    "Konut kredisi, tasarruf finansman teklifleri ve piyasa endeksini tek karar ekranında karşılaştırın.",
+    "Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin.",
 };
 
 export default function RootLayout({
