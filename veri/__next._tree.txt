@@ -1,2 +1,2 @@
-:HL["/finans/_next/static/css/021c951ef7b08564.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"veri","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"wA88J5vefFcH7gSJLzBU4"}
+:HL["/finans/_next/static/css/5709a588f09e4ff6.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"veri","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Kqx1v-iUtHoEZOtowYA1-"}
