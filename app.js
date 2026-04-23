@@ -1737,8 +1737,8 @@ function setupManualAnalysis() {
 setupManualAnalysis();
 
 const MARKET_DATA = {
-  indexScore: 56.1,
-  season: "Geçiş / Kararsız",
+  indexScore: 47.5,
+  season: "Geçiş / Kararsız Dönem",
   comment:
     "Kredi şartları hâlâ pahalı; ancak konut ve risk verileri tam tasarruf lehine kopuş göstermiyor. Bu ekran haftalık güncellenen erken uyarı paneli gibi çalışır.",
   groups: [
@@ -1799,7 +1799,7 @@ function renderMarketData() {
   const commentEl = document.getElementById("marketIndexComment");
   const needleEl = document.getElementById("marketGaugeNeedle");
 
-  if (scoreEl) scoreEl.textContent = score.toFixed(0);
+  if (scoreEl) scoreEl.textContent = score.toFixed(1);
   if (seasonEl) seasonEl.textContent = MARKET_DATA.season;
   if (commentEl) commentEl.textContent = MARKET_DATA.comment;
   if (needleEl) {
