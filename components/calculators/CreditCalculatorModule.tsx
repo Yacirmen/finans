@@ -1,15 +1,22 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { formatNumberTr, formatPercentTr, formatTry } from "../../lib/formatters";
-import { calculateLoanSummary, LOAN_PRESETS, type LoanInput, type LoanPresetKey } from "../../lib/loanEngine";
+import { formatPercentTr, formatTry } from "../../lib/formatters";
+import { calculateLoanSummary, type LoanInput } from "../../lib/loanEngine";
 
 type CreditModuleKey = "konut-ilk-evim" | "konut-evi-olan" | "tasit" | "ihtiyac";
 
-const modulePresets: Record<
-  CreditModuleKey,
-  LoanInput & { inflation: number; label: string }
-> = {
+type CreditFormState = {
+  amount: string;
+  term: string;
+  rate: string;
+  inflation: string;
+  fee: string;
+  bsmv: string;
+  kkdf: string;
+};
+
+const modulePresets: Record<CreditModuleKey, LoanInput & { inflation: number; label: string }> = {
   "konut-ilk-evim": {
     label: "KONUT İLK EVİM",
     principal: 800000,
@@ -66,48 +73,52 @@ function buildNetCost(summary: ReturnType<typeof calculateLoanSummary>, inflatio
   return paymentPv + summary.fee - summary.netDisbursed;
 }
 
+function presetToForm(preset: CreditModuleKey): CreditFormState {
+  const base = modulePresets[preset];
+  return {
+    amount: String(base.principal),
+    term: String(base.term),
+    rate: String(base.rate),
+    inflation: String(base.inflation),
+    fee: String(base.fee),
+    bsmv: String(base.bsmv),
+    kkdf: String(base.kkdf),
+  };
+}
+
+function formToLoanInput(form: CreditFormState): LoanInput {
+  return {
+    principal: Number(form.amount || 0),
+    term: Number(form.term || 0),
+    rate: Number(form.rate || 0),
+    fee: Number(form.fee || 0),
+    bsmv: Number(form.bsmv || 0),
+    kkdf: Number(form.kkdf || 0),
+  };
+}
+
 export function CreditCalculatorModule() {
   const [preset, setPreset] = useState<CreditModuleKey>("konut-ilk-evim");
-  const [form, setForm] = useState(() => {
-    const base = modulePresets["konut-ilk-evim"];
-    return {
-      amount: String(base.principal),
-      term: String(base.term),
-      rate: String(base.rate),
-      inflation: String(base.inflation),
-      fee: String(base.fee),
-      bsmv: String(base.bsmv),
-      kkdf: String(base.kkdf),
-    };
-  });
+  const [form, setForm] = useState<CreditFormState>(() => presetToForm("konut-ilk-evim"));
+  const [submitted, setSubmitted] = useState<CreditFormState>(() => presetToForm("konut-ilk-evim"));
 
-  const input = useMemo(
-    () => ({
-      principal: Number(form.amount || 0),
-      term: Number(form.term || 0),
-      rate: Number(form.rate || 0),
-      fee: Number(form.fee || 0),
-      bsmv: Number(form.bsmv || 0),
-      kkdf: Number(form.kkdf || 0),
-    }),
-    [form],
-  );
-
+  const input = useMemo(() => formToLoanInput(submitted), [submitted]);
   const summary = useMemo(() => calculateLoanSummary(input), [input]);
-  const netCost = useMemo(() => buildNetCost(summary, Number(form.inflation || 0)), [summary, form.inflation]);
+  const netCost = useMemo(() => buildNetCost(summary, Number(submitted.inflation || 0)), [summary, submitted.inflation]);
 
-  const resetToPreset = (nextPreset: CreditModuleKey) => {
-    const base = modulePresets[nextPreset];
+  const applyPreset = (nextPreset: CreditModuleKey) => {
+    const nextForm = presetToForm(nextPreset);
     setPreset(nextPreset);
-    setForm({
-      amount: String(base.principal),
-      term: String(base.term),
-      rate: String(base.rate),
-      inflation: String(base.inflation),
-      fee: String(base.fee),
-      bsmv: String(base.bsmv),
-      kkdf: String(base.kkdf),
-    });
+    setForm(nextForm);
+    setSubmitted(nextForm);
+  };
+
+  const handleCalculate = () => {
+    setSubmitted(form);
+  };
+
+  const handleReset = () => {
+    applyPreset(preset);
   };
 
   return (
@@ -115,8 +126,8 @@ export function CreditCalculatorModule() {
       <section className="rounded-[24px] border border-[#dce7e2] bg-white p-5 shadow-[0_14px_34px_rgba(31,43,37,0.06)] md:p-6">
         <h1 className="text-[30px] font-bold tracking-[-0.04em] text-[#172133]">Kredi Hesaplama Modülü</h1>
         <p className="mt-3 max-w-[900px] text-[14px] leading-7 text-[#6f7d94]">
-          Kredi taksiti, net maliyet, toplam geri ödeme ve detaylı ödeme planını tek ekranda görün.
-          Hesaplama motoru BSMV ve KKDF etkisini dönemsel olarak dikkate alır.
+          Kredi taksiti, net maliyet, toplam geri ödeme ve detaylı ödeme planını tek ekranda görün. Hesaplama
+          motoru BSMV ve KKDF etkisini dönemsel olarak dikkate alır.
         </p>
       </section>
 
@@ -128,7 +139,7 @@ export function CreditCalculatorModule() {
               <select
                 className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium"
                 value={preset}
-                onChange={(event) => resetToPreset(event.target.value as CreditModuleKey)}
+                onChange={(event) => applyPreset(event.target.value as CreditModuleKey)}
               >
                 {Object.entries(modulePresets).map(([key, value]) => (
                   <option key={key} value={key}>
@@ -155,7 +166,7 @@ export function CreditCalculatorModule() {
                     type="number"
                     min="0"
                     step="0.01"
-                    value={form[key as keyof typeof form]}
+                    value={form[key as keyof CreditFormState]}
                     onChange={(event) => setForm((current) => ({ ...current, [key]: event.target.value }))}
                   />
                 </label>
@@ -165,14 +176,15 @@ export function CreditCalculatorModule() {
             <div className="flex flex-wrap gap-3">
               <button
                 type="button"
-                className="rounded-[12px] bg-[#1d74f5] px-5 py-3 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(29,116,245,0.18)]"
+                onClick={handleCalculate}
+                className="rounded-[12px] bg-[#1d74f5] px-5 py-3 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(29,116,245,0.18)] transition hover:-translate-y-0.5 hover:bg-[#1265dd]"
               >
                 Hesapla
               </button>
               <button
                 type="button"
-                onClick={() => resetToPreset(preset)}
-                className="rounded-[12px] bg-[#eaf1fb] px-5 py-3 text-[14px] font-semibold text-[#1c4e98]"
+                onClick={handleReset}
+                className="rounded-[12px] bg-[#eaf1fb] px-5 py-3 text-[14px] font-semibold text-[#1c4e98] transition hover:-translate-y-0.5 hover:bg-[#dce8fb]"
               >
                 Varsayılana Dön
               </button>
@@ -184,15 +196,21 @@ export function CreditCalculatorModule() {
           <div className="grid gap-4 md:grid-cols-3">
             <div className="rounded-[18px] border border-[#dce7e2] bg-white p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
               <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Taksit Tutarı</span>
-              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#172133]">{formatTry(summary.monthlyPayment)}</strong>
+              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#172133]">
+                {formatTry(summary.monthlyPayment)}
+              </strong>
             </div>
             <div className="rounded-[18px] border border-[#dce7e2] bg-white p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
               <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Yıllık Faiz Maliyeti</span>
-              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#172133]">{formatPercentTr(summary.effectiveAnnualCost * 100)}</strong>
+              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#172133]">
+                {formatPercentTr(summary.effectiveAnnualCost * 100)}
+              </strong>
             </div>
             <div className="rounded-[18px] border border-[#d2efdf] bg-[#effdf5] p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
               <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#168b53]">Kullandırım Sonrası Ele Geçen</span>
-              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#0f5636]">{formatTry(summary.netDisbursed)}</strong>
+              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#0f5636]">
+                {formatTry(summary.netDisbursed)}
+              </strong>
             </div>
           </div>
 
@@ -251,4 +269,3 @@ export function CreditCalculatorModule() {
     </main>
   );
 }
-
