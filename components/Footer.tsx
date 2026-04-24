@@ -17,6 +17,7 @@ const groups = [
       { label: "Maliyet Hesaplama", href: withBasePath("/#calculator") },
       { label: "Teklifleri Karşılaştır", href: withBasePath("/teklifleri-karsilastir") },
       { label: "Piyasa Veri Paneli", href: withBasePath("/veri") },
+      { label: "Kredi Matematiği Testi", href: withBasePath("/kredi-test") },
     ],
   },
   {
@@ -42,17 +43,22 @@ export function Footer() {
       <div className="page-container border-b border-slate-200 py-10">
         <h2 className="text-xl font-black text-slate-950">Tasarruf finansmanı sistemi nasıl okunmalı?</h2>
         <p className="mt-4 max-w-5xl text-sm leading-7 text-slate-600">
-          Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.
+          Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil;
+          peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri
+          sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.
         </p>
       </div>
       <div className="page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
         <div>
           <div className="flex items-center gap-3 text-lg font-black text-[var(--green-dark)]">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]">▥</span>
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]">
+              ▥
+            </span>
             Finansman Rehberi
           </div>
           <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">
-            Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin.
+            Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve
+            karşılaştırmalı karar desteğiyle inceleyin.
           </p>
         </div>
         {groups.map(({ title, links }) => (
@@ -70,7 +76,9 @@ export function Footer() {
           </div>
         ))}
       </div>
-      <div className="border-t border-slate-200 py-5 text-center text-sm text-slate-500">© 2026 Finansman Rehberi. Tüm hakları saklıdır.</div>
+      <div className="border-t border-slate-200 py-5 text-center text-sm text-slate-500">
+        © 2026 Finansman Rehberi. Tüm hakları saklıdır.
+      </div>
     </footer>
   );
 }

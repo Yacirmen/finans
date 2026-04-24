@@ -6,7 +6,8 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
   title: "Finansman Maliyet Hesaplama",
-  description: "Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin.",
+  description:
+    "Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin.",
   icons: {
     icon: `${basePath}/favicon.svg`,
   },
@@ -26,4 +27,3 @@ export default function RootLayout({
     </html>
   );
 }
-

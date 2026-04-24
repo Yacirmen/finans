@@ -20,6 +20,7 @@ import {
   formatMoney,
   formatPercent,
 } from "../lib/comparisonEngine";
+import { withBasePath } from "../lib/sitePaths";
 
 function readSearchValue(searchParams: URLSearchParams, key: string, fallback = "") {
   return searchParams.get(key) ?? fallback;
@@ -805,6 +806,15 @@ export function OfferComparisonPage() {
           İki farklı tasarruf finansmanı teklifini yan yana girin; sonuç kartlarını, NBM kırılımını, banka kredisi kıyasını ve detaylı nakit akışını aynı ekranda karar odaklı biçimde karşılaştırın.
         </p>
       </section>
+
+      <div className="mt-5 flex justify-end">
+        <a
+          href={withBasePath("/kredi-test")}
+          className="inline-flex h-[46px] items-center justify-center rounded-[12px] border border-[#dce7e2] bg-white px-5 text-[14px] font-semibold text-[#1d6f43] shadow-[0_10px_20px_rgba(31,43,37,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bfe2cc] hover:bg-[#f6fff9]"
+        >
+          Kredi Testi
+        </a>
+      </div>
 
       <section className="mt-8 space-y-5">
         <StepHeading

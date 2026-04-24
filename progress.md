@@ -14,13 +14,18 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
   - `Blog`
   - `Footer`
 - `/veri` sayfası canlı ve ana tasarım diliyle uyumlu.
-- `/teklifleri-karsilastir` sayfası artık ayrı route olarak çalışıyor.
-- Compare sayfası UI maketi olmaktan çıkarılıp tek motorlu karar destek ekranına dönüştürüldü.
-- Compare hesapları artık `lib/comparisonEngine.ts` üzerinden çalışıyor.
+- `/teklifleri-karsilastir` sayfası ayrı route olarak çalışıyor.
+- Compare sayfası tek motorlu karar destek ekranına dönüştürüldü.
+- Compare hesapları `lib/comparisonEngine.ts` üzerinden çalışıyor.
 - Banka kredisi kıyası `lib/loanEngine.ts` ile güçlendirildi.
 - Sonuç kartlarında NBM kırılımı, risk ve banka kredisi farkı görünür hale getirildi.
 - Nakit akışı tabloları teklif bazında üretiliyor ve CSV export veriyor.
 - Şirket bazlı tahmini parametre sistemi kuruldu.
+- Yeni `/kredi-test` sayfası eklendi:
+  - referans HTML kredi matematiği
+  - proje kredi motoru
+  - fark analizi
+  - ödeme planı fark analizi
 
 ## 2. Hangi dosyalarda ne değişti
 
@@ -33,6 +38,8 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
   - Türkçe karakterler düzeltildi.
 - `C:\Users\PC\Desktop\tasarrufinansman\app\teklifleri-karsilastir\page.tsx`
   - Compare route temiz fallback ile korunuyor.
+- `C:\Users\PC\Desktop\tasarrufinansman\app\kredi-test\page.tsx`
+  - Yeni kredi matematiği test alanı route’u eklendi.
 
 ### Bileşenler
 
@@ -42,23 +49,25 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - `C:\Users\PC\Desktop\tasarrufinansman\components\OfferComparisonPage.tsx`
   - Tam React kontrollü compare sayfası kuruldu.
   - Sonuç kartları, karar özeti ve kredi ödeme planı eklendi.
+- `C:\Users\PC\Desktop\tasarrufinansman\components\LoanMathTestPage.tsx`
+  - Referans HTML ve proje motorunu yan yana gösteren yeni test alanı eklendi.
 - `C:\Users\PC\Desktop\tasarrufinansman\components\InteractionScript.tsx`
-  - Compare DOM fallback başlangıcı no-op hale getirildi.
+  - Compare DOM fallback başlangıcı no-op halde tutuluyor.
   - Compare sayfası artık bu script’e bağlı değil.
 
 ### Motor / hesap katmanı
 
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
-  - Yeni oluşturuldu.
-  - PMT, vergili aylık faiz, schedule, IRR/RATE, efektif yıllık maliyet burada.
+  - Referans HTML kredi matematiği taşındı.
+  - PMT, vergili aylık faiz, ödeme planı, IRR/RATE, efektif yıllık maliyet burada.
+  - Referans motor ve proje motoru fark analizi burada.
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\comparisonEngine.ts`
-  - Baştan yazıldı.
-  - Teklif motoru, NBM, risk, gecikme maliyeti, şirket parametreleri ve loanEngine bağlantısı burada.
+  - Teklif motoru, NBM, risk, gecikme maliyeti, şirket parametreleri ve `loanEngine` bağlantısı burada.
 
 ### Dokümantasyon
 
 - `C:\Users\PC\Desktop\tasarrufinansman\README.md`
-  - Hesap motoru ve compare akışı güncellendi.
+  - Hesap motoru, kredi test alanı ve compare akışı güncellendi.
 - `C:\Users\PC\Desktop\tasarrufinansman\progress.md`
   - Bu dosya güncellendi.
 
@@ -90,7 +99,7 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - Manuel plan çalışıyor.
 - Teslim ayı kira etkisini değiştiriyor.
 - Kredi kıyası aktif/pasif çalışıyor.
-- `TÜM TEKLİFLERİ HESAPLA` sonucu üretiyor.
+- `TÜM TEKLİFLERİ HESAPLA` sonuç üretiyor.
 - Kazanan teklif otomatik vurgulanıyor.
 - Çekilişli teklif için iyi / ortalama / kötü senaryo üretiliyor.
 - NBM kırılımı gösteriliyor:
@@ -106,6 +115,20 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - Nakit akışı tablosu teklif bazında oluşuyor.
 - CSV export çalışıyor.
 
+### Kredi Matematiği Test Alanı
+
+- Kredi türü presetleri çalışıyor:
+  - Konut - Evi Olmayan
+  - Konut - Evi Olan
+  - Taşıt
+  - İhtiyaç
+- Aynı inputlarla iki motor yan yana hesap yapıyor:
+  - Referans HTML Matematiği
+  - Mevcut Proje Kredi Motoru
+- Fark analizi tablosu çalışıyor.
+- Ödeme planı fark analizi çalışıyor.
+- `İlk 12 Ay / Tüm Plan` geçişi çalışıyor.
+
 ## 4. Eksik kalan özellikler
 
 - `InteractionScript.tsx` içindeki compare’a ait eski yardımcı fonksiyonlar dosyada duruyor; çağrılmıyor ama fiziksel temizlik yapılmalı.
@@ -119,47 +142,84 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - Workspace içinde geçici dosyalar duruyor:
   - `.tmp-chrome*`
   - `tmp_compare.xlsx`
-- Eski bileşenlerde tek tük mojibake kalıntısı olabilir; compare sayfası ve ana hedef dosyalar temizlendi.
+- Eski bileşenlerde tek tük mojibake kalıntısı olabilir; ana hedef dosyalar ve yeni kredi test alanı temizlendi.
 
 ## 6. Hesap motorunda şu an kullanılan formüller
 
-### Aylık indirgeme oranı
+### Referans HTML’den taşınan kredi matematiği
+
+- nominal aylık oran:
+  - `nominalRate = monthlyRatePct / 100`
+- vergili aylık oran:
+  - `effectiveMonthlyRate = nominalRate * (1 + (BSMV + KKDF) / 100)`
+- PMT:
+  - `payment = principal * rate * (1 + rate)^term / ((1 + rate)^term - 1)`
+- net ele geçen kredi:
+  - `netDisbursed = principal - fee`
+- dönemsel faiz:
+  - `interest = remainingPrincipal * nominalRate`
+- dönemsel KKDF:
+  - `kkdfAmount = interest * kkdf / 100`
+- dönemsel BSMV:
+  - `bsmvAmount = interest * bsmv / 100`
+- anapara ödemesi:
+  - `principalPayment = payment - interest - kkdfAmount - bsmvAmount`
+- kalan anapara:
+  - `remainingPrincipal = remainingPrincipal - principalPayment`
+- toplam faiz:
+  - `sum(interest)`
+- toplam taksit ödemesi:
+  - `payment * term`
+- referans HTML toplam geri ödeme:
+  - `totalWithInterest + fee`
+- düzeltilmiş proje toplam geri ödeme:
+  - `totalInstallmentPayment + fee`
+- toplam kredi maliyeti:
+  - `totalRepayment - netDisbursed`
+- efektif aylık maliyet:
+  - `solveRateByIRR(term, payment, netDisbursed)`
+- efektif yıllık maliyet:
+  - `Math.pow(1 + monthlyCostRate, 12) - 1`
+
+### Tasarruf finansmanı tarafı
+
+#### Aylık indirgeme oranı
 
 `monthlyDiscountRate = Math.pow(1 + annualInflationRate / 100, 1 / 12) - 1`
 
-### Bugünkü değer
+#### Bugünkü değer
 
 `PV = amount / Math.pow(1 + monthlyDiscountRate, month)`
 
-### Düz plan
+#### Düz plan
 
 `installment = baseMonthlyPayment`
 
-### Artışlı plan
+#### Artışlı plan
 
 `installment = baseMonthlyPayment * Math.pow(1 + yearlyIncrease / 100, Math.floor((month - 1) / 12))`
 
-### Manuel plan
+#### Manuel plan
 
 - kullanıcı değerleri satır satır veya virgülle girer
 - eksik aylar son değer ile doldurulur
 - tamamen hatalıysa düz plan fallback olur
 
-### Kira motoru
+#### Kira motoru
 
 - teslim ayına kadar kira oluşur
 - teslimden sonra kira `0`
 - her 12 ayda enflasyon kadar artar
 
-### Hizmet bedeli
+#### Hizmet bedeli
 
 `serviceFeeAmount = assetPrice * (serviceFeeRate / 100)`
 
-### NBM
+#### NBM
 
 `NBM = peşinat PV + hizmet bedeli PV + taksitler PV + kira PV`
 
-### Çekilişli senaryo seti
+#### Çekilişli senaryo seti
 
 - iyi teslim:
   - `goodDelivery = Math.max(1, Math.round(expectedDelivery * 0.6 * deliverySpeedFactor))`
@@ -168,36 +228,19 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - kötü teslim:
   - `badDelivery = Math.min(term, Math.round(expectedDelivery * (1.4 + Math.max(riskFactor - 1, 0) * 0.25)))`
 
-### Risk
+#### Risk
 
 `risk = standardDeviation(nbmValues)`
 
-### Gecikme maliyeti
+#### Gecikme maliyeti
 
 `delayCost = Math.max(0, badDelivery - averageDelivery) * currentMonthlyRent`
 
-### Karar skoru
+#### Karar skoru
 
 `decisionScore = averageNBM + riskPenalty + delayCost`
 
 `riskPenalty = risk * riskWeight * companyRiskFactor`
-
-### Banka kredisi
-
-- vergili aylık faiz:
-  - `effectiveMonthlyRate = nominalRate * (1 + (BSMV + KKDF) / 100)`
-- annüite taksit:
-  - `payment = principal * rate * (1 + rate)^term / ((1 + rate)^term - 1)`
-- toplam taksit ödemesi:
-  - `totalInstallmentPayment = payment * term`
-- toplam geri ödeme:
-  - `totalRepayment = totalInstallmentPayment + fee`
-- toplam kredi maliyeti:
-  - `totalCreditCost = totalRepayment - netDisbursed`
-- efektif aylık maliyet:
-  - `solveRateByIRR(term, payment, netDisbursed)`
-- efektif yıllık maliyet:
-  - `Math.pow(1 + monthlyCostRate, 12) - 1`
 
 ## 7. Devam etmek için önerilen sıradaki adımlar
 
@@ -219,4 +262,8 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - Banka kredisi kıyası açık / kapalı
 - Farklı şirket seçimi ile sonuç değişimi
 - Kredi ana para / masraf / efektif maliyet hesapları
-
+- Kredi test alanı presetleri:
+  - Konut - Evi Olmayan
+  - Konut - Evi Olan
+  - Taşıt
+  - İhtiyaç

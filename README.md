@@ -12,12 +12,20 @@ Bu proje, tasarruf finansmanı tekliflerini ve banka kredisi alternatifini bugü
   - iki teklifi yan yana karşılaştıran karar destek sayfası
 - `/veri`
   - piyasa verisi ve endeks sayfası
+- `/kredi-test`
+  - referans HTML kredi matematiği ile proje motorunu yan yana test eden sayfa
 
 ## Compare sayfası hangi dosyalara bağlı
 
 - `C:\Users\PC\Desktop\tasarrufinansman\app\teklifleri-karsilastir\page.tsx`
 - `C:\Users\PC\Desktop\tasarrufinansman\components\OfferComparisonPage.tsx`
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\comparisonEngine.ts`
+- `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
+
+## Kredi test alanı hangi dosyalara bağlı
+
+- `C:\Users\PC\Desktop\tasarrufinansman\app\kredi-test\page.tsx`
+- `C:\Users\PC\Desktop\tasarrufinansman\components\LoanMathTestPage.tsx`
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
 
 ## Hesap motoru nasıl çalışıyor
@@ -31,10 +39,11 @@ Compare sayfasında UI yalnızca kullanıcı girdilerini toplar. Finansal hesap 
    - risk ve karar skoru
    - nakit akışı tabloları
 2. `lib/loanEngine.ts`
-   - banka kredisi PMT / schedule / efektif maliyet hesapları
+   - banka kredisi PMT / ödeme planı / efektif maliyet hesapları
    - KKDF ve BSMV toplamları
    - net ele geçen kredi
    - toplam kredi maliyeti
+   - referans HTML matematiği ile proje motoru arasındaki fark analizi
 
 UI tarafı hesap yapmaz; yalnızca bu motorlardan dönen sonucu render eder.
 
@@ -98,7 +107,7 @@ alanları tanımlıdır.
 Not:
 Bu değerler şu an varsayılan tahmini parametrelerdir. Gerçek firma verileri geldiğinde aynı yapı üzerinden güncellenebilir.
 
-## Banka kredisi kıyası
+## Banka kredisi matematiği
 
 `lib/loanEngine.ts` içindeki ana formüller:
 
@@ -108,8 +117,10 @@ Bu değerler şu an varsayılan tahmini parametrelerdir. Gerçek firma verileri 
   - `payment = principal * rate * (1 + rate)^term / ((1 + rate)^term - 1)`
 - toplam taksit ödemesi:
   - `totalInstallmentPayment = payment * term`
-- toplam geri ödeme:
+- düzeltilmiş toplam geri ödeme:
   - `totalRepayment = totalInstallmentPayment + fee`
+- referans HTML toplam geri ödeme:
+  - `referenceTotalRepayment = totalWithInterest + fee`
 - toplam kredi maliyeti:
   - `totalCreditCost = totalRepayment - netDisbursed`
 - efektif aylık maliyet:
@@ -117,28 +128,50 @@ Bu değerler şu an varsayılan tahmini parametrelerdir. Gerçek firma verileri 
 - efektif yıllık maliyet:
   - `Math.pow(1 + monthlyCostRate, 12) - 1`
 
-Compare sayfasında kredi kıyası şu çıktıları gösterir:
+## /kredi-test nasıl kullanılır
 
-- kredi ana para
-- net ele geçen kredi
-- aylık taksit
-- toplam taksit ödemesi
-- toplam faiz
-- toplam KKDF
-- toplam BSMV
-- kredi hariç masraf
-- toplam geri ödeme
-- toplam kredi maliyeti
-- efektif aylık maliyet
-- efektif yıllık maliyet
-- ödeme planı tablosu
+1. Sayfayı aç:
+   - `/kredi-test`
+2. Bir kredi preset’i seç:
+   - Konut - Evi Olmayan
+   - Konut - Evi Olan
+   - Taşıt
+   - İhtiyaç
+3. İstersen anapara, vade, aylık faiz, masraf, BSMV ve KKDF değerlerini değiştir.
+4. Sol sütunda referans HTML matematiği, sağ sütunda proje motoru görünür.
+5. Alt tabloda fark analizi ve ödeme planı farkları izlenir.
+
+## Referans HTML ile proje motoru arasındaki fark nasıl okunur
+
+Yan yana fark analizinde:
+
+- `OK`
+  - fark tolerans içindedir
+- `Kontrol Et`
+  - fark tolerans dışındadır
+
+Tolerans:
+
+- parasal değerler: `0.05 TL`
+- yüzdesel değerler: `0.0001`
+
+## Bilinçli farklılıklar
+
+Referans HTML ile proje motoru arasındaki en önemli bilinçli fark:
+
+- referans HTML:
+  - `Toplam Geri Ödeme = Toplam Faizli Geri Ödeme + Masraf`
+- proje motoru:
+  - `Toplam Geri Ödeme = Toplam Taksit Ödemesi + Masraf`
+
+Bu yüzden `/kredi-test` sayfası yalnızca birebir eşleşmeyi değil, bilinçli finansal farkı da görünür kılar.
 
 ## Bilinen eksikler
 
 - `InteractionScript.tsx` içinde compare ile ilgili kullanılmayan eski yardımcı fonksiyonlar hâlâ dosyada duruyor; compare sayfası artık bunlara bağlı değil.
 - Şirket parametreleri gerçek veri değil, tahmini başlangıç parametreleri.
 - CSV export sağlam, gerçek `.xlsx` export henüz yok.
-- Ana sayfa kredi kıyas paneli henüz `loanEngine` seviyesinde ayrıştırılmış değil; compare sayfası daha ileri seviyede.
+- Ana sayfa kredi kıyas paneli henüz `loanEngine` detay çıktılarının tamamını göstermiyor.
 
 ## Çalıştırma
 
@@ -152,4 +185,3 @@ Build:
 ```bash
 npm run build
 ```
-

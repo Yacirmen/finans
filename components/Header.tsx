@@ -15,7 +15,10 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
   return (
     <header className="sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur">
       <div className="page-container flex min-h-[72px] items-center justify-between gap-6">
-        <a href={withBasePath("/")} className="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]">
+        <a
+          href={withBasePath("/")}
+          className="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]"
+        >
           <span className="relative h-8 w-8" aria-hidden="true">
             <span className="absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]" />
             <span className="absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]" />
@@ -34,7 +37,9 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
                   key={item.key}
                   href={item.href}
                   className={`rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
-                    isActive ? "bg-[#e9fbef] text-[#1b804d]" : "text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]"
+                    isActive
+                      ? "bg-[#e9fbef] text-[#1b804d]"
+                      : "text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]"
                   }`}
                 >
                   {item.label}
@@ -75,14 +80,25 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
       <div className="hidden border-t border-slate-200 bg-white lg:hidden" data-mobile-menu>
         <div className="page-container grid gap-2 py-4">
           {homeNavItems.map((item) => (
-            <a className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href={item.href} key={item.key}>
+            <a
+              className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]"
+              href={item.href}
+              key={item.key}
+            >
               {item.label}
             </a>
           ))}
-          <a className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href={withBasePath("/teklifleri-karsilastir")}>
+          <a
+            className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white"
+            href={withBasePath("/teklifleri-karsilastir")}
+          >
             Teklifleri Karşılaştır
           </a>
-          <a className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]" href="#login" data-login-button>
+          <a
+            className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]"
+            href="#login"
+            data-login-button
+          >
             Giriş Yap
           </a>
         </div>
@@ -90,4 +106,3 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
     </header>
   );
 }
-
