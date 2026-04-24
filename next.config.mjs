@@ -1,5 +1,7 @@
+const isProduction = process.env.NODE_ENV === "production";
 const isGitHubPages = process.env.GITHUB_PAGES === "1";
-const repoBasePath = isGitHubPages ? "/finans" : "";
+const shouldUseRepoBasePath = isProduction || isGitHubPages;
+const repoBasePath = shouldUseRepoBasePath ? "/finans" : "";
 
 const nextConfig = {
   output: "export",
