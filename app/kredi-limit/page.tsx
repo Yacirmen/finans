@@ -1,12 +1,12 @@
+import { CreditLimitCalculatorModule } from "../../components/calculators/CreditLimitCalculatorModule";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
-import { LoanMathTestPage } from "../../components/LoanMathTestPage";
 
-export default function LoanTestRoute() {
+export default function CreditLimitRoute() {
   return (
     <>
       <Header active="calculator" />
-      <LoanMathTestPage />
+      <CreditLimitCalculatorModule />
       <Footer />
     </>
   );

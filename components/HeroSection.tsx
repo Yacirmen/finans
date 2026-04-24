@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
+import { withBasePath } from "../lib/sitePaths";
 
 const cards = [
   {
     title: "Hesaplama",
     text: "Net maliyetinizi anında hesaplayın",
     href: "#calculator",
-    action: "",
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24">
         <rect x="5" y="3.5" width="14" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
@@ -15,9 +15,8 @@ const cards = [
   },
   {
     title: "Karşılaştır",
-    text: "2 teklifi yan yana kıyaslayın",
-    href: "#calculator",
-    action: "compare",
+    text: "İki teklifi yan yana kıyaslayın",
+    href: withBasePath("/teklifleri-karsilastir"),
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24">
         <path d="M7 18V9M12 18V5M17 18v-7" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
@@ -27,24 +26,32 @@ const cards = [
   },
   {
     title: "Firmalar",
-    text: "BDDK lisanslı 9 firma",
+    text: "BDDK lisanslı firmaları kıyaslayın",
     href: "#faq",
-    action: "",
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24">
         <path d="M6 20V7.5L12 4l6 3.5V20" stroke="currentColor" strokeWidth="1.8" />
-        <path d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01M11 20v-3h2v3" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+        <path
+          d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01M11 20v-3h2v3"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth="1.8"
+        />
       </svg>
     ),
   },
   {
-    title: "Danışmanlık AI",
+    title: "Danışmanlık Al",
     text: "Ücretsiz teklif talebi oluşturun",
     href: "#login",
-    action: "login",
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-        <path d="M7 16.5H5a2 2 0 0 1-2-2v-6A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v6a2 2 0 0 1-2 2h-4.5L10 20v-3.5H7Z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.8" />
+        <path
+          d="M7 16.5H5a2 2 0 0 1-2-2v-6A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v6a2 2 0 0 1-2 2h-4.5L10 20v-3.5H7Z"
+          stroke="currentColor"
+          strokeLinejoin="round"
+          strokeWidth="1.8"
+        />
       </svg>
     ),
   },
@@ -54,20 +61,16 @@ function FeatureCard({
   title,
   text,
   href,
-  action,
   icon,
 }: {
   title: string;
   text: string;
   href: string;
-  action: string;
   icon: ReactNode;
 }) {
   return (
     <a
       href={href}
-      data-compare-cta={action === "compare" ? true : undefined}
-      data-login-button={action === "login" ? true : undefined}
       className="group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]"
     >
       <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]">
@@ -103,8 +106,8 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-6 max-w-[590px] text-[18px] leading-8 text-[#55657b]">
-              <span className="font-bold text-[#1c9857]">Enflasyondan</span> arındırılmış net maliyet analizi, banka kredisi karşılaştırması ve peşinat optimizasyonu
-              {" "}tek hesaplamada.
+              <span className="font-bold text-[#1c9857]">Enflasyondan</span> arındırılmış net maliyet analizi, banka
+              kredisi karşılaştırması ve peşinat optimizasyonu tek hesaplamada.
             </p>
 
             <p className="mt-4 max-w-[480px] text-[14px] leading-7 text-[#718198]">

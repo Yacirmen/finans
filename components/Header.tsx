@@ -1,17 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import { withBasePath } from "../lib/sitePaths";
 
-const homeNavItems = [
+const primaryNavItems = [
   { key: "home", label: "Ana Sayfa", href: withBasePath("/") },
-  { key: "firms", label: "Firmalar", href: withBasePath("/#faq") },
-  { key: "faq", label: "Nasıl Çalışır?", href: withBasePath("/#faq") },
-  { key: "about", label: "Hakkımızda", href: withBasePath("/#blog") },
+  { key: "about", label: "Hakkımızda", href: withBasePath("/#faq") },
   { key: "blog", label: "Blog", href: withBasePath("/#blog") },
   { key: "data", label: "Endeks", href: withBasePath("/veri") },
 ] as const;
 
-type ActiveNav = "home" | "calculator" | "firms" | "faq" | "about" | "blog" | "data" | "compare";
+const calculatorChildren = [
+  { label: "Kredi Limit Modülü", href: withBasePath("/kredi-limit") },
+  { label: "Kredi Hesaplama Modülü", href: withBasePath("/kredi-hesaplama") },
+] as const;
+
+type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [calculatorOpen, setCalculatorOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur">
       <div className="page-container flex min-h-[72px] items-center justify-between gap-6">
@@ -30,9 +39,8 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
 
         <div className="hidden items-center gap-8 lg:flex">
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana menü">
-            {homeNavItems.map((item) => {
+            {primaryNavItems.map((item) => {
               const isActive = active === item.key || (active === "home" && item.key === "home");
-
               return (
                 <a
                   key={item.key}
@@ -47,13 +55,50 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
                 </a>
               );
             })}
+
+            <div
+              className="relative"
+              onMouseEnter={() => setCalculatorOpen(true)}
+              onMouseLeave={() => setCalculatorOpen(false)}
+            >
+              <button
+                type="button"
+                className={`flex items-center gap-2 rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
+                  active === "calculator"
+                    ? "bg-[#e9fbef] text-[#1b804d]"
+                    : "text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]"
+                }`}
+                onClick={() => setCalculatorOpen((current) => !current)}
+              >
+                Hesaplama Modülü
+                <span className={`text-[10px] transition-transform ${calculatorOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+
+              {calculatorOpen ? (
+                <div className="absolute left-0 top-[calc(100%+10px)] w-[260px] rounded-[18px] border border-[#dce7e2] bg-white p-2 shadow-[0_18px_34px_rgba(31,43,37,0.12)]">
+                  {calculatorChildren.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#f5f8f6] hover:text-[#182132]"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           </nav>
 
           <div className="hidden h-8 w-px bg-[#e4e9ee] lg:block" />
 
           <div className="hidden items-center gap-3 lg:flex">
             <a
-              className="rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]"
+              className={`rounded-[12px] px-[22px] py-[11px] text-[14px] font-semibold transition-all duration-300 ${
+                active === "compare"
+                  ? "bg-[#3a7bf6] text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)]"
+                  : "bg-[#3a7bf6] text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] hover:-translate-y-0.5 hover:bg-[#2f69d8]"
+              }`}
               href={withBasePath("/teklifleri-karsilastir")}
             >
               Teklifleri Karşılaştır
@@ -61,7 +106,6 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
             <a
               className="rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]"
               href="#login"
-              data-login-button
             >
               Giriş Yap
             </a>
@@ -70,40 +114,80 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
 
         <button
           className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden"
-          data-mobile-menu-button
+          onClick={() => setMobileOpen((current) => !current)}
           type="button"
-          aria-expanded="false"
+          aria-expanded={mobileOpen}
         >
           Menü
         </button>
       </div>
 
-      <div className="hidden border-t border-slate-200 bg-white lg:hidden" data-mobile-menu>
-        <div className="page-container grid gap-2 py-4">
-          {homeNavItems.map((item) => (
+      {mobileOpen ? (
+        <div className="border-t border-slate-200 bg-white lg:hidden">
+          <div className="page-container grid gap-2 py-4">
             <a
               className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]"
-              href={item.href}
-              key={item.key}
+              href={withBasePath("/")}
+              onClick={() => setMobileOpen(false)}
             >
-              {item.label}
+              Ana Sayfa
             </a>
-          ))}
-          <a
-            className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white"
-            href={withBasePath("/teklifleri-karsilastir")}
-          >
-            Teklifleri Karşılaştır
-          </a>
-          <a
-            className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]"
-            href="#login"
-            data-login-button
-          >
-            Giriş Yap
-          </a>
+
+            <div className="rounded-[16px] border border-[#e8eef5] px-3 py-3">
+              <button
+                type="button"
+                className="flex w-full items-center justify-between text-sm font-semibold text-slate-800"
+                onClick={() => setCalculatorOpen((current) => !current)}
+              >
+                Hesaplama Modülü
+                <span className={`text-[10px] transition-transform ${calculatorOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+              {calculatorOpen ? (
+                <div className="mt-3 grid gap-2">
+                  {calculatorChildren.map((item) => (
+                    <a
+                      key={item.href}
+                      className="rounded-xl bg-[#f8fbff] px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#eef4fb]"
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            {primaryNavItems
+              .filter((item) => item.key !== "home")
+              .map((item) => (
+                <a
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]"
+                  href={item.href}
+                  key={item.key}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+
+            <a
+              className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white"
+              href={withBasePath("/teklifleri-karsilastir")}
+              onClick={() => setMobileOpen(false)}
+            >
+              Teklifleri Karşılaştır
+            </a>
+            <a
+              className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]"
+              href="#login"
+              onClick={() => setMobileOpen(false)}
+            >
+              Giriş Yap
+            </a>
+          </div>
         </div>
-      </div>
+      ) : null}
     </header>
   );
 }

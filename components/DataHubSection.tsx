@@ -1,4 +1,13 @@
-import { autoTopBrands, autoTotals, creditRows, currentIndicators, financingIndex, housingSales, sourceCatalog, topIndexDrivers } from "../lib/marketData";
+import {
+  autoTopBrands,
+  autoTotals,
+  creditRows,
+  currentIndicators,
+  financingIndex,
+  housingSales,
+  sourceCatalog,
+  topIndexDrivers,
+} from "../lib/marketData";
 import { withBasePath } from "../lib/sitePaths";
 
 const numberFormatter = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
@@ -12,7 +21,17 @@ function formatPercent(value: number) {
   return `${decimalFormatter.format(value)}%`;
 }
 
-function StatTile({ label, value, note, tone = "light" }: { label: string; value: string; note: string; tone?: "light" | "dark" | "green" }) {
+function StatTile({
+  label,
+  value,
+  note,
+  tone = "light",
+}: {
+  label: string;
+  value: string;
+  note: string;
+  tone?: "light" | "dark" | "green";
+}) {
   const styles = {
     light: "border-[#dce7e2] bg-white text-[#1c2433]",
     dark: "border-[#dce7e2] bg-white text-[#1c2433]",
@@ -21,9 +40,23 @@ function StatTile({ label, value, note, tone = "light" }: { label: string; value
 
   return (
     <article className={`rounded-[22px] border p-5 shadow-[0_14px_32px_rgba(32,45,38,0.05)] ${styles[tone]}`}>
-      <span className={`text-xs font-semibold uppercase tracking-[0.16em] ${tone === "green" ? "text-[#179253]" : "text-[#74829a]"}`}>{label}</span>
-      <strong className="mt-3 block text-[clamp(24px,3vw,36px)] font-bold leading-none tracking-[-0.04em]">{value}</strong>
-      <p className={`mt-3 text-sm font-medium leading-6 ${tone === "green" ? "text-[#4d6b60]" : "text-[#66768d]"}`}>{note}</p>
+      <span
+        className={`text-xs font-semibold uppercase tracking-[0.16em] ${
+          tone === "green" ? "text-[#179253]" : "text-[#74829a]"
+        }`}
+      >
+        {label}
+      </span>
+      <strong className="mt-3 block text-[clamp(24px,3vw,36px)] font-bold leading-none tracking-[-0.04em]">
+        {value}
+      </strong>
+      <p
+        className={`mt-3 text-sm font-medium leading-6 ${
+          tone === "green" ? "text-[#4d6b60]" : "text-[#66768d]"
+        }`}
+      >
+        {note}
+      </p>
     </article>
   );
 }
@@ -49,7 +82,8 @@ function HeroIndex() {
                   Konut ve taşıt için karar nabzı.
                 </h1>
                 <p className="mt-6 max-w-[560px] text-base leading-8 text-[#66768d] md:text-lg">
-                  Excel modelindeki kredi, risk, konut ve taşıt sinyallerini tek bir haftalık endekste topluyoruz. Detay merak uyandırır; karar sinyali ekranda net kalır.
+                  Kredi, risk, konut ve taşıt sinyallerini haftalık bir endekste topluyoruz. Detay merak
+                  uyandırır; karar sinyali ekranda net kalır.
                 </p>
               </div>
 
@@ -59,8 +93,13 @@ function HeroIndex() {
                   ["Veri hattı", `${sourceCatalog.length} kaynak`],
                   ["Güncel set", `${currentIndicators.length} gösterge`],
                 ].map(([label, value]) => (
-                  <div className="min-w-0 rounded-2xl border border-[#e1efe8] bg-white/90 p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]" key={label}>
-                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#74829a]">{label}</span>
+                  <div
+                    className="min-w-0 rounded-2xl border border-[#e1efe8] bg-white/90 p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]"
+                    key={label}
+                  >
+                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#74829a]">
+                      {label}
+                    </span>
                     <strong className="mt-2 block text-xl font-bold text-[#1c2433]">{value}</strong>
                   </div>
                 ))}
@@ -76,12 +115,19 @@ function HeroIndex() {
             <div className="flex min-h-[430px] flex-col justify-center md:min-h-[520px]">
               <div className="mx-auto w-full max-w-[520px] rounded-[26px] border border-[#dce7e2] bg-white p-6 shadow-[0_18px_48px_rgba(31,43,37,0.08)]">
                 <div className="flex items-end justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#74829a]">Genel endeks</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#74829a]">
+                    Genel endeks
+                  </span>
                   <span className="text-sm font-medium text-[#74829a]">0 → 100</span>
                 </div>
-                <strong className="mt-4 block text-[clamp(68px,11vw,88px)] font-bold leading-none tracking-[-0.065em] text-[#17201d]">{decimalFormatter.format(score)}</strong>
+                <strong className="mt-4 block text-[clamp(68px,11vw,88px)] font-bold leading-none tracking-[-0.065em] text-[#17201d]">
+                  {decimalFormatter.format(score)}
+                </strong>
                 <div className="relative mt-8 h-5 rounded-full bg-[linear-gradient(90deg,#3aa477_0%,#9ccf82_36%,#d8c95d_50%,#df9a63_68%,#dc756d_100%)]">
-                  <span className="absolute top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[7px] border-white bg-[#203f38] shadow-xl" style={{ left: markerLeft }} />
+                  <span
+                    className="absolute top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[7px] border-white bg-[#203f38] shadow-xl"
+                    style={{ left: markerLeft }}
+                  />
                 </div>
                 <div className="mt-3 grid grid-cols-3 text-xs font-semibold uppercase tracking-[0.12em]">
                   <span className="text-[#179253]">Tasarruf</span>
@@ -96,14 +142,21 @@ function HeroIndex() {
                     ["Konut", financingIndex.housingScore],
                   ].map(([label, value]) => (
                     <div className="rounded-2xl border border-[#e6edf5] bg-[#f8fbfe] p-4" key={label}>
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#74829a]">{label}</span>
-                      <strong className="mt-2 block text-2xl font-bold tracking-[-0.035em] text-[#17201d]">{decimalFormatter.format(Number(value))}</strong>
+                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#74829a]">
+                        {label}
+                      </span>
+                      <strong className="mt-2 block text-2xl font-bold tracking-[-0.035em] text-[#17201d]">
+                        {decimalFormatter.format(Number(value))}
+                      </strong>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <a className="mx-auto mt-6 inline-flex rounded-[13px] bg-[#16a05a] px-7 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(22,160,90,0.18)] transition hover:-translate-y-0.5 hover:bg-[#12874b]" href={withBasePath("/#calculator")}>
+              <a
+                className="mx-auto mt-6 inline-flex rounded-[13px] bg-[#16a05a] px-7 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(22,160,90,0.18)] transition hover:-translate-y-0.5 hover:bg-[#12874b]"
+                href={withBasePath("/#calculator")}
+              >
                 Bu sinyalle hesaplama yap
               </a>
             </div>
@@ -124,28 +177,49 @@ function DriverBoard() {
           <p className="form-label">Modelin iç sesi</p>
           <h2 className="text-3xl font-bold tracking-[-0.05em] text-[#1c2433]">Endeksi sürükleyen güçler</h2>
         </div>
-        <span className="rounded-full bg-[#f5f8f6] px-4 py-2 text-sm font-medium text-[#74829a]">Etki ağırlığına göre sıralı</span>
+        <span className="rounded-full bg-[#f5f8f6] px-4 py-2 text-sm font-medium text-[#74829a]">
+          Etki ağırlığına göre sıralı
+        </span>
       </div>
 
       <div className="mt-7 grid gap-4">
         {topIndexDrivers.map((item, index) => (
-          <article className="group grid gap-4 rounded-2xl border border-[#e6edf5] bg-[#f8fbfe] p-4 transition hover:-translate-y-0.5 hover:border-[#caefdb] hover:bg-white hover:shadow-sm md:grid-cols-[42px_1fr_110px]" key={item.name}>
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-white text-sm font-bold text-[#74829a] shadow-sm">{String(index + 1).padStart(2, "0")}</span>
+          <article
+            className="group grid gap-4 rounded-2xl border border-[#e6edf5] bg-[#f8fbfe] p-4 transition hover:-translate-y-0.5 hover:border-[#caefdb] hover:bg-white hover:shadow-sm md:grid-cols-[42px_1fr_110px]"
+            key={item.name}
+          >
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-white text-sm font-bold text-[#74829a] shadow-sm">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <strong className="text-base font-bold text-[#1c2433]">{item.name}</strong>
-                <span className={`rounded-full px-3 py-1 text-xs font-medium ${item.comment === "Kredi lehine" ? "bg-rose-50 text-rose-600" : item.comment === "Tasarruf lehine" ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}`}>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-medium ${
+                    item.comment === "Kredi lehine"
+                      ? "bg-rose-50 text-rose-600"
+                      : item.comment === "Tasarruf lehine"
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "bg-amber-50 text-amber-700"
+                  }`}
+                >
                   {item.comment}
                 </span>
               </div>
               <div className="mt-3 h-2 rounded-full bg-[#e2eaf2]">
-                <div className="h-2 rounded-full bg-[#16a05a] transition-all group-hover:bg-[#12874b]" style={{ width: `${Math.max(9, (item.impact / maxImpact) * 100)}%` }} />
+                <div
+                  className="h-2 rounded-full bg-[#16a05a] transition-all group-hover:bg-[#12874b]"
+                  style={{ width: `${Math.max(9, (item.impact / maxImpact) * 100)}%` }}
+                />
               </div>
               <p className="mt-2 text-sm font-medium text-[#74829a]">
-                {item.group} grubu · ham skor {decimalFormatter.format(item.rawScore)} · ağırlık {decimalFormatter.format(item.weight * 100)}%
+                {item.group} grubu · ham skor {decimalFormatter.format(item.rawScore)} · ağırlık{" "}
+                {decimalFormatter.format(item.weight * 100)}%
               </p>
             </div>
-            <strong className="self-center text-right text-3xl font-bold tracking-[-0.055em] text-[#1c2433]">{decimalFormatter.format(item.impact)}</strong>
+            <strong className="self-center text-right text-3xl font-bold tracking-[-0.055em] text-[#1c2433]">
+              {decimalFormatter.format(item.impact)}
+            </strong>
           </article>
         ))}
       </div>
@@ -166,9 +240,14 @@ function IndicatorRail() {
 
       <div className="mt-6 grid gap-3">
         {visible.map((item, index) => (
-          <div className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] pb-3 last:border-0 last:pb-0" key={item.name}>
+          <div
+            className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] pb-3 last:border-0 last:pb-0"
+            key={item.name}
+          >
             <div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#74829a]">{String(index + 1).padStart(2, "0")} · {item.description}</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#74829a]">
+                {String(index + 1).padStart(2, "0")} · {item.description}
+              </span>
               <p className="mt-1 text-sm font-medium text-[#49556a]">{item.name}</p>
             </div>
             <strong className="text-right text-xl font-bold tracking-[-0.04em] text-[#1c2433]">
@@ -190,9 +269,23 @@ function MarketEvidence() {
     <section className="page-container mt-8">
       <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
         <div className="grid gap-4">
-          <StatTile label="Konut satışı" value={formatNumber(latestHousing.total)} note={`${latestHousing.period} toplam adet`} tone="green" />
-          <StatTile label="İpotekli pay" value={formatPercent(latestHousing.mortgagedShare)} note="TÜİK son ay, finansman talebi proxy'si" />
-          <StatTile label="Otomobil pazarı" value={formatNumber(autoTotals.q1_2026)} note={`Q1 pazar, yıllık ${formatPercent(autoTotals.change)}`} tone="dark" />
+          <StatTile
+            label="Konut satışı"
+            value={formatNumber(latestHousing.total)}
+            note={`${latestHousing.period} toplam adet`}
+            tone="green"
+          />
+          <StatTile
+            label="İpotekli pay"
+            value={formatPercent(latestHousing.mortgagedShare)}
+            note="TÜİK son ay, finansman talebi göstergesi"
+          />
+          <StatTile
+            label="Otomobil pazarı"
+            value={formatNumber(autoTotals.q1_2026)}
+            note={`Q1 pazar, yıllık ${formatPercent(autoTotals.change)}`}
+            tone="dark"
+          />
         </div>
 
         <div className="rounded-[26px] border border-[#dce7e2] bg-white p-6 shadow-[0_18px_48px_rgba(31,43,37,0.08)]">
@@ -205,7 +298,10 @@ function MarketEvidence() {
                   <div className="grid grid-cols-[74px_1fr_auto] items-center gap-4" key={row.period}>
                     <strong className="text-sm font-semibold text-[#74829a]">{row.period}</strong>
                     <div className="h-3 overflow-hidden rounded-full bg-[#e2eaf2]">
-                      <div className="h-3 rounded-full bg-[#16a05a]" style={{ width: `${Math.max(18, (row.total / 270000) * 100)}%` }} />
+                      <div
+                        className="h-3 rounded-full bg-[#16a05a]"
+                        style={{ width: `${Math.max(18, (row.total / 270000) * 100)}%` }}
+                      />
                     </div>
                     <span className="text-sm font-bold text-[#1c2433]">{formatNumber(row.total)}</span>
                   </div>
@@ -221,13 +317,26 @@ function MarketEvidence() {
                   ["Taşıt", vehicleCredit?.latest || 0, vehicleCredit?.ytd || 0],
                 ].map(([label, value, change]) => (
                   <div className="rounded-2xl bg-white p-4 shadow-sm" key={label}>
-                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#74829a]">{label}</span>
-                    <strong className="mt-2 block text-2xl font-bold tracking-[-0.04em] text-[#1c2433]">{formatNumber(Number(value))} mn TL</strong>
-                    <p className={`mt-1 text-sm font-medium ${Number(change) < 0 ? "text-rose-600" : "text-emerald-700"}`}>Yılbaşı: {formatPercent(Number(change))}</p>
+                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#74829a]">
+                      {label}
+                    </span>
+                    <strong className="mt-2 block text-2xl font-bold tracking-[-0.04em] text-[#1c2433]">
+                      {formatNumber(Number(value))} mn TL
+                    </strong>
+                    <p
+                      className={`mt-1 text-sm font-medium ${
+                        Number(change) < 0 ? "text-rose-600" : "text-emerald-700"
+                      }`}
+                    >
+                      Yılbaşı: {formatPercent(Number(change))}
+                    </p>
                   </div>
                 ))}
               </div>
-              <a className="mt-5 inline-flex rounded-[12px] bg-white px-4 py-2 text-sm font-medium text-[#49556a] shadow-sm transition hover:-translate-y-0.5 hover:text-[#179253]" href={withBasePath("/#calculator")}>
+              <a
+                className="mt-5 inline-flex rounded-[12px] bg-white px-4 py-2 text-sm font-medium text-[#49556a] shadow-sm transition hover:-translate-y-0.5 hover:text-[#179253]"
+                href={withBasePath("/#calculator")}
+              >
                 Kredi kıyası hesapla
               </a>
             </div>
@@ -242,16 +351,25 @@ function AutoAndSources() {
   return (
     <section className="page-container mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
       <div className="rounded-[26px] border border-[#dce7e2] bg-white p-6 shadow-[0_18px_48px_rgba(31,43,37,0.08)]">
-        <p className="form-label">Taşıt ana sektör</p>
+        <p className="form-label">Taşıt ana sektörü</p>
         <h2 className="text-3xl font-bold tracking-[-0.05em] text-[#1c2433]">ODMD marka momentumu</h2>
         <div className="mt-6 grid gap-3">
           {autoTopBrands.map((brand) => (
             <div className="grid grid-cols-[86px_1fr_68px] items-center gap-3" key={brand.brand}>
               <strong className="truncate text-sm font-bold text-[#1c2433]">{brand.brand}</strong>
               <div className="h-2 rounded-full bg-[#e2eaf2]">
-                <div className="h-2 rounded-full bg-[#16a05a]" style={{ width: `${Math.max(8, (brand.q1_2026 / 35000) * 100)}%` }} />
+                <div
+                  className="h-2 rounded-full bg-[#16a05a]"
+                  style={{ width: `${Math.max(8, (brand.q1_2026 / 35000) * 100)}%` }}
+                />
               </div>
-              <span className={`text-right text-sm font-medium ${brand.change < 0 ? "text-rose-600" : "text-emerald-700"}`}>{formatPercent(brand.change)}</span>
+              <span
+                className={`text-right text-sm font-medium ${
+                  brand.change < 0 ? "text-rose-600" : "text-emerald-700"
+                }`}
+              >
+                {formatPercent(brand.change)}
+              </span>
             </div>
           ))}
         </div>

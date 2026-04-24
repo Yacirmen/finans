@@ -4,106 +4,16 @@
   type LoanScheduleRow,
   type LoanSummary,
 } from "./loanEngine";
+import {
+  COMPANY_OPTIONS,
+  companyParams,
+  type CompanyName,
+  type CompanyParam,
+} from "./companyParams";
 
 export type AssetType = "Konut" | "Araba";
 export type ModelType = "cekilissiz" | "cekilisli";
 export type HousingStatus = "yok" | "var";
-
-export const COMPANY_OPTIONS = [
-  "Eminevim",
-  "Fuzul Ev",
-  "Katılımevim",
-  "Sinpaş YTS",
-  "Emlak Katılım Tasarruf Finansmanı",
-  "Birevim",
-  "İyi Finans",
-  "İmece",
-  "Albayrak Finans",
-  "Diğer",
-] as const;
-
-export type CompanyName = (typeof COMPANY_OPTIONS)[number];
-
-export type CompanyParam = {
-  defaultServiceFeeRate: number;
-  deliverySpeedFactor: number;
-  riskFactor: number;
-  campaignDiscountRate: number;
-  notes: string;
-};
-
-export const companyParams: Record<CompanyName, CompanyParam> = {
-  Eminevim: {
-    defaultServiceFeeRate: 11.8,
-    deliverySpeedFactor: 1.02,
-    riskFactor: 1.02,
-    campaignDiscountRate: 0.2,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  "Fuzul Ev": {
-    defaultServiceFeeRate: 11.4,
-    deliverySpeedFactor: 1.05,
-    riskFactor: 0.98,
-    campaignDiscountRate: 0.3,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  Katılımevim: {
-    defaultServiceFeeRate: 11.6,
-    deliverySpeedFactor: 1.01,
-    riskFactor: 1.04,
-    campaignDiscountRate: 0.15,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  "Sinpaş YTS": {
-    defaultServiceFeeRate: 10.9,
-    deliverySpeedFactor: 1.08,
-    riskFactor: 0.94,
-    campaignDiscountRate: 0.4,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  "Emlak Katılım Tasarruf Finansmanı": {
-    defaultServiceFeeRate: 10.6,
-    deliverySpeedFactor: 1.06,
-    riskFactor: 0.92,
-    campaignDiscountRate: 0.45,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  Birevim: {
-    defaultServiceFeeRate: 11.7,
-    deliverySpeedFactor: 0.98,
-    riskFactor: 1.06,
-    campaignDiscountRate: 0.1,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  "İyi Finans": {
-    defaultServiceFeeRate: 10.8,
-    deliverySpeedFactor: 1.04,
-    riskFactor: 0.95,
-    campaignDiscountRate: 0.35,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  İmece: {
-    defaultServiceFeeRate: 11.2,
-    deliverySpeedFactor: 1,
-    riskFactor: 1,
-    campaignDiscountRate: 0.2,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  "Albayrak Finans": {
-    defaultServiceFeeRate: 10.7,
-    deliverySpeedFactor: 1.03,
-    riskFactor: 0.97,
-    campaignDiscountRate: 0.3,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-  Diğer: {
-    defaultServiceFeeRate: 11.8,
-    deliverySpeedFactor: 1,
-    riskFactor: 1,
-    campaignDiscountRate: 0,
-    notes: "Varsayılan tahmini parametre kullanılıyor.",
-  },
-};
 
 export type OfferState = {
   model: ModelType;
@@ -140,7 +50,7 @@ export const DEFAULT_OFFER: OfferState = {
   manualPlan: false,
   manualPlanText: "",
   delivery: "12",
-  serviceFee: "11,8",
+  serviceFee: "7,5",
   rent: "25.000",
   advancedOpen: false,
   inflation: "25",
@@ -148,8 +58,8 @@ export const DEFAULT_OFFER: OfferState = {
   yearlyIncrease: "15",
   compareBank: true,
   bankAmount: "2.000.000",
-  bankRate: "2,85",
-  bankTerm: "60",
+  bankRate: "2,80",
+  bankTerm: "120",
   bankHousingStatus: "yok",
 };
 
@@ -258,7 +168,7 @@ export function parseCurrencyLike(value: string | number | null | undefined) {
 
   const normalized = raw
     .replace(/\s+/g, "")
-    .replace(/[â‚º$â‚¬]/g, "")
+    .replace(/[₺$€]/g, "")
     .replace(/TL/gi, "")
     .replace(/\.(?=\d{3}(?:\D|$))/g, "")
     .replace(",", ".");
@@ -678,9 +588,9 @@ export function calculateScenarioSet({
     term,
   );
 
-  const goodScenario = buildScenario("good", "Ä°yi senaryo", goodDelivery);
+  const goodScenario = buildScenario("good", "İyi senaryo", goodDelivery);
   const averageScenario = buildScenario("average", "Ortalama senaryo", averageDelivery);
-  const badScenario = buildScenario("bad", "KÃ¶tÃ¼ senaryo", badDelivery);
+  const badScenario = buildScenario("bad", "Kötü senaryo", badDelivery);
   const scenarios = [goodScenario, averageScenario, badScenario];
   const nbmValues = scenarios.map((scenario) => scenario.nbm);
   const risk = standardDeviation(nbmValues);
@@ -718,7 +628,7 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   if (!assetPrice) warnings.push("Varlık fiyatı sıfır veya boş görünüyor.");
   if (!monthlyPayment) warnings.push("Aylık ödeme sıfır veya boş görünüyor.");
-  if (parseCurrencyLike(offer.serviceFee) < 0) warnings.push("Hizmet bedeli oranÄ± negatif olamaz.");
+  if (parseCurrencyLike(offer.serviceFee) < 0) warnings.push("Hizmet bedeli oranı negatif olamaz.");
   if (parseCurrencyLike(offer.creditRate) < 0) warnings.push("Kredi faizi negatif olamaz.");
 
   const expectedDelivery =
@@ -752,7 +662,7 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   if (!isFundingValid) {
     warnings.push(
-      "AylÄ±k Ã¶deme ve vade, finansman tutarÄ±nÄ± karÅŸÄ±lamÄ±yor. LÃ¼tfen aylÄ±k Ã¶demeyi veya vadeyi artÄ±rÄ±n.",
+      "Aylık ödeme ve vade, finansman tutarını karşılamıyor. Lütfen aylık ödemeyi veya vadeyi artırın.",
     );
   }
 
@@ -774,9 +684,9 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
   });
 
   const commentary = [
-    `Toplam NBM ${formatMoney(selectedScenario.nbm)} seviyesinde oluÅŸuyor.`,
-    `Kira etkisinin bugÃ¼nkÃ¼ deÄŸeri ${formatMoney(selectedScenario.nbmBreakdown.rentPv)} düzeyinde.`,
-    `Hizmet bedeli ve peÅŸinatÄ±n toplam bugÃ¼nkÃ¼ yÃ¼kÃ¼ ${formatMoney(
+    `Toplam NBM ${formatMoney(selectedScenario.nbm)} seviyesinde oluşuyor.`,
+    `Kira etkisinin bugünkü değeri ${formatMoney(selectedScenario.nbmBreakdown.rentPv)} düzeyinde.`,
+    `Hizmet bedeli ve peşinatın toplam bugünkü yükü ${formatMoney(
       selectedScenario.nbmBreakdown.downPaymentPv + selectedScenario.nbmBreakdown.serviceFeePv,
     )}.`,
     `Teslim varsayımı ${selectedScenario.deliveryMonth}. ay üzerinden okunuyor.`,
@@ -786,15 +696,15 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
     commentary.unshift(
       `Bu planda ${formatMoney(unfundedAmount)} tutarında eksik finansman oluşuyor. Minimum aylık ödeme yaklaşık ${formatMoney(
         minimumRequiredMonthlyPayment,
-      )} olmalÄ±dÄ±r.`,
+      )} olmalıdır.`,
     );
   }
 
   if (scenarioSet.mode === "range") {
     commentary.push(
-      `Ã‡ekiliÅŸli modelde risk aralÄ±ÄŸÄ± ${formatMoney(scenarioSet.bestNBM)} ile ${formatMoney(
+      `Çekilişli modelde risk aralığı ${formatMoney(scenarioSet.bestNBM)} ile ${formatMoney(
         scenarioSet.worstNBM,
-      )} arasÄ±nda deÄŸiÅŸiyor.`,
+      )} arasında değişiyor.`,
     );
   }
 
@@ -802,7 +712,7 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   const riskWarning =
     scenarioSet.mode === "range" && scenarioSet.riskLabel !== "Düşük"
-      ? "Bu teklif daha dÃ¼ÅŸÃ¼k maliyetli gÃ¶rÃ¼nse de teslim belirsizliÄŸi nedeniyle risklidir."
+      ? "Bu teklif daha düşük maliyetli görünse de teslim belirsizliği nedeniyle risklidir."
       : undefined;
 
   return {
@@ -832,9 +742,9 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     return {
       winnerIndex: null,
       difference: 0,
-      winnerLabel: "SonuÃ§ bekleniyor",
-      summaryText: "KarÅŸÄ±laÅŸtÄ±rma iÃ§in iki teklifi de hesaplayÄ±n.",
-      infoText: "Karar skoru = Ortalama NBM + risk cezasÄ± + gecikme maliyeti.",
+      winnerLabel: "Sonuç bekleniyor",
+      summaryText: "Karşılaştırma için iki teklifi de hesaplayın.",
+      infoText: "Karar skoru = Ortalama NBM + risk cezası + gecikme maliyeti.",
     };
   }
 
@@ -846,7 +756,7 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     return {
       winnerIndex: null,
       difference: 0,
-      winnerLabel: "GeÃ§erli teklif yok",
+      winnerLabel: "Geçerli teklif yok",
       summaryText:
         "Tekliflerin ödeme planı finansman tutarını karşılamıyor. Önce aylık ödeme veya vadeyi güncelleyin.",
       infoText: "Karar skoru yalnızca finansman planı tutarlı tekliflerde değerlendirilir.",
@@ -872,9 +782,9 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     summaryText: loser
       ? `Teklif ${winnerIndex + 1}, Teklif ${loserEntry!.index + 1}''e göre bugünkü değerle ${formatMoney(
           difference,
-        )} daha avantajlÄ±.`
-      : `Teklif ${winnerIndex + 1} hesaplandÄ±.`,
-    infoText: "Karar skoru = Ortalama NBM + risk cezasÄ± + gecikme maliyeti.",
+        )} daha avantajlı.`
+      : `Teklif ${winnerIndex + 1} hesaplandı.`,
+    infoText: "Karar skoru = Ortalama NBM + risk cezası + gecikme maliyeti.",
     cautionText: winner.riskWarning,
   };
 }
@@ -891,7 +801,7 @@ export function cashflowRowsToCsv(rows: CashflowRow[]) {
   const header = [
     "Ay",
     "Taksit",
-    "PeÅŸinat",
+    "Peşinat",
     "Hizmet Bedeli",
     "Kira",
     "Toplam Çıkış",

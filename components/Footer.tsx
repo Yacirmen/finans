@@ -5,26 +5,26 @@ const groups = [
     title: "Sayfalar",
     links: [
       { label: "Ana Sayfa", href: withBasePath("/") },
-      { label: "Endeks", href: withBasePath("/veri") },
       { label: "Teklifleri Karşılaştır", href: withBasePath("/teklifleri-karsilastir") },
-      { label: "Nasıl Çalışır?", href: withBasePath("/#faq") },
       { label: "Blog", href: withBasePath("/#blog") },
+      { label: "Endeks", href: withBasePath("/veri") },
     ],
   },
   {
     title: "Araçlar",
     links: [
-      { label: "Maliyet Hesaplama", href: withBasePath("/#calculator") },
-      { label: "Teklifleri Karşılaştır", href: withBasePath("/teklifleri-karsilastir") },
-      { label: "Piyasa Veri Paneli", href: withBasePath("/veri") },
-      { label: "Kredi Matematiği Testi", href: withBasePath("/kredi-test") },
+      { label: "Maliyet Hesaplayıcı", href: withBasePath("/#calculator") },
+      { label: "Kredi Limit Modülü", href: withBasePath("/kredi-limit") },
+      { label: "Kredi Hesaplama Modülü", href: withBasePath("/kredi-hesaplama") },
+      { label: "Kredi Testi", href: withBasePath("/kredi-test") },
+      { label: "Motor Testleri", href: withBasePath("/engine-test") },
     ],
   },
   {
     title: "İletişim",
     links: [
       { label: "bilgi@example.com", href: "mailto:bilgi@example.com" },
-      { label: "Sorularınız için bize ulaşın", href: "#footer" },
+      { label: "+90 (212) 000 00 00", href: "tel:+902120000000" },
     ],
   },
   {
@@ -41,24 +41,22 @@ export function Footer() {
   return (
     <footer id="footer" className="mt-16 border-t border-slate-200 bg-white">
       <div className="page-container border-b border-slate-200 py-10">
-        <h2 className="text-xl font-black text-slate-950">Tasarruf finansmanı sistemi nasıl okunmalı?</h2>
+        <h2 className="text-xl font-black text-slate-950">Tasarruf finansmanı nasıl okunmalı?</h2>
         <p className="mt-4 max-w-5xl text-sm leading-7 text-slate-600">
-          Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil;
-          peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri
-          sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.
+          Bu ürün, tasarruf finansmanı tekliflerini yalnızca nominal ödeme toplamıyla değil; peşinat, teslim süresi,
+          hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa verisiyle birlikte değerlendirmek için
+          tasarlandı.
         </p>
       </div>
       <div className="page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
         <div>
           <div className="flex items-center gap-3 text-lg font-black text-[var(--green-dark)]">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]">
-              ▥
-            </span>
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]">▥</span>
             Finansman Rehberi
           </div>
           <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">
-            Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve
-            karşılaştırmalı karar desteğiyle inceleyin.
+            Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar
+            desteğiyle inceleyin.
           </p>
         </div>
         {groups.map(({ title, links }) => (

@@ -1,59 +1,61 @@
 # Tasarruf Finansmanı
 
-Bu proje, tasarruf finansmanı tekliflerini ve banka kredisi alternatifini bug�nk� değer mantigiyla değerlendiren bir finansal karar destek aray�z�d�r.
+Bu proje, tasarruf finansmanı tekliflerini ve banka kredisi alternatifini bugünkü değer mantığıyla değerlendiren bir finansal karar destek ürünüdür.
 
-## Ana yapi
+## Sayfalar
 
 - `/`
-  - ana hesaplayici
-  - kredi limit mod�l�
-  - veri / i�erik bloklari
+  - ana sayfa
+  - hero
+  - hesaplama modülleri yönlendirme alanı
+  - tasarruf finansmanı maliyet hesaplayıcısı
+  - SSS
+  - blog
 - `/teklifleri-karsilastir`
-  - iki teklifi yan yana karsilastiran karar destek sayfasi
+  - iki senaryoyu yan yana kıyaslayan karar destek sayfası
 - `/veri`
-  - piyasa verisi ve endeks sayfasi
+  - piyasa endeksi ve veri yüzeyi
 - `/kredi-test`
-  - referans HTML kredi matematigi ile proje motorunu yan yana test eden sayfa
+  - referans kredi matematiği ile proje motorunu yan yana test eden sayfa
+- `/engine-test`
+  - tasarruf finansmanı motorunu senaryo bazlı test eden sayfa
+- `/kredi-hesaplama`
+  - kredi hesaplama modülü
+- `/kredi-limit`
+  - kredi limit modülü
 
-## Compare sayfasi hangi dosyalara bagli
+## Mimari
 
-- `C:\Users\PC\Desktop\tasarrufinansman\app\teklifleri-karsilastir\page.tsx`
-- `C:\Users\PC\Desktop\tasarrufinansman\components\OfferComparisonPage.tsx`
+### Ana hesap motorları
+
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\comparisonEngine.ts`
+  - tasarruf finansmanı teklif hesapları
+  - NBM kırılımı
+  - teslim senaryoları
+  - risk ve karar skoru
+  - nakit akışı tabloları
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
+  - banka kredisi PMT, ödeme planı ve efektif maliyet hesapları
+  - KKDF ve BSMV toplamları
+  - net ele geçen kredi
+  - toplam kredi maliyeti
+  - referans kredi matematiği ile proje motoru arasındaki fark analizi
+- `C:\Users\PC\Desktop\tasarrufinansman\lib\companyParams.ts`
+  - şirket bazlı varsayılan hizmet bedeli, teslim hızı ve risk katsayıları
+- `C:\Users\PC\Desktop\tasarrufinansman\lib\calculations\creditLimit.ts`
+  - gelir, borç ve faiz üzerinden limit tahmini
+- `C:\Users\PC\Desktop\tasarrufinansman\lib\calculations\offerComparison.ts`
+  - sade iki senaryolu teklif karşılaştırma matematiği
 
-## Kredi test alani hangi dosyalara bagli
+UI katmanı hesap yapmaz; input toplar, motorlara gönderir ve sonucu render eder.
 
-- `C:\Users\PC\Desktop\tasarrufinansman\app\kredi-test\page.tsx`
-- `C:\Users\PC\Desktop\tasarrufinansman\components\LoanMathTestPage.tsx`
-- `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
+## NBM nasıl hesaplanıyor
 
-## Hesap motoru nasil �alisiyor
-
-Compare sayfasinda UI yalnizca kullanici girdilerini toplar. Finansal hesap mantigi iki katmanda �alisir:
-
-1. `lib/comparisonEngine.ts`
-   - teklif bazli tasarruf finansmanı hesaplari
-   - NBM kirilimi
-   - teslim senaryolari
-   - risk ve karar skoru
-   - nakit akisi tablolari
-2. `lib/loanEngine.ts`
-   - banka kredisi PMT / �deme plani / efektif maliyet hesaplari
-   - KKDF ve BSMV toplamlari
-   - net ele ge�en kredi
-   - toplam kredi maliyeti
-   - referans HTML matematigi ile proje motoru arasindaki fark analizi
-
-UI tarafi hesap yapmaz; yalnizca bu motorlardan d�nen sonuçu render eder.
-
-## NBM nasil hesaplaniyor
-
-Aylık indirgeme orani:
+Aylık indirgeme oranı:
 
 `monthlyDiscountRate = Math.pow(1 + annualInflationRate / 100, 1 / 12) - 1`
 
-Bug�nk� değer:
+Bugünkü değer:
 
 `PV = amount / Math.pow(1 + monthlyDiscountRate, month)`
 
@@ -66,13 +68,13 @@ Toplam NBM:
 
 `Toplam NBM = peşinat PV + hizmet bedeli PV + taksitler PV + kira PV`
 
-## Karar skoru nasil hesaplaniyor
+## Karar skoru nasıl hesaplanıyor
 
-�ekilisli modelde �� senaryo �retilir:
+Çekilişli modelde üç senaryo üretilir:
 
 - iyi senaryo
 - ortalama senaryo
-- k�t� senaryo
+- kötü senaryo
 
 Risk:
 
@@ -82,7 +84,7 @@ Gecikme maliyeti:
 
 `delayCost = Math.max(0, badDelivery - averageDelivery) * currentMonthlyRent`
 
-Risk cezasi:
+Risk cezası:
 
 `riskPenalty = risk * riskWeight * companyRiskFactor`
 
@@ -90,37 +92,24 @@ Karar skoru:
 
 `decisionScore = averageNBM + riskPenalty + delayCost`
 
-## Sirket parametreleri nereden geliyor
+## Kredi matematiği
 
-Sirket parametreleri `lib/comparisonEngine.ts` i�indeki `companyParams` nesnesinden gelir.
+Merkez dosya: `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
 
-Her sirket i�in:
+Ana formüller:
 
-- `defaultServiceFeeRate`
-- `deliverySpeedFactor`
-- `riskFactor`
-- `campaignDiscountRate`
-- `notes`
-
-alanlari tanimlidir.
-
-Not:
-Bu değerler su an varsayilan tahmini parametrelerdir. Ger�ek firma verileri geldiginde ayni yapi �zerinden g�ncellenebilir.
-
-## Banka kredisi matematigi
-
-`lib/loanEngine.ts` i�indeki ana form�ller:
-
+- nominal aylık oran:
+  - `nominalRate = monthlyRatePct / 100`
 - vergili aylık oran:
   - `effectiveMonthlyRate = nominalRate * (1 + (BSMV + KKDF) / 100)`
-- ann�ite taksit:
-  - `payment = principal * rate * (1 + rate)^term / ((1 + rate)^term - 1)`
-- toplam taksit �demesi:
+- annüite taksit:
+  - `payment = principal * rate * Math.pow(1 + rate, term) / (Math.pow(1 + rate, term) - 1)`
+- net ele geçen kredi:
+  - `netDisbursed = principal - fee`
+- toplam taksit ödemesi:
   - `totalInstallmentPayment = payment * term`
-- d�zeltilmis toplam geri �deme:
+- düzeltilmiş toplam geri ödeme:
   - `totalRepayment = totalInstallmentPayment + fee`
-- referans HTML toplam geri �deme:
-  - `referenceTotalRepayment = totalWithInterest + fee`
 - toplam kredi maliyeti:
   - `totalCreditCost = totalRepayment - netDisbursed`
 - efektif aylık maliyet:
@@ -128,59 +117,55 @@ Bu değerler su an varsayilan tahmini parametrelerdir. Ger�ek firma verileri g
 - efektif yıllık maliyet:
   - `Math.pow(1 + monthlyCostRate, 12) - 1`
 
-## /kredi-test nasil kullanilir
+## /kredi-test nasıl kullanılır
 
-1. Sayfayi a�:
-   - `/kredi-test`
-2. Bir kredi preset�i se�:
+1. `/kredi-test` sayfasını açın.
+2. Bir kredi preset’i seçin:
    - Konut - Evi Olmayan
    - Konut - Evi Olan
-   - Tasit
-   - Ihtiya�
-3. Istersen anapara, vade, aylık faiz, masraf, BSMV ve KKDF değerlerini degistir.
-4. Sol s�tunda referans HTML matematigi, sag s�tunda proje motoru g�r�n�r.
-5. Alt tabloda fark analizi ve �deme plani farklari izlenir.
+   - Taşıt
+   - İhtiyaç
+3. İsterseniz anapara, vade, aylık faiz, masraf, BSMV ve KKDF değerlerini değiştirin.
+4. Sol sütunda referans kredi matematiği, sağ sütunda proje motoru görünür.
+5. Alt tabloda fark analizi ve ödeme planı farkları izlenir.
 
-## Referans HTML ile proje motoru arasindaki fark nasil okunur
+## /engine-test nasıl kullanılır
 
-Yan yana fark analizinde:
+1. `/engine-test` sayfasını açın.
+2. Hazır senaryoları satır satır kontrol edin.
+3. Her senaryo için:
+   - inputlar
+   - beklenen davranış
+   - hesaplanan sonuç
+   - durum: `OK / Kontrol Et`
+4. Bu sayfa compare ve ana hesap motorunun temel davranışlarını hızlıca doğrulamak için kullanılır.
 
-- `OK`
-  - fark tolerans i�indedir
-- `Kontrol Et`
-  - fark tolerans disindadir
+## Bilinçli farklar
 
-Tolerans:
+Referans kredi matematiği ile proje motoru arasındaki en önemli bilinçli fark:
 
-- parasal değerler: `0.05 TL`
-- y�zdesel değerler: `0.0001`
+- referans yaklaşım:
+  - `Toplam Geri Ödeme = Toplam Faizli Geri Ödeme + Masraf`
+- proje yaklaşımı:
+  - `Toplam Geri Ödeme = Toplam Taksit Ödemesi + Masraf`
 
-## Bilin�li farkliliklar
-
-Referans HTML ile proje motoru arasindaki en �nemli bilin�li fark:
-
-- referans HTML:
-  - `Toplam Geri �deme = Toplam Faizli Geri �deme + Masraf`
-- proje motoru:
-  - `Toplam Geri �deme = Toplam Taksit �demesi + Masraf`
-
-Bu y�zden `/kredi-test` sayfasi yalnizca birebir eslesmeyi degil, bilin�li finansal farki da g�r�n�r kilar.
+Bu fark `/kredi-test` ekranında özellikle görünür bırakılır.
 
 ## Bilinen eksikler
 
-- `InteractionScript.tsx` i�inde compare ile ilgili kullanilmayan eski yardimci fonksiyonlar h�l� dosyada duruyor; compare sayfasi artik bunlara bagli degil.
-- Sirket parametreleri ger�ek veri degil, tahmini baslangi� parametreleri.
-- CSV export saglam, ger�ek `.xlsx` export hen�z yok.
-- Ana sayfa kredi kiyas paneli hen�z `loanEngine` detay �iktilarinin tamamini g�stermiyor.
+- Ana sayfadaki hesaplayıcı hâlâ hedef siteye piksel olarak biraz daha yaklaşabilir.
+- Compare sayfası işlevsel olarak doğru, ancak görsel sıkılık açısından bir tur daha rafine edilebilir.
+- `companyParams.ts` içinde geçmiş query parametre uyumluluğu için birkaç alias anahtar korunuyor.
+- Tüm route’lar için son tur gerçek mobil viewport göz testi yapılmalı.
 
-## �alistirma
+## Çalıştırma
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build:
+## Build
 
 ```bash
 npm run build
