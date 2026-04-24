@@ -392,14 +392,23 @@ function ResultCard({
 
   const breakdown = result.selectedScenario.nbmBreakdown;
   const loan = result.loanComparison;
+  const invalidState = !result.isFundingValid;
 
   return (
     <article
       className={`relative rounded-[22px] border bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)] ${
-        highlighted ? "border-[#f4c514] shadow-[0_20px_50px_rgba(232,179,0,0.16)]" : "border-[#dce7e2]"
+        invalidState
+          ? "border-[#f0c8c4] shadow-[0_18px_40px_rgba(211,74,59,0.08)]"
+          : highlighted
+            ? "border-[#f4c514] shadow-[0_20px_50px_rgba(232,179,0,0.16)]"
+            : "border-[#dce7e2]"
       }`}
     >
-      {highlighted ? (
+      {invalidState ? (
+        <span className="absolute right-4 top-[-14px] rounded-full bg-[#fff0ee] px-4 py-1.5 text-[12px] font-bold text-[#d34a3b] shadow-[0_10px_20px_rgba(211,74,59,0.12)]">
+          Geçersiz Teklif
+        </span>
+      ) : highlighted ? (
         <span className="absolute right-4 top-[-14px] rounded-full bg-[#ffcc1d] px-4 py-1.5 text-[12px] font-bold text-[#7a4d00] shadow-[0_12px_24px_rgba(255,196,0,0.24)]">
           En İyi Teklif
         </span>
@@ -427,6 +436,55 @@ function ResultCard({
           <span className="block text-[12px] text-[#7b8aa2]">Teslim Ayı</span>
           <strong className="mt-1.5 block text-[18px] font-black text-[#1c2433]">{result.selectedScenario.deliveryMonth}</strong>
         </div>
+      </div>
+
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
+        <div className="rounded-[13px] border border-[#e3ebf4] bg-[#fdfefe] px-4 py-3">
+          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
+            Finansman / Kontrat Tutarı
+          </span>
+          <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">
+            {formatMoney(result.contractAmount)}
+          </strong>
+        </div>
+        <div className="rounded-[13px] border border-[#e3ebf4] bg-[#fdfefe] px-4 py-3">
+          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
+            Toplam Taksit Ödemesi
+          </span>
+          <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">
+            {formatMoney(result.totalInstallmentPayment)}
+          </strong>
+        </div>
+      </div>
+
+      <div
+        className={`mt-3 rounded-[16px] border px-4 py-4 ${
+          invalidState ? "border-[#f0c8c4] bg-[#fff7f6]" : "border-[#d6ede0] bg-[#f5fcf8]"
+        }`}
+      >
+        <div className="grid gap-3 md:grid-cols-2">
+          <div>
+            <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
+              Eksik Finansman Tutarı
+            </span>
+            <strong className={`mt-2 block text-[24px] font-black tracking-[-0.04em] ${invalidState ? "text-[#d34a3b]" : "text-[#16a05a]"}`}>
+              {formatMoney(result.unfundedAmount)}
+            </strong>
+          </div>
+          <div>
+            <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
+              Minimum Gerekli Aylık Ödeme
+            </span>
+            <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#172133]">
+              {formatMoney(result.minimumRequiredMonthlyPayment)}
+            </strong>
+          </div>
+        </div>
+        <p className={`mt-3 text-[13px] leading-6 ${invalidState ? "text-[#b24a3c]" : "text-[#557063]"}`}>
+          {invalidState
+            ? "Aylık ödeme ve vade, finansman tutarını karşılamıyor. Bu teklif karar karşılaştırmasına dahil edilmez."
+            : "Ödeme planı finansman tutarını karşılıyor. Teklif karar karşılaştırmasına uygundur."}
+        </p>
       </div>
 
       <div className="mt-4 overflow-hidden rounded-[16px] border border-[#dce7e2] bg-white">
@@ -587,7 +645,10 @@ function ComparisonSummary({ summary }: { summary?: DecisionSummary }) {
     return (
       <div className="rounded-[22px] border border-[#e5edf5] bg-white px-5 py-6 shadow-[0_12px_30px_rgba(31,43,37,0.05)]">
         <h3 className="text-center text-[20px] font-bold tracking-[-0.03em] text-[#11653f]">Karşılaştırma Özeti</h3>
-        <p className="mt-3 text-center text-[14px] leading-6 text-[#5f6f86]">İki teklifi hesapladığınızda en avantajlı alternatif burada net şekilde vurgulanacaktır.</p>
+        <p className="mt-3 text-center text-[14px] leading-6 text-[#5f6f86]">
+          {summary?.summaryText ??
+            "İki teklifi hesapladığınızda en avantajlı alternatif burada net şekilde vurgulanacaktır."}
+        </p>
       </div>
     );
   }
@@ -809,4 +870,3 @@ export function OfferComparisonPage() {
     </main>
   );
 }
-

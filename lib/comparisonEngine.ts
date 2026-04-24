@@ -223,6 +223,10 @@ export type OfferResult = {
   companyParam: CompanyParam;
   assetType: AssetType;
   contractAmount: number;
+  totalInstallmentPayment: number;
+  unfundedAmount: number;
+  minimumRequiredMonthlyPayment: number;
+  isFundingValid: boolean;
   serviceFeeRate: number;
   serviceFeeAmount: number;
   totalNominalOutflow: number;
@@ -737,6 +741,21 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   warnings.push(...installmentSchedule.warnings);
 
+  const contractAmount = Math.max(assetPrice - downPayment, 0);
+  const totalInstallmentPayment = installmentSchedule.installments.reduce(
+    (sum, installment) => sum + installment,
+    0,
+  );
+  const unfundedAmount = Math.max(0, contractAmount - totalInstallmentPayment);
+  const minimumRequiredMonthlyPayment = term > 0 ? contractAmount / term : 0;
+  const isFundingValid = unfundedAmount <= 1;
+
+  if (!isFundingValid) {
+    warnings.push(
+      "Aylık ödeme ve vade, finansman tutarını karşılamıyor. Lütfen aylık ödemeyi veya vadeyi artırın.",
+    );
+  }
+
   const scenarioSet = calculateScenarioSet({
     offer,
     serviceFeeAmount,
@@ -763,6 +782,14 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
     `Teslim varsayımı ${selectedScenario.deliveryMonth}. ay üzerinden okunuyor.`,
   ];
 
+  if (!isFundingValid) {
+    commentary.unshift(
+      `Bu planda ${formatMoney(unfundedAmount)} tutarında eksik finansman oluşuyor. Minimum aylık ödeme yaklaşık ${formatMoney(
+        minimumRequiredMonthlyPayment,
+      )} olmalıdır.`,
+    );
+  }
+
   if (scenarioSet.mode === "range") {
     commentary.push(
       `Çekilişli modelde risk aralığı ${formatMoney(scenarioSet.bestNBM)} ile ${formatMoney(
@@ -782,7 +809,11 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
     company: offer.company,
     companyParam: company,
     assetType,
-    contractAmount: Math.max(assetPrice - downPayment, 0),
+    contractAmount,
+    totalInstallmentPayment,
+    unfundedAmount,
+    minimumRequiredMonthlyPayment,
+    isFundingValid,
     serviceFeeRate,
     serviceFeeAmount,
     totalNominalOutflow: selectedScenario.totalNominalOutflow,
@@ -807,15 +838,31 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     };
   }
 
-  const winnerIndex =
-    results.length === 1
-      ? 0
-      : results[0].scenarioSet.decisionScore <= results[1].scenarioSet.decisionScore
-        ? 0
-        : 1;
-  const loserIndex = winnerIndex === 0 ? 1 : 0;
-  const winner = results[winnerIndex];
-  const loser = results[loserIndex];
+  const validEntries = results
+    .map((result, index) => ({ result, index: index as 0 | 1 }))
+    .filter((entry) => entry.result.isFundingValid);
+
+  if (!validEntries.length) {
+    return {
+      winnerIndex: null,
+      difference: 0,
+      winnerLabel: "Geçerli teklif yok",
+      summaryText:
+        "Tekliflerin ödeme planı finansman tutarını karşılamıyor. Önce aylık ödeme veya vadeyi güncelleyin.",
+      infoText: "Karar skoru yalnızca finansman planı tutarlı tekliflerde değerlendirilir.",
+    };
+  }
+
+  const winnerEntry =
+    validEntries.length === 1
+      ? validEntries[0]
+      : validEntries[0].result.scenarioSet.decisionScore <= validEntries[1].result.scenarioSet.decisionScore
+        ? validEntries[0]
+        : validEntries[1];
+  const loserEntry = validEntries.find((entry) => entry.index !== winnerEntry.index);
+  const winnerIndex = winnerEntry.index;
+  const winner = winnerEntry.result;
+  const loser = loserEntry?.result;
   const difference = loser ? Math.abs(loser.scenarioSet.decisionScore - winner.scenarioSet.decisionScore) : 0;
 
   return {
@@ -823,7 +870,7 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     difference,
     winnerLabel: winner.company,
     summaryText: loser
-      ? `Teklif ${winnerIndex + 1}, Teklif ${loserIndex + 1}'e göre bugünkü değerle ${formatMoney(
+      ? `Teklif ${winnerIndex + 1}, Teklif ${loserEntry!.index + 1}'e göre bugünkü değerle ${formatMoney(
           difference,
         )} daha avantajlı.`
       : `Teklif ${winnerIndex + 1} hesaplandı.`,
@@ -890,4 +937,3 @@ export function loanScheduleToCsv(rows: LoanScheduleRow[]) {
     )
     .join("\n");
 }
-
