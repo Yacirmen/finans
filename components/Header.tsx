@@ -60,6 +60,12 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               className="relative"
               onMouseEnter={() => setCalculatorOpen(true)}
               onMouseLeave={() => setCalculatorOpen(false)}
+              onFocusCapture={() => setCalculatorOpen(true)}
+              onBlurCapture={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  setCalculatorOpen(false);
+                }
+              }}
             >
               <button
                 type="button"
@@ -75,16 +81,18 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               </button>
 
               {calculatorOpen ? (
-                <div className="absolute left-0 top-[calc(100%+10px)] w-[260px] rounded-[18px] border border-[#dce7e2] bg-white p-2 shadow-[0_18px_34px_rgba(31,43,37,0.12)]">
-                  {calculatorChildren.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#f5f8f6] hover:text-[#182132]"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+                <div className="absolute left-0 top-full z-50 w-[260px] pt-2">
+                  <div className="rounded-[18px] border border-[#dce7e2] bg-white p-2 shadow-[0_18px_34px_rgba(31,43,37,0.12)]">
+                    {calculatorChildren.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#f5f8f6] hover:text-[#182132]"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               ) : null}
             </div>
