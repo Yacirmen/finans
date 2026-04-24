@@ -12,8 +12,6 @@ const homeNavItems = [
 type ActiveNav = "home" | "calculator" | "firms" | "faq" | "about" | "blog" | "data" | "compare";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
-  const navItems = homeNavItems;
-
   return (
     <header className="sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur">
       <div className="page-container flex min-h-[72px] items-center justify-between gap-6">
@@ -29,7 +27,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
 
         <div className="hidden items-center gap-8 lg:flex">
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana menü">
-            {navItems.map((item) => {
+            {homeNavItems.map((item) => {
               const isActive = active === item.key || (active === "home" && item.key === "home");
               return (
                 <a
@@ -51,7 +49,6 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
             <a
               className="rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]"
               href={withBasePath("/teklifleri-karsilastir")}
-              data-compare-cta
             >
               Teklifleri Karşılaştır
             </a>
@@ -77,12 +74,12 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
 
       <div className="hidden border-t border-slate-200 bg-white lg:hidden" data-mobile-menu>
         <div className="page-container grid gap-2 py-4">
-          {navItems.map((item) => (
+          {homeNavItems.map((item) => (
             <a className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href={item.href} key={item.key}>
               {item.label}
             </a>
           ))}
-          <a className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href={withBasePath("/teklifleri-karsilastir")} data-compare-cta>
+          <a className="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href={withBasePath("/teklifleri-karsilastir")}>
             Teklifleri Karşılaştır
           </a>
           <a className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]" href="#login" data-login-button>
@@ -93,3 +90,4 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
     </header>
   );
 }
+

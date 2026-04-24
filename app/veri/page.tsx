@@ -1,7 +1,6 @@
 import { DataHubSection } from "../../components/DataHubSection";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
-import { InteractionScript } from "../../components/InteractionScript";
 
 export const metadata = {
   title: "Piyasa Endeksi ve Veri Sayfası",
@@ -14,7 +13,7 @@ export default function DataPage() {
       <Header active="data" />
       <DataHubSection />
       <Footer />
-      <InteractionScript />
     </>
   );
 }
+

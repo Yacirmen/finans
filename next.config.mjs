@@ -6,6 +6,7 @@ const nextConfig = {
   trailingSlash: true,
   basePath: repoBasePath,
   assetPrefix: repoBasePath || undefined,
+  allowedDevOrigins: ["127.0.0.1", "localhost", "http://127.0.0.1:3000", "http://localhost:3000"],
   images: {
     unoptimized: true,
   },
