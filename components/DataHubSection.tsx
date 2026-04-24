@@ -13,6 +13,15 @@ import { withBasePath } from "../lib/sitePaths";
 const numberFormatter = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
 const decimalFormatter = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 1 });
 
+const marketTickerItems = [
+  "BIST 100: 9.650,24 ▼ %0,82",
+  "USD/TRY: 32,45 ▲ %0,18",
+  "EUR/TRY: 35,10 ▲ %0,22",
+  "Gram Altın: 2.450 TL ▼ %0,35",
+  "Konut Kredisi Faizi: %3,25",
+  "Mevduat Faizi: %48,50",
+];
+
 function formatNumber(value: number) {
   return numberFormatter.format(value);
 }
@@ -164,6 +173,18 @@ function HeroIndex() {
         </div>
       </div>
     </section>
+  );
+}
+
+function MarketTicker() {
+  return (
+    <div className="market-ticker">
+      <div className="ticker-track">
+        {[...marketTickerItems, ...marketTickerItems].map((item, index) => (
+          <span key={`${item}-${index}`}>{item}</span>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -412,6 +433,7 @@ function AutoAndSources() {
 export function DataHubSection() {
   return (
     <main className="overflow-hidden bg-[#f6f8fb] pb-16">
+      <MarketTicker />
       <HeroIndex />
       <section className="page-container mt-8 grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
         <DriverBoard />
