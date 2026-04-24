@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[7121,[],""]
-3:I[4581,[],""]
-:HL["/finans/_next/static/css/5709a588f09e4ff6.css","style"]
-4:Tfac1,
+2:I[39756,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"default"]
+3:I[37457,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"default"]
+:HL["/finans/_next/static/chunks/0z90yro31yg10.css","style"]
+4:Tfaa1,
 (() => {
   const ready = (fn) => {
     if (document.readyState === "loading") {
@@ -54,7 +54,7 @@
     const getCompanyChevron = () => getCompanySelect()?.querySelector("[data-company-chevron]");
     const field = (name) => getCalculator()?.querySelector('[data-field="' + name + '"]');
     const bankField = (name) => getCalculator()?.querySelector('[data-bank-field="' + name + '"]');
-    const compareInput = (name) => getCalculator()?.querySelector('[data-compare-input="' + name + '"]');
+    const compareInput = () => null;
     const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
     const activeSegmentValue = (segmentName) => getCalculator()?.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
 
@@ -69,54 +69,9 @@
       });
     };
 
-    const syncComparisonInputs = () => {
-      const mappings = [
-        ["assetPrice", field("assetPrice")?.value || ""],
-        ["downPayment", field("downPayment")?.value || ""],
-        ["term", field("term")?.value || ""],
-        ["monthlyPayment", field("monthlyPayment")?.value || ""],
-        ["delivery", field("delivery")?.value || ""],
-        ["serviceFee", field("serviceFee")?.value || ""],
-        ["rent", field("rent")?.value || ""],
-        ["bankAmount", bankField("amount")?.value || ""],
-        ["bankRate", bankField("rate")?.value || ""],
-        ["bankTerm", bankField("term")?.value || ""],
-      ];
+    const syncComparisonInputs = () => {};
 
-      mappings.forEach(([key, value]) => {
-        const input = compareInput(key);
-        if (input && input.value !== value) input.value = value;
-      });
-    };
-
-    const syncFromComparisonInput = (target) => {
-      const key = target.dataset.compareInput;
-      if (!key) return;
-      const mainMap = {
-        assetPrice: "assetPrice",
-        downPayment: "downPayment",
-        term: "term",
-        monthlyPayment: "monthlyPayment",
-        delivery: "delivery",
-        serviceFee: "serviceFee",
-        rent: "rent",
-      };
-      const bankMap = {
-        bankAmount: "amount",
-        bankRate: "rate",
-        bankTerm: "term",
-      };
-
-      if (mainMap[key]) {
-        const input = field(mainMap[key]);
-        if (input) input.value = target.value;
-      }
-
-      if (bankMap[key]) {
-        const input = bankField(bankMap[key]);
-        if (input) input.value = target.value;
-      }
-    };
+    const syncFromComparisonInput = () => {};
 
     const parseNumber = (value) => {
       const raw = String(value || "").trim();
@@ -129,7 +84,7 @@
       return Number.isFinite(number) && number >= 0 ? number : 0;
     };
 
-    const formatMoney = (value) => "₺" + money.format(Math.max(0, Math.round(value || 0)));
+    const formatMoney = (value) => "₺" + money.format(Math.round(value || 0));
     const formatSignedMoney = (value) => {
       const safe = Math.round(value || 0);
       return (safe < 0 ? "-₺" : "₺") + money.format(Math.abs(safe));
@@ -322,7 +277,9 @@
       return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);
     };
 
-    const getCompareRoot = () => document.querySelector("[data-compare-root]");
+    const compareDiscountRate = (annualInflation) => annualInflation / 12 / 100;
+
+    const getCompareRoot = () => null;
 
     const buildCompareSchedule = (state) => {
       const baseMonthlyPayment = parseNumber(state.monthlyPayment);
@@ -354,7 +311,7 @@
       const serviceFeeRate = parseNumber(state.serviceFee);
       const rent = parseNumber(state.rent);
       const inflation = parseNumber(state.inflation) || 25;
-      const discountRate = monthlyDiscountRate(inflation);
+      const discountRate = compareDiscountRate(inflation);
       const suggestedDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
       const deliveryInput = Math.round(parseNumber(state.delivery));
       const delivery = Math.max(0, deliveryInput || suggestedDelivery);
@@ -425,6 +382,8 @@
         totalRepayment,
         totalOutflow,
         pvBenefit,
+        pvInstallments,
+        pvRent,
         score,
         nbm,
         suggestedDelivery,
@@ -434,11 +393,17 @@
     };
 
     const collectCompareState = (root, offerIndex, assetType) => {
-      const getValue = (field, fallback = "") => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]')?.value || fallback;
+      const getValue = (field, fallback = "") => {
+        const element = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]');
+        if (element instanceof HTMLSelectElement) {
+          return element.value || element.selectedOptions?.[0]?.value || fallback;
+        }
+        return element?.value || fallback;
+      };
       const getToggle = (name) => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-toggle-button="' + name + '"]')?.dataset.on === "true";
       const modelButton = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-model].active');
       return {
-        company: getValue("company", "Diger"),
+        company: getValue("company", "Diğer"),
         model: modelButton?.dataset.compareModel || "cekilissiz",
         assetPrice: getValue("assetPrice"),
         downPayment: getValue("downPayment"),
@@ -483,9 +448,8 @@
       content?.classList.remove("hidden");
       winner?.classList.toggle("hidden", !highlighted);
       card.dataset.highlighted = highlighted ? "true" : "false";
-      card.classList.toggle("border-[#b8ebcc]", highlighted);
-      card.classList.toggle("bg-[linear-gradient(180deg,#fbfffd_0%,#f0fbf5_100%)]", highlighted);
-      card.classList.toggle("shadow-[0_18px_48px_rgba(24,160,90,0.14)]", highlighted);
+      card.classList.toggle("border-[#f4c514]", highlighted);
+      card.classList.toggle("shadow-[0_20px_50px_rgba(232,179,0,0.16)]", highlighted);
       card.classList.toggle("border-[#dce7e2]", !highlighted);
       card.classList.toggle("bg-white", !highlighted);
 
@@ -502,7 +466,7 @@
       setField("company", result.state.company);
       setField("model", result.state.model === "cekilisli" ? "Cekilisli model" : "Cekilissiz model");
       setField("initialOutflow", formatMoney(result.initialOutflow));
-      setField("term", parseNumber(result.state.term) + " ay");
+      setField("term", String(parseNumber(result.state.term)));
       setField("monthlyPayment", formatMoney(parseNumber(result.state.monthlyPayment)));
       setField("totalRepayment", formatMoney(result.totalRepayment));
       setField("totalOutflow", formatMoney(result.totalOutflow));
@@ -510,10 +474,11 @@
       setField("downPayment", formatMoney(parseNumber(result.state.downPayment)));
       setField("serviceFee", formatPercent(parseNumber(result.state.serviceFee)));
       setField("contractAmount", formatMoney(result.contractAmount));
-      setField("delivery", parseNumber(result.state.delivery) + ". ay");
+      setField("delivery", String(parseNumber(result.state.delivery)));
       setField("suggestedDelivery", result.suggestedDelivery + ". ay");
       setField("pvBenefit", formatMoney(result.pvBenefit));
-      setField("score", formatMoney(result.score), "text-[#168b53]");
+      setField("pvPayments", formatMoney(result.pvInstallments + result.pvRent));
+      setField("score", formatSignedMoney(result.score), "text-[#168b53]");
 
       const bankSummary = card.querySelector("[data-compare-bank-summary]");
       if (result.bankSummary && bankSummary) {
@@ -524,6 +489,15 @@
       } else {
         bankSummary?.classList.add("hidden");
       }
+    };
+
+    const setCompareSummary = (root, winnerResult) => {
+      const card = root.querySelector("[data-compare-summary-card]");
+      if (!(card instanceof HTMLElement)) return;
+      const company = card.querySelector("[data-compare-summary-company]");
+      const nbm = card.querySelector("[data-compare-summary-nbm]");
+      if (company) company.textContent = winnerResult.state.company;
+      if (nbm) nbm.textContent = formatSignedMoney(winnerResult.score);
     };
 
     const setCompareCashflow = (root, offerIndex, rows) => {
@@ -537,17 +511,23 @@
       tableWrap?.classList.remove("hidden");
       exportButton?.classList.remove("hidden");
       if (!(body instanceof HTMLElement)) return;
-      body.innerHTML = rows.map((row) => {
-        return '<tr class="border-t border-[#edf2f7]">' +
+      const previewRows = rows.slice(0, 20);
+      body.innerHTML = previewRows.map((row) => {
+        const netOutflow = -(row.installment + row.rent + row.serviceFee);
+        return '<tr class="border-t border-[#edf2f7]' + (row.month === 12 ? ' bg-[#effbf5]' : '') + '">' +
           '<td class="px-4 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
-          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + formatMoney(row.installment) + '</td>' +
-          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + formatMoney(row.rent) + '</td>' +
-          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + formatMoney(row.serviceFee) + '</td>' +
-          '<td class="px-4 py-4 text-sm font-medium text-[#1c2433]">' + formatMoney(row.cumulativeOutflow) + '</td>' +
-          '<td class="px-4 py-4 text-sm font-medium text-[#168b53]">' + formatMoney(row.presentValue) + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#ff5b57]">' + formatSignedMoney(-row.installment) + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#ff5b57]">' + formatSignedMoney(netOutflow) + '</td>' +
         '</tr>';
       }).join("");
       body.dataset.csv = JSON.stringify(rows);
+      const note = block.querySelector("[data-compare-cashflow-note]");
+      if (note) {
+        const hiddenCount = Math.max(rows.length - previewRows.length, 0);
+        note.textContent = hiddenCount > 0
+          ? "... ve " + hiddenCount + " satır daha. (Tüm tabloyu görmek için Excel olarak indirin)"
+          : "Tüm satırlar görüntüleniyor.";
+      }
     };
 
     const exportCompareRows = (filename, rows) => {
@@ -566,9 +546,20 @@
     };
 
     const initCompareFallback = () => {
+      return;
       const root = getCompareRoot();
       if (!(root instanceof HTMLElement) || root.dataset.compareFallbackReady === "true") return;
       root.dataset.compareFallbackReady = "true";
+
+      root.querySelectorAll('select[data-compare-field]').forEach((select) => {
+        if (!(select instanceof HTMLSelectElement)) return;
+        const initialValue = select.dataset.initialValue;
+        if (initialValue && Array.from(select.options).some((option) => option.value === initialValue)) {
+          select.value = initialValue;
+        } else if (!select.value && Array.from(select.options).some((option) => option.value === "Diğer")) {
+          select.value = "Diğer";
+        }
+      });
 
       const render = () => {
         const assetType = root.querySelector("[data-compare-asset-button].active")?.dataset.compareAssetButton || "Konut";
@@ -582,6 +573,7 @@
         setCompareResultCard(root, 2, offerTwoResult, winnerIndex === 2);
         setCompareCashflow(root, 1, offerOneResult.cashflow);
         setCompareCashflow(root, 2, offerTwoResult.cashflow);
+        setCompareSummary(root, winnerIndex === 1 ? offerOneResult : offerTwoResult);
 
         const resultsSection = root.querySelector("[data-compare-results-section]");
         if (resultsSection instanceof HTMLElement) {
@@ -1425,9 +1417,6 @@
     setCalcView("main");
     applyScenario();
     syncComparisonInputs();
-    renderComparison();
-    renderCashflow();
-    initCompareFallback();
     document.querySelectorAll("[data-limit-field]").forEach((input) => {
       if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
         formatThousandsInput(input);
@@ -1438,4 +1427,4 @@
     scrollToHash();
   });
 })();
-0:{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/finans/_next/static/css/5709a588f09e4ff6.css","precedence":"next"}]],["$","html",null,{"lang":"tr","children":["$","body",null,{"children":[["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$4"}}]]}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Kqx1v-iUtHoEZOtowYA1-"}
+0:{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/finans/_next/static/chunks/0z90yro31yg10.css","precedence":"next"}],["$","script","script-0",{"src":"/finans/_next/static/chunks/0dbhjjzl8qfwv.js","async":true}]],["$","html",null,{"lang":"tr","children":["$","body",null,{"children":[["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$4"}}]]}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"LKwh0oRfP1_o9EpllW9ZF"}

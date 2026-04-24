@@ -1,4 +1,4 @@
-import {
+﻿import {
   LOAN_PRESETS,
   calculateLoanSummary,
   type LoanScheduleRow,
@@ -258,7 +258,7 @@ export function parseCurrencyLike(value: string | number | null | undefined) {
 
   const normalized = raw
     .replace(/\s+/g, "")
-    .replace(/[₺$€]/g, "")
+    .replace(/[â‚º$â‚¬]/g, "")
     .replace(/TL/gi, "")
     .replace(/\.(?=\d{3}(?:\D|$))/g, "")
     .replace(",", ".");
@@ -678,9 +678,9 @@ export function calculateScenarioSet({
     term,
   );
 
-  const goodScenario = buildScenario("good", "İyi senaryo", goodDelivery);
+  const goodScenario = buildScenario("good", "Ä°yi senaryo", goodDelivery);
   const averageScenario = buildScenario("average", "Ortalama senaryo", averageDelivery);
-  const badScenario = buildScenario("bad", "Kötü senaryo", badDelivery);
+  const badScenario = buildScenario("bad", "KÃ¶tÃ¼ senaryo", badDelivery);
   const scenarios = [goodScenario, averageScenario, badScenario];
   const nbmValues = scenarios.map((scenario) => scenario.nbm);
   const risk = standardDeviation(nbmValues);
@@ -718,7 +718,7 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   if (!assetPrice) warnings.push("Varlık fiyatı sıfır veya boş görünüyor.");
   if (!monthlyPayment) warnings.push("Aylık ödeme sıfır veya boş görünüyor.");
-  if (parseCurrencyLike(offer.serviceFee) < 0) warnings.push("Hizmet bedeli oranı negatif olamaz.");
+  if (parseCurrencyLike(offer.serviceFee) < 0) warnings.push("Hizmet bedeli oranÄ± negatif olamaz.");
   if (parseCurrencyLike(offer.creditRate) < 0) warnings.push("Kredi faizi negatif olamaz.");
 
   const expectedDelivery =
@@ -752,7 +752,7 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   if (!isFundingValid) {
     warnings.push(
-      "Aylık ödeme ve vade, finansman tutarını karşılamıyor. Lütfen aylık ödemeyi veya vadeyi artırın.",
+      "AylÄ±k Ã¶deme ve vade, finansman tutarÄ±nÄ± karÅŸÄ±lamÄ±yor. LÃ¼tfen aylÄ±k Ã¶demeyi veya vadeyi artÄ±rÄ±n.",
     );
   }
 
@@ -774,9 +774,9 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
   });
 
   const commentary = [
-    `Toplam NBM ${formatMoney(selectedScenario.nbm)} seviyesinde oluşuyor.`,
-    `Kira etkisinin bugünkü değeri ${formatMoney(selectedScenario.nbmBreakdown.rentPv)} düzeyinde.`,
-    `Hizmet bedeli ve peşinatın toplam bugünkü yükü ${formatMoney(
+    `Toplam NBM ${formatMoney(selectedScenario.nbm)} seviyesinde oluÅŸuyor.`,
+    `Kira etkisinin bugÃ¼nkÃ¼ deÄŸeri ${formatMoney(selectedScenario.nbmBreakdown.rentPv)} düzeyinde.`,
+    `Hizmet bedeli ve peÅŸinatÄ±n toplam bugÃ¼nkÃ¼ yÃ¼kÃ¼ ${formatMoney(
       selectedScenario.nbmBreakdown.downPaymentPv + selectedScenario.nbmBreakdown.serviceFeePv,
     )}.`,
     `Teslim varsayımı ${selectedScenario.deliveryMonth}. ay üzerinden okunuyor.`,
@@ -786,15 +786,15 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
     commentary.unshift(
       `Bu planda ${formatMoney(unfundedAmount)} tutarında eksik finansman oluşuyor. Minimum aylık ödeme yaklaşık ${formatMoney(
         minimumRequiredMonthlyPayment,
-      )} olmalıdır.`,
+      )} olmalÄ±dÄ±r.`,
     );
   }
 
   if (scenarioSet.mode === "range") {
     commentary.push(
-      `Çekilişli modelde risk aralığı ${formatMoney(scenarioSet.bestNBM)} ile ${formatMoney(
+      `Ã‡ekiliÅŸli modelde risk aralÄ±ÄŸÄ± ${formatMoney(scenarioSet.bestNBM)} ile ${formatMoney(
         scenarioSet.worstNBM,
-      )} arasında değişiyor.`,
+      )} arasÄ±nda deÄŸiÅŸiyor.`,
     );
   }
 
@@ -802,7 +802,7 @@ export function calculateOffer(assetType: AssetType, offer: OfferState): OfferRe
 
   const riskWarning =
     scenarioSet.mode === "range" && scenarioSet.riskLabel !== "Düşük"
-      ? "Bu teklif daha düşük maliyetli görünse de teslim belirsizliği nedeniyle risklidir."
+      ? "Bu teklif daha dÃ¼ÅŸÃ¼k maliyetli gÃ¶rÃ¼nse de teslim belirsizliÄŸi nedeniyle risklidir."
       : undefined;
 
   return {
@@ -832,9 +832,9 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     return {
       winnerIndex: null,
       difference: 0,
-      winnerLabel: "Sonuç bekleniyor",
-      summaryText: "Karşılaştırma için iki teklifi de hesaplayın.",
-      infoText: "Karar skoru = Ortalama NBM + risk cezası + gecikme maliyeti.",
+      winnerLabel: "SonuÃ§ bekleniyor",
+      summaryText: "KarÅŸÄ±laÅŸtÄ±rma iÃ§in iki teklifi de hesaplayÄ±n.",
+      infoText: "Karar skoru = Ortalama NBM + risk cezasÄ± + gecikme maliyeti.",
     };
   }
 
@@ -846,7 +846,7 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     return {
       winnerIndex: null,
       difference: 0,
-      winnerLabel: "Geçerli teklif yok",
+      winnerLabel: "GeÃ§erli teklif yok",
       summaryText:
         "Tekliflerin ödeme planı finansman tutarını karşılamıyor. Önce aylık ödeme veya vadeyi güncelleyin.",
       infoText: "Karar skoru yalnızca finansman planı tutarlı tekliflerde değerlendirilir.",
@@ -870,11 +870,11 @@ export function calculateDecisionSummary(results: OfferResult[]): DecisionSummar
     difference,
     winnerLabel: winner.company,
     summaryText: loser
-      ? `Teklif ${winnerIndex + 1}, Teklif ${loserEntry!.index + 1}'e göre bugünkü değerle ${formatMoney(
+      ? `Teklif ${winnerIndex + 1}, Teklif ${loserEntry!.index + 1}''e göre bugünkü değerle ${formatMoney(
           difference,
-        )} daha avantajlı.`
-      : `Teklif ${winnerIndex + 1} hesaplandı.`,
-    infoText: "Karar skoru = Ortalama NBM + risk cezası + gecikme maliyeti.",
+        )} daha avantajlÄ±.`
+      : `Teklif ${winnerIndex + 1} hesaplandÄ±.`,
+    infoText: "Karar skoru = Ortalama NBM + risk cezasÄ± + gecikme maliyeti.",
     cautionText: winner.riskWarning,
   };
 }
@@ -891,7 +891,7 @@ export function cashflowRowsToCsv(rows: CashflowRow[]) {
   const header = [
     "Ay",
     "Taksit",
-    "Peşinat",
+    "PeÅŸinat",
     "Hizmet Bedeli",
     "Kira",
     "Toplam Çıkış",
@@ -937,3 +937,4 @@ export function loanScheduleToCsv(rows: LoanScheduleRow[]) {
     )
     .join("\n");
 }
+

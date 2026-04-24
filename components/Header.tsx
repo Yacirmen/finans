@@ -32,6 +32,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana menü">
             {homeNavItems.map((item) => {
               const isActive = active === item.key || (active === "home" && item.key === "home");
+
               return (
                 <a
                   key={item.key}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import {
   COMPANY_OPTIONS,
   DEFAULT_OFFER,
@@ -12,7 +11,6 @@ import {
   type CashflowRow,
   type CompanyName,
   type DecisionSummary,
-  type LoanComparison,
   type OfferResult,
   type OfferState,
   calculateDecisionSummary,
@@ -35,7 +33,7 @@ function getOfferFromSearch(searchParams: URLSearchParams, prefix: "offer1" | "o
   const fallback = DEFAULT_OFFER;
   const company = readSearchValue(searchParams, `${prefix}_company`, fallback.company) as CompanyName;
   const companyDefaultServiceFee =
-    companyParams[company]?.defaultServiceFeeRate ?? companyParams.Diğer.defaultServiceFeeRate;
+    companyParams[company]?.defaultServiceFeeRate ?? companyParams["Diğer"].defaultServiceFeeRate;
 
   return {
     model: readSearchValue(searchParams, `${prefix}_model`, fallback.model) as OfferState["model"],
@@ -67,6 +65,17 @@ function getOfferFromSearch(searchParams: URLSearchParams, prefix: "offer1" | "o
       `${prefix}_bankHousingStatus`,
       fallback.bankHousingStatus,
     ) as OfferState["bankHousingStatus"],
+  };
+}
+
+function parseComparisonState(search: string) {
+  const params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
+
+  return {
+    assetType: (readSearchValue(params, "assetType", "Konut") as AssetType) || "Konut",
+    offerOne: getOfferFromSearch(params, "offer1"),
+    offerTwo: getOfferFromSearch(params, "offer2"),
+    hasCalculated: readBoolean(params, "calculate", false),
   };
 }
 
@@ -104,6 +113,21 @@ function createUrlSearch(assetType: AssetType, offerOne: OfferState, offerTwo: O
   return params.toString();
 }
 
+function updateOfferField<T extends keyof OfferState>(offer: OfferState, key: T, value: OfferState[T]): OfferState {
+  if (key === "company") {
+    const nextCompany = value as CompanyName;
+    const previousDefault = `${companyParams[offer.company].defaultServiceFeeRate}`.replace(".", ",");
+    const nextDefault = `${companyParams[nextCompany].defaultServiceFeeRate}`.replace(".", ",");
+    return {
+      ...offer,
+      company: nextCompany,
+      serviceFee: !offer.serviceFee || offer.serviceFee === previousDefault ? nextDefault : offer.serviceFee,
+    };
+  }
+
+  return { ...offer, [key]: value };
+}
+
 function downloadCsv(filename: string, csv: string) {
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
@@ -136,7 +160,10 @@ function SegmentGroup({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="grid rounded-[14px] bg-[#eef3f8] p-1" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}>
+    <div
+      className="grid rounded-[14px] bg-[#eef3f8] p-1"
+      style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
+    >
       {options.map((option) => {
         const active = value === option.value;
         return (
@@ -168,9 +195,15 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <button type="button" onClick={() => onChange(!checked)} className="flex items-center gap-3 text-left text-[14px] font-medium text-[#5d6b80]">
+    <button
+      type="button"
+      onClick={() => onChange(!checked)}
+      className="flex items-center gap-3 text-left text-[14px] font-medium text-[#5d6b80]"
+    >
       <span className={`relative h-6 w-11 rounded-full transition-all ${checked ? "bg-[#16a05a]" : "bg-[#d7e3ef]"}`}>
-        <span className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all ${checked ? "left-6" : "left-1"}`} />
+        <span
+          className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all ${checked ? "left-6" : "left-1"}`}
+        />
       </span>
       {label}
     </button>
@@ -179,6 +212,47 @@ function ToggleField({
 
 function InputLabel({ children }: { children: React.ReactNode }) {
   return <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">{children}</span>;
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  help,
+  as = "input",
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  type?: string;
+  help?: string;
+  as?: "input" | "textarea";
+}) {
+  return (
+    <label className="grid gap-2">
+      <InputLabel>{label}</InputLabel>
+      {as === "textarea" ? (
+        <textarea
+          className="form-control min-h-[88px] !rounded-[14px] !bg-white !py-3 text-[14px] font-medium"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          placeholder={placeholder}
+        />
+      ) : (
+        <input
+          className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          placeholder={placeholder}
+          type={type}
+        />
+      )}
+      {help ? <span className="text-[12px] text-[#8492a6]">{help}</span> : null}
+    </label>
+  );
 }
 
 function HelperWarnings({ warnings }: { warnings: string[] }) {
@@ -192,22 +266,6 @@ function HelperWarnings({ warnings }: { warnings: string[] }) {
   );
 }
 
-function updateOfferField<T extends keyof OfferState>(offer: OfferState, key: T, value: OfferState[T]): OfferState {
-  if (key === "company") {
-    const nextCompany = value as CompanyName;
-    const previousDefault = `${companyParams[offer.company].defaultServiceFeeRate}`.replace(".", ",");
-    const nextDefault = `${companyParams[nextCompany].defaultServiceFeeRate}`.replace(".", ",");
-
-    return {
-      ...offer,
-      company: nextCompany,
-      serviceFee: !offer.serviceFee || offer.serviceFee === previousDefault ? nextDefault : offer.serviceFee,
-    };
-  }
-
-  return { ...offer, [key]: value };
-}
-
 function OfferInputPanel({
   title,
   assetType,
@@ -219,14 +277,15 @@ function OfferInputPanel({
   offer: OfferState;
   onChange: (offer: OfferState) => void;
 }) {
-  const companyMeta = companyParams[offer.company];
-  const priceLabel = assetType === "Konut" ? "Evin Fiyatı (TL)" : "Araç Fiyatı (TL)";
+  const priceLabel = assetType === "Konut" ? "Evin fiyatı (TL)" : "Araç fiyatı (TL)";
 
   return (
     <article className="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_28px_rgba(31,43,37,0.05)]">
       <div className="flex items-center justify-between gap-4">
         <h3 className="text-[22px] font-bold tracking-[-0.03em] text-[#172133]">{title}</h3>
-        <span className="rounded-full bg-[#f3f7fb] px-3 py-1 text-[12px] font-semibold text-[#6e7b8f]">{offer.company}</span>
+        <span className="rounded-full bg-[#f3f7fb] px-3 py-1 text-[12px] font-semibold text-[#6e7b8f]">
+          {offer.company}
+        </span>
       </div>
 
       <div className="mt-5 grid gap-4">
@@ -248,8 +307,8 @@ function OfferInputPanel({
           <InputLabel>Şirket seçimi</InputLabel>
           <select
             className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium"
-            onChange={(event) => onChange(updateOfferField(offer, "company", event.target.value as CompanyName))}
             value={offer.company}
+            onChange={(event) => onChange(updateOfferField(offer, "company", event.target.value as CompanyName))}
           >
             {COMPANY_OPTIONS.map((company) => (
               <option key={company} value={company}>
@@ -257,101 +316,107 @@ function OfferInputPanel({
               </option>
             ))}
           </select>
-          <span className="text-[12px] text-[#8492a6]">{companyMeta.notes}</span>
+          <span className="text-[12px] text-[#8492a6]">{companyParams[offer.company].notes}</span>
         </label>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="grid gap-2">
-            <InputLabel>{priceLabel}</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.assetPrice} onChange={(event) => onChange(updateOfferField(offer, "assetPrice", event.target.value))} placeholder={assetType === "Konut" ? "3.000.000" : "1.500.000"} />
-          </label>
-          <label className="grid gap-2">
-            <InputLabel>Peşinat (TL)</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.downPayment} onChange={(event) => onChange(updateOfferField(offer, "downPayment", event.target.value))} placeholder="1.000.000" />
-          </label>
-          <label className="grid gap-2">
-            <InputLabel>Taksit (Ay)</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.term} onChange={(event) => onChange(updateOfferField(offer, "term", event.target.value))} placeholder={assetType === "Konut" ? "90" : "48"} />
-            <span className="text-[12px] text-[#8492a6]">Araçlar max 60, konutlar max 120 ay.</span>
-          </label>
-          <label className="grid gap-2">
-            <InputLabel>Aylık ödeme</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.monthlyPayment} onChange={(event) => onChange(updateOfferField(offer, "monthlyPayment", event.target.value))} placeholder="41.667" />
-          </label>
+          <Field
+            label={priceLabel}
+            value={offer.assetPrice}
+            onChange={(value) => onChange(updateOfferField(offer, "assetPrice", value))}
+            placeholder={assetType === "Konut" ? "3.000.000" : "1.500.000"}
+          />
+          <Field
+            label="Peşinat (TL)"
+            value={offer.downPayment}
+            onChange={(value) => onChange(updateOfferField(offer, "downPayment", value))}
+            placeholder="1.000.000"
+          />
+          <Field
+            label="Taksit (Ay)"
+            value={offer.term}
+            onChange={(value) => onChange(updateOfferField(offer, "term", value))}
+            placeholder={assetType === "Konut" ? "90" : "48"}
+            help="Araçlar max 60, konutlar max 120 ay."
+          />
+          <Field
+            label="Aylık ödeme"
+            value={offer.monthlyPayment}
+            onChange={(value) => onChange(updateOfferField(offer, "monthlyPayment", value))}
+            placeholder="41.667"
+          />
         </div>
 
         <div className="flex flex-wrap gap-5">
-          <ToggleField checked={offer.escalating} label="Artışlı taksit planı" onChange={(checked) => onChange(updateOfferField(offer, "escalating", checked))} />
-          <ToggleField checked={offer.manualPlan} label="Manuel plan oluştur" onChange={(checked) => onChange(updateOfferField(offer, "manualPlan", checked))} />
+          <ToggleField
+            checked={offer.escalating}
+            label="Artışlı taksit planı"
+            onChange={(checked) => onChange(updateOfferField(offer, "escalating", checked))}
+          />
+          <ToggleField
+            checked={offer.manualPlan}
+            label="Manuel plan oluştur"
+            onChange={(checked) => onChange(updateOfferField(offer, "manualPlan", checked))}
+          />
         </div>
 
         {offer.manualPlan ? (
-          <label className="grid gap-2">
-            <InputLabel>Manuel plan</InputLabel>
-            <textarea className="form-control min-h-[88px] !rounded-[14px] !bg-white !py-3 text-[14px] font-medium" value={offer.manualPlanText} onChange={(event) => onChange(updateOfferField(offer, "manualPlanText", event.target.value))} placeholder="41.667, 41.667, 55.000 veya satır satır girin" />
-          </label>
+          <Field
+            as="textarea"
+            label="Manuel plan"
+            value={offer.manualPlanText}
+            onChange={(value) => onChange(updateOfferField(offer, "manualPlanText", value))}
+            placeholder="41.667, 41.667, 55.000 veya satır satır girin"
+          />
         ) : null}
 
         <div className="grid gap-4 md:grid-cols-3">
-          <label className="grid gap-2">
-            <InputLabel>Teslim ayı</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.delivery} onChange={(event) => onChange(updateOfferField(offer, "delivery", event.target.value))} />
-          </label>
-          <label className="grid gap-2">
-            <InputLabel>Hizmet bedeli (%)</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.serviceFee} onChange={(event) => onChange(updateOfferField(offer, "serviceFee", event.target.value))} />
-          </label>
-          <label className="grid gap-2">
-            <InputLabel>Kira (TL/ay)</InputLabel>
-            <input className="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" value={offer.rent} onChange={(event) => onChange(updateOfferField(offer, "rent", event.target.value))} />
-          </label>
+          <Field label="Teslim ayı" value={offer.delivery} onChange={(value) => onChange(updateOfferField(offer, "delivery", value))} />
+          <Field label="Hizmet bedeli (%)" value={offer.serviceFee} onChange={(value) => onChange(updateOfferField(offer, "serviceFee", value))} />
+          <Field label="Kira (TL/ay)" value={offer.rent} onChange={(value) => onChange(updateOfferField(offer, "rent", value))} />
         </div>
 
         <div className="rounded-[18px] border border-[#e4ecf4] bg-[#fbfdff] p-4">
-          <button className="flex w-full items-center justify-between text-left text-[13px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]" onClick={() => onChange(updateOfferField(offer, "advancedOpen", !offer.advancedOpen))} type="button">
+          <button
+            className="flex w-full items-center justify-between text-left text-[13px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]"
+            onClick={() => onChange(updateOfferField(offer, "advancedOpen", !offer.advancedOpen))}
+            type="button"
+          >
             Gelişmiş parametreler
-            <span>{offer.advancedOpen ? "−" : "+"}</span>
+            <span>{offer.advancedOpen ? "-" : "+"}</span>
           </button>
           {offer.advancedOpen ? (
             <div className="mt-4 grid gap-4 md:grid-cols-3">
-              <label className="grid gap-2">
-                <span className="min-h-[32px] text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Yıllık enflasyon (%)</span>
-                <input className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.inflation} onChange={(event) => onChange(updateOfferField(offer, "inflation", event.target.value))} />
-              </label>
-              <label className="grid gap-2">
-                <span className="min-h-[32px] text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Kredi faizi (% / ay)</span>
-                <input className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.creditRate} onChange={(event) => onChange(updateOfferField(offer, "creditRate", event.target.value))} />
-              </label>
-              <label className="grid gap-2">
-                <span className="min-h-[32px] text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Yıllık taksit artışı (%)</span>
-                <input className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.yearlyIncrease} onChange={(event) => onChange(updateOfferField(offer, "yearlyIncrease", event.target.value))} />
-              </label>
+              <Field label="Yıllık enflasyon (%)" value={offer.inflation} onChange={(value) => onChange(updateOfferField(offer, "inflation", value))} />
+              <Field label="Kredi faizi (% / ay)" value={offer.creditRate} onChange={(value) => onChange(updateOfferField(offer, "creditRate", value))} />
+              <Field label="Yıllık taksit artışı (%)" value={offer.yearlyIncrease} onChange={(value) => onChange(updateOfferField(offer, "yearlyIncrease", value))} />
             </div>
           ) : null}
         </div>
 
         <div className="rounded-[18px] border border-[#dce7e2] bg-[#fbfdff] p-4">
-          <ToggleField checked={offer.compareBank} label="Tasarruf finansmanı ile konut kredisini kıyasla" onChange={(checked) => onChange(updateOfferField(offer, "compareBank", checked))} />
+          <ToggleField
+            checked={offer.compareBank}
+            label="Tasarruf finansmanı ile konut kredisini kıyasla"
+            onChange={(checked) => onChange(updateOfferField(offer, "compareBank", checked))}
+          />
           {offer.compareBank ? (
             <>
               <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr_0.7fr_0.7fr]">
-                <label className="grid gap-2">
-                  <InputLabel>Kredi tutarı (TL)</InputLabel>
-                  <input className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.bankAmount} onChange={(event) => onChange(updateOfferField(offer, "bankAmount", event.target.value))} />
-                </label>
-                <label className="grid gap-2">
-                  <InputLabel>Aylık faiz (%)</InputLabel>
-                  <input className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.bankRate} onChange={(event) => onChange(updateOfferField(offer, "bankRate", event.target.value))} />
-                </label>
-                <label className="grid gap-2">
-                  <InputLabel>Vade (Ay)</InputLabel>
-                  <input className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.bankTerm} onChange={(event) => onChange(updateOfferField(offer, "bankTerm", event.target.value))} />
-                </label>
+                <Field label="Kredi tutarı (TL)" value={offer.bankAmount} onChange={(value) => onChange(updateOfferField(offer, "bankAmount", value))} />
+                <Field label="Aylık faiz (%)" value={offer.bankRate} onChange={(value) => onChange(updateOfferField(offer, "bankRate", value))} />
+                <Field label="Vade (Ay)" value={offer.bankTerm} onChange={(value) => onChange(updateOfferField(offer, "bankTerm", value))} />
               </div>
               {assetType === "Konut" ? (
                 <label className="mt-4 grid gap-2 md:max-w-[360px]">
                   <InputLabel>Konut sahipliği</InputLabel>
-                  <select className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium" value={offer.bankHousingStatus} onChange={(event) => onChange(updateOfferField(offer, "bankHousingStatus", event.target.value as OfferState["bankHousingStatus"]))}>
+                  <select
+                    className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium"
+                    value={offer.bankHousingStatus}
+                    onChange={(event) =>
+                      onChange(updateOfferField(offer, "bankHousingStatus", event.target.value as OfferState["bankHousingStatus"]))
+                    }
+                  >
                     <option value="yok">Evi yok</option>
                     <option value="var">Evi var</option>
                   </select>
@@ -360,6 +425,25 @@ function OfferInputPanel({
             </>
           ) : null}
         </div>
+      </div>
+    </article>
+  );
+}
+
+function EmptyCard({ title }: { title: string }) {
+  return (
+    <article className="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]">
+      <div className="flex items-center gap-3 border-b border-[#e7eef5] pb-4">
+        <span className="flex h-9 w-9 items-center justify-center rounded-[11px] border border-[#d8eee2] bg-[#f1fdf6] text-[#16a05a]">
+          ■
+        </span>
+        <div>
+          <span className="block text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">{title}</span>
+          <h3 className="mt-1 text-[28px] font-bold tracking-[-0.04em] text-[#172133]">Sonuç ekranı</h3>
+        </div>
+      </div>
+      <div className="mt-6 rounded-[16px] border border-dashed border-[#d9e4ee] bg-[#fbfdff] p-5 text-sm leading-7 text-[#72819a]">
+        Lütfen hesaplama parametrelerini doldurun. Sonuçlar burada listelenecektir.
       </div>
     </article>
   );
@@ -374,22 +458,7 @@ function ResultCard({
   result?: OfferResult;
   highlighted: boolean;
 }) {
-  if (!result) {
-    return (
-      <article className="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]">
-        <div className="flex items-center gap-3 border-b border-[#e7eef5] pb-4">
-          <span className="flex h-9 w-9 items-center justify-center rounded-[11px] border border-[#d8eee2] bg-[#f1fdf6] text-[#16a05a]">▣</span>
-          <div>
-            <span className="block text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">{title}</span>
-            <h3 className="mt-1 text-[28px] font-bold tracking-[-0.04em] text-[#172133]">Sonuç ekranı</h3>
-          </div>
-        </div>
-        <div className="mt-6 rounded-[16px] border border-dashed border-[#d9e4ee] bg-[#fbfdff] p-5 text-sm leading-7 text-[#72819a]">
-          Lütfen hesaplama parametrelerini doldurun. Sonuçlar burada listelenecektir.
-        </div>
-      </article>
-    );
-  }
+  if (!result) return <EmptyCard title={title} />;
 
   const breakdown = result.selectedScenario.nbmBreakdown;
   const loan = result.loanComparison;
@@ -416,7 +485,9 @@ function ResultCard({
       ) : null}
 
       <div className="flex items-center gap-3 border-b border-[#e7eef5] pb-4">
-        <span className="flex h-9 w-9 items-center justify-center rounded-[11px] border border-[#d8eee2] bg-[#f1fdf6] text-[#16a05a]">▣</span>
+        <span className="flex h-9 w-9 items-center justify-center rounded-[11px] border border-[#d8eee2] bg-[#f1fdf6] text-[#16a05a]">
+          ■
+        </span>
         <div>
           <span className="block text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]">{title}</span>
           <h3 className="mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Hesaplama Özeti</h3>
@@ -441,203 +512,155 @@ function ResultCard({
 
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         <div className="rounded-[13px] border border-[#e3ebf4] bg-[#fdfefe] px-4 py-3">
-          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
-            Finansman / Kontrat Tutarı
-          </span>
-          <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">
-            {formatMoney(result.contractAmount)}
-          </strong>
+          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Finansman / Kontrat Tutarı</span>
+          <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">{formatMoney(result.contractAmount)}</strong>
         </div>
         <div className="rounded-[13px] border border-[#e3ebf4] bg-[#fdfefe] px-4 py-3">
-          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
-            Toplam Taksit Ödemesi
-          </span>
-          <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">
-            {formatMoney(result.totalInstallmentPayment)}
-          </strong>
+          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Toplam Taksit Ödemesi</span>
+          <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">{formatMoney(result.totalInstallmentPayment)}</strong>
         </div>
       </div>
 
-      <div
-        className={`mt-3 rounded-[16px] border px-4 py-4 ${
-          invalidState ? "border-[#f0c8c4] bg-[#fff7f6]" : "border-[#d6ede0] bg-[#f5fcf8]"
-        }`}
-      >
+      <div className={`mt-3 rounded-[16px] border px-4 py-4 ${invalidState ? "border-[#f0c8c4] bg-[#fff7f6]" : "border-[#d6ede0] bg-[#f5fcf8]"}`}>
         <div className="grid gap-3 md:grid-cols-2">
           <div>
-            <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
-              Eksik Finansman Tutarı
-            </span>
-            <strong className={`mt-2 block text-[24px] font-black tracking-[-0.04em] ${invalidState ? "text-[#d34a3b]" : "text-[#16a05a]"}`}>
-              {formatMoney(result.unfundedAmount)}
-            </strong>
+            <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Eksik Finansman Tutarı</span>
+            <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">{formatMoney(result.unfundedAmount)}</strong>
           </div>
           <div>
-            <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
-              Minimum Gerekli Aylık Ödeme
-            </span>
-            <strong className="mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#172133]">
-              {formatMoney(result.minimumRequiredMonthlyPayment)}
-            </strong>
+            <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Minimum Gerekli Aylık Ödeme</span>
+            <strong className="mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#172133]">{formatMoney(result.minimumRequiredMonthlyPayment)}</strong>
           </div>
         </div>
-        <p className={`mt-3 text-[13px] leading-6 ${invalidState ? "text-[#b24a3c]" : "text-[#557063]"}`}>
+        <p className="mt-3 text-[13px] leading-6 text-[#6d7a90]">
           {invalidState
             ? "Aylık ödeme ve vade, finansman tutarını karşılamıyor. Bu teklif karar karşılaştırmasına dahil edilmez."
             : "Ödeme planı finansman tutarını karşılıyor. Teklif karar karşılaştırmasına uygundur."}
         </p>
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-[16px] border border-[#dce7e2] bg-white">
-        <div className="border-b border-[#e9eff5] px-4 py-3.5">
+      <div className="mt-4 rounded-[18px] border border-[#dce7e2] bg-[#ffffff]">
+        <div className="border-b border-[#e7eef5] px-4 py-3">
           <h4 className="text-[13px] font-bold uppercase tracking-[0.06em] text-[#1c2433]">Net maliyet (NBM) detayı</h4>
         </div>
-        <div className="px-4 py-2.5 text-[13px] text-[#6f7d94]">
+        <div className="px-4 py-4 text-[14px] text-[#58687f]">
           {[
             ["Peşinat PV", breakdown.downPaymentPv, "red"],
             ["Hizmet bedeli PV", breakdown.serviceFeePv, "red"],
             ["Taksitler PV", breakdown.installmentsPv, "red"],
             ["Kira PV", breakdown.rentPv, "red"],
-            ["Toplam NBM", breakdown.totalNBM, "green"],
-          ].map(([label, value, tone], index) => (
-            <div key={label} className={`flex items-center justify-between gap-4 py-3.5 ${index < 4 ? "border-b border-[#eef3f8]" : ""}`}>
+          ].map(([label, value, tone]) => (
+            <div key={label} className="flex items-center justify-between gap-3 border-b border-[#eef2f7] py-3 last:border-b-0">
               <span>{label}</span>
-              <strong className={tone === "green" ? "text-[#18a05a]" : "text-[#ff5b57]"}>{formatMoney(Number(value))}</strong>
+              <strong className={tone === "red" ? "text-[#e05044]" : "text-[#16a05a]"}>{formatMoney(Number(value))}</strong>
             </div>
           ))}
         </div>
-        <div className="border-t border-[#e5edf5] bg-[#f8fbff] px-4 py-4">
-          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Karar skoru</span>
-          <strong className="mt-1.5 block text-[24px] font-black tracking-[-0.04em] text-[#172133]">{formatMoney(result.scenarioSet.decisionScore)}</strong>
+        <div className="border-t border-[#e7eef5] bg-[#fbfdff] px-4 py-4 text-center">
+          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Toplam NBM</span>
+          <strong className="mt-2 block text-[34px] font-black tracking-[-0.05em] text-[#16a05a]">{formatMoney(result.totalNBM)}</strong>
           <span className="mt-2 block text-[12px] leading-5 text-[#6f7d94]">Karar skoru = Ortalama NBM + risk cezası + gecikme maliyeti.</span>
         </div>
       </div>
 
       <div className="mt-4 grid gap-3">
-        <div className="rounded-[16px] border border-[#e4ecf4] bg-[#fbfdff] px-4 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Risk seviyesi</span>
-            <span
-              className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${
-                result.scenarioSet.riskLabel === "Düşük"
-                  ? "bg-[#eafbf1] text-[#168b53]"
-                  : result.scenarioSet.riskLabel === "Orta"
-                    ? "bg-[#fff4dd] text-[#a66c00]"
-                    : "bg-[#fff0ee] text-[#d34a3b]"
-              }`}
-            >
-              {result.scenarioSet.riskLabel}
-            </span>
-          </div>
-          <div className="mt-3 grid gap-2 text-[13px] text-[#6f7d94]">
-            {result.scenarioSet.mode === "range" ? (
-              <>
-                <div className="flex items-center justify-between gap-3"><span>En iyi NBM</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.bestNBM)}</strong></div>
-                <div className="flex items-center justify-between gap-3"><span>Ortalama NBM</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.averageNBM)}</strong></div>
-                <div className="flex items-center justify-between gap-3"><span>En kötü NBM</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.worstNBM)}</strong></div>
-                <div className="flex items-center justify-between gap-3"><span>Gecikme maliyeti</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.delayCost)}</strong></div>
-              </>
-            ) : (
-              <span>Çekilişsiz modelde teslim riski sabit kabul edilir.</span>
-            )}
-          </div>
-        </div>
-
-        <div className="rounded-[16px] border border-[#e4ecf4] bg-white px-4 py-4">
-          <h4 className="text-[13px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Karar yorumu</h4>
-          <div className="mt-3 grid gap-2 text-[13px] leading-6 text-[#5f6f86]">
-            {result.commentary.map((item) => (
-              <p key={item}>{item}</p>
-            ))}
-            {result.riskWarning ? (
-              <p className="rounded-[12px] border border-[#f4d4ad] bg-[#fff6e8] px-3 py-2 text-[#9a6210]">{result.riskWarning}</p>
-            ) : null}
-          </div>
-        </div>
-
-        {loan ? <LoanComparisonCard loan={loan} /> : null}
-      </div>
-    </article>
-  );
-}
-
-function LoanComparisonCard({ loan }: { loan: LoanComparison }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="rounded-[16px] border border-[#dbe6f1] bg-[#fbfdff] p-4">
-      <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Banka kredisi kıyası</span>
-      <div className="mt-3 grid gap-2 text-[13px] text-[#6f7d94]">
-        {[
-          ["Kredi ana para", formatMoney(loan.summary.principal)],
-          ["Net ele geçen kredi", formatMoney(loan.summary.netDisbursed)],
-          ["Aylık taksit", formatMoney(loan.summary.monthlyPayment)],
-          ["Toplam taksit ödemesi", formatMoney(loan.summary.totalInstallmentPayment)],
-          ["Toplam faiz", formatMoney(loan.summary.totalInterest)],
-          ["Toplam KKDF", formatMoney(loan.summary.totalKKDF)],
-          ["Toplam BSMV", formatMoney(loan.summary.totalBSMV)],
-          ["Kredi hariç masraf", formatMoney(loan.summary.fee)],
-          ["Toplam geri ödeme", formatMoney(loan.summary.totalRepayment)],
-          ["Toplam kredi maliyeti", formatMoney(loan.summary.totalCreditCost)],
-          ["Efektif aylık maliyet", formatPercent(loan.summary.effectiveMonthlyCostRate * 100, 2)],
-          ["Efektif yıllık maliyet", formatPercent(loan.summary.effectiveAnnualCost * 100, 2)],
-        ].map(([label, value]) => (
-          <div key={label} className="flex items-center justify-between gap-3">
-            <span>{label}</span>
-            <strong className="text-[#1c2433]">{value}</strong>
+        {result.commentary.map((line) => (
+          <div key={line} className="rounded-[14px] border border-[#e5edf5] bg-[#fbfdff] px-4 py-3 text-[13px] leading-6 text-[#5e6f85]">
+            {line}
           </div>
         ))}
+        {result.riskWarning ? (
+          <div className="rounded-[14px] border border-[#f4dfa3] bg-[#fff7df] px-4 py-3 text-[13px] leading-6 text-[#8b6b18]">
+            {result.riskWarning}
+          </div>
+        ) : null}
+        {result.scenarioSet.mode === "range" ? (
+          <div className="rounded-[14px] border border-[#dce7e2] bg-[#fbfffd] px-4 py-3 text-[13px] leading-6 text-[#5e6f85]">
+            <div className="grid gap-2">
+              <div className="flex items-center justify-between gap-3"><span>En iyi NBM</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.bestNBM)}</strong></div>
+              <div className="flex items-center justify-between gap-3"><span>Ortalama NBM</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.averageNBM)}</strong></div>
+              <div className="flex items-center justify-between gap-3"><span>En kötü NBM</span><strong className="text-[#1c2433]">{formatMoney(result.scenarioSet.worstNBM)}</strong></div>
+              <div className="flex items-center justify-between gap-3"><span>Risk seviyesi</span><strong className="text-[#1c2433]">{result.scenarioSet.riskLabel}</strong></div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-[14px] border border-[#e5edf5] bg-[#fbfdff] px-4 py-3 text-[13px] leading-6 text-[#5e6f85]">
+            Çekilişsiz modelde teslim riski sabit kabul edilir.
+          </div>
+        )}
       </div>
-      <p className="mt-3 rounded-[12px] border border-[#dbe6f1] bg-white px-3 py-2 text-[13px] leading-6 text-[#47617e]">{loan.advantageText}</p>
-      <p className="mt-2 rounded-[12px] border border-[#dbe6f1] bg-white px-3 py-2 text-[13px] leading-6 text-[#47617e]">{loan.totalRepaymentText}</p>
 
-      <details className="mt-4 rounded-[14px] border border-[#e4ecf4] bg-white" open={open} onToggle={(event) => setOpen((event.target as HTMLDetailsElement).open)}>
-        <summary className="cursor-pointer list-none px-4 py-3 text-[13px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">
-          Ödeme planını göster
-        </summary>
-        <div className="border-t border-[#edf2f7] px-4 py-4">
-          <div className="overflow-x-auto">
-            <table className="min-w-[780px] text-left text-[13px]">
-              <thead className="border-b border-[#edf2f7] bg-[#fbfdff] text-[11px] font-bold uppercase tracking-[0.08em] text-[#74829a]">
-                <tr>
-                  <th className="px-3 py-3">Dönem</th>
-                  <th className="px-3 py-3">Taksit Tutarı</th>
-                  <th className="px-3 py-3">Anapara</th>
-                  <th className="px-3 py-3">Faiz</th>
-                  <th className="px-3 py-3">KKDF</th>
-                  <th className="px-3 py-3">BSMV</th>
-                  <th className="px-3 py-3">Kalan Anapara</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loan.summary.schedule.slice(0, 24).map((row) => (
-                  <tr key={row.period} className="border-t border-[#edf2f7]">
-                    <td className="px-3 py-3">{row.period}</td>
-                    <td className="px-3 py-3">{formatMoney(row.payment)}</td>
-                    <td className="px-3 py-3">{formatMoney(row.principalPayment)}</td>
-                    <td className="px-3 py-3">{formatMoney(row.interest)}</td>
-                    <td className="px-3 py-3">{formatMoney(row.kkdfAmount)}</td>
-                    <td className="px-3 py-3">{formatMoney(row.bsmvAmount)}</td>
-                    <td className="px-3 py-3">{formatMoney(row.remainingPrincipal)}</td>
+      {loan ? (
+        <div className="mt-4 rounded-[18px] border border-[#dce7e2] bg-[#fbfdff] px-4 py-4">
+          <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Banka kredisi kıyası</span>
+          <div className="mt-3 grid gap-3 md:grid-cols-2">
+            {[
+              ["Net ele geçen kredi", formatMoney(loan.summary.netDisbursed)],
+              ["Aylık taksit", formatMoney(loan.summary.monthlyPayment)],
+              ["Toplam taksit ödemesi", formatMoney(loan.summary.totalInstallmentPayment)],
+              ["Kredi hariç masraf", formatMoney(loan.summary.fee)],
+              ["Toplam geri ödeme", formatMoney(loan.summary.totalRepayment)],
+              ["Efektif aylık maliyet", formatPercent(loan.summary.effectiveMonthlyCostRate * 100, 2)],
+              ["Efektif yıllık maliyet", formatPercent(loan.summary.effectiveAnnualCost * 100, 2)],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-[13px] border border-[#e3ebf4] bg-white px-4 py-3">
+                <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">{label}</span>
+                <strong className="mt-2 block text-[18px] font-black text-[#172133]">{value}</strong>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-4 text-[13px] leading-6 text-[#5e6f85]">{loan.advantageText}</p>
+          <p className="mt-2 text-[13px] leading-6 text-[#5e6f85]">{loan.totalRepaymentText}</p>
+
+          <details className="mt-4 rounded-[16px] border border-[#dde6ef] bg-white">
+            <summary className="cursor-pointer px-4 py-3 text-[13px] font-semibold text-[#1c2433]">Ödeme planını göster</summary>
+            <div className="overflow-x-auto border-t border-[#edf2f7]">
+              <table className="min-w-[820px] text-left text-[13px]">
+                <thead className="border-b border-[#edf2f7] bg-[#fbfdff] text-[11px] font-bold uppercase tracking-[0.08em] text-[#74829a]">
+                  <tr>
+                    <th className="px-3 py-3">Dönem</th>
+                    <th className="px-3 py-3">Taksit Tutarı</th>
+                    <th className="px-3 py-3">Anapara</th>
+                    <th className="px-3 py-3">Faiz</th>
+                    <th className="px-3 py-3">KKDF</th>
+                    <th className="px-3 py-3">BSMV</th>
+                    <th className="px-3 py-3">Kalan Anapara</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-3 flex items-center justify-between gap-3 text-[13px] text-[#6f7d94]">
-            <span>{loan.summary.schedule.length > 24 ? `İlk 24 satır gösteriliyor. Kalan ${loan.summary.schedule.length - 24} satırı CSV ile indirebilirsiniz.` : "Tüm satırlar gösteriliyor."}</span>
-            <button
-              type="button"
-              onClick={() => downloadCsv("banka-kredisi-odeme-plani.csv", loanScheduleToCsv(loan.summary.schedule))}
-              className="rounded-[12px] border border-[#dce7e2] bg-[#f5fff9] px-4 py-2 font-semibold text-[#168b53]"
-            >
-              Ödeme planını indir
-            </button>
-          </div>
+                </thead>
+                <tbody>
+                  {loan.summary.schedule.slice(0, 24).map((row) => (
+                    <tr key={row.period} className="border-t border-[#edf2f7]">
+                      <td className="px-3 py-3">{row.period}</td>
+                      <td className="px-3 py-3">{formatMoney(row.payment)}</td>
+                      <td className="px-3 py-3">{formatMoney(row.principalPayment)}</td>
+                      <td className="px-3 py-3">{formatMoney(row.interest)}</td>
+                      <td className="px-3 py-3">{formatMoney(row.kkdfAmount)}</td>
+                      <td className="px-3 py-3">{formatMoney(row.bsmvAmount)}</td>
+                      <td className="px-3 py-3">{formatMoney(row.remainingPrincipal)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-3 flex items-center justify-between gap-3 px-4 pb-4 text-[13px] text-[#6f7d94]">
+              <span>
+                {loan.summary.schedule.length > 24
+                  ? `İlk 24 satır gösteriliyor. Kalan ${loan.summary.schedule.length - 24} satırı CSV ile indirebilirsiniz.`
+                  : "Tüm satırlar gösteriliyor."}
+              </span>
+              <button
+                type="button"
+                onClick={() => downloadCsv("banka-kredisi-odeme-plani.csv", loanScheduleToCsv(loan.summary.schedule))}
+                className="rounded-[12px] border border-[#dce7e2] bg-[#f5fff9] px-4 py-2 font-semibold text-[#168b53]"
+              >
+                Ödeme planını indir
+              </button>
+            </div>
+          </details>
         </div>
-      </details>
-    </div>
+      ) : null}
+    </article>
   );
 }
 
@@ -647,8 +670,7 @@ function ComparisonSummary({ summary }: { summary?: DecisionSummary }) {
       <div className="rounded-[22px] border border-[#e5edf5] bg-white px-5 py-6 shadow-[0_12px_30px_rgba(31,43,37,0.05)]">
         <h3 className="text-center text-[20px] font-bold tracking-[-0.03em] text-[#11653f]">Karşılaştırma Özeti</h3>
         <p className="mt-3 text-center text-[14px] leading-6 text-[#5f6f86]">
-          {summary?.summaryText ??
-            "İki teklifi hesapladığınızda en avantajlı alternatif burada net şekilde vurgulanacaktır."}
+          {summary?.summaryText ?? "İki teklifi hesapladığınızda en avantajlı alternatif burada net şekilde vurgulanacaktır."}
         </p>
       </div>
     );
@@ -723,10 +745,12 @@ function CashflowBlock({
     <details className="rounded-[22px] border border-[#dce7e2] bg-white shadow-[0_12px_30px_rgba(31,43,37,0.05)]" open>
       <summary className="flex list-none cursor-pointer items-center justify-between gap-4 px-4 py-4 md:px-5">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#d8e3f1] bg-[#fbfdff] text-[#73839b]">▤</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#d8e3f1] bg-[#fbfdff] text-[#73839b]">
+            □
+          </span>
           <h3 className="text-[18px] font-bold tracking-[-0.03em] text-[#1c2433]">{title}</h3>
         </div>
-        <span className="text-[#98a7bc]">⌃</span>
+        <span className="text-[#98a7bc]">^</span>
       </summary>
       <div className="border-t border-[#edf2f7] px-4 pb-4 pt-4 md:px-5">
         <p className="rounded-[12px] border border-[#dfe7f1] bg-[#fbfdff] px-4 py-3 text-[13px] leading-5 text-[#6f7d94]">
@@ -742,8 +766,14 @@ function CashflowBlock({
               <CashflowTable rows={rows} />
             </div>
             <div className="mt-3 flex items-center justify-between gap-3">
-              <span className="text-[13px] text-[#6f7d94]">... ve {Math.max(0, rows.length - 20)} satır daha. (Tüm tabloyu görmek için Excel olarak indirin)</span>
-              <button type="button" className="rounded-[12px] bg-[#16a05a] px-4 py-2.5 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(22,160,90,0.18)] transition-all duration-300 hover:bg-[#12874b]" onClick={() => downloadCsv(downloadName, cashflowRowsToCsv(rows))}>
+              <span className="text-[13px] text-[#6f7d94]">
+                ... ve {Math.max(0, rows.length - 20)} satır daha. (Tüm tabloyu görmek için Excel olarak indirin)
+              </span>
+              <button
+                type="button"
+                className="rounded-[12px] bg-[#16a05a] px-4 py-2.5 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(22,160,90,0.18)] transition-all duration-300 hover:bg-[#12874b]"
+                onClick={() => downloadCsv(downloadName, cashflowRowsToCsv(rows))}
+              >
                 Excel Olarak İndir
               </button>
             </div>
@@ -754,23 +784,22 @@ function CashflowBlock({
   );
 }
 
-export function OfferComparisonPage() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const searchKey = searchParams.toString();
+export function OfferComparisonPage({ initialSearch = "" }: { initialSearch?: string }) {
+  const initialState = useMemo(() => parseComparisonState(initialSearch), [initialSearch]);
 
-  const [assetType, setAssetType] = useState<AssetType>("Konut");
-  const [offerOne, setOfferOne] = useState<OfferState>(DEFAULT_OFFER);
-  const [offerTwo, setOfferTwo] = useState<OfferState>(DEFAULT_OFFER);
-  const [hasCalculated, setHasCalculated] = useState(false);
+  const [assetType, setAssetType] = useState<AssetType>(initialState.assetType);
+  const [offerOne, setOfferOne] = useState<OfferState>(initialState.offerOne);
+  const [offerTwo, setOfferTwo] = useState<OfferState>(initialState.offerTwo);
+  const [hasCalculated, setHasCalculated] = useState(initialState.hasCalculated);
 
   useEffect(() => {
-    const params = new URLSearchParams(searchKey);
-    setAssetType((readSearchValue(params, "assetType", "Konut") as AssetType) || "Konut");
-    setOfferOne(getOfferFromSearch(params, "offer1"));
-    setOfferTwo(getOfferFromSearch(params, "offer2"));
-    setHasCalculated(readBoolean(params, "calculate", false));
-  }, [searchKey]);
+    if (typeof window === "undefined") return;
+    const liveState = parseComparisonState(window.location.search);
+    setAssetType(liveState.assetType);
+    setOfferOne(liveState.offerOne);
+    setOfferTwo(liveState.offerTwo);
+    setHasCalculated(liveState.hasCalculated);
+  }, []);
 
   const results = useMemo(() => {
     if (!hasCalculated) return null;
@@ -790,7 +819,8 @@ export function OfferComparisonPage() {
 
   const syncUrl = (nextAssetType: AssetType, nextOfferOne: OfferState, nextOfferTwo: OfferState, calculate: boolean) => {
     const query = createUrlSearch(nextAssetType, nextOfferOne, nextOfferTwo, calculate);
-    window.history.replaceState({}, "", `${pathname}?${query}${calculate ? "#compare-results" : ""}`);
+    const comparePath = withBasePath("/teklifleri-karsilastir");
+    window.history.replaceState({}, "", `${comparePath}?${query}${calculate ? "#compare-results" : ""}`);
   };
 
   const handleCalculate = () => {
@@ -845,9 +875,17 @@ export function OfferComparisonPage() {
             <OfferInputPanel title="Teklif 2" assetType={assetType} offer={offerTwo} onChange={setOfferTwo} />
           </div>
 
-          {warnings.length ? <div className="mt-4"><HelperWarnings warnings={warnings} /></div> : null}
+          {warnings.length ? (
+            <div className="mt-4">
+              <HelperWarnings warnings={warnings} />
+            </div>
+          ) : null}
 
-          <button type="button" onClick={handleCalculate} className="mt-5 h-[50px] w-full rounded-[14px] bg-[#16a05a] text-[15px] font-bold text-white shadow-[0_14px_24px_rgba(22,160,90,0.16)] transition-all duration-300 hover:bg-[#12874b]">
+          <button
+            type="button"
+            onClick={handleCalculate}
+            className="mt-5 h-[50px] w-full rounded-[14px] bg-[#16a05a] text-[15px] font-bold text-white shadow-[0_14px_24px_rgba(22,160,90,0.16)] transition-all duration-300 hover:bg-[#12874b]"
+          >
             TÜM TEKLİFLERİ HESAPLA
           </button>
         </div>

@@ -1,0 +1,1426 @@
+<!DOCTYPE html><html lang="tr"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/finans/_next/static/chunks/0z90yro31yg10.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/finans/_next/static/chunks/0ht900cau6_ur.js"/><script src="/finans/_next/static/chunks/04skrxzgv7wv7.js" async=""></script><script src="/finans/_next/static/chunks/0n~dq4kpx9xxx.js" async=""></script><script src="/finans/_next/static/chunks/turbopack-09wmn1uz~odgj.js" async=""></script><script src="/finans/_next/static/chunks/0dbhjjzl8qfwv.js" async=""></script><script src="/finans/_next/static/chunks/0lukf-d3pb62w.js" async=""></script><title>Finansman Maliyet Hesaplama</title><meta name="description" content="Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin."/><link rel="icon" href="/finans/favicon.svg"/><script src="/finans/_next/static/chunks/03~yq9q893hmn.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur"><div class="page-container flex min-h-[72px] items-center justify-between gap-6"><a href="/finans/" class="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]"><span class="relative h-8 w-8" aria-hidden="true"><span class="absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]"></span><span class="absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]"></span><span class="absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]"></span><span class="absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]"></span></span>Tasarruf Finansmanı</a><div class="hidden items-center gap-8 lg:flex"><nav class="hidden items-center gap-1 lg:flex" aria-label="Ana menü"><a href="/finans/" class="rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]">Ana Sayfa</a><a href="/finans/#faq" class="rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]">Firmalar</a><a href="/finans/#faq" class="rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]">Nasıl Çalışır?</a><a href="/finans/#blog" class="rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]">Hakkımızda</a><a href="/finans/#blog" class="rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]">Blog</a><a href="/finans/veri" class="rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 bg-[#e9fbef] text-[#1b804d]">Endeks</a></nav><div class="hidden h-8 w-px bg-[#e4e9ee] lg:block"></div><div class="hidden items-center gap-3 lg:flex"><a class="rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]" href="/finans/teklifleri-karsilastir">Teklifleri Karşılaştır</a><a class="rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]" href="#login" data-login-button="true">Giriş Yap</a></div></div><button class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden" data-mobile-menu-button="true" type="button" aria-expanded="false">Menü</button></div><div class="hidden border-t border-slate-200 bg-white lg:hidden" data-mobile-menu="true"><div class="page-container grid gap-2 py-4"><a class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href="/finans/">Ana Sayfa</a><a class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href="/finans/#faq">Firmalar</a><a class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href="/finans/#faq">Nasıl Çalışır?</a><a class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href="/finans/#blog">Hakkımızda</a><a class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href="/finans/#blog">Blog</a><a class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href="/finans/veri">Endeks</a><a class="rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white" href="/finans/teklifleri-karsilastir">Teklifleri Karşılaştır</a><a class="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]" href="#login" data-login-button="true">Giriş Yap</a></div></div></header><main class="page-container relative isolate py-7 md:py-8"><section class="rounded-[24px] border border-[#dce7e2] bg-white p-5 shadow-[0_14px_34px_rgba(31,43,37,0.06)] md:p-6"><h1 class="text-[28px] font-bold tracking-[-0.04em] text-[#172133] md:text-[34px]">Kredi Matematiği Test Alanı</h1><p class="mt-3 max-w-[900px] text-[14px] leading-7 text-[#6f7d94]">Referans HTML matematiği ile proje kredi motorunu aynı girdilerle yan yana karşılaştırın. Bu alan tasarımı değiştirmez; sadece kredi kıyası sonuçlarının birebir kontrolünü sağlar.</p></section><section class="mt-8 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]"><article class="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]"><h2 class="text-[22px] font-bold tracking-[-0.03em] text-[#172133]">Test Girdileri</h2><div class="mt-5 grid gap-4"><label class="grid gap-2"><span class="form-label">Kredi Türü</span><select class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium"><option value="konut-evi-olmayan" selected="">Konut - Evi Olmayan</option><option value="konut-evi-olan">Konut - Evi Olan</option><option value="tasit">Taşıt</option><option value="ihtiyac">İhtiyaç</option></select></label><div class="grid gap-4 md:grid-cols-2"><label class="grid gap-2"><span class="form-label">Kredi Tutarı</span><input class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" type="number" step="0.01" min="0" value="2000000"/></label><label class="grid gap-2"><span class="form-label">Kredi Vadesi</span><input class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" type="number" step="0.01" min="0" value="120"/></label><label class="grid gap-2"><span class="form-label">Kredi Faizi (% aylık)</span><input class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" type="number" step="0.01" min="0" value="2.8"/></label><label class="grid gap-2"><span class="form-label">Kredi Hariç Masraf</span><input class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" type="number" step="0.01" min="0" value="39100"/></label><label class="grid gap-2"><span class="form-label">BSMV (%)</span><input class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" type="number" step="0.01" min="0" value="0"/></label><label class="grid gap-2"><span class="form-label">KKDF (%)</span><input class="form-control !h-[46px] !rounded-[14px] !bg-white !font-medium" type="number" step="0.01" min="0" value="0"/></label></div><div class="rounded-[16px] border border-[#dce7e2] bg-[#fbfdff] px-4 py-4 text-[13px] leading-6 text-[#6f7d94]">Referans HTML içindeki PMT, vergili aylık oran, ödeme planı ve RATE yaklaşımı burada korunur. Proje motoru aynı girdiyi daha güvenli toplam geri ödeme mantığı ile ayrıca hesaplar.</div></div></article><div class="grid gap-5 xl:grid-cols-2"><article class="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]"><h3 class="text-[20px] font-bold tracking-[-0.03em] text-[#172133]">Referans HTML Matematiği</h3><div class="mt-4 grid gap-3"><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Kredi Faizi BSMV+KKDF</span><strong class="text-[14px] font-bold text-[#1c2433]">%2,80</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Efektif Aylık Maliyet</span><strong class="text-[14px] font-bold text-[#1c2433]">%2,86</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Yıllık Faiz Maliyeti</span><strong class="text-[14px] font-bold text-[#1c2433]">%40,33</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Taksit Tutarı</span><strong class="text-[14px] font-bold text-[#1c2433]">₺58.114,01</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Faiz Ödeme</span><strong class="text-[14px] font-bold text-[#1c2433]">₺4.973.681,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam KKDF</span><strong class="text-[14px] font-bold text-[#1c2433]">₺0,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam BSMV</span><strong class="text-[14px] font-bold text-[#1c2433]">₺0,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Faizli Geri Ödeme</span><strong class="text-[14px] font-bold text-[#1c2433]">₺6.973.681,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Kredi Kullandırım Sonrası Ele Geçen</span><strong class="text-[14px] font-bold text-[#1c2433]">₺1.960.900,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Kredi Hariç Masraf</span><strong class="text-[14px] font-bold text-[#1c2433]">₺39.100,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Taksit Ödemesi</span><strong class="text-[14px] font-bold text-[#1c2433]">₺6.973.681,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Geri Ödeme</span><strong class="text-[14px] font-bold text-[#1c2433]">₺7.012.781,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Kredi Maliyeti</span><strong class="text-[14px] font-bold text-[#1c2433]">₺5.051.881,23</strong></div></div></article><article class="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]"><h3 class="text-[20px] font-bold tracking-[-0.03em] text-[#172133]">Mevcut Proje Kredi Motoru</h3><div class="mt-4 grid gap-3"><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Kredi Faizi BSMV+KKDF</span><strong class="text-[14px] font-bold text-[#1c2433]">%2,80</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Efektif Aylık Maliyet</span><strong class="text-[14px] font-bold text-[#1c2433]">%2,86</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Yıllık Faiz Maliyeti</span><strong class="text-[14px] font-bold text-[#1c2433]">%40,33</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Taksit Tutarı</span><strong class="text-[14px] font-bold text-[#1c2433]">₺58.114,01</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Faiz Ödeme</span><strong class="text-[14px] font-bold text-[#1c2433]">₺4.973.681,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam KKDF</span><strong class="text-[14px] font-bold text-[#1c2433]">₺0,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam BSMV</span><strong class="text-[14px] font-bold text-[#1c2433]">₺0,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Faizli Geri Ödeme</span><strong class="text-[14px] font-bold text-[#1c2433]">₺6.973.681,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Kredi Kullandırım Sonrası Ele Geçen</span><strong class="text-[14px] font-bold text-[#1c2433]">₺1.960.900,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Kredi Hariç Masraf</span><strong class="text-[14px] font-bold text-[#1c2433]">₺39.100,00</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Taksit Ödemesi</span><strong class="text-[14px] font-bold text-[#1c2433]">₺6.973.681,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Geri Ödeme</span><strong class="text-[14px] font-bold text-[#1c2433]">₺7.012.781,23</strong></div><div class="flex items-center justify-between gap-4 rounded-[14px] border border-[#e7eef5] bg-[#fbfdff] px-4 py-3"><span class="text-[13px] font-medium text-[#6f7d94]">Toplam Kredi Maliyeti</span><strong class="text-[14px] font-bold text-[#1c2433]">₺5.051.881,23</strong></div></div></article></div></section><section class="mt-8 space-y-5"><div class="max-w-[920px]"><span class="text-[12px] font-bold uppercase tracking-[0.14em] text-[#16a05a]">Fark Analizi</span><h2 class="mt-1 text-[28px] font-bold tracking-[-0.04em] text-[#172133]">Referans HTML ile proje motorunu satır satır kontrol edin</h2><p class="mt-2 text-[14px] leading-6 text-[#66758c]">Parasal değerlerde 0,05 TL, yüzdesel değerlerde 0,0001 tolerans kullanılır. Referans HTML ile proje motoru arasındaki bilinçli fark en çok toplam geri ödeme tanımında görünür.</p></div><article class="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]"><div class="overflow-x-auto"><table class="min-w-[940px] text-left text-[13px]"><thead class="bg-[#fbfdff] text-[11px] font-bold uppercase tracking-[0.08em] text-[#74829a]"><tr><th class="px-4 py-3">Metrik</th><th class="px-4 py-3">Referans HTML</th><th class="px-4 py-3">Proje Motoru</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Durum</th></tr></thead><tbody><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Kredi Faizi BSMV+KKDF</td><td class="px-4 py-3">%2,80</td><td class="px-4 py-3">%2,80</td><td class="px-4 py-3">%0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Efektif Aylık Maliyet</td><td class="px-4 py-3">%2,86</td><td class="px-4 py-3">%2,86</td><td class="px-4 py-3">%0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Yıllık Faiz Maliyeti</td><td class="px-4 py-3">%40,33</td><td class="px-4 py-3">%40,33</td><td class="px-4 py-3">%0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Taksit Tutarı</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam Faiz Ödeme</td><td class="px-4 py-3">₺4.973.681,23</td><td class="px-4 py-3">₺4.973.681,23</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam KKDF</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam BSMV</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam Faizli Geri Ödeme</td><td class="px-4 py-3">₺6.973.681,23</td><td class="px-4 py-3">₺6.973.681,23</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Kredi Kullandırım Sonrası Ele Geçen</td><td class="px-4 py-3">₺1.960.900,00</td><td class="px-4 py-3">₺1.960.900,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Kredi Hariç Masraf</td><td class="px-4 py-3">₺39.100,00</td><td class="px-4 py-3">₺39.100,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam Taksit Ödemesi</td><td class="px-4 py-3">₺6.973.681,23</td><td class="px-4 py-3">₺6.973.681,23</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam Geri Ödeme</td><td class="px-4 py-3">₺7.012.781,23</td><td class="px-4 py-3">₺7.012.781,23</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3 text-[#172133]">Toplam Kredi Maliyeti</td><td class="px-4 py-3">₺5.051.881,23</td><td class="px-4 py-3">₺5.051.881,23</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr></tbody></table></div></article></section><section class="mt-8 space-y-5"><div class="flex flex-wrap items-center justify-between gap-4"><div class="max-w-[900px]"><span class="text-[12px] font-bold uppercase tracking-[0.14em] text-[#16a05a]">Ödeme Planı</span><h2 class="mt-1 text-[28px] font-bold tracking-[-0.04em] text-[#172133]">Referans ve proje amortisman planını karşılaştırın</h2><p class="mt-2 text-[14px] leading-6 text-[#66758c]">İlk 12 ay görünümüyle hızlı kontrol yapabilir veya tüm planı açarak dönemsel farkları inceleyebilirsiniz.</p></div><div class="grid grid-cols-2 gap-1 rounded-[14px] bg-[#eef3f8] p-1"><button type="button" class="rounded-[12px] px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 bg-[#16a05a] text-white shadow-[0_10px_18px_rgba(22,160,90,0.18)]">İlk 12 Ay</button><button type="button" class="rounded-[12px] px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 text-[#51627b] hover:bg-white/70">Tüm Plan</button></div></div><article class="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_12px_30px_rgba(31,43,37,0.05)]"><div class="overflow-x-auto rounded-[18px] border border-[#edf2f7]"><table class="min-w-[1720px] text-left text-[13px]"><thead class="bg-[#fbfdff] text-[11px] font-bold uppercase tracking-[0.08em] text-[#74829a]"><tr><th class="px-4 py-3">Dönem</th><th class="px-4 py-3">Ref. Taksit</th><th class="px-4 py-3">Proje Taksit</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Ref. Anapara</th><th class="px-4 py-3">Proje Anapara</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Ref. Faiz</th><th class="px-4 py-3">Proje Faiz</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Ref. KKDF</th><th class="px-4 py-3">Proje KKDF</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Ref. BSMV</th><th class="px-4 py-3">Proje BSMV</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Ref. Kalan</th><th class="px-4 py-3">Proje Kalan</th><th class="px-4 py-3">Fark</th><th class="px-4 py-3">Durum</th></tr></thead><tbody><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">1</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.114,01</td><td class="px-4 py-3">₺2.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺56.000,00</td><td class="px-4 py-3">₺56.000,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.997.885,99</td><td class="px-4 py-3">₺1.997.885,99</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">2</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.173,20</td><td class="px-4 py-3">₺2.173,20</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.940,81</td><td class="px-4 py-3">₺55.940,81</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.995.712,79</td><td class="px-4 py-3">₺1.995.712,79</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">3</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.234,05</td><td class="px-4 py-3">₺2.234,05</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.879,96</td><td class="px-4 py-3">₺55.879,96</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.993.478,74</td><td class="px-4 py-3">₺1.993.478,74</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">4</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.296,61</td><td class="px-4 py-3">₺2.296,61</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.817,40</td><td class="px-4 py-3">₺55.817,40</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.991.182,13</td><td class="px-4 py-3">₺1.991.182,13</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">5</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.360,91</td><td class="px-4 py-3">₺2.360,91</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.753,10</td><td class="px-4 py-3">₺55.753,10</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.988.821,22</td><td class="px-4 py-3">₺1.988.821,22</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">6</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.427,02</td><td class="px-4 py-3">₺2.427,02</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.686,99</td><td class="px-4 py-3">₺55.686,99</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.986.394,20</td><td class="px-4 py-3">₺1.986.394,20</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">7</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.494,97</td><td class="px-4 py-3">₺2.494,97</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.619,04</td><td class="px-4 py-3">₺55.619,04</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.983.899,23</td><td class="px-4 py-3">₺1.983.899,23</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">8</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.564,83</td><td class="px-4 py-3">₺2.564,83</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.549,18</td><td class="px-4 py-3">₺55.549,18</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.981.334,40</td><td class="px-4 py-3">₺1.981.334,40</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">9</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.636,65</td><td class="px-4 py-3">₺2.636,65</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.477,36</td><td class="px-4 py-3">₺55.477,36</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.978.697,75</td><td class="px-4 py-3">₺1.978.697,75</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">10</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.710,47</td><td class="px-4 py-3">₺2.710,47</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.403,54</td><td class="px-4 py-3">₺55.403,54</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.975.987,28</td><td class="px-4 py-3">₺1.975.987,28</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">11</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.786,37</td><td class="px-4 py-3">₺2.786,37</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.327,64</td><td class="px-4 py-3">₺55.327,64</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.973.200,91</td><td class="px-4 py-3">₺1.973.200,91</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr><tr class="border-t border-[#edf2f7]"><td class="px-4 py-3">12</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺58.114,01</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺2.864,38</td><td class="px-4 py-3">₺2.864,38</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺55.249,63</td><td class="px-4 py-3">₺55.249,63</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3">₺1.970.336,53</td><td class="px-4 py-3">₺1.970.336,53</td><td class="px-4 py-3">₺0,00</td><td class="px-4 py-3"><span class="rounded-full px-2.5 py-1 text-[11px] font-bold bg-[#eafbf1] text-[#168b53]">OK</span></td></tr></tbody></table></div></article></section></main><footer id="footer" class="mt-16 border-t border-slate-200 bg-white"><div class="page-container border-b border-slate-200 py-10"><h2 class="text-xl font-black text-slate-950">Tasarruf finansmanı sistemi nasıl okunmalı?</h2><p class="mt-4 max-w-5xl text-sm leading-7 text-slate-600">Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.</p></div><div class="page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]"><div><div class="flex items-center gap-3 text-lg font-black text-[var(--green-dark)]"><span class="grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]">▥</span>Finansman Rehberi</div><p class="mt-4 max-w-sm text-sm leading-7 text-slate-600">Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin.</p></div><div><h2 class="text-sm font-black text-slate-950">Sayfalar</h2><ul class="mt-4 grid gap-3 text-sm text-slate-600"><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/">Ana Sayfa</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/veri">Endeks</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/teklifleri-karsilastir">Teklifleri Karşılaştır</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/#faq">Nasıl Çalışır?</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/#blog">Blog</a></li></ul></div><div><h2 class="text-sm font-black text-slate-950">Araçlar</h2><ul class="mt-4 grid gap-3 text-sm text-slate-600"><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/#calculator">Maliyet Hesaplama</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/teklifleri-karsilastir">Teklifleri Karşılaştır</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/veri">Piyasa Veri Paneli</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="/finans/kredi-test">Kredi Matematiği Testi</a></li></ul></div><div><h2 class="text-sm font-black text-slate-950">İletişim</h2><ul class="mt-4 grid gap-3 text-sm text-slate-600"><li><a class="transition hover:text-[var(--green-dark)]" href="mailto:bilgi@example.com">bilgi@example.com</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="#footer">Sorularınız için bize ulaşın</a></li></ul></div><div><h2 class="text-sm font-black text-slate-950">Yasal</h2><ul class="mt-4 grid gap-3 text-sm text-slate-600"><li><a class="transition hover:text-[var(--green-dark)]" href="#footer">Kullanım Koşulları</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="#footer">Gizlilik Politikası</a></li><li><a class="transition hover:text-[var(--green-dark)]" href="#footer">KVKK Aydınlatma Metni</a></li></ul></div></div><div class="border-t border-slate-200 py-5 text-center text-sm text-slate-500">© 2026 Finansman Rehberi. Tüm hakları saklıdır.</div></footer><!--$--><!--/$--><script>
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn, { once: true });
+    } else {
+      fn();
+    }
+  };
+
+  ready(() => {
+    const money = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
+    const decimal = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+    const example = {
+      company: "Diğer",
+      assetPrice: "3000000",
+      downPayment: "1000000",
+      term: "48",
+      monthlyPayment: "41667",
+      delivery: "12",
+      serviceFee: "11.8",
+      rent: "25000",
+      inflation: "32",
+      creditRate: "3.19",
+      yearlyIncrease: "15",
+    };
+
+    const assetPresets = {
+      Konut: { assetPrice: 3000000, downPayment: 1000000, term: 48, monthlyPayment: 41667, delivery: 13, serviceFee: 7.5, rent: 25000, bankRate: 2.85, bankTerm: 60 },
+      Araba: { assetPrice: 1850000, downPayment: 550000, term: 36, monthlyPayment: 38250, delivery: 6, serviceFee: 6.2, rent: 12000, bankRate: 3.45, bankTerm: 12 },
+    };
+
+    const modelTweaks = {
+      cekilissiz: { deliveryDelta: 0, feeDelta: 0, monthlyDelta: 0 },
+      cekilisli: { deliveryDelta: -1, feeDelta: 4.3, monthlyDelta: 0 },
+    };
+
+    const integerFields = ["assetPrice", "downPayment", "monthlyPayment", "rent"];
+    const integerBankFields = ["amount"];
+    const integerLimitFields = ["housingValue", "vehicleValue", "needValue"];
+
+    const getCalculator = () => document.querySelector("[data-calculator]");
+    const getCalculatorCard = () => getCalculator()?.querySelector("[data-calculator-card]");
+    const getCalcViewTab = () => getCalculator()?.querySelector('[data-calc-view-tab].active')?.dataset.calcViewTab || "main";
+    const getCompanySelect = () => getCalculator()?.querySelector("[data-company-select]");
+    const getCompanyTrigger = () => getCompanySelect()?.querySelector("[data-company-trigger]");
+    const getCompanyMenu = () => getCompanySelect()?.querySelector("[data-company-menu]");
+    const getCompanyLabel = () => getCompanySelect()?.querySelector("[data-company-label]");
+    const getCompanyChevron = () => getCompanySelect()?.querySelector("[data-company-chevron]");
+    const field = (name) => getCalculator()?.querySelector('[data-field="' + name + '"]');
+    const bankField = (name) => getCalculator()?.querySelector('[data-bank-field="' + name + '"]');
+    const compareInput = () => null;
+    const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
+    const activeSegmentValue = (segmentName) => getCalculator()?.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
+
+    const setCalcView = (view) => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+      calculator.querySelectorAll("[data-calc-view-tab]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.calcViewTab === view);
+      });
+      calculator.querySelectorAll("[data-calc-view-panel]").forEach((panel) => {
+        panel.classList.toggle("hidden", panel.dataset.calcViewPanel !== view);
+      });
+    };
+
+    const syncComparisonInputs = () => {};
+
+    const syncFromComparisonInput = () => {};
+
+    const parseNumber = (value) => {
+      const raw = String(value || "").trim();
+      const normalized = raw.includes(",")
+        ? raw.replace(/\./g, "").replace(",", ".")
+        : /^\d+\.\d{1,2}$/.test(raw)
+          ? raw
+          : raw.replace(/\./g, "");
+      const number = Number(normalized);
+      return Number.isFinite(number) && number >= 0 ? number : 0;
+    };
+
+    const formatMoney = (value) => "₺" + money.format(Math.round(value || 0));
+    const formatSignedMoney = (value) => {
+      const safe = Math.round(value || 0);
+      return (safe < 0 ? "-₺" : "₺") + money.format(Math.abs(safe));
+    };
+    const formatPercent = (value) => "%" + decimal.format(value || 0);
+
+    const pulse = (element, className = "button-ack", duration = 320) => {
+      if (!element) return;
+      element.classList.remove(className);
+      void element.offsetWidth;
+      element.classList.add(className);
+      window.setTimeout(() => element.classList.remove(className), duration);
+    };
+
+    const acknowledge = (...elements) => {
+      elements.filter(Boolean).forEach((element) => pulse(element, "surface-ack", 420));
+    };
+
+    const focusCalculator = () => {
+      const card = getCalculatorCard();
+      if (!card) return;
+      pulse(card, "calculator-focus", 980);
+    };
+
+    const setToggle = (button, active) => {
+      button.dataset.on = String(active);
+      const track = button.querySelector("span");
+      const knob = track?.querySelector("span");
+      track?.classList.toggle("bg-[var(--green)]", active);
+      track?.classList.toggle("bg-slate-200", !active);
+      knob?.classList.toggle("left-6", active);
+      knob?.classList.toggle("left-1", !active);
+    };
+
+    const setPreviewText = (name, value) => {
+      const node = preview(name);
+      if (!node) return;
+      if (node.textContent !== value) {
+        node.textContent = value;
+        pulse(node, "preview-swap", 300);
+      }
+    };
+
+    const formatThousandsInput = (input) => {
+      if (!input) return;
+      const digits = String(input.value || "").replace(/\D/g, "");
+      input.value = digits ? money.format(Number(digits)) : "";
+    };
+
+    const monthlyDiscountRate = (annualInflation) => Math.pow(1 + annualInflation / 100, 1 / 12) - 1;
+    const presentValue = (amount, period, rate) => {
+      if (!amount) return 0;
+      if (!rate) return amount;
+      return amount / Math.pow(1 + rate, Math.max(0, period));
+    };
+
+    const calculatePvPayments = (payment, term, annualInflation) => {
+      const r = monthlyDiscountRate(annualInflation);
+      if (!payment || !term) return 0;
+      return Array.from({ length: term }).reduce((sum, _, index) => sum + payment / Math.pow(1 + r, index + 1), 0);
+    };
+
+    const calculatePayment = (principal, monthlyRate, term) => {
+      if (!principal || !term) return 0;
+      if (!monthlyRate) return principal / term;
+      const factor = Math.pow(1 + monthlyRate, term);
+      return principal * monthlyRate * factor / (factor - 1);
+    };
+
+    const solveMonthlyRate = (payment, term, presentValue) => {
+      if (!payment || !term || !presentValue) return 0;
+      let low = 0;
+      let high = 1;
+      for (let i = 0; i < 80; i += 1) {
+        const mid = (low + high) / 2;
+        const guess = calculatePayment(presentValue, mid, term);
+        if (guess > payment) high = mid;
+        else low = mid;
+      }
+      return (low + high) / 2;
+    };
+
+    const getBankConfig = (assetType, housingStatus) => {
+      if (assetType === "Araba") {
+        return { title: "Taşıt Kredisi Karşılaştırması", fee: 925.92, bsmv: 15, kkdf: 15, defaultRate: 3.45, defaultTerm: 12 };
+      }
+
+      return {
+        title: "Konut Kredisi Karşılaştırması",
+        fee: 39100,
+        bsmv: housingStatus === "var" ? 15 : 0,
+        kkdf: 0,
+        defaultRate: 2.85,
+        defaultTerm: 60,
+      };
+    };
+
+    const calculateCreditModule = ({ principal, rate, term, fee, bsmv, kkdf }) => {
+      const safePrincipal = Math.max(0, principal || 0);
+      const safeRate = Math.max(0, rate || 0);
+      const safeTerm = Math.max(0, term || 0);
+      const safeFee = Math.max(0, fee || 0);
+      const nominalMonthlyRate = safeRate / 100;
+      const taxedMonthlyRate = nominalMonthlyRate * (1 + (bsmv + kkdf) / 100);
+      const installment = calculatePayment(safePrincipal, taxedMonthlyRate, safeTerm);
+
+      let balance = safePrincipal;
+      let totalBaseInterest = 0;
+      let totalBsmv = 0;
+      let totalKkdf = 0;
+
+      for (let i = 0; i < safeTerm; i += 1) {
+        const baseInterest = balance * nominalMonthlyRate;
+        const kkdfAmount = baseInterest * kkdf / 100;
+        const bsmvAmount = baseInterest * bsmv / 100;
+        const principalPart = installment - baseInterest - kkdfAmount - bsmvAmount;
+        balance = Math.max(0, balance - principalPart);
+        totalBaseInterest += baseInterest;
+        totalBsmv += bsmvAmount;
+        totalKkdf += kkdfAmount;
+      }
+
+      const totalRepaymentWithoutFees = safePrincipal + totalBaseInterest;
+      const totalRepayment = totalRepaymentWithoutFees + safeFee;
+      const netDisbursed = safePrincipal - safeFee;
+      const effectiveMonthlyRate = solveMonthlyRate(installment, safeTerm, netDisbursed);
+      const annualEffectiveCost = Math.pow(1 + effectiveMonthlyRate, 12) - 1;
+
+      return {
+        installment,
+        totalBaseInterest,
+        totalRepaymentWithoutFees,
+        totalRepayment,
+        netDisbursed,
+        annualEffectiveCost,
+      };
+    };
+
+    const getLimitSection = () => document.querySelector("[data-loan-limit]");
+    const limitField = (name) => getLimitSection()?.querySelector('[data-limit-field="' + name + '"]');
+    const limitPreview = (name) => getLimitSection()?.querySelector('[data-limit-preview="' + name + '"]');
+    const activeLimitTab = () => getLimitSection()?.querySelector('[data-limit-tab-button][data-active="true"]')?.dataset.limitTabButton || "housing";
+
+    const setLimitPreviewText = (name, value) => {
+      const node = limitPreview(name);
+      if (!node) return;
+      if (node.textContent !== value) {
+        node.textContent = value;
+        pulse(node, "preview-swap", 300);
+      }
+    };
+
+    const calculateHousingLimit = (value, energyClass, hasAnotherHome) => {
+      const safeValue = Math.max(0, value || 0);
+      const rules = [
+        { max: 5000000, noHome: { "A-B": 0.9, C: 0.8, Diger: 0.7 }, hasHome: { "A-B": 0.225, C: 0.2, Diger: 0.175 } },
+        { max: 7000000, noHome: { "A-B": 0.8, C: 0.7, Diger: 0.6 }, hasHome: { "A-B": 0.2, C: 0.175, Diger: 0.15 } },
+        { max: 10000000, noHome: { "A-B": 0.7, C: 0.6, Diger: 0.5 }, hasHome: { "A-B": 0.175, C: 0.15, Diger: 0.125 } },
+        { max: 20000000, noHome: { "A-B": 0.5, C: 0.4, Diger: 0.3 }, hasHome: { "A-B": 0.125, C: 0.1, Diger: 0.075 } },
+        { max: Number.POSITIVE_INFINITY, noHome: { "A-B": 0.4, C: 0.3, Diger: 0.2 }, hasHome: { "A-B": 0.1, C: 0.075, Diger: 0.05 } },
+      ];
+      const rule = rules.find((item) => safeValue <= item.max) || rules[rules.length - 1];
+      const ratio = hasAnotherHome ? rule.hasHome[energyClass] : rule.noHome[energyClass];
+      return { ratio, amount: safeValue * ratio };
+    };
+
+    const calculateVehicleLimit = (value) => {
+      const safeValue = Math.max(0, value || 0);
+      if (safeValue > 2000000) {
+        return { eligible: false, ratio: 0, amount: 0, message: "2.000.000 TL üstü taşıt bedelinde kredi kullandırılamaz." };
+      }
+      let ratio = 0.7;
+      if (safeValue > 1200000) ratio = 0.2;
+      else if (safeValue > 800000) ratio = 0.3;
+      else if (safeValue > 400000) ratio = 0.5;
+      return { eligible: true, ratio, amount: safeValue * ratio, message: "" };
+    };
+
+    const calculateNeedTerm = (value) => {
+      const safeValue = Math.max(0, value || 0);
+      if (safeValue <= 125000) return 36;
+      if (safeValue <= 250000) return 24;
+      return 12;
+    };
+
+    const calculateAutoDelivery = ({ assetPrice, downPayment, monthlyPayment, term }) => {
+      if (!assetPrice || !term || !monthlyPayment) return 0;
+      const fortyPercentGap = Math.max(0, term * (0.4 - downPayment / assetPrice));
+      const monthlyGap = Math.max(0, ((assetPrice * 0.4) - downPayment) / monthlyPayment);
+      return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);
+    };
+
+    const compareDiscountRate = (annualInflation) => annualInflation / 12 / 100;
+
+    const getCompareRoot = () => null;
+
+    const buildCompareSchedule = (state) => {
+      const baseMonthlyPayment = parseNumber(state.monthlyPayment);
+      const yearlyIncrease = parseNumber(state.yearlyIncrease);
+
+      if (state.manualPlan) {
+        const parts = String(state.manualPlanText || "")
+          .split(/[\n,;]+/)
+          .map((item) => parseNumber(item))
+          .filter((value) => value > 0);
+        if (parts.length > 0) {
+          return Array.from({ length: state.term }, (_, index) => parts[index] || parts[parts.length - 1]);
+        }
+      }
+
+      if (state.escalating) {
+        return Array.from({ length: state.term }, (_, index) => baseMonthlyPayment * Math.pow(1 + yearlyIncrease / 100, Math.floor(index / 12)));
+      }
+
+      return Array.from({ length: state.term }, () => baseMonthlyPayment);
+    };
+
+    const calculateCompareOffer = (assetType, state) => {
+      const rawTerm = Math.max(1, Math.round(parseNumber(state.term)));
+      const term = assetType === "Araba" ? Math.min(rawTerm, 60) : Math.min(rawTerm, 120);
+      const assetPrice = parseNumber(state.assetPrice);
+      const downPayment = parseNumber(state.downPayment);
+      const monthlyPayment = parseNumber(state.monthlyPayment);
+      const serviceFeeRate = parseNumber(state.serviceFee);
+      const rent = parseNumber(state.rent);
+      const inflation = parseNumber(state.inflation) || 25;
+      const discountRate = compareDiscountRate(inflation);
+      const suggestedDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
+      const deliveryInput = Math.round(parseNumber(state.delivery));
+      const delivery = Math.max(0, deliveryInput || suggestedDelivery);
+      const feeAmount = assetPrice * serviceFeeRate / 100;
+      const initialOutflow = downPayment + feeAmount;
+      const schedule = buildCompareSchedule(state);
+
+      let cumulative = initialOutflow;
+      let pvInstallments = 0;
+      let pvRent = 0;
+      const cashflow = [{
+        month: 0,
+        installment: 0,
+        rent: 0,
+        serviceFee: initialOutflow,
+        cumulativeOutflow: cumulative,
+        presentValue: initialOutflow,
+      }];
+
+      schedule.forEach((payment, index) => {
+        const month = index + 1;
+        const rentAmount = month <= delivery ? rent * Math.pow(1 + inflation / 100, Math.floor((month - 1) / 12)) : 0;
+        const pvInstallment = presentValue(payment, month, discountRate);
+        const pvRentAmount = presentValue(rentAmount, month, discountRate);
+        pvInstallments += pvInstallment;
+        pvRent += pvRentAmount;
+        cumulative += payment + rentAmount;
+        cashflow.push({
+          month,
+          installment: payment,
+          rent: rentAmount,
+          serviceFee: 0,
+          cumulativeOutflow: cumulative,
+          presentValue: pvInstallment + pvRentAmount,
+        });
+      });
+
+      const contractAmount = Math.max(assetPrice - downPayment, 0);
+      const totalRepayment = schedule.reduce((sum, value) => sum + value, 0);
+      const totalOutflow = initialOutflow + totalRepayment + cashflow.slice(1).reduce((sum, row) => sum + row.rent, 0);
+      const pvBenefit = presentValue(assetPrice, delivery, discountRate);
+      const score = pvBenefit - initialOutflow - pvInstallments - pvRent;
+      const nbm = -score;
+      const bankSummary = state.compareBank
+        ? (() => {
+            const config = getBankConfig(assetType, state.bankHousingStatus);
+            const summary = calculateCreditModule({
+              principal: parseNumber(state.bankAmount),
+              rate: parseNumber(state.bankRate),
+              term: Math.max(1, Math.round(parseNumber(state.bankTerm))),
+              fee: config.fee,
+              bsmv: config.bsmv,
+              kkdf: config.kkdf,
+            });
+            return {
+              installment: summary.installment,
+              totalRepayment: summary.totalRepayment,
+              annualEffectiveCost: summary.annualEffectiveCost,
+            };
+          })()
+        : null;
+
+      return {
+        state,
+        contractAmount,
+        initialOutflow,
+        feeAmount,
+        totalRepayment,
+        totalOutflow,
+        pvBenefit,
+        pvInstallments,
+        pvRent,
+        score,
+        nbm,
+        suggestedDelivery,
+        cashflow,
+        bankSummary,
+      };
+    };
+
+    const collectCompareState = (root, offerIndex, assetType) => {
+      const getValue = (field, fallback = "") => {
+        const element = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]');
+        if (element instanceof HTMLSelectElement) {
+          return element.value || element.selectedOptions?.[0]?.value || fallback;
+        }
+        return element?.value || fallback;
+      };
+      const getToggle = (name) => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-toggle-button="' + name + '"]')?.dataset.on === "true";
+      const modelButton = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-model].active');
+      return {
+        company: getValue("company", "Diğer"),
+        model: modelButton?.dataset.compareModel || "cekilissiz",
+        assetPrice: getValue("assetPrice"),
+        downPayment: getValue("downPayment"),
+        term: getValue("term"),
+        monthlyPayment: getValue("monthlyPayment"),
+        escalating: getToggle("escalating"),
+        manualPlan: getToggle("manualPlan"),
+        manualPlanText: getValue("manualPlanText"),
+        delivery: getValue("delivery"),
+        serviceFee: getValue("serviceFee"),
+        rent: getValue("rent"),
+        inflation: getValue("inflation", "25"),
+        creditRate: getValue("creditRate", "3.19"),
+        yearlyIncrease: getValue("yearlyIncrease", "15"),
+        compareBank: getToggle("compareBank"),
+        bankAmount: getValue("bankAmount", assetType === "Konut" ? "2.000.000" : "1.000.000"),
+        bankRate: getValue("bankRate", assetType === "Konut" ? "2.85" : "3.45"),
+        bankTerm: getValue("bankTerm", assetType === "Konut" ? "60" : "12"),
+        bankHousingStatus: getValue("bankHousingStatus", "yok"),
+      };
+    };
+
+    const setCompareToggleVisual = (button, active) => {
+      if (!(button instanceof HTMLElement)) return;
+      button.dataset.on = active ? "true" : "false";
+      button.setAttribute("aria-pressed", String(active));
+      const track = button.querySelector("span");
+      const knob = track?.querySelector("span");
+      track?.classList.toggle("bg-[#18a05a]", active);
+      track?.classList.toggle("bg-[#d7e3ef]", !active);
+      knob?.classList.toggle("left-6", active);
+      knob?.classList.toggle("left-1", !active);
+    };
+
+    const setCompareResultCard = (root, offerIndex, result, highlighted) => {
+      const card = root.querySelector('[data-compare-result-card="' + offerIndex + '"]');
+      if (!(card instanceof HTMLElement)) return;
+      const empty = card.querySelector("[data-compare-result-empty]");
+      const content = card.querySelector("[data-compare-result-content]");
+      const winner = card.querySelector("[data-compare-result-winner]");
+      empty?.classList.add("hidden");
+      content?.classList.remove("hidden");
+      winner?.classList.toggle("hidden", !highlighted);
+      card.dataset.highlighted = highlighted ? "true" : "false";
+      card.classList.toggle("border-[#f4c514]", highlighted);
+      card.classList.toggle("shadow-[0_20px_50px_rgba(232,179,0,0.16)]", highlighted);
+      card.classList.toggle("border-[#dce7e2]", !highlighted);
+      card.classList.toggle("bg-white", !highlighted);
+
+      const setField = (name, value, extraClass) => {
+        const node = card.querySelector('[data-compare-result-field="' + name + '"]');
+        if (node) {
+          node.textContent = value;
+          if (extraClass) {
+            node.classList.toggle(extraClass, highlighted);
+          }
+        }
+      };
+
+      setField("company", result.state.company);
+      setField("model", result.state.model === "cekilisli" ? "Cekilisli model" : "Cekilissiz model");
+      setField("initialOutflow", formatMoney(result.initialOutflow));
+      setField("term", String(parseNumber(result.state.term)));
+      setField("monthlyPayment", formatMoney(parseNumber(result.state.monthlyPayment)));
+      setField("totalRepayment", formatMoney(result.totalRepayment));
+      setField("totalOutflow", formatMoney(result.totalOutflow));
+      setField("nbm", formatMoney(result.nbm), "text-[#168b53]");
+      setField("downPayment", formatMoney(parseNumber(result.state.downPayment)));
+      setField("serviceFee", formatPercent(parseNumber(result.state.serviceFee)));
+      setField("contractAmount", formatMoney(result.contractAmount));
+      setField("delivery", String(parseNumber(result.state.delivery)));
+      setField("suggestedDelivery", result.suggestedDelivery + ". ay");
+      setField("pvBenefit", formatMoney(result.pvBenefit));
+      setField("pvPayments", formatMoney(result.pvInstallments + result.pvRent));
+      setField("score", formatSignedMoney(result.score), "text-[#168b53]");
+
+      const bankSummary = card.querySelector("[data-compare-bank-summary]");
+      if (result.bankSummary && bankSummary) {
+        bankSummary.classList.remove("hidden");
+        setField("bankInstallment", formatMoney(result.bankSummary.installment));
+        setField("bankTotalRepayment", formatMoney(result.bankSummary.totalRepayment));
+        setField("bankAnnualEffectiveCost", formatPercent(result.bankSummary.annualEffectiveCost * 100, 2));
+      } else {
+        bankSummary?.classList.add("hidden");
+      }
+    };
+
+    const setCompareSummary = (root, winnerResult) => {
+      const card = root.querySelector("[data-compare-summary-card]");
+      if (!(card instanceof HTMLElement)) return;
+      const company = card.querySelector("[data-compare-summary-company]");
+      const nbm = card.querySelector("[data-compare-summary-nbm]");
+      if (company) company.textContent = winnerResult.state.company;
+      if (nbm) nbm.textContent = formatSignedMoney(winnerResult.score);
+    };
+
+    const setCompareCashflow = (root, offerIndex, rows) => {
+      const block = root.querySelector('[data-compare-cashflow-root="' + offerIndex + '"]');
+      if (!(block instanceof HTMLElement)) return;
+      const empty = block.querySelector("[data-compare-cashflow-empty]");
+      const tableWrap = block.querySelector("[data-compare-cashflow-table]");
+      const body = block.querySelector("[data-compare-cashflow-body]");
+      const exportButton = block.querySelector('[data-compare-export="' + offerIndex + '"]');
+      empty?.classList.add("hidden");
+      tableWrap?.classList.remove("hidden");
+      exportButton?.classList.remove("hidden");
+      if (!(body instanceof HTMLElement)) return;
+      const previewRows = rows.slice(0, 20);
+      body.innerHTML = previewRows.map((row) => {
+        const netOutflow = -(row.installment + row.rent + row.serviceFee);
+        return '<tr class="border-t border-[#edf2f7]' + (row.month === 12 ? ' bg-[#effbf5]' : '') + '">' +
+          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#ff5b57]">' + formatSignedMoney(-row.installment) + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#ff5b57]">' + formatSignedMoney(netOutflow) + '</td>' +
+        '</tr>';
+      }).join("");
+      body.dataset.csv = JSON.stringify(rows);
+      const note = block.querySelector("[data-compare-cashflow-note]");
+      if (note) {
+        const hiddenCount = Math.max(rows.length - previewRows.length, 0);
+        note.textContent = hiddenCount > 0
+          ? "... ve " + hiddenCount + " satır daha. (Tüm tabloyu görmek için Excel olarak indirin)"
+          : "Tüm satırlar görüntüleniyor.";
+      }
+    };
+
+    const exportCompareRows = (filename, rows) => {
+      const csv = ["Ay,Taksit,Kira,Hizmet Bedeli,Kumulatif Cikis,Bugunku Deger"]
+        .concat(rows.map((row) => [row.month, Math.round(row.installment), Math.round(row.rent), Math.round(row.serviceFee), Math.round(row.cumulativeOutflow), Math.round(row.presentValue)].join(",")))
+        .join("\\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    };
+
+    const initCompareFallback = () => {
+      return;
+      const root = getCompareRoot();
+      if (!(root instanceof HTMLElement) || root.dataset.compareFallbackReady === "true") return;
+      root.dataset.compareFallbackReady = "true";
+
+      root.querySelectorAll('select[data-compare-field]').forEach((select) => {
+        if (!(select instanceof HTMLSelectElement)) return;
+        const initialValue = select.dataset.initialValue;
+        if (initialValue && Array.from(select.options).some((option) => option.value === initialValue)) {
+          select.value = initialValue;
+        } else if (!select.value && Array.from(select.options).some((option) => option.value === "Diğer")) {
+          select.value = "Diğer";
+        }
+      });
+
+      const render = () => {
+        const assetType = root.querySelector("[data-compare-asset-button].active")?.dataset.compareAssetButton || "Konut";
+        const offerOneState = collectCompareState(root, 1, assetType);
+        const offerTwoState = collectCompareState(root, 2, assetType);
+        const offerOneResult = calculateCompareOffer(assetType, offerOneState);
+        const offerTwoResult = calculateCompareOffer(assetType, offerTwoState);
+        const winnerIndex = offerOneResult.nbm <= offerTwoResult.nbm ? 1 : 2;
+
+        setCompareResultCard(root, 1, offerOneResult, winnerIndex === 1);
+        setCompareResultCard(root, 2, offerTwoResult, winnerIndex === 2);
+        setCompareCashflow(root, 1, offerOneResult.cashflow);
+        setCompareCashflow(root, 2, offerTwoResult.cashflow);
+        setCompareSummary(root, winnerIndex === 1 ? offerOneResult : offerTwoResult);
+
+        const resultsSection = root.querySelector("[data-compare-results-section]");
+        if (resultsSection instanceof HTMLElement) {
+          pulse(resultsSection, "surface-ack", 520);
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        root.dataset.compareResults = JSON.stringify({
+          1: offerOneResult.cashflow,
+          2: offerTwoResult.cashflow,
+        });
+      };
+
+      root.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const assetButton = target.closest("[data-compare-asset-button]");
+        if (assetButton instanceof HTMLElement) {
+          root.querySelectorAll("[data-compare-asset-button]").forEach((button) => button.classList.remove("active"));
+          assetButton.classList.add("active");
+          pulse(assetButton);
+          return;
+        }
+
+        const modelButton = target.closest("[data-compare-model]");
+        if (modelButton instanceof HTMLElement) {
+          const offerIndex = modelButton.dataset.compareOffer;
+          root.querySelectorAll('[data-compare-offer="' + offerIndex + '"][data-compare-model]').forEach((button) => button.classList.remove("active"));
+          modelButton.classList.add("active");
+          pulse(modelButton);
+          return;
+        }
+
+        const toggleButton = target.closest("[data-compare-toggle-button]");
+        if (toggleButton instanceof HTMLElement) {
+          setCompareToggleVisual(toggleButton, toggleButton.dataset.on !== "true");
+          pulse(toggleButton);
+          return;
+        }
+
+        const calculateButton = target.closest("[data-compare-calculate]");
+        if (calculateButton instanceof HTMLElement) {
+          pulse(calculateButton);
+          render();
+          return;
+        }
+
+        const exportButton = target.closest("[data-compare-export]");
+        if (exportButton instanceof HTMLElement) {
+          const offerIndex = exportButton.dataset.compareExport;
+          const payload = JSON.parse(root.dataset.compareResults || "{}");
+          const rows = payload[offerIndex];
+          if (rows) exportCompareRows("teklif-" + offerIndex + "-nakit-akisi.csv", rows);
+        }
+      });
+
+      root.addEventListener("input", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+        const name = target.dataset.compareField;
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(name)) {
+          formatThousandsInput(target);
+        }
+      });
+    };
+
+    const calculateComparisonScenarios = () => {
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+
+      const feeAmount = assetPrice * serviceFee / 100;
+      const savingsInitial = downPayment + feeAmount;
+      const savingsFinanced = Math.max(0, assetPrice - downPayment);
+      const savingsPaymentsPv = Array.from({ length: term }).reduce((sum, _, index) => sum + presentValue(monthlyPayment, index + 1, discountRate), 0);
+      const savingsRentPv = Array.from({ length: delivery }).reduce((sum, _, index) => sum + presentValue(rent, index + 1, discountRate), 0);
+      const savingsBenefitPv = presentValue(assetPrice, delivery, discountRate);
+      const savingsScore = savingsBenefitPv - savingsInitial - savingsPaymentsPv - savingsRentPv;
+
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
+      const bankInitial = downPayment;
+      const bankPaymentsPv = Array.from({ length: bankTerm }).reduce((sum, _, index) => sum + presentValue(bankResult.installment, index + 1, discountRate), 0);
+      const bankScore = assetPrice - bankInitial - bankPaymentsPv;
+
+      const autoDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
+      const autoRentPv = Array.from({ length: autoDelivery }).reduce((sum, _, index) => sum + presentValue(rent, index + 1, discountRate), 0);
+      const autoBenefitPv = presentValue(assetPrice, autoDelivery, discountRate);
+      const autoScore = autoBenefitPv - savingsInitial - savingsPaymentsPv - autoRentPv;
+
+      return {
+        bank: {
+          initial: bankInitial,
+          financed: bankAmount,
+          installment: bankResult.installment,
+          total: bankInitial + bankResult.totalRepayment,
+          score: bankScore,
+        },
+        savings: {
+          initial: savingsInitial,
+          financed: savingsFinanced,
+          installment: monthlyPayment,
+          delivery,
+          score: savingsScore,
+        },
+        auto: {
+          delivery: autoDelivery,
+          score: autoScore,
+        },
+      };
+    };
+
+    const renderComparison = () => {
+      const comparison = calculateComparisonScenarios();
+      const setNode = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (!node) return;
+        if (node.textContent !== value) {
+          node.textContent = value;
+          pulse(node, "preview-swap", 300);
+        }
+      };
+
+      setNode("[data-compare-bank-initial]", formatMoney(comparison.bank.initial));
+      setNode("[data-compare-bank-financed]", formatMoney(comparison.bank.financed));
+      setNode("[data-compare-bank-installment]", formatMoney(comparison.bank.installment));
+      setNode("[data-compare-bank-total]", formatMoney(comparison.bank.total));
+      setNode("[data-compare-bank-npv]", formatMoney(comparison.bank.score));
+      setNode("[data-compare-savings-initial]", formatMoney(comparison.savings.initial));
+      setNode("[data-compare-savings-financed]", formatMoney(comparison.savings.financed));
+      setNode("[data-compare-savings-installment]", formatMoney(comparison.savings.installment));
+      setNode("[data-compare-savings-delivery]", comparison.savings.delivery + ". ay");
+      setNode("[data-compare-savings-npv]", formatMoney(comparison.savings.score));
+      setNode("[data-compare-auto-delivery]", comparison.auto.delivery + ". ay");
+
+      const candidates = [
+        { label: "Banka kredisi daha avantajlı", score: comparison.bank.score },
+        { label: "Tasarruf finansmanı daha avantajlı", score: comparison.savings.score },
+        { label: "Otomatik teslim senaryosu öne çıkıyor", score: comparison.auto.score },
+      ].sort((a, b) => b.score - a.score);
+
+      setNode("[data-compare-best]", candidates[0].label);
+      setNode("[data-compare-best-delta]", formatMoney(Math.max(0, candidates[0].score - candidates[1].score)));
+    };
+
+    const renderCashflow = () => {
+      const body = document.querySelector("[data-cashflow-body]");
+      const footnote = document.querySelector("[data-cashflow-footnote]");
+      if (!(body instanceof HTMLElement) || !(footnote instanceof HTMLElement)) return;
+
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+      const feeAmount = assetPrice * serviceFee / 100;
+
+      const rows = [{ month: 0, payment: downPayment + feeAmount, net: downPayment + feeAmount, pv: downPayment + feeAmount }];
+      for (let month = 1; month <= term; month += 1) {
+        const rentFlow = month <= delivery ? rent : 0;
+        const net = monthlyPayment + rentFlow;
+        rows.push({ month, payment: monthlyPayment, net, pv: presentValue(net, month, discountRate) });
+      }
+
+      const visibleRows = rows.slice(0, 19);
+      body.innerHTML = visibleRows
+        .map((row) => {
+          const highlight = row.month === delivery ? ' bg-[#edfdf3]' : "";
+          return '<tr class="border-t border-[#edf2f7]' + highlight + '">' +
+            '<td class="px-5 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
+            '<td class="px-5 py-4 text-sm font-medium text-[#ff4d4f]">' + formatSignedMoney(-row.payment) + '</td>' +
+            '<td class="px-5 py-4 text-sm font-medium text-[#ff4d4f]">' + formatSignedMoney(-row.net) + '</td>' +
+            '<td class="px-5 py-4 text-sm font-semibold text-[#ff4d4f]">' + formatSignedMoney(-row.pv) + '</td>' +
+          '</tr>';
+        })
+        .join("");
+
+      footnote.textContent = rows.length > visibleRows.length ? "Ilk " + visibleRows.length + " satir gosteriliyor. Kalan " + (rows.length - visibleRows.length) + " satir Excel ciktiya eklenir." : "Tum satirlar gosteriliyor.";
+      body.dataset.csv = JSON.stringify(rows);
+    };
+
+    const syncLoanLimit = () => {
+      const section = getLimitSection();
+      if (!section) return;
+
+      const tab = activeLimitTab();
+      section.querySelectorAll("[data-limit-panel]").forEach((panel) => panel.classList.toggle("hidden", panel.dataset.limitPanel !== tab));
+      section.querySelectorAll("[data-limit-summary]").forEach((panel) => panel.classList.toggle("hidden", panel.dataset.limitSummary !== tab));
+
+      if (tab === "housing") {
+        const value = parseNumber(limitField("housingValue")?.value);
+        const energyClass = limitField("energyClass")?.value || "A-B";
+        const hasAnotherHome = (limitField("homeOwnership")?.value || "yok") === "var";
+        const result = calculateHousingLimit(value, energyClass, hasAnotherHome);
+        setLimitPreviewText("title", "Konut kredi modülü");
+        setLimitPreviewText("housingRatio", "%" + decimal.format(result.ratio * 100));
+        setLimitPreviewText("housingAmount", formatMoney(result.amount));
+      }
+
+      if (tab === "vehicle") {
+        const value = parseNumber(limitField("vehicleValue")?.value);
+        const result = calculateVehicleLimit(value);
+        setLimitPreviewText("title", "Taşıt kredi modülü");
+        setLimitPreviewText("vehicleAmount", result.eligible ? formatMoney(result.amount) : "Kredi yok");
+        setLimitPreviewText("vehicleMessage", result.eligible ? "Uygulanan oran: %" + decimal.format(result.ratio * 100) : result.message);
+      }
+
+      if (tab === "need") {
+        const value = parseNumber(limitField("needValue")?.value);
+        const term = calculateNeedTerm(value);
+        setLimitPreviewText("title", "İhtiyaç kredi modülü");
+        setLimitPreviewText("needTerm", term + " ay");
+        setLimitPreviewText(
+          "needMessage",
+          value <= 125000 ? "0 - 125.000 TL bandı için 36 ay" : value <= 250000 ? "125.000,01 - 250.000 TL bandı için 24 ay" : "250.000 TL üstü için 12 ay",
+        );
+      }
+    };
+
+    const syncCompanySelect = () => {
+      const currentValue = field("company")?.value || "Diğer";
+      const label = getCompanyLabel();
+      const select = getCompanySelect();
+      if (label) label.textContent = currentValue;
+      select?.querySelectorAll("[data-company-option]").forEach((option) => {
+        option.dataset.active = String(option.dataset.value === currentValue);
+      });
+    };
+
+    const closeCompanyMenu = () => {
+      const menu = getCompanyMenu();
+      const trigger = getCompanyTrigger();
+      const chevron = getCompanyChevron();
+      if (!menu || !trigger) return;
+      menu.classList.add("hidden");
+      trigger.setAttribute("aria-expanded", "false");
+      chevron?.classList.remove("rotate-180");
+    };
+
+    const openCompanyMenu = () => {
+      const menu = getCompanyMenu();
+      const trigger = getCompanyTrigger();
+      const chevron = getCompanyChevron();
+      if (!menu || !trigger) return;
+      menu.classList.remove("hidden");
+      trigger.setAttribute("aria-expanded", "true");
+      chevron?.classList.add("rotate-180");
+    };
+
+    const updateDeliveryBar = () => {
+      const bar = getCalculator()?.querySelector("[data-delivery-bar]");
+      const delivery = parseNumber(field("delivery")?.value);
+      if (bar) bar.style.width = Math.min(100, Math.max(18, delivery * 5.2)) + "%";
+    };
+
+    const updateBankPanelVisibility = () => {
+      const compareBank = getCalculator()?.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
+      const bankPanel = getCalculator()?.querySelector("[data-bank-panel]");
+      if (bankPanel) bankPanel.classList.toggle("hidden", !compareBank);
+      const housingStatusWrap = getCalculator()?.querySelector("[data-bank-housing-status]");
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      if (housingStatusWrap) housingStatusWrap.classList.toggle("hidden", assetType !== "Konut");
+    };
+
+    const syncSummary = () => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const model = activeSegmentValue("model") || "cekilissiz";
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 32;
+      const compareBank = calculator.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
+
+      const feeAmount = assetPrice * serviceFee / 100;
+      const totalNominal = downPayment + feeAmount + monthlyPayment * term;
+      const pvPayments = calculatePvPayments(monthlyPayment, term, inflation);
+      const benefitPv = assetPrice / Math.pow(1 + monthlyDiscountRate(inflation), Math.max(1, delivery));
+      const orgAndDown = downPayment + feeAmount;
+      const netInitialCost = Math.max(orgAndDown + pvPayments - benefitPv, 0);
+
+      setPreviewText("term", term ? term + " ay" : "—");
+      setPreviewText("delivery", String(delivery || "—"));
+      setPreviewText("assetType", assetType);
+      setPreviewText("model", model === "cekilisli" ? "Çekilişli" : "Çekilişsiz");
+      setPreviewText("assetPrice", formatMoney(assetPrice));
+      setPreviewText("downPayment", formatMoney(downPayment));
+      setPreviewText("monthlyPayment", formatMoney(monthlyPayment));
+      setPreviewText("serviceFee", formatPercent(serviceFee));
+      setPreviewText("rent", formatMoney(rent) + "/ay");
+      setPreviewText("totalNominal", formatMoney(totalNominal));
+      setPreviewText("benefitPv", formatMoney(benefitPv));
+      setPreviewText("orgAndDown", formatMoney(orgAndDown));
+      setPreviewText("paymentsPv", formatMoney(pvPayments));
+      setPreviewText("netInitialCost", formatMoney(netInitialCost));
+
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
+
+      setPreviewText("bankPanelTitle", bankConfig.title);
+      setPreviewText("bankAmount", compareBank ? formatMoney(bankAmount) : "Kapalı");
+      setPreviewText("bankRate", compareBank ? formatPercent(bankRate) : "Kapalı");
+      setPreviewText("bankTerm", compareBank ? bankTerm + " ay" : "Kapalı");
+      setPreviewText("bankInstallment", compareBank ? formatMoney(bankResult.installment) : "Kapalı");
+      renderComparison();
+      renderCashflow();
+    };
+
+    const applyScenario = (changedByUser = false) => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const model = activeSegmentValue("model") || "cekilissiz";
+      const preset = assetPresets[assetType] || assetPresets.Konut;
+      const tweak = modelTweaks[model] || modelTweaks.cekilissiz;
+      const escalating = calculator.querySelector('[data-toggle="escalating"]')?.dataset.on === "true";
+      const manualPlan = calculator.querySelector('[data-toggle="manualPlan"]')?.dataset.on === "true";
+
+      if (!manualPlan || !changedByUser) {
+        const nextValues = {
+          assetPrice: preset.assetPrice,
+          downPayment: preset.downPayment,
+          term: preset.term,
+          monthlyPayment: Math.max(5000, preset.monthlyPayment + tweak.monthlyDelta + (escalating ? -2800 : 0)),
+          delivery: Math.max(1, preset.delivery + tweak.deliveryDelta),
+          serviceFee: Math.max(1, preset.serviceFee + tweak.feeDelta),
+          rent: preset.rent,
+        };
+
+        Object.entries(nextValues).forEach(([name, value]) => {
+          const input = field(name);
+          if (input) {
+            input.value = String(value);
+            if (integerFields.includes(name)) formatThousandsInput(input);
+          }
+        });
+      }
+
+      if (!changedByUser) {
+        const bankAmount = Math.max(0, parseNumber(field("assetPrice")?.value) - parseNumber(field("downPayment")?.value));
+        const bankConfig = getBankConfig(assetType, bankField("housingStatus")?.value || "yok");
+        if (bankField("amount")) {
+          bankField("amount").value = String(bankAmount);
+          formatThousandsInput(bankField("amount"));
+        }
+        if (bankField("rate")) bankField("rate").value = String(preset.bankRate || bankConfig.defaultRate);
+        if (bankField("term")) bankField("term").value = String(preset.bankTerm || bankConfig.defaultTerm);
+      }
+
+      updateBankPanelVisibility();
+      updateDeliveryBar();
+      syncCompanySelect();
+      syncComparisonInputs();
+      syncSummary();
+    };
+
+    const renderResult = () => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthly = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const serviceFeeRate = parseNumber(field("serviceFee")?.value);
+      const compareBank = calculator.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
+      const error = calculator.querySelector("[data-form-error]");
+
+      if (!assetPrice || !term || !monthly) {
+        if (error) {
+          error.textContent = "Lütfen varlık fiyatı, taksit sayısı ve aylık ödeme alanlarını doldurun.";
+          error.classList.remove("hidden");
+        }
+        return;
+      }
+
+      error?.classList.add("hidden");
+
+      const serviceFeeAmount = assetPrice * serviceFeeRate / 100;
+      const totalPaid = downPayment + serviceFeeAmount + monthly * term;
+      const waitingCost = delivery * rent;
+      const netCost = totalPaid + waitingCost - assetPrice;
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
+      const panel = document.querySelector("[data-result-panel]");
+      if (!panel) return;
+
+      panel.classList.remove("hidden");
+      panel.innerHTML = [
+        ["Net maliyet", formatMoney(netCost)],
+        ["Toplam ödeme", formatMoney(totalPaid)],
+        ["Hizmet bedeli", formatMoney(serviceFeeAmount)],
+        ["Kredi taksiti", compareBank ? formatMoney(bankResult.installment) : "Kapalı"],
+        ["Kredi toplam geri ödeme", compareBank ? formatMoney(bankResult.totalRepayment) : "Kapalı"],
+        ["Net ele geçen kredi", compareBank ? formatMoney(bankResult.netDisbursed) : "Kapalı"],
+      ]
+        .map(([label, value]) => '<div><span class="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">' + label + '</span><strong class="mt-2 block text-xl font-bold text-slate-900">' + value + "</strong></div>")
+        .join("");
+
+      pulse(panel, "choice-pop", 520);
+      syncComparisonInputs();
+      syncSummary();
+      renderComparison();
+      renderCashflow();
+    };
+
+    const openLoginModal = () => {
+      const existing = document.querySelector("[data-login-modal]");
+      if (existing) existing.remove();
+      const modal = document.createElement("div");
+      modal.dataset.loginModal = "true";
+      modal.className = "fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4";
+      modal.innerHTML = '<div class="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"><h2 class="text-2xl font-bold text-slate-950">Giriş alanı</h2><p class="mt-3 text-sm leading-6 text-slate-600">Demo arayüzde hesap girişi bağlanmadı; teklif karşılaştırma ve hesaplama araçlarını kullanabilirsiniz.</p><button class="mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white" data-close-login>Kapat</button></div>';
+      document.body.appendChild(modal);
+      modal.querySelector("[data-close-login]")?.addEventListener("click", () => modal.remove());
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) modal.remove();
+      });
+    };
+
+    const openNetInfoModal = () => {
+      const existing = document.querySelector("[data-net-modal]");
+      if (existing) existing.remove();
+      const modal = document.createElement("div");
+      modal.dataset.netModal = "true";
+      modal.className = "fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4";
+      modal.innerHTML = '<div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"><h2 class="text-xl font-bold text-slate-900">Net Maliyet</h2><p class="mt-3 text-sm leading-7 text-slate-600">Net başlangıç maliyeti; peşinat, organizasyon ücreti ve bugünkü değer etkisini aynı zeminde toplayan karşılaştırma katmanıdır.</p><button class="mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white" data-close-net>Kapat</button></div>';
+      document.body.appendChild(modal);
+      modal.querySelector("[data-close-net]")?.addEventListener("click", () => modal.remove());
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) modal.remove();
+      });
+    };
+
+    document.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const calculator = getCalculator();
+      const calculatorCard = getCalculatorCard();
+      const summaryPanel = document.querySelector("[data-summary-panel]");
+      const menuButton = document.querySelector("[data-mobile-menu-button]");
+      const menu = document.querySelector("[data-mobile-menu]");
+
+      const segmentButton = target.closest("[data-segment]");
+      if (segmentButton instanceof HTMLElement && calculator) {
+        calculator.querySelectorAll('[data-segment="' + segmentButton.dataset.segment + '"]').forEach((item) => item.classList.remove("active"));
+        segmentButton.classList.add("active");
+        pulse(segmentButton);
+        acknowledge(calculatorCard, summaryPanel);
+        applyScenario();
+        return;
+      }
+
+      const calcViewTab = target.closest("[data-calc-view-tab]");
+      if (calcViewTab instanceof HTMLElement && calculator) {
+        pulse(calcViewTab);
+        setCalcView(calcViewTab.dataset.calcViewTab || "main");
+        window.setTimeout(() => {
+          const focusTarget = calcViewTab.dataset.calcViewTab === "comparison" ? document.querySelector("#comparison") : calculator;
+          focusTarget?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 40);
+        return;
+      }
+
+      const toggleButton = target.closest("[data-toggle]");
+      if (toggleButton instanceof HTMLElement && calculator) {
+        setToggle(toggleButton, toggleButton.dataset.on !== "true");
+        pulse(toggleButton);
+        acknowledge(calculator.querySelector("[data-bank-panel]"), summaryPanel);
+        applyScenario(true);
+        return;
+      }
+
+      const companyTrigger = target.closest("[data-company-trigger]");
+      if (companyTrigger instanceof HTMLElement) {
+        const isOpen = companyTrigger.getAttribute("aria-expanded") === "true";
+        if (isOpen) closeCompanyMenu();
+        else openCompanyMenu();
+        pulse(companyTrigger);
+        return;
+      }
+
+      const companyOption = target.closest("[data-company-option]");
+      if (companyOption instanceof HTMLElement) {
+        const input = field("company");
+        if (input) {
+          input.value = companyOption.dataset.value || "Diğer";
+          syncCompanySelect();
+          closeCompanyMenu();
+          pulse(getCompanyTrigger());
+          acknowledge(calculatorCard, summaryPanel);
+          syncSummary();
+        }
+        return;
+      }
+
+      const fillExampleButton = target.closest("[data-fill-example]");
+      if (fillExampleButton instanceof HTMLElement && calculator) {
+        pulse(fillExampleButton);
+        Object.entries(example).forEach(([name, value]) => {
+          const input = field(name);
+          if (input) {
+            input.value = value;
+            if (integerFields.includes(name)) formatThousandsInput(input);
+          }
+        });
+        calculator.querySelectorAll("[data-segment]").forEach((item) => item.classList.remove("active"));
+        calculator.querySelector('[data-segment="assetType"][data-value="Konut"]')?.classList.add("active");
+        calculator.querySelector('[data-segment="model"][data-value="cekilisli"]')?.classList.add("active");
+        calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, toggle.dataset.toggle === "compareBank"));
+        syncCompanySelect();
+        applyScenario();
+        calculator.scrollIntoView({ behavior: "smooth", block: "start" });
+        focusCalculator();
+        return;
+      }
+
+      const clearButton = target.closest("[data-clear-form]");
+      if (clearButton instanceof HTMLElement && calculator) {
+        pulse(clearButton);
+        calculator.querySelectorAll("[data-field]").forEach((input) => {
+          input.value = "";
+        });
+        calculator.querySelectorAll("[data-bank-field]").forEach((input) => {
+          input.value = "";
+        });
+        document.querySelector("[data-result-panel]")?.classList.add("hidden");
+        calculator.querySelector("[data-form-error]")?.classList.add("hidden");
+        calculator.querySelectorAll("[data-toggle]").forEach((toggle) => setToggle(toggle, false));
+        syncCompanySelect();
+        closeCompanyMenu();
+        updateBankPanelVisibility();
+        updateDeliveryBar();
+        syncSummary();
+        return;
+      }
+
+      const calculateButton = target.closest("[data-calculate]");
+      if (calculateButton instanceof HTMLElement) {
+        pulse(calculateButton);
+        acknowledge(summaryPanel);
+        renderResult();
+        return;
+      }
+
+      const runScenarioButton = target.closest("[data-run-scenario]");
+      if (runScenarioButton instanceof HTMLElement && calculator) {
+        pulse(runScenarioButton);
+        calculator.querySelector("[data-fill-example]")?.dispatchEvent(new Event("click", { bubbles: true }));
+        window.setTimeout(() => {
+          calculator.querySelector("[data-calculate]")?.dispatchEvent(new Event("click", { bubbles: true }));
+        }, 160);
+        return;
+      }
+
+      const compareCta = target.closest("[data-compare-cta]");
+      if (compareCta instanceof HTMLElement && calculator) {
+        pulse(compareCta);
+        const compareToggle = calculator.querySelector('[data-toggle="compareBank"]');
+        if (compareToggle) setToggle(compareToggle, true);
+        setCalcView("comparison");
+        window.setTimeout(() => {
+          const comparisonSection = document.querySelector("#comparison");
+          (comparisonSection || calculator).scrollIntoView({ behavior: "smooth", block: "start" });
+          focusCalculator();
+          updateBankPanelVisibility();
+          syncSummary();
+        }, 40);
+        return;
+      }
+
+      const loginButton = target.closest("[data-login-button]");
+      if (loginButton instanceof HTMLElement) {
+        event.preventDefault();
+        pulse(loginButton);
+        openLoginModal();
+        return;
+      }
+
+      const netInfoButton = target.closest("[data-net-info]");
+      if (netInfoButton instanceof HTMLElement) {
+        pulse(netInfoButton);
+        openNetInfoModal();
+        return;
+      }
+
+      const downloadPdfButton = target.closest("[data-download-pdf]");
+      if (downloadPdfButton instanceof HTMLElement) {
+        pulse(downloadPdfButton);
+        window.print();
+        return;
+      }
+
+      const copyLinkButton = target.closest("[data-copy-link]");
+      if (copyLinkButton instanceof HTMLElement) {
+        pulse(copyLinkButton);
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const original = copyLinkButton.textContent;
+          copyLinkButton.textContent = "Link Kopyalandı";
+          window.setTimeout(() => {
+            copyLinkButton.textContent = original;
+          }, 1400);
+        } catch (error) {
+          console.warn("copy failed", error);
+        }
+        return;
+      }
+
+      const downloadCashflowButton = target.closest("[data-download-cashflow]");
+      if (downloadCashflowButton instanceof HTMLElement) {
+        pulse(downloadCashflowButton);
+        const body = document.querySelector("[data-cashflow-body]");
+        const rows = body?.dataset.csv ? JSON.parse(body.dataset.csv) : [];
+        const csv = ["Ay,Aylik Taksit,Net Nakit Akisi,Bugunku Deger"]
+          .concat(
+            rows.map((row) =>
+              [row.month, Math.round(row.payment || 0), Math.round(row.net || 0), Math.round(row.pv || 0)].join(","),
+            ),
+          )
+          .join("\\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "nakit-akisi.csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      const blogRead = target.closest("[data-blog-read]");
+      if (blogRead instanceof HTMLElement) {
+        event.preventDefault();
+        const detail = blogRead.closest("[data-blog-card]")?.querySelector("[data-blog-detail]");
+        detail?.classList.toggle("hidden");
+        blogRead.textContent = detail?.classList.contains("hidden") ? "Devamını Oku →" : "Kapat ↑";
+        return;
+      }
+
+      const blogAll = target.closest("[data-blog-all]");
+      if (blogAll instanceof HTMLElement) {
+        event.preventDefault();
+        document.querySelectorAll("[data-blog-detail]").forEach((detail) => detail.classList.remove("hidden"));
+        document.querySelectorAll("[data-blog-read]").forEach((link) => {
+          link.textContent = "Kapat ↑";
+        });
+        return;
+      }
+
+      const mobileMenuButton = target.closest("[data-mobile-menu-button]");
+      if (mobileMenuButton instanceof HTMLElement) {
+        const isOpen = !menu?.classList.contains("hidden");
+        menu?.classList.toggle("hidden", isOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+        return;
+      }
+
+      const limitTabButton = target.closest("[data-limit-tab-button]");
+      if (limitTabButton instanceof HTMLElement) {
+        const section = getLimitSection();
+        section?.querySelectorAll("[data-limit-tab-button]").forEach((button) => {
+          button.dataset.active = String(button === limitTabButton);
+        });
+        pulse(limitTabButton);
+        acknowledge(section);
+        syncLoanLimit();
+        return;
+      }
+
+      const mobileMenuLink = target.closest("[data-mobile-menu] a");
+      if (mobileMenuLink instanceof HTMLElement) {
+        menu?.classList.add("hidden");
+        menuButton?.setAttribute("aria-expanded", "false");
+        return;
+      }
+
+      const companySelect = getCompanySelect();
+      if (!companySelect || companySelect.contains(target)) return;
+      closeCompanyMenu();
+    });
+
+    document.addEventListener("input", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (target.matches("[data-compare-input]")) {
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(target.dataset.compareInput)) {
+          formatThousandsInput(target);
+        }
+        syncFromComparisonInput(target);
+        updateDeliveryBar();
+        syncSummary();
+        return;
+      }
+      if (target.matches("[data-limit-field]")) {
+        if (integerLimitFields.includes(target.dataset.limitField)) {
+          formatThousandsInput(target);
+        }
+        syncLoanLimit();
+        return;
+      }
+      if (!target.matches("[data-field], [data-bank-field]")) return;
+      if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {
+        formatThousandsInput(target);
+      }
+      updateDeliveryBar();
+      syncSummary();
+    });
+
+    document.addEventListener("change", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLSelectElement)) return;
+      if (target.matches("[data-limit-field]")) {
+        syncLoanLimit();
+        return;
+      }
+      if (target.matches('[data-bank-field="housingStatus"]')) {
+        updateBankPanelVisibility();
+        syncSummary();
+      }
+    });
+
+    document.addEventListener("focusout", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+      if (target instanceof HTMLInputElement && target.matches("[data-compare-input]")) {
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(target.dataset.compareInput)) {
+          formatThousandsInput(target);
+        }
+        syncFromComparisonInput(target);
+        syncSummary();
+        return;
+      }
+      if (target instanceof HTMLInputElement && target.matches("[data-limit-field]")) {
+        if (integerLimitFields.includes(target.dataset.limitField)) {
+          formatThousandsInput(target);
+        }
+        syncLoanLimit();
+        return;
+      }
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.matches("[data-field], [data-bank-field]")) return;
+      if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {
+        formatThousandsInput(target);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeCompanyMenu();
+      }
+    });
+
+    const scrollToHash = () => {
+      if (!location.hash) return;
+      if (location.hash === "#comparison") {
+        setCalcView("comparison");
+      }
+      const target = document.querySelector(location.hash);
+      if (!(target instanceof HTMLElement)) return;
+      const run = () => {
+        const top = target.getBoundingClientRect().top + window.scrollY - 92;
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+        if (target === getCalculator()) focusCalculator();
+      };
+      setTimeout(run, 80);
+      setTimeout(run, 500);
+    };
+
+    document.querySelectorAll("[data-field], [data-bank-field]").forEach((input) => {
+      if (integerFields.includes(input.dataset.field) || integerBankFields.includes(input.dataset.bankField)) {
+        formatThousandsInput(input);
+      }
+    });
+    document.querySelectorAll("[data-compare-input]").forEach((input) => {
+      if (input instanceof HTMLInputElement && ["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(input.dataset.compareInput)) {
+        formatThousandsInput(input);
+      }
+    });
+
+    syncCompanySelect();
+    updateBankPanelVisibility();
+    setCalcView("main");
+    applyScenario();
+    syncComparisonInputs();
+    document.querySelectorAll("[data-limit-field]").forEach((input) => {
+      if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
+        formatThousandsInput(input);
+      }
+    });
+    syncLoanLimit();
+    window.addEventListener("hashchange", scrollToHash);
+    scrollToHash();
+  });
+})();
+</script><script src="/finans/_next/static/chunks/0ht900cau6_ur.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[39756,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"default\"]\n3:I[37457,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"default\"]\n9:I[68027,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"default\",1]\n:HL[\"/finans/_next/static/chunks/0z90yro31yg10.css\",\"style\"]\n4:Tfaa1,"])</script><script>self.__next_f.push([1,"\n(() =\u003e {\n  const ready = (fn) =\u003e {\n    if (document.readyState === \"loading\") {\n      document.addEventListener(\"DOMContentLoaded\", fn, { once: true });\n    } else {\n      fn();\n    }\n  };\n\n  ready(() =\u003e {\n    const money = new Intl.NumberFormat(\"tr-TR\", { maximumFractionDigits: 0 });\n    const decimal = new Intl.NumberFormat(\"tr-TR\", { minimumFractionDigits: 1, maximumFractionDigits: 1 });\n\n    const example = {\n      company: \"Diğer\",\n      assetPrice: \"3000000\",\n      downPayment: \"1000000\",\n      term: \"48\",\n      monthlyPayment: \"41667\",\n      delivery: \"12\",\n      serviceFee: \"11.8\",\n      rent: \"25000\",\n      inflation: \"32\",\n      creditRate: \"3.19\",\n      yearlyIncrease: \"15\",\n    };\n\n    const assetPresets = {\n      Konut: { assetPrice: 3000000, downPayment: 1000000, term: 48, monthlyPayment: 41667, delivery: 13, serviceFee: 7.5, rent: 25000, bankRate: 2.85, bankTerm: 60 },\n      Araba: { assetPrice: 1850000, downPayment: 550000, term: 36, monthlyPayment: 38250, delivery: 6, serviceFee: 6.2, rent: 12000, bankRate: 3.45, bankTerm: 12 },\n    };\n\n    const modelTweaks = {\n      cekilissiz: { deliveryDelta: 0, feeDelta: 0, monthlyDelta: 0 },\n      cekilisli: { deliveryDelta: -1, feeDelta: 4.3, monthlyDelta: 0 },\n    };\n\n    const integerFields = [\"assetPrice\", \"downPayment\", \"monthlyPayment\", \"rent\"];\n    const integerBankFields = [\"amount\"];\n    const integerLimitFields = [\"housingValue\", \"vehicleValue\", \"needValue\"];\n\n    const getCalculator = () =\u003e document.querySelector(\"[data-calculator]\");\n    const getCalculatorCard = () =\u003e getCalculator()?.querySelector(\"[data-calculator-card]\");\n    const getCalcViewTab = () =\u003e getCalculator()?.querySelector('[data-calc-view-tab].active')?.dataset.calcViewTab || \"main\";\n    const getCompanySelect = () =\u003e getCalculator()?.querySelector(\"[data-company-select]\");\n    const getCompanyTrigger = () =\u003e getCompanySelect()?.querySelector(\"[data-company-trigger]\");\n    const getCompanyMenu = () =\u003e getCompanySelect()?.querySelector(\"[data-company-menu]\");\n    const getCompanyLabel = () =\u003e getCompanySelect()?.querySelector(\"[data-company-label]\");\n    const getCompanyChevron = () =\u003e getCompanySelect()?.querySelector(\"[data-company-chevron]\");\n    const field = (name) =\u003e getCalculator()?.querySelector('[data-field=\"' + name + '\"]');\n    const bankField = (name) =\u003e getCalculator()?.querySelector('[data-bank-field=\"' + name + '\"]');\n    const compareInput = () =\u003e null;\n    const preview = (name) =\u003e document.querySelector('[data-preview=\"' + name + '\"]');\n    const activeSegmentValue = (segmentName) =\u003e getCalculator()?.querySelector('[data-segment=\"' + segmentName + '\"].active')?.dataset.value || \"\";\n\n    const setCalcView = (view) =\u003e {\n      const calculator = getCalculator();\n      if (!calculator) return;\n      calculator.querySelectorAll(\"[data-calc-view-tab]\").forEach((button) =\u003e {\n        button.classList.toggle(\"active\", button.dataset.calcViewTab === view);\n      });\n      calculator.querySelectorAll(\"[data-calc-view-panel]\").forEach((panel) =\u003e {\n        panel.classList.toggle(\"hidden\", panel.dataset.calcViewPanel !== view);\n      });\n    };\n\n    const syncComparisonInputs = () =\u003e {};\n\n    const syncFromComparisonInput = () =\u003e {};\n\n    const parseNumber = (value) =\u003e {\n      const raw = String(value || \"\").trim();\n      const normalized = raw.includes(\",\")\n        ? raw.replace(/\\./g, \"\").replace(\",\", \".\")\n        : /^\\d+\\.\\d{1,2}$/.test(raw)\n          ? raw\n          : raw.replace(/\\./g, \"\");\n      const number = Number(normalized);\n      return Number.isFinite(number) \u0026\u0026 number \u003e= 0 ? number : 0;\n    };\n\n    const formatMoney = (value) =\u003e \"₺\" + money.format(Math.round(value || 0));\n    const formatSignedMoney = (value) =\u003e {\n      const safe = Math.round(value || 0);\n      return (safe \u003c 0 ? \"-₺\" : \"₺\") + money.format(Math.abs(safe));\n    };\n    const formatPercent = (value) =\u003e \"%\" + decimal.format(value || 0);\n\n    const pulse = (element, className = \"button-ack\", duration = 320) =\u003e {\n      if (!element) return;\n      element.classList.remove(className);\n      void element.offsetWidth;\n      element.classList.add(className);\n      window.setTimeout(() =\u003e element.classList.remove(className), duration);\n    };\n\n    const acknowledge = (...elements) =\u003e {\n      elements.filter(Boolean).forEach((element) =\u003e pulse(element, \"surface-ack\", 420));\n    };\n\n    const focusCalculator = () =\u003e {\n      const card = getCalculatorCard();\n      if (!card) return;\n      pulse(card, \"calculator-focus\", 980);\n    };\n\n    const setToggle = (button, active) =\u003e {\n      button.dataset.on = String(active);\n      const track = button.querySelector(\"span\");\n      const knob = track?.querySelector(\"span\");\n      track?.classList.toggle(\"bg-[var(--green)]\", active);\n      track?.classList.toggle(\"bg-slate-200\", !active);\n      knob?.classList.toggle(\"left-6\", active);\n      knob?.classList.toggle(\"left-1\", !active);\n    };\n\n    const setPreviewText = (name, value) =\u003e {\n      const node = preview(name);\n      if (!node) return;\n      if (node.textContent !== value) {\n        node.textContent = value;\n        pulse(node, \"preview-swap\", 300);\n      }\n    };\n\n    const formatThousandsInput = (input) =\u003e {\n      if (!input) return;\n      const digits = String(input.value || \"\").replace(/\\D/g, \"\");\n      input.value = digits ? money.format(Number(digits)) : \"\";\n    };\n\n    const monthlyDiscountRate = (annualInflation) =\u003e Math.pow(1 + annualInflation / 100, 1 / 12) - 1;\n    const presentValue = (amount, period, rate) =\u003e {\n      if (!amount) return 0;\n      if (!rate) return amount;\n      return amount / Math.pow(1 + rate, Math.max(0, period));\n    };\n\n    const calculatePvPayments = (payment, term, annualInflation) =\u003e {\n      const r = monthlyDiscountRate(annualInflation);\n      if (!payment || !term) return 0;\n      return Array.from({ length: term }).reduce((sum, _, index) =\u003e sum + payment / Math.pow(1 + r, index + 1), 0);\n    };\n\n    const calculatePayment = (principal, monthlyRate, term) =\u003e {\n      if (!principal || !term) return 0;\n      if (!monthlyRate) return principal / term;\n      const factor = Math.pow(1 + monthlyRate, term);\n      return principal * monthlyRate * factor / (factor - 1);\n    };\n\n    const solveMonthlyRate = (payment, term, presentValue) =\u003e {\n      if (!payment || !term || !presentValue) return 0;\n      let low = 0;\n      let high = 1;\n      for (let i = 0; i \u003c 80; i += 1) {\n        const mid = (low + high) / 2;\n        const guess = calculatePayment(presentValue, mid, term);\n        if (guess \u003e payment) high = mid;\n        else low = mid;\n      }\n      return (low + high) / 2;\n    };\n\n    const getBankConfig = (assetType, housingStatus) =\u003e {\n      if (assetType === \"Araba\") {\n        return { title: \"Taşıt Kredisi Karşılaştırması\", fee: 925.92, bsmv: 15, kkdf: 15, defaultRate: 3.45, defaultTerm: 12 };\n      }\n\n      return {\n        title: \"Konut Kredisi Karşılaştırması\",\n        fee: 39100,\n        bsmv: housingStatus === \"var\" ? 15 : 0,\n        kkdf: 0,\n        defaultRate: 2.85,\n        defaultTerm: 60,\n      };\n    };\n\n    const calculateCreditModule = ({ principal, rate, term, fee, bsmv, kkdf }) =\u003e {\n      const safePrincipal = Math.max(0, principal || 0);\n      const safeRate = Math.max(0, rate || 0);\n      const safeTerm = Math.max(0, term || 0);\n      const safeFee = Math.max(0, fee || 0);\n      const nominalMonthlyRate = safeRate / 100;\n      const taxedMonthlyRate = nominalMonthlyRate * (1 + (bsmv + kkdf) / 100);\n      const installment = calculatePayment(safePrincipal, taxedMonthlyRate, safeTerm);\n\n      let balance = safePrincipal;\n      let totalBaseInterest = 0;\n      let totalBsmv = 0;\n      let totalKkdf = 0;\n\n      for (let i = 0; i \u003c safeTerm; i += 1) {\n        const baseInterest = balance * nominalMonthlyRate;\n        const kkdfAmount = baseInterest * kkdf / 100;\n        const bsmvAmount = baseInterest * bsmv / 100;\n        const principalPart = installment - baseInterest - kkdfAmount - bsmvAmount;\n        balance = Math.max(0, balance - principalPart);\n        totalBaseInterest += baseInterest;\n        totalBsmv += bsmvAmount;\n        totalKkdf += kkdfAmount;\n      }\n\n      const totalRepaymentWithoutFees = safePrincipal + totalBaseInterest;\n      const totalRepayment = totalRepaymentWithoutFees + safeFee;\n      const netDisbursed = safePrincipal - safeFee;\n      const effectiveMonthlyRate = solveMonthlyRate(installment, safeTerm, netDisbursed);\n      const annualEffectiveCost = Math.pow(1 + effectiveMonthlyRate, 12) - 1;\n\n      return {\n        installment,\n        totalBaseInterest,\n        totalRepaymentWithoutFees,\n        totalRepayment,\n        netDisbursed,\n        annualEffectiveCost,\n      };\n    };\n\n    const getLimitSection = () =\u003e document.querySelector(\"[data-loan-limit]\");\n    const limitField = (name) =\u003e getLimitSection()?.querySelector('[data-limit-field=\"' + name + '\"]');\n    const limitPreview = (name) =\u003e getLimitSection()?.querySelector('[data-limit-preview=\"' + name + '\"]');\n    const activeLimitTab = () =\u003e getLimitSection()?.querySelector('[data-limit-tab-button][data-active=\"true\"]')?.dataset.limitTabButton || \"housing\";\n\n    const setLimitPreviewText = (name, value) =\u003e {\n      const node = limitPreview(name);\n      if (!node) return;\n      if (node.textContent !== value) {\n        node.textContent = value;\n        pulse(node, \"preview-swap\", 300);\n      }\n    };\n\n    const calculateHousingLimit = (value, energyClass, hasAnotherHome) =\u003e {\n      const safeValue = Math.max(0, value || 0);\n      const rules = [\n        { max: 5000000, noHome: { \"A-B\": 0.9, C: 0.8, Diger: 0.7 }, hasHome: { \"A-B\": 0.225, C: 0.2, Diger: 0.175 } },\n        { max: 7000000, noHome: { \"A-B\": 0.8, C: 0.7, Diger: 0.6 }, hasHome: { \"A-B\": 0.2, C: 0.175, Diger: 0.15 } },\n        { max: 10000000, noHome: { \"A-B\": 0.7, C: 0.6, Diger: 0.5 }, hasHome: { \"A-B\": 0.175, C: 0.15, Diger: 0.125 } },\n        { max: 20000000, noHome: { \"A-B\": 0.5, C: 0.4, Diger: 0.3 }, hasHome: { \"A-B\": 0.125, C: 0.1, Diger: 0.075 } },\n        { max: Number.POSITIVE_INFINITY, noHome: { \"A-B\": 0.4, C: 0.3, Diger: 0.2 }, hasHome: { \"A-B\": 0.1, C: 0.075, Diger: 0.05 } },\n      ];\n      const rule = rules.find((item) =\u003e safeValue \u003c= item.max) || rules[rules.length - 1];\n      const ratio = hasAnotherHome ? rule.hasHome[energyClass] : rule.noHome[energyClass];\n      return { ratio, amount: safeValue * ratio };\n    };\n\n    const calculateVehicleLimit = (value) =\u003e {\n      const safeValue = Math.max(0, value || 0);\n      if (safeValue \u003e 2000000) {\n        return { eligible: false, ratio: 0, amount: 0, message: \"2.000.000 TL üstü taşıt bedelinde kredi kullandırılamaz.\" };\n      }\n      let ratio = 0.7;\n      if (safeValue \u003e 1200000) ratio = 0.2;\n      else if (safeValue \u003e 800000) ratio = 0.3;\n      else if (safeValue \u003e 400000) ratio = 0.5;\n      return { eligible: true, ratio, amount: safeValue * ratio, message: \"\" };\n    };\n\n    const calculateNeedTerm = (value) =\u003e {\n      const safeValue = Math.max(0, value || 0);\n      if (safeValue \u003c= 125000) return 36;\n      if (safeValue \u003c= 250000) return 24;\n      return 12;\n    };\n\n    const calculateAutoDelivery = ({ assetPrice, downPayment, monthlyPayment, term }) =\u003e {\n      if (!assetPrice || !term || !monthlyPayment) return 0;\n      const fortyPercentGap = Math.max(0, term * (0.4 - downPayment / assetPrice));\n      const monthlyGap = Math.max(0, ((assetPrice * 0.4) - downPayment) / monthlyPayment);\n      return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);\n    };\n\n    const compareDiscountRate = (annualInflation) =\u003e annualInflation / 12 / 100;\n\n    const getCompareRoot = () =\u003e null;\n\n    const buildCompareSchedule = (state) =\u003e {\n      const baseMonthlyPayment = parseNumber(state.monthlyPayment);\n      const yearlyIncrease = parseNumber(state.yearlyIncrease);\n\n      if (state.manualPlan) {\n        const parts = String(state.manualPlanText || \"\")\n          .split(/[\\n,;]+/)\n          .map((item) =\u003e parseNumber(item))\n          .filter((value) =\u003e value \u003e 0);\n        if (parts.length \u003e 0) {\n          return Array.from({ length: state.term }, (_, index) =\u003e parts[index] || parts[parts.length - 1]);\n        }\n      }\n\n      if (state.escalating) {\n        return Array.from({ length: state.term }, (_, index) =\u003e baseMonthlyPayment * Math.pow(1 + yearlyIncrease / 100, Math.floor(index / 12)));\n      }\n\n      return Array.from({ length: state.term }, () =\u003e baseMonthlyPayment);\n    };\n\n    const calculateCompareOffer = (assetType, state) =\u003e {\n      const rawTerm = Math.max(1, Math.round(parseNumber(state.term)));\n      const term = assetType === \"Araba\" ? Math.min(rawTerm, 60) : Math.min(rawTerm, 120);\n      const assetPrice = parseNumber(state.assetPrice);\n      const downPayment = parseNumber(state.downPayment);\n      const monthlyPayment = parseNumber(state.monthlyPayment);\n      const serviceFeeRate = parseNumber(state.serviceFee);\n      const rent = parseNumber(state.rent);\n      const inflation = parseNumber(state.inflation) || 25;\n      const discountRate = compareDiscountRate(inflation);\n      const suggestedDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });\n      const deliveryInput = Math.round(parseNumber(state.delivery));\n      const delivery = Math.max(0, deliveryInput || suggestedDelivery);\n      const feeAmount = assetPrice * serviceFeeRate / 100;\n      const initialOutflow = downPayment + feeAmount;\n      const schedule = buildCompareSchedule(state);\n\n      let cumulative = initialOutflow;\n      let pvInstallments = 0;\n      let pvRent = 0;\n      const cashflow = [{\n        month: 0,\n        installment: 0,\n        rent: 0,\n        serviceFee: initialOutflow,\n        cumulativeOutflow: cumulative,\n        presentValue: initialOutflow,\n      }];\n\n      schedule.forEach((payment, index) =\u003e {\n        const month = index + 1;\n        const rentAmount = month \u003c= delivery ? rent * Math.pow(1 + inflation / 100, Math.floor((month - 1) / 12)) : 0;\n        const pvInstallment = presentValue(payment, month, discountRate);\n        const pvRentAmount = presentValue(rentAmount, month, discountRate);\n        pvInstallments += pvInstallment;\n        pvRent += pvRentAmount;\n        cumulative += payment + rentAmount;\n        cashflow.push({\n          month,\n          installment: payment,\n          rent: rentAmount,\n          serviceFee: 0,\n          cumulativeOutflow: cumulative,\n          presentValue: pvInstallment + pvRentAmount,\n        });\n      });\n\n      const contractAmount = Math.max(assetPrice - downPayment, 0);\n      const totalRepayment = schedule.reduce((sum, value) =\u003e sum + value, 0);\n      const totalOutflow = initialOutflow + totalRepayment + cashflow.slice(1).reduce((sum, row) =\u003e sum + row.rent, 0);\n      const pvBenefit = presentValue(assetPrice, delivery, discountRate);\n      const score = pvBenefit - initialOutflow - pvInstallments - pvRent;\n      const nbm = -score;\n      const bankSummary = state.compareBank\n        ? (() =\u003e {\n            const config = getBankConfig(assetType, state.bankHousingStatus);\n            const summary = calculateCreditModule({\n              principal: parseNumber(state.bankAmount),\n              rate: parseNumber(state.bankRate),\n              term: Math.max(1, Math.round(parseNumber(state.bankTerm))),\n              fee: config.fee,\n              bsmv: config.bsmv,\n              kkdf: config.kkdf,\n            });\n            return {\n              installment: summary.installment,\n              totalRepayment: summary.totalRepayment,\n              annualEffectiveCost: summary.annualEffectiveCost,\n            };\n          })()\n        : null;\n\n      return {\n        state,\n        contractAmount,\n        initialOutflow,\n        feeAmount,\n        totalRepayment,\n        totalOutflow,\n        pvBenefit,\n        pvInstallments,\n        pvRent,\n        score,\n        nbm,\n        suggestedDelivery,\n        cashflow,\n        bankSummary,\n      };\n    };\n\n    const collectCompareState = (root, offerIndex, assetType) =\u003e {\n      const getValue = (field, fallback = \"\") =\u003e {\n        const element = root.querySelector('[data-compare-offer=\"' + offerIndex + '\"][data-compare-field=\"' + field + '\"]');\n        if (element instanceof HTMLSelectElement) {\n          return element.value || element.selectedOptions?.[0]?.value || fallback;\n        }\n        return element?.value || fallback;\n      };\n      const getToggle = (name) =\u003e root.querySelector('[data-compare-offer=\"' + offerIndex + '\"][data-compare-toggle-button=\"' + name + '\"]')?.dataset.on === \"true\";\n      const modelButton = root.querySelector('[data-compare-offer=\"' + offerIndex + '\"][data-compare-model].active');\n      return {\n        company: getValue(\"company\", \"Diğer\"),\n        model: modelButton?.dataset.compareModel || \"cekilissiz\",\n        assetPrice: getValue(\"assetPrice\"),\n        downPayment: getValue(\"downPayment\"),\n        term: getValue(\"term\"),\n        monthlyPayment: getValue(\"monthlyPayment\"),\n        escalating: getToggle(\"escalating\"),\n        manualPlan: getToggle(\"manualPlan\"),\n        manualPlanText: getValue(\"manualPlanText\"),\n        delivery: getValue(\"delivery\"),\n        serviceFee: getValue(\"serviceFee\"),\n        rent: getValue(\"rent\"),\n        inflation: getValue(\"inflation\", \"25\"),\n        creditRate: getValue(\"creditRate\", \"3.19\"),\n        yearlyIncrease: getValue(\"yearlyIncrease\", \"15\"),\n        compareBank: getToggle(\"compareBank\"),\n        bankAmount: getValue(\"bankAmount\", assetType === \"Konut\" ? \"2.000.000\" : \"1.000.000\"),\n        bankRate: getValue(\"bankRate\", assetType === \"Konut\" ? \"2.85\" : \"3.45\"),\n        bankTerm: getValue(\"bankTerm\", assetType === \"Konut\" ? \"60\" : \"12\"),\n        bankHousingStatus: getValue(\"bankHousingStatus\", \"yok\"),\n      };\n    };\n\n    const setCompareToggleVisual = (button, active) =\u003e {\n      if (!(button instanceof HTMLElement)) return;\n      button.dataset.on = active ? \"true\" : \"false\";\n      button.setAttribute(\"aria-pressed\", String(active));\n      const track = button.querySelector(\"span\");\n      const knob = track?.querySelector(\"span\");\n      track?.classList.toggle(\"bg-[#18a05a]\", active);\n      track?.classList.toggle(\"bg-[#d7e3ef]\", !active);\n      knob?.classList.toggle(\"left-6\", active);\n      knob?.classList.toggle(\"left-1\", !active);\n    };\n\n    const setCompareResultCard = (root, offerIndex, result, highlighted) =\u003e {\n      const card = root.querySelector('[data-compare-result-card=\"' + offerIndex + '\"]');\n      if (!(card instanceof HTMLElement)) return;\n      const empty = card.querySelector(\"[data-compare-result-empty]\");\n      const content = card.querySelector(\"[data-compare-result-content]\");\n      const winner = card.querySelector(\"[data-compare-result-winner]\");\n      empty?.classList.add(\"hidden\");\n      content?.classList.remove(\"hidden\");\n      winner?.classList.toggle(\"hidden\", !highlighted);\n      card.dataset.highlighted = highlighted ? \"true\" : \"false\";\n      card.classList.toggle(\"border-[#f4c514]\", highlighted);\n      card.classList.toggle(\"shadow-[0_20px_50px_rgba(232,179,0,0.16)]\", highlighted);\n      card.classList.toggle(\"border-[#dce7e2]\", !highlighted);\n      card.classList.toggle(\"bg-white\", !highlighted);\n\n      const setField = (name, value, extraClass) =\u003e {\n        const node = card.querySelector('[data-compare-result-field=\"' + name + '\"]');\n        if (node) {\n          node.textContent = value;\n          if (extraClass) {\n            node.classList.toggle(extraClass, highlighted);\n          }\n        }\n      };\n\n      setField(\"company\", result.state.company);\n      setField(\"model\", result.state.model === \"cekilisli\" ? \"Cekilisli model\" : \"Cekilissiz model\");\n      setField(\"initialOutflow\", formatMoney(result.initialOutflow));\n      setField(\"term\", String(parseNumber(result.state.term)));\n      setField(\"monthlyPayment\", formatMoney(parseNumber(result.state.monthlyPayment)));\n      setField(\"totalRepayment\", formatMoney(result.totalRepayment));\n      setField(\"totalOutflow\", formatMoney(result.totalOutflow));\n      setField(\"nbm\", formatMoney(result.nbm), \"text-[#168b53]\");\n      setField(\"downPayment\", formatMoney(parseNumber(result.state.downPayment)));\n      setField(\"serviceFee\", formatPercent(parseNumber(result.state.serviceFee)));\n      setField(\"contractAmount\", formatMoney(result.contractAmount));\n      setField(\"delivery\", String(parseNumber(result.state.delivery)));\n      setField(\"suggestedDelivery\", result.suggestedDelivery + \". ay\");\n      setField(\"pvBenefit\", formatMoney(result.pvBenefit));\n      setField(\"pvPayments\", formatMoney(result.pvInstallments + result.pvRent));\n      setField(\"score\", formatSignedMoney(result.score), \"text-[#168b53]\");\n\n      const bankSummary = card.querySelector(\"[data-compare-bank-summary]\");\n      if (result.bankSummary \u0026\u0026 bankSummary) {\n        bankSummary.classList.remove(\"hidden\");\n        setField(\"bankInstallment\", formatMoney(result.bankSummary.installment));\n        setField(\"bankTotalRepayment\", formatMoney(result.bankSummary.totalRepayment));\n        setField(\"bankAnnualEffectiveCost\", formatPercent(result.bankSummary.annualEffectiveCost * 100, 2));\n      } else {\n        bankSummary?.classList.add(\"hidden\");\n      }\n    };\n\n    const setCompareSummary = (root, winnerResult) =\u003e {\n      const card = root.querySelector(\"[data-compare-summary-card]\");\n      if (!(card instanceof HTMLElement)) return;\n      const company = card.querySelector(\"[data-compare-summary-company]\");\n      const nbm = card.querySelector(\"[data-compare-summary-nbm]\");\n      if (company) company.textContent = winnerResult.state.company;\n      if (nbm) nbm.textContent = formatSignedMoney(winnerResult.score);\n    };\n\n    const setCompareCashflow = (root, offerIndex, rows) =\u003e {\n      const block = root.querySelector('[data-compare-cashflow-root=\"' + offerIndex + '\"]');\n      if (!(block instanceof HTMLElement)) return;\n      const empty = block.querySelector(\"[data-compare-cashflow-empty]\");\n      const tableWrap = block.querySelector(\"[data-compare-cashflow-table]\");\n      const body = block.querySelector(\"[data-compare-cashflow-body]\");\n      const exportButton = block.querySelector('[data-compare-export=\"' + offerIndex + '\"]');\n      empty?.classList.add(\"hidden\");\n      tableWrap?.classList.remove(\"hidden\");\n      exportButton?.classList.remove(\"hidden\");\n      if (!(body instanceof HTMLElement)) return;\n      const previewRows = rows.slice(0, 20);\n      body.innerHTML = previewRows.map((row) =\u003e {\n        const netOutflow = -(row.installment + row.rent + row.serviceFee);\n        return '\u003ctr class=\"border-t border-[#edf2f7]' + (row.month === 12 ? ' bg-[#effbf5]' : '') + '\"\u003e' +\n          '\u003ctd class=\"px-4 py-4 text-sm text-[#1c2433]\"\u003e' + row.month + '\u003c/td\u003e' +\n          '\u003ctd class=\"px-4 py-4 text-sm text-[#ff5b57]\"\u003e' + formatSignedMoney(-row.installment) + '\u003c/td\u003e' +\n          '\u003ctd class=\"px-4 py-4 text-sm text-[#ff5b57]\"\u003e' + formatSignedMoney(netOutflow) + '\u003c/td\u003e' +\n        '\u003c/tr\u003e';\n      }).join(\"\");\n      body.dataset.csv = JSON.stringify(rows);\n      const note = block.querySelector(\"[data-compare-cashflow-note]\");\n      if (note) {\n        const hiddenCount = Math.max(rows.length - previewRows.length, 0);\n        note.textContent = hiddenCount \u003e 0\n          ? \"... ve \" + hiddenCount + \" satır daha. (Tüm tabloyu görmek için Excel olarak indirin)\"\n          : \"Tüm satırlar görüntüleniyor.\";\n      }\n    };\n\n    const exportCompareRows = (filename, rows) =\u003e {\n      const csv = [\"Ay,Taksit,Kira,Hizmet Bedeli,Kumulatif Cikis,Bugunku Deger\"]\n        .concat(rows.map((row) =\u003e [row.month, Math.round(row.installment), Math.round(row.rent), Math.round(row.serviceFee), Math.round(row.cumulativeOutflow), Math.round(row.presentValue)].join(\",\")))\n        .join(\"\\\\n\");\n      const blob = new Blob([csv], { type: \"text/csv;charset=utf-8;\" });\n      const url = URL.createObjectURL(blob);\n      const link = document.createElement(\"a\");\n      link.href = url;\n      link.download = filename;\n      document.body.appendChild(link);\n      link.click();\n      link.remove();\n      URL.revokeObjectURL(url);\n    };\n\n    const initCompareFallback = () =\u003e {\n      return;\n      const root = getCompareRoot();\n      if (!(root instanceof HTMLElement) || root.dataset.compareFallbackReady === \"true\") return;\n      root.dataset.compareFallbackReady = \"true\";\n\n      root.querySelectorAll('select[data-compare-field]').forEach((select) =\u003e {\n        if (!(select instanceof HTMLSelectElement)) return;\n        const initialValue = select.dataset.initialValue;\n        if (initialValue \u0026\u0026 Array.from(select.options).some((option) =\u003e option.value === initialValue)) {\n          select.value = initialValue;\n        } else if (!select.value \u0026\u0026 Array.from(select.options).some((option) =\u003e option.value === \"Diğer\")) {\n          select.value = \"Diğer\";\n        }\n      });\n\n      const render = () =\u003e {\n        const assetType = root.querySelector(\"[data-compare-asset-button].active\")?.dataset.compareAssetButton || \"Konut\";\n        const offerOneState = collectCompareState(root, 1, assetType);\n        const offerTwoState = collectCompareState(root, 2, assetType);\n        const offerOneResult = calculateCompareOffer(assetType, offerOneState);\n        const offerTwoResult = calculateCompareOffer(assetType, offerTwoState);\n        const winnerIndex = offerOneResult.nbm \u003c= offerTwoResult.nbm ? 1 : 2;\n\n        setCompareResultCard(root, 1, offerOneResult, winnerIndex === 1);\n        setCompareResultCard(root, 2, offerTwoResult, winnerIndex === 2);\n        setCompareCashflow(root, 1, offerOneResult.cashflow);\n        setCompareCashflow(root, 2, offerTwoResult.cashflow);\n        setCompareSummary(root, winnerIndex === 1 ? offerOneResult : offerTwoResult);\n\n        const resultsSection = root.querySelector(\"[data-compare-results-section]\");\n        if (resultsSection instanceof HTMLElement) {\n          pulse(resultsSection, \"surface-ack\", 520);\n          resultsSection.scrollIntoView({ behavior: \"smooth\", block: \"start\" });\n        }\n\n        root.dataset.compareResults = JSON.stringify({\n          1: offerOneResult.cashflow,\n          2: offerTwoResult.cashflow,\n        });\n      };\n\n      root.addEventListener(\"click\", (event) =\u003e {\n        const target = event.target;\n        if (!(target instanceof Element)) return;\n\n        const assetButton = target.closest(\"[data-compare-asset-button]\");\n        if (assetButton instanceof HTMLElement) {\n          root.querySelectorAll(\"[data-compare-asset-button]\").forEach((button) =\u003e button.classList.remove(\"active\"));\n          assetButton.classList.add(\"active\");\n          pulse(assetButton);\n          return;\n        }\n\n        const modelButton = target.closest(\"[data-compare-model]\");\n        if (modelButton instanceof HTMLElement) {\n          const offerIndex = modelButton.dataset.compareOffer;\n          root.querySelectorAll('[data-compare-offer=\"' + offerIndex + '\"][data-compare-model]').forEach((button) =\u003e button.classList.remove(\"active\"));\n          modelButton.classList.add(\"active\");\n          pulse(modelButton);\n          return;\n        }\n\n        const toggleButton = target.closest(\"[data-compare-toggle-button]\");\n        if (toggleButton instanceof HTMLElement) {\n          setCompareToggleVisual(toggleButton, toggleButton.dataset.on !== \"true\");\n          pulse(toggleButton);\n          return;\n        }\n\n        const calculateButton = target.closest(\"[data-compare-calculate]\");\n        if (calculateButton instanceof HTMLElement) {\n          pulse(calculateButton);\n          render();\n          return;\n        }\n\n        const exportButton = target.closest(\"[data-compare-export]\");\n        if (exportButton instanceof HTMLElement) {\n          const offerIndex = exportButton.dataset.compareExport;\n          const payload = JSON.parse(root.dataset.compareResults || \"{}\");\n          const rows = payload[offerIndex];\n          if (rows) exportCompareRows(\"teklif-\" + offerIndex + \"-nakit-akisi.csv\", rows);\n        }\n      });\n\n      root.addEventListener(\"input\", (event) =\u003e {\n        const target = event.target;\n        if (!(target instanceof HTMLInputElement)) return;\n        const name = target.dataset.compareField;\n        if ([\"assetPrice\", \"downPayment\", \"monthlyPayment\", \"rent\", \"bankAmount\"].includes(name)) {\n          formatThousandsInput(target);\n        }\n      });\n    };\n\n    const calculateComparisonScenarios = () =\u003e {\n      const assetPrice = parseNumber(field(\"assetPrice\")?.value);\n      const downPayment = parseNumber(field(\"downPayment\")?.value);\n      const term = parseNumber(field(\"term\")?.value);\n      const monthlyPayment = parseNumber(field(\"monthlyPayment\")?.value);\n      const delivery = parseNumber(field(\"delivery\")?.value);\n      const serviceFee = parseNumber(field(\"serviceFee\")?.value);\n      const rent = parseNumber(field(\"rent\")?.value);\n      const inflation = parseNumber(field(\"inflation\")?.value) || 25;\n      const discountRate = monthlyDiscountRate(inflation);\n\n      const feeAmount = assetPrice * serviceFee / 100;\n      const savingsInitial = downPayment + feeAmount;\n      const savingsFinanced = Math.max(0, assetPrice - downPayment);\n      const savingsPaymentsPv = Array.from({ length: term }).reduce((sum, _, index) =\u003e sum + presentValue(monthlyPayment, index + 1, discountRate), 0);\n      const savingsRentPv = Array.from({ length: delivery }).reduce((sum, _, index) =\u003e sum + presentValue(rent, index + 1, discountRate), 0);\n      const savingsBenefitPv = presentValue(assetPrice, delivery, discountRate);\n      const savingsScore = savingsBenefitPv - savingsInitial - savingsPaymentsPv - savingsRentPv;\n\n      const assetType = activeSegmentValue(\"assetType\") || \"Konut\";\n      const bankAmount = parseNumber(bankField(\"amount\")?.value);\n      const bankRate = parseNumber(bankField(\"rate\")?.value);\n      const bankTerm = parseNumber(bankField(\"term\")?.value);\n      const housingStatus = bankField(\"housingStatus\")?.value || \"yok\";\n      const bankConfig = getBankConfig(assetType, housingStatus);\n      const bankResult = calculateCreditModule({\n        principal: bankAmount,\n        rate: bankRate,\n        term: bankTerm,\n        fee: bankConfig.fee,\n        bsmv: bankConfig.bsmv,\n        kkdf: bankConfig.kkdf,\n      });\n      const bankInitial = downPayment;\n      const bankPaymentsPv = Array.from({ length: bankTerm }).reduce((sum, _, index) =\u003e sum + presentValue(bankResult.installment, index + 1, discountRate), 0);\n      const bankScore = assetPrice - bankInitial - bankPaymentsPv;\n\n      const autoDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });\n      const autoRentPv = Array.from({ length: autoDelivery }).reduce((sum, _, index) =\u003e sum + presentValue(rent, index + 1, discountRate), 0);\n      const autoBenefitPv = presentValue(assetPrice, autoDelivery, discountRate);\n      const autoScore = autoBenefitPv - savingsInitial - savingsPaymentsPv - autoRentPv;\n\n      return {\n        bank: {\n          initial: bankInitial,\n          financed: bankAmount,\n          installment: bankResult.installment,\n          total: bankInitial + bankResult.totalRepayment,\n          score: bankScore,\n        },\n        savings: {\n          initial: savingsInitial,\n          financed: savingsFinanced,\n          installment: monthlyPayment,\n          delivery,\n          score: savingsScore,\n        },\n        auto: {\n          delivery: autoDelivery,\n          score: autoScore,\n        },\n      };\n    };\n\n    const renderComparison = () =\u003e {\n      const comparison = calculateComparisonScenarios();\n      const setNode = (selector, value) =\u003e {\n        const node = document.querySelector(selector);\n        if (!node) return;\n        if (node.textContent !== value) {\n          node.textContent = value;\n          pulse(node, \"preview-swap\", 300);\n        }\n      };\n\n      setNode(\"[data-compare-bank-initial]\", formatMoney(comparison.bank.initial));\n      setNode(\"[data-compare-bank-financed]\", formatMoney(comparison.bank.financed));\n      setNode(\"[data-compare-bank-installment]\", formatMoney(comparison.bank.installment));\n      setNode(\"[data-compare-bank-total]\", formatMoney(comparison.bank.total));\n      setNode(\"[data-compare-bank-npv]\", formatMoney(comparison.bank.score));\n      setNode(\"[data-compare-savings-initial]\", formatMoney(comparison.savings.initial));\n      setNode(\"[data-compare-savings-financed]\", formatMoney(comparison.savings.financed));\n      setNode(\"[data-compare-savings-installment]\", formatMoney(comparison.savings.installment));\n      setNode(\"[data-compare-savings-delivery]\", comparison.savings.delivery + \". ay\");\n      setNode(\"[data-compare-savings-npv]\", formatMoney(comparison.savings.score));\n      setNode(\"[data-compare-auto-delivery]\", comparison.auto.delivery + \". ay\");\n\n      const candidates = [\n        { label: \"Banka kredisi daha avantajlı\", score: comparison.bank.score },\n        { label: \"Tasarruf finansmanı daha avantajlı\", score: comparison.savings.score },\n        { label: \"Otomatik teslim senaryosu öne çıkıyor\", score: comparison.auto.score },\n      ].sort((a, b) =\u003e b.score - a.score);\n\n      setNode(\"[data-compare-best]\", candidates[0].label);\n      setNode(\"[data-compare-best-delta]\", formatMoney(Math.max(0, candidates[0].score - candidates[1].score)));\n    };\n\n    const renderCashflow = () =\u003e {\n      const body = document.querySelector(\"[data-cashflow-body]\");\n      const footnote = document.querySelector(\"[data-cashflow-footnote]\");\n      if (!(body instanceof HTMLElement) || !(footnote instanceof HTMLElement)) return;\n\n      const assetPrice = parseNumber(field(\"assetPrice\")?.value);\n      const downPayment = parseNumber(field(\"downPayment\")?.value);\n      const term = parseNumber(field(\"term\")?.value);\n      const monthlyPayment = parseNumber(field(\"monthlyPayment\")?.value);\n      const delivery = parseNumber(field(\"delivery\")?.value);\n      const serviceFee = parseNumber(field(\"serviceFee\")?.value);\n      const rent = parseNumber(field(\"rent\")?.value);\n      const inflation = parseNumber(field(\"inflation\")?.value) || 25;\n      const discountRate = monthlyDiscountRate(inflation);\n      const feeAmount = assetPrice * serviceFee / 100;\n\n      const rows = [{ month: 0, payment: downPayment + feeAmount, net: downPayment + feeAmount, pv: downPayment + feeAmount }];\n      for (let month = 1; month \u003c= term; month += 1) {\n        const rentFlow = month \u003c= delivery ? rent : 0;\n        const net = monthlyPayment + rentFlow;\n        rows.push({ month, payment: monthlyPayment, net, pv: presentValue(net, month, discountRate) });\n      }\n\n      const visibleRows = rows.slice(0, 19);\n      body.innerHTML = visibleRows\n        .map((row) =\u003e {\n          const highlight = row.month === delivery ? ' bg-[#edfdf3]' : \"\";\n          return '\u003ctr class=\"border-t border-[#edf2f7]' + highlight + '\"\u003e' +\n            '\u003ctd class=\"px-5 py-4 text-sm text-[#1c2433]\"\u003e' + row.month + '\u003c/td\u003e' +\n            '\u003ctd class=\"px-5 py-4 text-sm font-medium text-[#ff4d4f]\"\u003e' + formatSignedMoney(-row.payment) + '\u003c/td\u003e' +\n            '\u003ctd class=\"px-5 py-4 text-sm font-medium text-[#ff4d4f]\"\u003e' + formatSignedMoney(-row.net) + '\u003c/td\u003e' +\n            '\u003ctd class=\"px-5 py-4 text-sm font-semibold text-[#ff4d4f]\"\u003e' + formatSignedMoney(-row.pv) + '\u003c/td\u003e' +\n          '\u003c/tr\u003e';\n        })\n        .join(\"\");\n\n      footnote.textContent = rows.length \u003e visibleRows.length ? \"Ilk \" + visibleRows.length + \" satir gosteriliyor. Kalan \" + (rows.length - visibleRows.length) + \" satir Excel ciktiya eklenir.\" : \"Tum satirlar gosteriliyor.\";\n      body.dataset.csv = JSON.stringify(rows);\n    };\n\n    const syncLoanLimit = () =\u003e {\n      const section = getLimitSection();\n      if (!section) return;\n\n      const tab = activeLimitTab();\n      section.querySelectorAll(\"[data-limit-panel]\").forEach((panel) =\u003e panel.classList.toggle(\"hidden\", panel.dataset.limitPanel !== tab));\n      section.querySelectorAll(\"[data-limit-summary]\").forEach((panel) =\u003e panel.classList.toggle(\"hidden\", panel.dataset.limitSummary !== tab));\n\n      if (tab === \"housing\") {\n        const value = parseNumber(limitField(\"housingValue\")?.value);\n        const energyClass = limitField(\"energyClass\")?.value || \"A-B\";\n        const hasAnotherHome = (limitField(\"homeOwnership\")?.value || \"yok\") === \"var\";\n        const result = calculateHousingLimit(value, energyClass, hasAnotherHome);\n        setLimitPreviewText(\"title\", \"Konut kredi modülü\");\n        setLimitPreviewText(\"housingRatio\", \"%\" + decimal.format(result.ratio * 100));\n        setLimitPreviewText(\"housingAmount\", formatMoney(result.amount));\n      }\n\n      if (tab === \"vehicle\") {\n        const value = parseNumber(limitField(\"vehicleValue\")?.value);\n        const result = calculateVehicleLimit(value);\n        setLimitPreviewText(\"title\", \"Taşıt kredi modülü\");\n        setLimitPreviewText(\"vehicleAmount\", result.eligible ? formatMoney(result.amount) : \"Kredi yok\");\n        setLimitPreviewText(\"vehicleMessage\", result.eligible ? \"Uygulanan oran: %\" + decimal.format(result.ratio * 100) : result.message);\n      }\n\n      if (tab === \"need\") {\n        const value = parseNumber(limitField(\"needValue\")?.value);\n        const term = calculateNeedTerm(value);\n        setLimitPreviewText(\"title\", \"İhtiyaç kredi modülü\");\n        setLimitPreviewText(\"needTerm\", term + \" ay\");\n        setLimitPreviewText(\n          \"needMessage\",\n          value \u003c= 125000 ? \"0 - 125.000 TL bandı için 36 ay\" : value \u003c= 250000 ? \"125.000,01 - 250.000 TL bandı için 24 ay\" : \"250.000 TL üstü için 12 ay\",\n        );\n      }\n    };\n\n    const syncCompanySelect = () =\u003e {\n      const currentValue = field(\"company\")?.value || \"Diğer\";\n      const label = getCompanyLabel();\n      const select = getCompanySelect();\n      if (label) label.textContent = currentValue;\n      select?.querySelectorAll(\"[data-company-option]\").forEach((option) =\u003e {\n        option.dataset.active = String(option.dataset.value === currentValue);\n      });\n    };\n\n    const closeCompanyMenu = () =\u003e {\n      const menu = getCompanyMenu();\n      const trigger = getCompanyTrigger();\n      const chevron = getCompanyChevron();\n      if (!menu || !trigger) return;\n      menu.classList.add(\"hidden\");\n      trigger.setAttribute(\"aria-expanded\", \"false\");\n      chevron?.classList.remove(\"rotate-180\");\n    };\n\n    const openCompanyMenu = () =\u003e {\n      const menu = getCompanyMenu();\n      const trigger = getCompanyTrigger();\n      const chevron = getCompanyChevron();\n      if (!menu || !trigger) return;\n      menu.classList.remove(\"hidden\");\n      trigger.setAttribute(\"aria-expanded\", \"true\");\n      chevron?.classList.add(\"rotate-180\");\n    };\n\n    const updateDeliveryBar = () =\u003e {\n      const bar = getCalculator()?.querySelector(\"[data-delivery-bar]\");\n      const delivery = parseNumber(field(\"delivery\")?.value);\n      if (bar) bar.style.width = Math.min(100, Math.max(18, delivery * 5.2)) + \"%\";\n    };\n\n    const updateBankPanelVisibility = () =\u003e {\n      const compareBank = getCalculator()?.querySelector('[data-toggle=\"compareBank\"]')?.dataset.on === \"true\";\n      const bankPanel = getCalculator()?.querySelector(\"[data-bank-panel]\");\n      if (bankPanel) bankPanel.classList.toggle(\"hidden\", !compareBank);\n      const housingStatusWrap = getCalculator()?.querySelector(\"[data-bank-housing-status]\");\n      const assetType = activeSegmentValue(\"assetType\") || \"Konut\";\n      if (housingStatusWrap) housingStatusWrap.classList.toggle(\"hidden\", assetType !== \"Konut\");\n    };\n\n    const syncSummary = () =\u003e {\n      const calculator = getCalculator();\n      if (!calculator) return;\n\n      const assetType = activeSegmentValue(\"assetType\") || \"Konut\";\n      const model = activeSegmentValue(\"model\") || \"cekilissiz\";\n      const assetPrice = parseNumber(field(\"assetPrice\")?.value);\n      const downPayment = parseNumber(field(\"downPayment\")?.value);\n      const term = parseNumber(field(\"term\")?.value);\n      const monthlyPayment = parseNumber(field(\"monthlyPayment\")?.value);\n      const delivery = parseNumber(field(\"delivery\")?.value);\n      const serviceFee = parseNumber(field(\"serviceFee\")?.value);\n      const rent = parseNumber(field(\"rent\")?.value);\n      const inflation = parseNumber(field(\"inflation\")?.value) || 32;\n      const compareBank = calculator.querySelector('[data-toggle=\"compareBank\"]')?.dataset.on === \"true\";\n\n      const feeAmount = assetPrice * serviceFee / 100;\n      const totalNominal = downPayment + feeAmount + monthlyPayment * term;\n      const pvPayments = calculatePvPayments(monthlyPayment, term, inflation);\n      const benefitPv = assetPrice / Math.pow(1 + monthlyDiscountRate(inflation), Math.max(1, delivery));\n      const orgAndDown = downPayment + feeAmount;\n      const netInitialCost = Math.max(orgAndDown + pvPayments - benefitPv, 0);\n\n      setPreviewText(\"term\", term ? term + \" ay\" : \"—\");\n      setPreviewText(\"delivery\", String(delivery || \"—\"));\n      setPreviewText(\"assetType\", assetType);\n      setPreviewText(\"model\", model === \"cekilisli\" ? \"Çekilişli\" : \"Çekilişsiz\");\n      setPreviewText(\"assetPrice\", formatMoney(assetPrice));\n      setPreviewText(\"downPayment\", formatMoney(downPayment));\n      setPreviewText(\"monthlyPayment\", formatMoney(monthlyPayment));\n      setPreviewText(\"serviceFee\", formatPercent(serviceFee));\n      setPreviewText(\"rent\", formatMoney(rent) + \"/ay\");\n      setPreviewText(\"totalNominal\", formatMoney(totalNominal));\n      setPreviewText(\"benefitPv\", formatMoney(benefitPv));\n      setPreviewText(\"orgAndDown\", formatMoney(orgAndDown));\n      setPreviewText(\"paymentsPv\", formatMoney(pvPayments));\n      setPreviewText(\"netInitialCost\", formatMoney(netInitialCost));\n\n      const bankAmount = parseNumber(bankField(\"amount\")?.value);\n      const bankRate = parseNumber(bankField(\"rate\")?.value);\n      const bankTerm = parseNumber(bankField(\"term\")?.value);\n      const housingStatus = bankField(\"housingStatus\")?.value || \"yok\";\n      const bankConfig = getBankConfig(assetType, housingStatus);\n      const bankResult = calculateCreditModule({\n        principal: bankAmount,\n        rate: bankRate,\n        term: bankTerm,\n        fee: bankConfig.fee,\n        bsmv: bankConfig.bsmv,\n        kkdf: bankConfig.kkdf,\n      });\n\n      setPreviewText(\"bankPanelTitle\", bankConfig.title);\n      setPreviewText(\"bankAmount\", compareBank ? formatMoney(bankAmount) : \"Kapalı\");\n      setPreviewText(\"bankRate\", compareBank ? formatPercent(bankRate) : \"Kapalı\");\n      setPreviewText(\"bankTerm\", compareBank ? bankTerm + \" ay\" : \"Kapalı\");\n      setPreviewText(\"bankInstallment\", compareBank ? formatMoney(bankResult.installment) : \"Kapalı\");\n      renderComparison();\n      renderCashflow();\n    };\n\n    const applyScenario = (changedByUser = false) =\u003e {\n      const calculator = getCalculator();\n      if (!calculator) return;\n\n      const assetType = activeSegmentValue(\"assetType\") || \"Konut\";\n      const model = activeSegmentValue(\"model\") || \"cekilissiz\";\n      const preset = assetPresets[assetType] || assetPresets.Konut;\n      const tweak = modelTweaks[model] || modelTweaks.cekilissiz;\n      const escalating = calculator.querySelector('[data-toggle=\"escalating\"]')?.dataset.on === \"true\";\n      const manualPlan = calculator.querySelector('[data-toggle=\"manualPlan\"]')?.dataset.on === \"true\";\n\n      if (!manualPlan || !changedByUser) {\n        const nextValues = {\n          assetPrice: preset.assetPrice,\n          downPayment: preset.downPayment,\n          term: preset.term,\n          monthlyPayment: Math.max(5000, preset.monthlyPayment + tweak.monthlyDelta + (escalating ? -2800 : 0)),\n          delivery: Math.max(1, preset.delivery + tweak.deliveryDelta),\n          serviceFee: Math.max(1, preset.serviceFee + tweak.feeDelta),\n          rent: preset.rent,\n        };\n\n        Object.entries(nextValues).forEach(([name, value]) =\u003e {\n          const input = field(name);\n          if (input) {\n            input.value = String(value);\n            if (integerFields.includes(name)) formatThousandsInput(input);\n          }\n        });\n      }\n\n      if (!changedByUser) {\n        const bankAmount = Math.max(0, parseNumber(field(\"assetPrice\")?.value) - parseNumber(field(\"downPayment\")?.value));\n        const bankConfig = getBankConfig(assetType, bankField(\"housingStatus\")?.value || \"yok\");\n        if (bankField(\"amount\")) {\n          bankField(\"amount\").value = String(bankAmount);\n          formatThousandsInput(bankField(\"amount\"));\n        }\n        if (bankField(\"rate\")) bankField(\"rate\").value = String(preset.bankRate || bankConfig.defaultRate);\n        if (bankField(\"term\")) bankField(\"term\").value = String(preset.bankTerm || bankConfig.defaultTerm);\n      }\n\n      updateBankPanelVisibility();\n      updateDeliveryBar();\n      syncCompanySelect();\n      syncComparisonInputs();\n      syncSummary();\n    };\n\n    const renderResult = () =\u003e {\n      const calculator = getCalculator();\n      if (!calculator) return;\n\n      const assetPrice = parseNumber(field(\"assetPrice\")?.value);\n      const downPayment = parseNumber(field(\"downPayment\")?.value);\n      const term = parseNumber(field(\"term\")?.value);\n      const monthly = parseNumber(field(\"monthlyPayment\")?.value);\n      const delivery = parseNumber(field(\"delivery\")?.value);\n      const rent = parseNumber(field(\"rent\")?.value);\n      const serviceFeeRate = parseNumber(field(\"serviceFee\")?.value);\n      const compareBank = calculator.querySelector('[data-toggle=\"compareBank\"]')?.dataset.on === \"true\";\n      const error = calculator.querySelector(\"[data-form-error]\");\n\n      if (!assetPrice || !term || !monthly) {\n        if (error) {\n          error.textContent = \"Lütfen varlık fiyatı, taksit sayısı ve aylık ödeme alanlarını doldurun.\";\n          error.classList.remove(\"hidden\");\n        }\n        return;\n      }\n\n      error?.classList.add(\"hidden\");\n\n      const serviceFeeAmount = assetPrice * serviceFeeRate / 100;\n      const totalPaid = downPayment + serviceFeeAmount + monthly * term;\n      const waitingCost = delivery * rent;\n      const netCost = totalPaid + waitingCost - assetPrice;\n      const assetType = activeSegmentValue(\"assetType\") || \"Konut\";\n      const bankAmount = parseNumber(bankField(\"amount\")?.value);\n      const bankRate = parseNumber(bankField(\"rate\")?.value);\n      const bankTerm = parseNumber(bankField(\"term\")?.value);\n      const housingStatus = bankField(\"housingStatus\")?.value || \"yok\";\n      const bankConfig = getBankConfig(assetType, housingStatus);\n      const bankResult = calculateCreditModule({\n        principal: bankAmount,\n        rate: bankRate,\n        term: bankTerm,\n        fee: bankConfig.fee,\n        bsmv: bankConfig.bsmv,\n        kkdf: bankConfig.kkdf,\n      });\n      const panel = document.querySelector(\"[data-result-panel]\");\n      if (!panel) return;\n\n      panel.classList.remove(\"hidden\");\n      panel.innerHTML = [\n        [\"Net maliyet\", formatMoney(netCost)],\n        [\"Toplam ödeme\", formatMoney(totalPaid)],\n        [\"Hizmet bedeli\", formatMoney(serviceFeeAmount)],\n        [\"Kredi taksiti\", compareBank ? formatMoney(bankResult.installment) : \"Kapalı\"],\n        [\"Kredi toplam geri ödeme\", compareBank ? formatMoney(bankResult.totalRepayment) : \"Kapalı\"],\n        [\"Net ele geçen kredi\", compareBank ? formatMoney(bankResult.netDisbursed) : \"Kapalı\"],\n      ]\n        .map(([label, value]) =\u003e '\u003cdiv\u003e\u003cspan class=\"text-xs font-bold uppercase tracking-[0.08em] text-slate-500\"\u003e' + label + '\u003c/span\u003e\u003cstrong class=\"mt-2 block text-xl font-bold text-slate-900\"\u003e' + value + \"\u003c/strong\u003e\u003c/div\u003e\")\n        .join(\"\");\n\n      pulse(panel, \"choice-pop\", 520);\n      syncComparisonInputs();\n      syncSummary();\n      renderComparison();\n      renderCashflow();\n    };\n\n    const openLoginModal = () =\u003e {\n      const existing = document.querySelector(\"[data-login-modal]\");\n      if (existing) existing.remove();\n      const modal = document.createElement(\"div\");\n      modal.dataset.loginModal = \"true\";\n      modal.className = \"fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4\";\n      modal.innerHTML = '\u003cdiv class=\"w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl\"\u003e\u003ch2 class=\"text-2xl font-bold text-slate-950\"\u003eGiriş alanı\u003c/h2\u003e\u003cp class=\"mt-3 text-sm leading-6 text-slate-600\"\u003eDemo arayüzde hesap girişi bağlanmadı; teklif karşılaştırma ve hesaplama araçlarını kullanabilirsiniz.\u003c/p\u003e\u003cbutton class=\"mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white\" data-close-login\u003eKapat\u003c/button\u003e\u003c/div\u003e';\n      document.body.appendChild(modal);\n      modal.querySelector(\"[data-close-login]\")?.addEventListener(\"click\", () =\u003e modal.remove());\n      modal.addEventListener(\"click\", (event) =\u003e {\n        if (event.target === modal) modal.remove();\n      });\n    };\n\n    const openNetInfoModal = () =\u003e {\n      const existing = document.querySelector(\"[data-net-modal]\");\n      if (existing) existing.remove();\n      const modal = document.createElement(\"div\");\n      modal.dataset.netModal = \"true\";\n      modal.className = \"fixed inset-0 z-[80] grid place-items-center bg-slate-950/35 p-4\";\n      modal.innerHTML = '\u003cdiv class=\"w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl\"\u003e\u003ch2 class=\"text-xl font-bold text-slate-900\"\u003eNet Maliyet\u003c/h2\u003e\u003cp class=\"mt-3 text-sm leading-7 text-slate-600\"\u003eNet başlangıç maliyeti; peşinat, organizasyon ücreti ve bugünkü değer etkisini aynı zeminde toplayan karşılaştırma katmanıdır.\u003c/p\u003e\u003cbutton class=\"mt-5 h-11 w-full rounded-xl bg-[#16a05a] text-sm font-bold text-white\" data-close-net\u003eKapat\u003c/button\u003e\u003c/div\u003e';\n      document.body.appendChild(modal);\n      modal.querySelector(\"[data-close-net]\")?.addEventListener(\"click\", () =\u003e modal.remove());\n      modal.addEventListener(\"click\", (event) =\u003e {\n        if (event.target === modal) modal.remove();\n      });\n    };\n\n    document.addEventListener(\"click\", async (event) =\u003e {\n      const target = event.target;\n      if (!(target instanceof Element)) return;\n\n      const calculator = getCalculator();\n      const calculatorCard = getCalculatorCard();\n      const summaryPanel = document.querySelector(\"[data-summary-panel]\");\n      const menuButton = document.querySelector(\"[data-mobile-menu-button]\");\n      const menu = document.querySelector(\"[data-mobile-menu]\");\n\n      const segmentButton = target.closest(\"[data-segment]\");\n      if (segmentButton instanceof HTMLElement \u0026\u0026 calculator) {\n        calculator.querySelectorAll('[data-segment=\"' + segmentButton.dataset.segment + '\"]').forEach((item) =\u003e item.classList.remove(\"active\"));\n        segmentButton.classList.add(\"active\");\n        pulse(segmentButton);\n        acknowledge(calculatorCard, summaryPanel);\n        applyScenario();\n        return;\n      }\n\n      const calcViewTab = target.closest(\"[data-calc-view-tab]\");\n      if (calcViewTab instanceof HTMLElement \u0026\u0026 calculator) {\n        pulse(calcViewTab);\n        setCalcView(calcViewTab.dataset.calcViewTab || \"main\");\n        window.setTimeout(() =\u003e {\n          const focusTarget = calcViewTab.dataset.calcViewTab === \"comparison\" ? document.querySelector(\"#comparison\") : calculator;\n          focusTarget?.scrollIntoView({ behavior: \"smooth\", block: \"start\" });\n        }, 40);\n        return;\n      }\n\n      const toggleButton = target.closest(\"[data-toggle]\");\n      if (toggleButton instanceof HTMLElement \u0026\u0026 calculator) {\n        setToggle(toggleButton, toggleButton.dataset.on !== \"true\");\n        pulse(toggleButton);\n        acknowledge(calculator.querySelector(\"[data-bank-panel]\"), summaryPanel);\n        applyScenario(true);\n        return;\n      }\n\n      const companyTrigger = target.closest(\"[data-company-trigger]\");\n      if (companyTrigger instanceof HTMLElement) {\n        const isOpen = companyTrigger.getAttribute(\"aria-expanded\") === \"true\";\n        if (isOpen) closeCompanyMenu();\n        else openCompanyMenu();\n        pulse(companyTrigger);\n        return;\n      }\n\n      const companyOption = target.closest(\"[data-company-option]\");\n      if (companyOption instanceof HTMLElement) {\n        const input = field(\"company\");\n        if (input) {\n          input.value = companyOption.dataset.value || \"Diğer\";\n          syncCompanySelect();\n          closeCompanyMenu();\n          pulse(getCompanyTrigger());\n          acknowledge(calculatorCard, summaryPanel);\n          syncSummary();\n        }\n        return;\n      }\n\n      const fillExampleButton = target.closest(\"[data-fill-example]\");\n      if (fillExampleButton instanceof HTMLElement \u0026\u0026 calculator) {\n        pulse(fillExampleButton);\n        Object.entries(example).forEach(([name, value]) =\u003e {\n          const input = field(name);\n          if (input) {\n            input.value = value;\n            if (integerFields.includes(name)) formatThousandsInput(input);\n          }\n        });\n        calculator.querySelectorAll(\"[data-segment]\").forEach((item) =\u003e item.classList.remove(\"active\"));\n        calculator.querySelector('[data-segment=\"assetType\"][data-value=\"Konut\"]')?.classList.add(\"active\");\n        calculator.querySelector('[data-segment=\"model\"][data-value=\"cekilisli\"]')?.classList.add(\"active\");\n        calculator.querySelectorAll(\"[data-toggle]\").forEach((toggle) =\u003e setToggle(toggle, toggle.dataset.toggle === \"compareBank\"));\n        syncCompanySelect();\n        applyScenario();\n        calculator.scrollIntoView({ behavior: \"smooth\", block: \"start\" });\n        focusCalculator();\n        return;\n      }\n\n      const clearButton = target.closest(\"[data-clear-form]\");\n      if (clearButton instanceof HTMLElement \u0026\u0026 calculator) {\n        pulse(clearButton);\n        calculator.querySelectorAll(\"[data-field]\").forEach((input) =\u003e {\n          input.value = \"\";\n        });\n        calculator.querySelectorAll(\"[data-bank-field]\").forEach((input) =\u003e {\n          input.value = \"\";\n        });\n        document.querySelector(\"[data-result-panel]\")?.classList.add(\"hidden\");\n        calculator.querySelector(\"[data-form-error]\")?.classList.add(\"hidden\");\n        calculator.querySelectorAll(\"[data-toggle]\").forEach((toggle) =\u003e setToggle(toggle, false));\n        syncCompanySelect();\n        closeCompanyMenu();\n        updateBankPanelVisibility();\n        updateDeliveryBar();\n        syncSummary();\n        return;\n      }\n\n      const calculateButton = target.closest(\"[data-calculate]\");\n      if (calculateButton instanceof HTMLElement) {\n        pulse(calculateButton);\n        acknowledge(summaryPanel);\n        renderResult();\n        return;\n      }\n\n      const runScenarioButton = target.closest(\"[data-run-scenario]\");\n      if (runScenarioButton instanceof HTMLElement \u0026\u0026 calculator) {\n        pulse(runScenarioButton);\n        calculator.querySelector(\"[data-fill-example]\")?.dispatchEvent(new Event(\"click\", { bubbles: true }));\n        window.setTimeout(() =\u003e {\n          calculator.querySelector(\"[data-calculate]\")?.dispatchEvent(new Event(\"click\", { bubbles: true }));\n        }, 160);\n        return;\n      }\n\n      const compareCta = target.closest(\"[data-compare-cta]\");\n      if (compareCta instanceof HTMLElement \u0026\u0026 calculator) {\n        pulse(compareCta);\n        const compareToggle = calculator.querySelector('[data-toggle=\"compareBank\"]');\n        if (compareToggle) setToggle(compareToggle, true);\n        setCalcView(\"comparison\");\n        window.setTimeout(() =\u003e {\n          const comparisonSection = document.querySelector(\"#comparison\");\n          (comparisonSection || calculator).scrollIntoView({ behavior: \"smooth\", block: \"start\" });\n          focusCalculator();\n          updateBankPanelVisibility();\n          syncSummary();\n        }, 40);\n        return;\n      }\n\n      const loginButton = target.closest(\"[data-login-button]\");\n      if (loginButton instanceof HTMLElement) {\n        event.preventDefault();\n        pulse(loginButton);\n        openLoginModal();\n        return;\n      }\n\n      const netInfoButton = target.closest(\"[data-net-info]\");\n      if (netInfoButton instanceof HTMLElement) {\n        pulse(netInfoButton);\n        openNetInfoModal();\n        return;\n      }\n\n      const downloadPdfButton = target.closest(\"[data-download-pdf]\");\n      if (downloadPdfButton instanceof HTMLElement) {\n        pulse(downloadPdfButton);\n        window.print();\n        return;\n      }\n\n      const copyLinkButton = target.closest(\"[data-copy-link]\");\n      if (copyLinkButton instanceof HTMLElement) {\n        pulse(copyLinkButton);\n        try {\n          await navigator.clipboard.writeText(window.location.href);\n          const original = copyLinkButton.textContent;\n          copyLinkButton.textContent = \"Link Kopyalandı\";\n          window.setTimeout(() =\u003e {\n            copyLinkButton.textContent = original;\n          }, 1400);\n        } catch (error) {\n          console.warn(\"copy failed\", error);\n        }\n        return;\n      }\n\n      const downloadCashflowButton = target.closest(\"[data-download-cashflow]\");\n      if (downloadCashflowButton instanceof HTMLElement) {\n        pulse(downloadCashflowButton);\n        const body = document.querySelector(\"[data-cashflow-body]\");\n        const rows = body?.dataset.csv ? JSON.parse(body.dataset.csv) : [];\n        const csv = [\"Ay,Aylik Taksit,Net Nakit Akisi,Bugunku Deger\"]\n          .concat(\n            rows.map((row) =\u003e\n              [row.month, Math.round(row.payment || 0), Math.round(row.net || 0), Math.round(row.pv || 0)].join(\",\"),\n            ),\n          )\n          .join(\"\\\\n\");\n        const blob = new Blob([csv], { type: \"text/csv;charset=utf-8;\" });\n        const url = URL.createObjectURL(blob);\n        const link = document.createElement(\"a\");\n        link.href = url;\n        link.download = \"nakit-akisi.csv\";\n        document.body.appendChild(link);\n        link.click();\n        link.remove();\n        URL.revokeObjectURL(url);\n        return;\n      }\n\n      const blogRead = target.closest(\"[data-blog-read]\");\n      if (blogRead instanceof HTMLElement) {\n        event.preventDefault();\n        const detail = blogRead.closest(\"[data-blog-card]\")?.querySelector(\"[data-blog-detail]\");\n        detail?.classList.toggle(\"hidden\");\n        blogRead.textContent = detail?.classList.contains(\"hidden\") ? \"Devamını Oku →\" : \"Kapat ↑\";\n        return;\n      }\n\n      const blogAll = target.closest(\"[data-blog-all]\");\n      if (blogAll instanceof HTMLElement) {\n        event.preventDefault();\n        document.querySelectorAll(\"[data-blog-detail]\").forEach((detail) =\u003e detail.classList.remove(\"hidden\"));\n        document.querySelectorAll(\"[data-blog-read]\").forEach((link) =\u003e {\n          link.textContent = \"Kapat ↑\";\n        });\n        return;\n      }\n\n      const mobileMenuButton = target.closest(\"[data-mobile-menu-button]\");\n      if (mobileMenuButton instanceof HTMLElement) {\n        const isOpen = !menu?.classList.contains(\"hidden\");\n        menu?.classList.toggle(\"hidden\", isOpen);\n        mobileMenuButton.setAttribute(\"aria-expanded\", String(!isOpen));\n        return;\n      }\n\n      const limitTabButton = target.closest(\"[data-limit-tab-button]\");\n      if (limitTabButton instanceof HTMLElement) {\n        const section = getLimitSection();\n        section?.querySelectorAll(\"[data-limit-tab-button]\").forEach((button) =\u003e {\n          button.dataset.active = String(button === limitTabButton);\n        });\n        pulse(limitTabButton);\n        acknowledge(section);\n        syncLoanLimit();\n        return;\n      }\n\n      const mobileMenuLink = target.closest(\"[data-mobile-menu] a\");\n      if (mobileMenuLink instanceof HTMLElement) {\n        menu?.classList.add(\"hidden\");\n        menuButton?.setAttribute(\"aria-expanded\", \"false\");\n        return;\n      }\n\n      const companySelect = getCompanySelect();\n      if (!companySelect || companySelect.contains(target)) return;\n      closeCompanyMenu();\n    });\n\n    document.addEventListener(\"input\", (event) =\u003e {\n      const target = event.target;\n      if (!(target instanceof HTMLInputElement)) return;\n      if (target.matches(\"[data-compare-input]\")) {\n        if ([\"assetPrice\", \"downPayment\", \"monthlyPayment\", \"rent\", \"bankAmount\"].includes(target.dataset.compareInput)) {\n          formatThousandsInput(target);\n        }\n        syncFromComparisonInput(target);\n        updateDeliveryBar();\n        syncSummary();\n        return;\n      }\n      if (target.matches(\"[data-limit-field]\")) {\n        if (integerLimitFields.includes(target.dataset.limitField)) {\n          formatThousandsInput(target);\n        }\n        syncLoanLimit();\n        return;\n      }\n      if (!target.matches(\"[data-field], [data-bank-field]\")) return;\n      if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {\n        formatThousandsInput(target);\n      }\n      updateDeliveryBar();\n      syncSummary();\n    });\n\n    document.addEventListener(\"change\", (event) =\u003e {\n      const target = event.target;\n      if (!(target instanceof HTMLSelectElement)) return;\n      if (target.matches(\"[data-limit-field]\")) {\n        syncLoanLimit();\n        return;\n      }\n      if (target.matches('[data-bank-field=\"housingStatus\"]')) {\n        updateBankPanelVisibility();\n        syncSummary();\n      }\n    });\n\n    document.addEventListener(\"focusout\", (event) =\u003e {\n      const target = event.target;\n      if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;\n      if (target instanceof HTMLInputElement \u0026\u0026 target.matches(\"[data-compare-input]\")) {\n        if ([\"assetPrice\", \"downPayment\", \"monthlyPayment\", \"rent\", \"bankAmount\"].includes(target.dataset.compareInput)) {\n          formatThousandsInput(target);\n        }\n        syncFromComparisonInput(target);\n        syncSummary();\n        return;\n      }\n      if (target instanceof HTMLInputElement \u0026\u0026 target.matches(\"[data-limit-field]\")) {\n        if (integerLimitFields.includes(target.dataset.limitField)) {\n          formatThousandsInput(target);\n        }\n        syncLoanLimit();\n        return;\n      }\n      if (!(target instanceof HTMLInputElement)) return;\n      if (!target.matches(\"[data-field], [data-bank-field]\")) return;\n      if (integerFields.includes(target.dataset.field) || integerBankFields.includes(target.dataset.bankField)) {\n        formatThousandsInput(target);\n      }\n    });\n\n    document.addEventListener(\"keydown\", (event) =\u003e {\n      if (event.key === \"Escape\") {\n        closeCompanyMenu();\n      }\n    });\n\n    const scrollToHash = () =\u003e {\n      if (!location.hash) return;\n      if (location.hash === \"#comparison\") {\n        setCalcView(\"comparison\");\n      }\n      const target = document.querySelector(location.hash);\n      if (!(target instanceof HTMLElement)) return;\n      const run = () =\u003e {\n        const top = target.getBoundingClientRect().top + window.scrollY - 92;\n        window.scrollTo({ top: Math.max(0, top), behavior: \"smooth\" });\n        if (target === getCalculator()) focusCalculator();\n      };\n      setTimeout(run, 80);\n      setTimeout(run, 500);\n    };\n\n    document.querySelectorAll(\"[data-field], [data-bank-field]\").forEach((input) =\u003e {\n      if (integerFields.includes(input.dataset.field) || integerBankFields.includes(input.dataset.bankField)) {\n        formatThousandsInput(input);\n      }\n    });\n    document.querySelectorAll(\"[data-compare-input]\").forEach((input) =\u003e {\n      if (input instanceof HTMLInputElement \u0026\u0026 [\"assetPrice\", \"downPayment\", \"monthlyPayment\", \"rent\", \"bankAmount\"].includes(input.dataset.compareInput)) {\n        formatThousandsInput(input);\n      }\n    });\n\n    syncCompanySelect();\n    updateBankPanelVisibility();\n    setCalcView(\"main\");\n    applyScenario();\n    syncComparisonInputs();\n    document.querySelectorAll(\"[data-limit-field]\").forEach((input) =\u003e {\n      if (input instanceof HTMLInputElement \u0026\u0026 integerLimitFields.includes(input.dataset.limitField)) {\n        formatThousandsInput(input);\n      }\n    });\n    syncLoanLimit();\n    window.addEventListener(\"hashchange\", scrollToHash);\n    scrollToHash();\n  });\n})();\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"c\":[\"\",\"kredi-test\",\"\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"kredi-test\",{\"children\":[\"__PAGE__\",{}]}]},\"$undefined\",\"$undefined\",16],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/finans/_next/static/chunks/0z90yro31yg10.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"tr\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"script\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$4\"}}]]}]}]]}],{\"children\":[\"$L5\",{\"children\":[\"$L6\",{},null,false,null]},null,false,\"$@7\"]},null,false,null],\"$L8\",false]],\"m\":\"$undefined\",\"G\":[\"$9\",[\"$La\"]],\"S\":true,\"h\":null,\"s\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"LKwh0oRfP1_o9EpllW9ZF\"}\n"])</script><script>self.__next_f.push([1,"16:I[97367,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"ViewportBoundary\"]\n18:I[97367,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"MetadataBoundary\"]\n19:\"$Sreact.suspense\"\n5:[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}]\n"])</script><script>self.__next_f.push([1,"6:[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"header\",null,{\"className\":\"sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur\",\"children\":[[\"$\",\"div\",null,{\"className\":\"page-container flex min-h-[72px] items-center justify-between gap-6\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/finans/\",\"className\":\"flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]\",\"children\":[[\"$\",\"span\",null,{\"className\":\"relative h-8 w-8\",\"aria-hidden\":\"true\",\"children\":[[\"$\",\"span\",null,{\"className\":\"absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]\"}],[\"$\",\"span\",null,{\"className\":\"absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]\"}],[\"$\",\"span\",null,{\"className\":\"absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]\"}],[\"$\",\"span\",null,{\"className\":\"absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]\"}]]}],\"Tasarruf Finansmanı\"]}],[\"$\",\"div\",null,{\"className\":\"hidden items-center gap-8 lg:flex\",\"children\":[[\"$\",\"nav\",null,{\"className\":\"hidden items-center gap-1 lg:flex\",\"aria-label\":\"Ana menü\",\"children\":[[\"$\",\"a\",\"home\",{\"href\":\"/finans/\",\"className\":\"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]\",\"children\":\"Ana Sayfa\"}],[\"$\",\"a\",\"firms\",{\"href\":\"/finans/#faq\",\"className\":\"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]\",\"children\":\"Firmalar\"}],[\"$\",\"a\",\"faq\",{\"href\":\"/finans/#faq\",\"className\":\"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]\",\"children\":\"Nasıl Çalışır?\"}],[\"$\",\"a\",\"about\",{\"href\":\"/finans/#blog\",\"className\":\"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]\",\"children\":\"Hakkımızda\"}],[\"$\",\"a\",\"blog\",{\"href\":\"/finans/#blog\",\"className\":\"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]\",\"children\":\"Blog\"}],[\"$\",\"a\",\"data\",{\"href\":\"/finans/veri\",\"className\":\"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 bg-[#e9fbef] text-[#1b804d]\",\"children\":\"Endeks\"}]]}],[\"$\",\"div\",null,{\"className\":\"hidden h-8 w-px bg-[#e4e9ee] lg:block\"}],[\"$\",\"div\",null,{\"className\":\"hidden items-center gap-3 lg:flex\",\"children\":[[\"$\",\"a\",null,{\"className\":\"rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]\",\"href\":\"/finans/teklifleri-karsilastir\",\"children\":\"Teklifleri Karşılaştır\"}],[\"$\",\"a\",null,{\"className\":\"rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]\",\"href\":\"#login\",\"data-login-button\":true,\"children\":\"Giriş Yap\"}]]}]]}],[\"$\",\"button\",null,{\"className\":\"rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden\",\"data-mobile-menu-button\":true,\"type\":\"button\",\"aria-expanded\":\"false\",\"children\":\"Menü\"}]]}],[\"$\",\"div\",null,{\"className\":\"hidden border-t border-slate-200 bg-white lg:hidden\",\"data-mobile-menu\":true,\"children\":[\"$\",\"div\",null,{\"className\":\"page-container grid gap-2 py-4\",\"children\":[[[\"$\",\"a\",\"home\",{\"className\":\"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]\",\"href\":\"/finans/\",\"children\":\"Ana Sayfa\"}],[\"$\",\"a\",\"firms\",{\"className\":\"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]\",\"href\":\"/finans/#faq\",\"children\":\"Firmalar\"}],\"$Lb\",\"$Lc\",\"$Ld\",\"$Le\"],\"$Lf\",\"$L10\"]}]}]]}],\"$L11\",\"$L12\"],[\"$L13\"],\"$L14\"]}]\n"])</script><script>self.__next_f.push([1,"15:[]\n7:\"$W15\"\n8:[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L16\",null,{\"children\":\"$L17\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$L18\",null,{\"children\":[\"$\",\"$19\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L1a\"}]}]}],null]}]\na:[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/finans/_next/static/chunks/0z90yro31yg10.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]\n"])</script><script>self.__next_f.push([1,"1b:I[40779,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\",\"/finans/_next/static/chunks/0lukf-d3pb62w.js\"],\"LoanMathTestPage\"]\n1f:I[97367,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"OutletBoundary\"]\nb:[\"$\",\"a\",\"faq\",{\"className\":\"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]\",\"href\":\"/finans/#faq\",\"children\":\"Nasıl Çalışır?\"}]\nc:[\"$\",\"a\",\"about\",{\"className\":\"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]\",\"href\":\"/finans/#blog\",\"children\":\"Hakkımızda\"}]\nd:[\"$\",\"a\",\"blog\",{\"className\":\"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]\",\"href\":\"/finans/#blog\",\"children\":\"Blog\"}]\ne:[\"$\",\"a\",\"data\",{\"className\":\"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]\",\"href\":\"/finans/veri\",\"children\":\"Endeks\"}]\nf:[\"$\",\"a\",null,{\"className\":\"rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white\",\"href\":\"/finans/teklifleri-karsilastir\",\"children\":\"Teklifleri Karşılaştır\"}]\n10:[\"$\",\"a\",null,{\"className\":\"rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]\",\"href\":\"#login\",\"data-login-button\":true,\"children\":\"Giriş Yap\"}]\n11:[\"$\",\"$L1b\",null,{}]\n"])</script><script>self.__next_f.push([1,"12:[\"$\",\"footer\",null,{\"id\":\"footer\",\"className\":\"mt-16 border-t border-slate-200 bg-white\",\"children\":[[\"$\",\"div\",null,{\"className\":\"page-container border-b border-slate-200 py-10\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-xl font-black text-slate-950\",\"children\":\"Tasarruf finansmanı sistemi nasıl okunmalı?\"}],[\"$\",\"p\",null,{\"className\":\"mt-4 max-w-5xl text-sm leading-7 text-slate-600\",\"children\":\"Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır.\"}]]}],[\"$\",\"div\",null,{\"className\":\"page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"flex items-center gap-3 text-lg font-black text-[var(--green-dark)]\",\"children\":[[\"$\",\"span\",null,{\"className\":\"grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]\",\"children\":\"▥\"}],\"Finansman Rehberi\"]}],[\"$\",\"p\",null,{\"className\":\"mt-4 max-w-sm text-sm leading-7 text-slate-600\",\"children\":\"Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin.\"}]]}],[[\"$\",\"div\",\"Sayfalar\",{\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-sm font-black text-slate-950\",\"children\":\"Sayfalar\"}],[\"$\",\"ul\",null,{\"className\":\"mt-4 grid gap-3 text-sm text-slate-600\",\"children\":[[\"$\",\"li\",\"Ana Sayfa\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/\",\"children\":\"Ana Sayfa\"}]}],[\"$\",\"li\",\"Endeks\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/veri\",\"children\":\"Endeks\"}]}],[\"$\",\"li\",\"Teklifleri Karşılaştır\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/teklifleri-karsilastir\",\"children\":\"Teklifleri Karşılaştır\"}]}],[\"$\",\"li\",\"Nasıl Çalışır?\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/#faq\",\"children\":\"Nasıl Çalışır?\"}]}],[\"$\",\"li\",\"Blog\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/#blog\",\"children\":\"Blog\"}]}]]}]]}],[\"$\",\"div\",\"Araçlar\",{\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-sm font-black text-slate-950\",\"children\":\"Araçlar\"}],[\"$\",\"ul\",null,{\"className\":\"mt-4 grid gap-3 text-sm text-slate-600\",\"children\":[[\"$\",\"li\",\"Maliyet Hesaplama\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/#calculator\",\"children\":\"Maliyet Hesaplama\"}]}],[\"$\",\"li\",\"Teklifleri Karşılaştır\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/teklifleri-karsilastir\",\"children\":\"Teklifleri Karşılaştır\"}]}],[\"$\",\"li\",\"Piyasa Veri Paneli\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/veri\",\"children\":\"Piyasa Veri Paneli\"}]}],[\"$\",\"li\",\"Kredi Matematiği Testi\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"/finans/kredi-test\",\"children\":\"Kredi Matematiği Testi\"}]}]]}]]}],[\"$\",\"div\",\"İletişim\",{\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-sm font-black text-slate-950\",\"children\":\"İletişim\"}],[\"$\",\"ul\",null,{\"className\":\"mt-4 grid gap-3 text-sm text-slate-600\",\"children\":[[\"$\",\"li\",\"bilgi@example.com\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"mailto:bilgi@example.com\",\"children\":\"bilgi@example.com\"}]}],[\"$\",\"li\",\"Sorularınız için bize ulaşın\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"#footer\",\"children\":\"Sorularınız için bize ulaşın\"}]}]]}]]}],[\"$\",\"div\",\"Yasal\",{\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-sm font-black text-slate-950\",\"children\":\"Yasal\"}],[\"$\",\"ul\",null,{\"className\":\"mt-4 grid gap-3 text-sm text-slate-600\",\"children\":[[\"$\",\"li\",\"Kullanım Koşulları\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"#footer\",\"children\":\"Kullanım Koşulları\"}]}],\"$L1c\",\"$L1d\"]}]]}]]]}],\"$L1e\"]}]\n"])</script><script>self.__next_f.push([1,"13:[\"$\",\"script\",\"script-0\",{\"src\":\"/finans/_next/static/chunks/0lukf-d3pb62w.js\",\"async\":true,\"nonce\":\"$undefined\"}]\n14:[\"$\",\"$L1f\",null,{\"children\":[\"$\",\"$19\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@20\"}]}]\n"])</script><script>self.__next_f.push([1,"1c:[\"$\",\"li\",\"Gizlilik Politikası\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"#footer\",\"children\":\"Gizlilik Politikası\"}]}]\n1d:[\"$\",\"li\",\"KVKK Aydınlatma Metni\",{\"children\":[\"$\",\"a\",null,{\"className\":\"transition hover:text-[var(--green-dark)]\",\"href\":\"#footer\",\"children\":\"KVKK Aydınlatma Metni\"}]}]\n1e:[\"$\",\"div\",null,{\"className\":\"border-t border-slate-200 py-5 text-center text-sm text-slate-500\",\"children\":\"© 2026 Finansman Rehberi. Tüm hakları saklıdır.\"}]\n"])</script><script>self.__next_f.push([1,"17:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n"])</script><script>self.__next_f.push([1,"21:I[27201,[\"/finans/_next/static/chunks/0dbhjjzl8qfwv.js\"],\"IconMark\"]\n1a:[[\"$\",\"title\",\"0\",{\"children\":\"Finansman Maliyet Hesaplama\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin.\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/finans/favicon.svg\"}],[\"$\",\"$L21\",\"3\",{}]]\n20:null\n"])</script></body></html>

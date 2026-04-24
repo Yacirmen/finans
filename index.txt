@@ -1,19 +1,9 @@
 1:"$Sreact.fragment"
-2:I[7121,[],""]
-3:I[4581,[],""]
-c:I[7123,[],"default",1]
-:HL["/finans/_next/static/css/021c951ef7b08564.css","style"]
-0:{"P":null,"c":["",""],"q":"","i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/finans/_next/static/css/021c951ef7b08564.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"tr","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","header",null,{"className":"sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur","children":[["$","div",null,{"className":"page-container flex min-h-[72px] items-center justify-between gap-6","children":[["$","a",null,{"href":"/finans/","className":"flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]","children":[["$","span",null,{"className":"relative h-8 w-8","aria-hidden":"true","children":[["$","span",null,{"className":"absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]"}]]}],"Tasarruf Finansmanı"]}],["$","div",null,{"className":"hidden items-center gap-8 lg:flex","children":[["$","nav",null,{"className":"hidden items-center gap-1 lg:flex","aria-label":"Ana menü","children":[["$","a","home",{"href":"/finans/","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 bg-[#e9fbef] text-[#1b804d]","children":"Ana Sayfa"}],["$","a","firms",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Firmalar"}],["$","a","faq",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Nasıl Çalışır?"}],["$","a","about",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Hakkımızda"}],["$","a","blog",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Blog"}],["$","a","data",{"href":"/finans/veri","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Endeks"}]]}],["$","div",null,{"className":"hidden h-8 w-px bg-[#e4e9ee] lg:block"}],"$L4"]}],"$L5"]}],"$L6"]}],"$L7","$L8","$L9"],null,"$La"]}],{},null,false,null]},null,false,null],"$Lb",false]],"m":"$undefined","G":["$c",[]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"wA88J5vefFcH7gSJLzBU4"}
-18:I[484,[],"OutletBoundary"]
-19:"$Sreact.suspense"
-1b:I[484,[],"ViewportBoundary"]
-1d:I[484,[],"MetadataBoundary"]
-4:["$","div",null,{"className":"hidden items-center gap-3 lg:flex","children":[["$","a",null,{"className":"rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]","href":"/finans/#calculator","data-compare-cta":true,"children":"Teklifleri Karşılaştır"}],["$","a",null,{"className":"rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]]}]
-5:["$","button",null,{"className":"rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden","data-mobile-menu-button":true,"type":"button","aria-expanded":"false","children":"Menü"}]
-6:["$","div",null,{"className":"hidden border-t border-slate-200 bg-white lg:hidden","data-mobile-menu":true,"children":["$","div",null,{"className":"page-container grid gap-2 py-4","children":[[["$","a","home",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/","children":"Ana Sayfa"}],["$","a","firms",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Firmalar"}],["$","a","faq",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Nasıl Çalışır?"}],["$","a","about",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#blog","children":"Hakkımızda"}],["$","a","blog",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#blog","children":"Blog"}],["$","a","data",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/veri","children":"Endeks"}]],["$","a",null,{"className":"rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white","href":"/finans/#calculator","data-compare-cta":true,"children":"Teklifleri Karşılaştır"}],["$","a",null,{"className":"rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]]}]}]
-7:["$","main",null,{"children":[["$","section",null,{"className":"page-container mt-5","children":["$","div",null,{"className":"overflow-hidden rounded-[30px] border border-[#dcefe4] bg-white shadow-[0_12px_34px_rgba(36,61,50,0.07)]","children":["$","div",null,{"className":"relative grid min-h-[472px] gap-10 px-6 py-7 md:px-10 md:py-9 lg:grid-cols-[1.03fr_0.97fr] lg:px-12 lg:py-10","children":[["$","div",null,{"className":"absolute inset-0 bg-[radial-gradient(circle_at_7%_14%,rgba(104,246,189,0.22),transparent_22%),radial-gradient(circle_at_88%_82%,rgba(118,242,201,0.18),transparent_20%),linear-gradient(180deg,#f8fffb_0%,#f9fbff_100%)]"}],["$","div",null,{"className":"absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(28,164,102,0.12)_1px,transparent_1px)] [background-size:20px_20px]"}],["$","div",null,{"className":"relative z-10 flex min-h-[320px] flex-col justify-center pt-2","children":[["$","span",null,{"className":"mb-6 inline-flex w-fit rounded-full border border-[#d8f5e5] bg-[#f4fff8] px-4 py-2 text-[14px] font-semibold text-[#228a52] shadow-[0_6px_16px_rgba(22,160,90,0.07)]","children":"Banka Kredisi ile Karşılaştırmalı Analiz"}],["$","h1",null,{"className":"max-w-[560px] text-[clamp(44px,6vw,72px)] font-black leading-[0.9] tracking-[-0.065em] text-[#09132a]","children":["Tasarruf",["$","br",null,{}],"Finansmanının",["$","br",null,{}],["$","span",null,{"className":"text-[#189b57]","children":"Gerçek Maliyetini"}],["$","br",null,{}],"Hesaplayın"]}],["$","p",null,{"className":"mt-6 max-w-[590px] text-[18px] leading-8 text-[#55657b]","children":[["$","span",null,{"className":"font-bold text-[#1c9857]","children":"Enflasyondan"}]," arındırılmış net maliyet analizi, banka kredisi karşılaştırması ve peşinat optimizasyonu"," ","tek hesaplamada."]}],["$","p",null,{"className":"mt-4 max-w-[480px] text-[14px] leading-7 text-[#718198]","children":"Sözleşme koşullarını tek ekranda görün, toplam yükü aynı zeminde ölçün ve kararınızı sayısal güvenle verin."}]]}],["$","div",null,{"className":"relative z-10 flex items-center justify-center lg:justify-end","children":[["$","div",null,{"className":"pointer-events-none absolute inset-y-3 right-0 hidden w-[94%] rounded-[34px] bg-[radial-gradient(circle_at_84%_83%,rgba(92,236,180,0.28),transparent_25%),linear-gradient(145deg,rgba(219,250,233,0.62),rgba(247,251,255,0.08))] lg:block"}],["$","div",null,{"className":"pointer-events-none absolute right-[8%] top-[2%] hidden h-[90%] w-[68%] lg:block","children":[["$","div",null,{"className":"absolute right-[10%] top-[1%] h-[61%] w-[58%] rotate-[18deg] rounded-[18px] bg-[linear-gradient(180deg,rgba(163,192,197,0.22),rgba(104,145,150,0.38))]"}],["$","div",null,{"className":"absolute right-[22%] top-[8%] h-[8%] w-[8%] rounded-t-[5px] bg-white/80 shadow-[0_8px_14px_rgba(19,37,30,0.08)]"}],["$","div",null,{"className":"absolute right-[31%] top-[44%] h-[26%] w-[34%] rounded-[16px] bg-white/60 shadow-[0_18px_38px_rgba(36,62,50,0.12)]"}],["$","div",null,{"className":"absolute bottom-[8%] right-[4%] h-[22%] w-[36%] rounded-[999px_999px_18px_18px] bg-[linear-gradient(90deg,rgba(238,255,249,0.96),rgba(163,234,210,0.94))] opacity-95"}],["$","div",null,{"className":"absolute bottom-[2%] right-[6%] h-[20%] w-[38%] rounded-full bg-[radial-gradient(circle,rgba(93,235,182,0.34),transparent_68%)] blur-2xl"}]]}],["$","div",null,{"className":"grid w-full max-w-[460px] gap-4 sm:grid-cols-2 lg:translate-x-[6px]","children":[["$","a","Hesaplama",{"href":"#calculator","data-compare-cta":"$undefined","data-login-button":"$undefined","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":["$Ld","$Le","$Lf"]}],"$L10","$L11","$L12"]}]]}]]}]}]}],"$L13","$L14","$L15","$L16"]}]
-8:["$","footer",null,{"id":"footer","className":"mt-16 border-t border-slate-200 bg-white","children":[["$","div",null,{"className":"page-container border-b border-slate-200 py-10","children":[["$","h2",null,{"className":"text-xl font-black text-slate-950","children":"Tasarruf finansmanı sistemi nasıl okunmalı?"}],["$","p",null,{"className":"mt-4 max-w-5xl text-sm leading-7 text-slate-600","children":"Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır."}]]}],["$","div",null,{"className":"page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]","children":[["$","div",null,{"children":[["$","div",null,{"className":"flex items-center gap-3 text-lg font-black text-[var(--green-dark)]","children":[["$","span",null,{"className":"grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]","children":"▥"}],"Finansman Rehberi"]}],["$","p",null,{"className":"mt-4 max-w-sm text-sm leading-7 text-slate-600","children":"Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin."}]]}],[["$","div","Sayfalar",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Sayfalar"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Ana Sayfa",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/","children":"Ana Sayfa"}]}],["$","li","Endeks",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/veri","children":"Endeks"}]}],["$","li","Nasıl Çalışır?",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#faq","children":"Nasıl Çalışır?"}]}],["$","li","Blog",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#blog","children":"Blog"}]}]]}]]}],["$","div","Araçlar",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Araçlar"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Maliyet Hesaplama",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#calculator","children":"Maliyet Hesaplama"}]}],["$","li","Teklifleri Karşılaştır",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/#calculator","children":"Teklifleri Karşılaştır"}]}],["$","li","Piyasa Veri Paneli",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/veri","children":"Piyasa Veri Paneli"}]}]]}]]}],["$","div","İletişim",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"İletişim"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","bilgi@example.com",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"mailto:bilgi@example.com","children":"bilgi@example.com"}]}],["$","li","Sorularınız için bize ulaşın",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Sorularınız için bize ulaşın"}]}]]}]]}],["$","div","Yasal",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Yasal"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Kullanım Koşulları",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Kullanım Koşulları"}]}],["$","li","Gizlilik Politikası",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Gizlilik Politikası"}]}],["$","li","KVKK Aydınlatma Metni",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"KVKK Aydınlatma Metni"}]}]]}]]}]]]}],["$","div",null,{"className":"border-t border-slate-200 py-5 text-center text-sm text-slate-500","children":"© 2026 Finansman Rehberi. Tüm hakları saklıdır."}]]}]
-17:T7ab1,
+2:I[39756,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"default"]
+3:I[37457,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"default"]
+7:I[68027,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"default",1]
+:HL["/finans/_next/static/chunks/0z90yro31yg10.css","style"]
+4:Tfaa1,
 (() => {
   const ready = (fn) => {
     if (document.readyState === "loading") {
@@ -42,8 +32,8 @@ c:I[7123,[],"default",1]
     };
 
     const assetPresets = {
-      Konut: { assetPrice: 3000000, downPayment: 1000000, term: 48, monthlyPayment: 41667, delivery: 13, serviceFee: 7.5, rent: 25000, bankRate: 2.8, bankTerm: 120 },
-      Araba: { assetPrice: 1850000, downPayment: 550000, term: 36, monthlyPayment: 38250, delivery: 6, serviceFee: 6.2, rent: 12000, bankRate: 3.15, bankTerm: 48 },
+      Konut: { assetPrice: 3000000, downPayment: 1000000, term: 48, monthlyPayment: 41667, delivery: 13, serviceFee: 7.5, rent: 25000, bankRate: 2.85, bankTerm: 60 },
+      Araba: { assetPrice: 1850000, downPayment: 550000, term: 36, monthlyPayment: 38250, delivery: 6, serviceFee: 6.2, rent: 12000, bankRate: 3.45, bankTerm: 12 },
     };
 
     const modelTweaks = {
@@ -57,6 +47,7 @@ c:I[7123,[],"default",1]
 
     const getCalculator = () => document.querySelector("[data-calculator]");
     const getCalculatorCard = () => getCalculator()?.querySelector("[data-calculator-card]");
+    const getCalcViewTab = () => getCalculator()?.querySelector('[data-calc-view-tab].active')?.dataset.calcViewTab || "main";
     const getCompanySelect = () => getCalculator()?.querySelector("[data-company-select]");
     const getCompanyTrigger = () => getCompanySelect()?.querySelector("[data-company-trigger]");
     const getCompanyMenu = () => getCompanySelect()?.querySelector("[data-company-menu]");
@@ -64,8 +55,24 @@ c:I[7123,[],"default",1]
     const getCompanyChevron = () => getCompanySelect()?.querySelector("[data-company-chevron]");
     const field = (name) => getCalculator()?.querySelector('[data-field="' + name + '"]');
     const bankField = (name) => getCalculator()?.querySelector('[data-bank-field="' + name + '"]');
+    const compareInput = () => null;
     const preview = (name) => document.querySelector('[data-preview="' + name + '"]');
     const activeSegmentValue = (segmentName) => getCalculator()?.querySelector('[data-segment="' + segmentName + '"].active')?.dataset.value || "";
+
+    const setCalcView = (view) => {
+      const calculator = getCalculator();
+      if (!calculator) return;
+      calculator.querySelectorAll("[data-calc-view-tab]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.calcViewTab === view);
+      });
+      calculator.querySelectorAll("[data-calc-view-panel]").forEach((panel) => {
+        panel.classList.toggle("hidden", panel.dataset.calcViewPanel !== view);
+      });
+    };
+
+    const syncComparisonInputs = () => {};
+
+    const syncFromComparisonInput = () => {};
 
     const parseNumber = (value) => {
       const raw = String(value || "").trim();
@@ -78,7 +85,11 @@ c:I[7123,[],"default",1]
       return Number.isFinite(number) && number >= 0 ? number : 0;
     };
 
-    const formatMoney = (value) => "₺" + money.format(Math.max(0, Math.round(value || 0)));
+    const formatMoney = (value) => "₺" + money.format(Math.round(value || 0));
+    const formatSignedMoney = (value) => {
+      const safe = Math.round(value || 0);
+      return (safe < 0 ? "-₺" : "₺") + money.format(Math.abs(safe));
+    };
     const formatPercent = (value) => "%" + decimal.format(value || 0);
 
     const pulse = (element, className = "button-ack", duration = 320) => {
@@ -125,6 +136,11 @@ c:I[7123,[],"default",1]
     };
 
     const monthlyDiscountRate = (annualInflation) => Math.pow(1 + annualInflation / 100, 1 / 12) - 1;
+    const presentValue = (amount, period, rate) => {
+      if (!amount) return 0;
+      if (!rate) return amount;
+      return amount / Math.pow(1 + rate, Math.max(0, period));
+    };
 
     const calculatePvPayments = (payment, term, annualInflation) => {
       const r = monthlyDiscountRate(annualInflation);
@@ -132,11 +148,80 @@ c:I[7123,[],"default",1]
       return Array.from({ length: term }).reduce((sum, _, index) => sum + payment / Math.pow(1 + r, index + 1), 0);
     };
 
-    const calculateBankInstallment = (principal, rate, term) => {
-      if (!principal || !rate || !term) return 0;
-      const monthlyRate = rate / 100;
+    const calculatePayment = (principal, monthlyRate, term) => {
+      if (!principal || !term) return 0;
+      if (!monthlyRate) return principal / term;
       const factor = Math.pow(1 + monthlyRate, term);
       return principal * monthlyRate * factor / (factor - 1);
+    };
+
+    const solveMonthlyRate = (payment, term, presentValue) => {
+      if (!payment || !term || !presentValue) return 0;
+      let low = 0;
+      let high = 1;
+      for (let i = 0; i < 80; i += 1) {
+        const mid = (low + high) / 2;
+        const guess = calculatePayment(presentValue, mid, term);
+        if (guess > payment) high = mid;
+        else low = mid;
+      }
+      return (low + high) / 2;
+    };
+
+    const getBankConfig = (assetType, housingStatus) => {
+      if (assetType === "Araba") {
+        return { title: "Taşıt Kredisi Karşılaştırması", fee: 925.92, bsmv: 15, kkdf: 15, defaultRate: 3.45, defaultTerm: 12 };
+      }
+
+      return {
+        title: "Konut Kredisi Karşılaştırması",
+        fee: 39100,
+        bsmv: housingStatus === "var" ? 15 : 0,
+        kkdf: 0,
+        defaultRate: 2.85,
+        defaultTerm: 60,
+      };
+    };
+
+    const calculateCreditModule = ({ principal, rate, term, fee, bsmv, kkdf }) => {
+      const safePrincipal = Math.max(0, principal || 0);
+      const safeRate = Math.max(0, rate || 0);
+      const safeTerm = Math.max(0, term || 0);
+      const safeFee = Math.max(0, fee || 0);
+      const nominalMonthlyRate = safeRate / 100;
+      const taxedMonthlyRate = nominalMonthlyRate * (1 + (bsmv + kkdf) / 100);
+      const installment = calculatePayment(safePrincipal, taxedMonthlyRate, safeTerm);
+
+      let balance = safePrincipal;
+      let totalBaseInterest = 0;
+      let totalBsmv = 0;
+      let totalKkdf = 0;
+
+      for (let i = 0; i < safeTerm; i += 1) {
+        const baseInterest = balance * nominalMonthlyRate;
+        const kkdfAmount = baseInterest * kkdf / 100;
+        const bsmvAmount = baseInterest * bsmv / 100;
+        const principalPart = installment - baseInterest - kkdfAmount - bsmvAmount;
+        balance = Math.max(0, balance - principalPart);
+        totalBaseInterest += baseInterest;
+        totalBsmv += bsmvAmount;
+        totalKkdf += kkdfAmount;
+      }
+
+      const totalRepaymentWithoutFees = safePrincipal + totalBaseInterest;
+      const totalRepayment = totalRepaymentWithoutFees + safeFee;
+      const netDisbursed = safePrincipal - safeFee;
+      const effectiveMonthlyRate = solveMonthlyRate(installment, safeTerm, netDisbursed);
+      const annualEffectiveCost = Math.pow(1 + effectiveMonthlyRate, 12) - 1;
+
+      return {
+        installment,
+        totalBaseInterest,
+        totalRepaymentWithoutFees,
+        totalRepayment,
+        netDisbursed,
+        annualEffectiveCost,
+      };
     };
 
     const getLimitSection = () => document.querySelector("[data-loan-limit]");
@@ -184,6 +269,514 @@ c:I[7123,[],"default",1]
       if (safeValue <= 125000) return 36;
       if (safeValue <= 250000) return 24;
       return 12;
+    };
+
+    const calculateAutoDelivery = ({ assetPrice, downPayment, monthlyPayment, term }) => {
+      if (!assetPrice || !term || !monthlyPayment) return 0;
+      const fortyPercentGap = Math.max(0, term * (0.4 - downPayment / assetPrice));
+      const monthlyGap = Math.max(0, ((assetPrice * 0.4) - downPayment) / monthlyPayment);
+      return Math.max(Math.ceil(fortyPercentGap), Math.ceil(monthlyGap), 5);
+    };
+
+    const compareDiscountRate = (annualInflation) => annualInflation / 12 / 100;
+
+    const getCompareRoot = () => null;
+
+    const buildCompareSchedule = (state) => {
+      const baseMonthlyPayment = parseNumber(state.monthlyPayment);
+      const yearlyIncrease = parseNumber(state.yearlyIncrease);
+
+      if (state.manualPlan) {
+        const parts = String(state.manualPlanText || "")
+          .split(/[\n,;]+/)
+          .map((item) => parseNumber(item))
+          .filter((value) => value > 0);
+        if (parts.length > 0) {
+          return Array.from({ length: state.term }, (_, index) => parts[index] || parts[parts.length - 1]);
+        }
+      }
+
+      if (state.escalating) {
+        return Array.from({ length: state.term }, (_, index) => baseMonthlyPayment * Math.pow(1 + yearlyIncrease / 100, Math.floor(index / 12)));
+      }
+
+      return Array.from({ length: state.term }, () => baseMonthlyPayment);
+    };
+
+    const calculateCompareOffer = (assetType, state) => {
+      const rawTerm = Math.max(1, Math.round(parseNumber(state.term)));
+      const term = assetType === "Araba" ? Math.min(rawTerm, 60) : Math.min(rawTerm, 120);
+      const assetPrice = parseNumber(state.assetPrice);
+      const downPayment = parseNumber(state.downPayment);
+      const monthlyPayment = parseNumber(state.monthlyPayment);
+      const serviceFeeRate = parseNumber(state.serviceFee);
+      const rent = parseNumber(state.rent);
+      const inflation = parseNumber(state.inflation) || 25;
+      const discountRate = compareDiscountRate(inflation);
+      const suggestedDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
+      const deliveryInput = Math.round(parseNumber(state.delivery));
+      const delivery = Math.max(0, deliveryInput || suggestedDelivery);
+      const feeAmount = assetPrice * serviceFeeRate / 100;
+      const initialOutflow = downPayment + feeAmount;
+      const schedule = buildCompareSchedule(state);
+
+      let cumulative = initialOutflow;
+      let pvInstallments = 0;
+      let pvRent = 0;
+      const cashflow = [{
+        month: 0,
+        installment: 0,
+        rent: 0,
+        serviceFee: initialOutflow,
+        cumulativeOutflow: cumulative,
+        presentValue: initialOutflow,
+      }];
+
+      schedule.forEach((payment, index) => {
+        const month = index + 1;
+        const rentAmount = month <= delivery ? rent * Math.pow(1 + inflation / 100, Math.floor((month - 1) / 12)) : 0;
+        const pvInstallment = presentValue(payment, month, discountRate);
+        const pvRentAmount = presentValue(rentAmount, month, discountRate);
+        pvInstallments += pvInstallment;
+        pvRent += pvRentAmount;
+        cumulative += payment + rentAmount;
+        cashflow.push({
+          month,
+          installment: payment,
+          rent: rentAmount,
+          serviceFee: 0,
+          cumulativeOutflow: cumulative,
+          presentValue: pvInstallment + pvRentAmount,
+        });
+      });
+
+      const contractAmount = Math.max(assetPrice - downPayment, 0);
+      const totalRepayment = schedule.reduce((sum, value) => sum + value, 0);
+      const totalOutflow = initialOutflow + totalRepayment + cashflow.slice(1).reduce((sum, row) => sum + row.rent, 0);
+      const pvBenefit = presentValue(assetPrice, delivery, discountRate);
+      const score = pvBenefit - initialOutflow - pvInstallments - pvRent;
+      const nbm = -score;
+      const bankSummary = state.compareBank
+        ? (() => {
+            const config = getBankConfig(assetType, state.bankHousingStatus);
+            const summary = calculateCreditModule({
+              principal: parseNumber(state.bankAmount),
+              rate: parseNumber(state.bankRate),
+              term: Math.max(1, Math.round(parseNumber(state.bankTerm))),
+              fee: config.fee,
+              bsmv: config.bsmv,
+              kkdf: config.kkdf,
+            });
+            return {
+              installment: summary.installment,
+              totalRepayment: summary.totalRepayment,
+              annualEffectiveCost: summary.annualEffectiveCost,
+            };
+          })()
+        : null;
+
+      return {
+        state,
+        contractAmount,
+        initialOutflow,
+        feeAmount,
+        totalRepayment,
+        totalOutflow,
+        pvBenefit,
+        pvInstallments,
+        pvRent,
+        score,
+        nbm,
+        suggestedDelivery,
+        cashflow,
+        bankSummary,
+      };
+    };
+
+    const collectCompareState = (root, offerIndex, assetType) => {
+      const getValue = (field, fallback = "") => {
+        const element = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-field="' + field + '"]');
+        if (element instanceof HTMLSelectElement) {
+          return element.value || element.selectedOptions?.[0]?.value || fallback;
+        }
+        return element?.value || fallback;
+      };
+      const getToggle = (name) => root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-toggle-button="' + name + '"]')?.dataset.on === "true";
+      const modelButton = root.querySelector('[data-compare-offer="' + offerIndex + '"][data-compare-model].active');
+      return {
+        company: getValue("company", "Diğer"),
+        model: modelButton?.dataset.compareModel || "cekilissiz",
+        assetPrice: getValue("assetPrice"),
+        downPayment: getValue("downPayment"),
+        term: getValue("term"),
+        monthlyPayment: getValue("monthlyPayment"),
+        escalating: getToggle("escalating"),
+        manualPlan: getToggle("manualPlan"),
+        manualPlanText: getValue("manualPlanText"),
+        delivery: getValue("delivery"),
+        serviceFee: getValue("serviceFee"),
+        rent: getValue("rent"),
+        inflation: getValue("inflation", "25"),
+        creditRate: getValue("creditRate", "3.19"),
+        yearlyIncrease: getValue("yearlyIncrease", "15"),
+        compareBank: getToggle("compareBank"),
+        bankAmount: getValue("bankAmount", assetType === "Konut" ? "2.000.000" : "1.000.000"),
+        bankRate: getValue("bankRate", assetType === "Konut" ? "2.85" : "3.45"),
+        bankTerm: getValue("bankTerm", assetType === "Konut" ? "60" : "12"),
+        bankHousingStatus: getValue("bankHousingStatus", "yok"),
+      };
+    };
+
+    const setCompareToggleVisual = (button, active) => {
+      if (!(button instanceof HTMLElement)) return;
+      button.dataset.on = active ? "true" : "false";
+      button.setAttribute("aria-pressed", String(active));
+      const track = button.querySelector("span");
+      const knob = track?.querySelector("span");
+      track?.classList.toggle("bg-[#18a05a]", active);
+      track?.classList.toggle("bg-[#d7e3ef]", !active);
+      knob?.classList.toggle("left-6", active);
+      knob?.classList.toggle("left-1", !active);
+    };
+
+    const setCompareResultCard = (root, offerIndex, result, highlighted) => {
+      const card = root.querySelector('[data-compare-result-card="' + offerIndex + '"]');
+      if (!(card instanceof HTMLElement)) return;
+      const empty = card.querySelector("[data-compare-result-empty]");
+      const content = card.querySelector("[data-compare-result-content]");
+      const winner = card.querySelector("[data-compare-result-winner]");
+      empty?.classList.add("hidden");
+      content?.classList.remove("hidden");
+      winner?.classList.toggle("hidden", !highlighted);
+      card.dataset.highlighted = highlighted ? "true" : "false";
+      card.classList.toggle("border-[#f4c514]", highlighted);
+      card.classList.toggle("shadow-[0_20px_50px_rgba(232,179,0,0.16)]", highlighted);
+      card.classList.toggle("border-[#dce7e2]", !highlighted);
+      card.classList.toggle("bg-white", !highlighted);
+
+      const setField = (name, value, extraClass) => {
+        const node = card.querySelector('[data-compare-result-field="' + name + '"]');
+        if (node) {
+          node.textContent = value;
+          if (extraClass) {
+            node.classList.toggle(extraClass, highlighted);
+          }
+        }
+      };
+
+      setField("company", result.state.company);
+      setField("model", result.state.model === "cekilisli" ? "Cekilisli model" : "Cekilissiz model");
+      setField("initialOutflow", formatMoney(result.initialOutflow));
+      setField("term", String(parseNumber(result.state.term)));
+      setField("monthlyPayment", formatMoney(parseNumber(result.state.monthlyPayment)));
+      setField("totalRepayment", formatMoney(result.totalRepayment));
+      setField("totalOutflow", formatMoney(result.totalOutflow));
+      setField("nbm", formatMoney(result.nbm), "text-[#168b53]");
+      setField("downPayment", formatMoney(parseNumber(result.state.downPayment)));
+      setField("serviceFee", formatPercent(parseNumber(result.state.serviceFee)));
+      setField("contractAmount", formatMoney(result.contractAmount));
+      setField("delivery", String(parseNumber(result.state.delivery)));
+      setField("suggestedDelivery", result.suggestedDelivery + ". ay");
+      setField("pvBenefit", formatMoney(result.pvBenefit));
+      setField("pvPayments", formatMoney(result.pvInstallments + result.pvRent));
+      setField("score", formatSignedMoney(result.score), "text-[#168b53]");
+
+      const bankSummary = card.querySelector("[data-compare-bank-summary]");
+      if (result.bankSummary && bankSummary) {
+        bankSummary.classList.remove("hidden");
+        setField("bankInstallment", formatMoney(result.bankSummary.installment));
+        setField("bankTotalRepayment", formatMoney(result.bankSummary.totalRepayment));
+        setField("bankAnnualEffectiveCost", formatPercent(result.bankSummary.annualEffectiveCost * 100, 2));
+      } else {
+        bankSummary?.classList.add("hidden");
+      }
+    };
+
+    const setCompareSummary = (root, winnerResult) => {
+      const card = root.querySelector("[data-compare-summary-card]");
+      if (!(card instanceof HTMLElement)) return;
+      const company = card.querySelector("[data-compare-summary-company]");
+      const nbm = card.querySelector("[data-compare-summary-nbm]");
+      if (company) company.textContent = winnerResult.state.company;
+      if (nbm) nbm.textContent = formatSignedMoney(winnerResult.score);
+    };
+
+    const setCompareCashflow = (root, offerIndex, rows) => {
+      const block = root.querySelector('[data-compare-cashflow-root="' + offerIndex + '"]');
+      if (!(block instanceof HTMLElement)) return;
+      const empty = block.querySelector("[data-compare-cashflow-empty]");
+      const tableWrap = block.querySelector("[data-compare-cashflow-table]");
+      const body = block.querySelector("[data-compare-cashflow-body]");
+      const exportButton = block.querySelector('[data-compare-export="' + offerIndex + '"]');
+      empty?.classList.add("hidden");
+      tableWrap?.classList.remove("hidden");
+      exportButton?.classList.remove("hidden");
+      if (!(body instanceof HTMLElement)) return;
+      const previewRows = rows.slice(0, 20);
+      body.innerHTML = previewRows.map((row) => {
+        const netOutflow = -(row.installment + row.rent + row.serviceFee);
+        return '<tr class="border-t border-[#edf2f7]' + (row.month === 12 ? ' bg-[#effbf5]' : '') + '">' +
+          '<td class="px-4 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#ff5b57]">' + formatSignedMoney(-row.installment) + '</td>' +
+          '<td class="px-4 py-4 text-sm text-[#ff5b57]">' + formatSignedMoney(netOutflow) + '</td>' +
+        '</tr>';
+      }).join("");
+      body.dataset.csv = JSON.stringify(rows);
+      const note = block.querySelector("[data-compare-cashflow-note]");
+      if (note) {
+        const hiddenCount = Math.max(rows.length - previewRows.length, 0);
+        note.textContent = hiddenCount > 0
+          ? "... ve " + hiddenCount + " satır daha. (Tüm tabloyu görmek için Excel olarak indirin)"
+          : "Tüm satırlar görüntüleniyor.";
+      }
+    };
+
+    const exportCompareRows = (filename, rows) => {
+      const csv = ["Ay,Taksit,Kira,Hizmet Bedeli,Kumulatif Cikis,Bugunku Deger"]
+        .concat(rows.map((row) => [row.month, Math.round(row.installment), Math.round(row.rent), Math.round(row.serviceFee), Math.round(row.cumulativeOutflow), Math.round(row.presentValue)].join(",")))
+        .join("\\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    };
+
+    const initCompareFallback = () => {
+      return;
+      const root = getCompareRoot();
+      if (!(root instanceof HTMLElement) || root.dataset.compareFallbackReady === "true") return;
+      root.dataset.compareFallbackReady = "true";
+
+      root.querySelectorAll('select[data-compare-field]').forEach((select) => {
+        if (!(select instanceof HTMLSelectElement)) return;
+        const initialValue = select.dataset.initialValue;
+        if (initialValue && Array.from(select.options).some((option) => option.value === initialValue)) {
+          select.value = initialValue;
+        } else if (!select.value && Array.from(select.options).some((option) => option.value === "Diğer")) {
+          select.value = "Diğer";
+        }
+      });
+
+      const render = () => {
+        const assetType = root.querySelector("[data-compare-asset-button].active")?.dataset.compareAssetButton || "Konut";
+        const offerOneState = collectCompareState(root, 1, assetType);
+        const offerTwoState = collectCompareState(root, 2, assetType);
+        const offerOneResult = calculateCompareOffer(assetType, offerOneState);
+        const offerTwoResult = calculateCompareOffer(assetType, offerTwoState);
+        const winnerIndex = offerOneResult.nbm <= offerTwoResult.nbm ? 1 : 2;
+
+        setCompareResultCard(root, 1, offerOneResult, winnerIndex === 1);
+        setCompareResultCard(root, 2, offerTwoResult, winnerIndex === 2);
+        setCompareCashflow(root, 1, offerOneResult.cashflow);
+        setCompareCashflow(root, 2, offerTwoResult.cashflow);
+        setCompareSummary(root, winnerIndex === 1 ? offerOneResult : offerTwoResult);
+
+        const resultsSection = root.querySelector("[data-compare-results-section]");
+        if (resultsSection instanceof HTMLElement) {
+          pulse(resultsSection, "surface-ack", 520);
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        root.dataset.compareResults = JSON.stringify({
+          1: offerOneResult.cashflow,
+          2: offerTwoResult.cashflow,
+        });
+      };
+
+      root.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const assetButton = target.closest("[data-compare-asset-button]");
+        if (assetButton instanceof HTMLElement) {
+          root.querySelectorAll("[data-compare-asset-button]").forEach((button) => button.classList.remove("active"));
+          assetButton.classList.add("active");
+          pulse(assetButton);
+          return;
+        }
+
+        const modelButton = target.closest("[data-compare-model]");
+        if (modelButton instanceof HTMLElement) {
+          const offerIndex = modelButton.dataset.compareOffer;
+          root.querySelectorAll('[data-compare-offer="' + offerIndex + '"][data-compare-model]').forEach((button) => button.classList.remove("active"));
+          modelButton.classList.add("active");
+          pulse(modelButton);
+          return;
+        }
+
+        const toggleButton = target.closest("[data-compare-toggle-button]");
+        if (toggleButton instanceof HTMLElement) {
+          setCompareToggleVisual(toggleButton, toggleButton.dataset.on !== "true");
+          pulse(toggleButton);
+          return;
+        }
+
+        const calculateButton = target.closest("[data-compare-calculate]");
+        if (calculateButton instanceof HTMLElement) {
+          pulse(calculateButton);
+          render();
+          return;
+        }
+
+        const exportButton = target.closest("[data-compare-export]");
+        if (exportButton instanceof HTMLElement) {
+          const offerIndex = exportButton.dataset.compareExport;
+          const payload = JSON.parse(root.dataset.compareResults || "{}");
+          const rows = payload[offerIndex];
+          if (rows) exportCompareRows("teklif-" + offerIndex + "-nakit-akisi.csv", rows);
+        }
+      });
+
+      root.addEventListener("input", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+        const name = target.dataset.compareField;
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(name)) {
+          formatThousandsInput(target);
+        }
+      });
+    };
+
+    const calculateComparisonScenarios = () => {
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+
+      const feeAmount = assetPrice * serviceFee / 100;
+      const savingsInitial = downPayment + feeAmount;
+      const savingsFinanced = Math.max(0, assetPrice - downPayment);
+      const savingsPaymentsPv = Array.from({ length: term }).reduce((sum, _, index) => sum + presentValue(monthlyPayment, index + 1, discountRate), 0);
+      const savingsRentPv = Array.from({ length: delivery }).reduce((sum, _, index) => sum + presentValue(rent, index + 1, discountRate), 0);
+      const savingsBenefitPv = presentValue(assetPrice, delivery, discountRate);
+      const savingsScore = savingsBenefitPv - savingsInitial - savingsPaymentsPv - savingsRentPv;
+
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
+      const bankInitial = downPayment;
+      const bankPaymentsPv = Array.from({ length: bankTerm }).reduce((sum, _, index) => sum + presentValue(bankResult.installment, index + 1, discountRate), 0);
+      const bankScore = assetPrice - bankInitial - bankPaymentsPv;
+
+      const autoDelivery = calculateAutoDelivery({ assetPrice, downPayment, monthlyPayment, term });
+      const autoRentPv = Array.from({ length: autoDelivery }).reduce((sum, _, index) => sum + presentValue(rent, index + 1, discountRate), 0);
+      const autoBenefitPv = presentValue(assetPrice, autoDelivery, discountRate);
+      const autoScore = autoBenefitPv - savingsInitial - savingsPaymentsPv - autoRentPv;
+
+      return {
+        bank: {
+          initial: bankInitial,
+          financed: bankAmount,
+          installment: bankResult.installment,
+          total: bankInitial + bankResult.totalRepayment,
+          score: bankScore,
+        },
+        savings: {
+          initial: savingsInitial,
+          financed: savingsFinanced,
+          installment: monthlyPayment,
+          delivery,
+          score: savingsScore,
+        },
+        auto: {
+          delivery: autoDelivery,
+          score: autoScore,
+        },
+      };
+    };
+
+    const renderComparison = () => {
+      const comparison = calculateComparisonScenarios();
+      const setNode = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (!node) return;
+        if (node.textContent !== value) {
+          node.textContent = value;
+          pulse(node, "preview-swap", 300);
+        }
+      };
+
+      setNode("[data-compare-bank-initial]", formatMoney(comparison.bank.initial));
+      setNode("[data-compare-bank-financed]", formatMoney(comparison.bank.financed));
+      setNode("[data-compare-bank-installment]", formatMoney(comparison.bank.installment));
+      setNode("[data-compare-bank-total]", formatMoney(comparison.bank.total));
+      setNode("[data-compare-bank-npv]", formatMoney(comparison.bank.score));
+      setNode("[data-compare-savings-initial]", formatMoney(comparison.savings.initial));
+      setNode("[data-compare-savings-financed]", formatMoney(comparison.savings.financed));
+      setNode("[data-compare-savings-installment]", formatMoney(comparison.savings.installment));
+      setNode("[data-compare-savings-delivery]", comparison.savings.delivery + ". ay");
+      setNode("[data-compare-savings-npv]", formatMoney(comparison.savings.score));
+      setNode("[data-compare-auto-delivery]", comparison.auto.delivery + ". ay");
+
+      const candidates = [
+        { label: "Banka kredisi daha avantajlı", score: comparison.bank.score },
+        { label: "Tasarruf finansmanı daha avantajlı", score: comparison.savings.score },
+        { label: "Otomatik teslim senaryosu öne çıkıyor", score: comparison.auto.score },
+      ].sort((a, b) => b.score - a.score);
+
+      setNode("[data-compare-best]", candidates[0].label);
+      setNode("[data-compare-best-delta]", formatMoney(Math.max(0, candidates[0].score - candidates[1].score)));
+    };
+
+    const renderCashflow = () => {
+      const body = document.querySelector("[data-cashflow-body]");
+      const footnote = document.querySelector("[data-cashflow-footnote]");
+      if (!(body instanceof HTMLElement) || !(footnote instanceof HTMLElement)) return;
+
+      const assetPrice = parseNumber(field("assetPrice")?.value);
+      const downPayment = parseNumber(field("downPayment")?.value);
+      const term = parseNumber(field("term")?.value);
+      const monthlyPayment = parseNumber(field("monthlyPayment")?.value);
+      const delivery = parseNumber(field("delivery")?.value);
+      const serviceFee = parseNumber(field("serviceFee")?.value);
+      const rent = parseNumber(field("rent")?.value);
+      const inflation = parseNumber(field("inflation")?.value) || 25;
+      const discountRate = monthlyDiscountRate(inflation);
+      const feeAmount = assetPrice * serviceFee / 100;
+
+      const rows = [{ month: 0, payment: downPayment + feeAmount, net: downPayment + feeAmount, pv: downPayment + feeAmount }];
+      for (let month = 1; month <= term; month += 1) {
+        const rentFlow = month <= delivery ? rent : 0;
+        const net = monthlyPayment + rentFlow;
+        rows.push({ month, payment: monthlyPayment, net, pv: presentValue(net, month, discountRate) });
+      }
+
+      const visibleRows = rows.slice(0, 19);
+      body.innerHTML = visibleRows
+        .map((row) => {
+          const highlight = row.month === delivery ? ' bg-[#edfdf3]' : "";
+          return '<tr class="border-t border-[#edf2f7]' + highlight + '">' +
+            '<td class="px-5 py-4 text-sm text-[#1c2433]">' + row.month + '</td>' +
+            '<td class="px-5 py-4 text-sm font-medium text-[#ff4d4f]">' + formatSignedMoney(-row.payment) + '</td>' +
+            '<td class="px-5 py-4 text-sm font-medium text-[#ff4d4f]">' + formatSignedMoney(-row.net) + '</td>' +
+            '<td class="px-5 py-4 text-sm font-semibold text-[#ff4d4f]">' + formatSignedMoney(-row.pv) + '</td>' +
+          '</tr>';
+        })
+        .join("");
+
+      footnote.textContent = rows.length > visibleRows.length ? "Ilk " + visibleRows.length + " satir gosteriliyor. Kalan " + (rows.length - visibleRows.length) + " satir Excel ciktiya eklenir." : "Tum satirlar gosteriliyor.";
+      body.dataset.csv = JSON.stringify(rows);
     };
 
     const syncLoanLimit = () => {
@@ -264,6 +857,9 @@ c:I[7123,[],"default",1]
       const compareBank = getCalculator()?.querySelector('[data-toggle="compareBank"]')?.dataset.on === "true";
       const bankPanel = getCalculator()?.querySelector("[data-bank-panel]");
       if (bankPanel) bankPanel.classList.toggle("hidden", !compareBank);
+      const housingStatusWrap = getCalculator()?.querySelector("[data-bank-housing-status]");
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      if (housingStatusWrap) housingStatusWrap.classList.toggle("hidden", assetType !== "Konut");
     };
 
     const syncSummary = () => {
@@ -307,12 +903,24 @@ c:I[7123,[],"default",1]
       const bankAmount = parseNumber(bankField("amount")?.value);
       const bankRate = parseNumber(bankField("rate")?.value);
       const bankTerm = parseNumber(bankField("term")?.value);
-      const bankInstallment = calculateBankInstallment(bankAmount, bankRate, bankTerm);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
 
+      setPreviewText("bankPanelTitle", bankConfig.title);
       setPreviewText("bankAmount", compareBank ? formatMoney(bankAmount) : "Kapalı");
       setPreviewText("bankRate", compareBank ? formatPercent(bankRate) : "Kapalı");
       setPreviewText("bankTerm", compareBank ? bankTerm + " ay" : "Kapalı");
-      setPreviewText("bankInstallment", compareBank ? formatMoney(bankInstallment) : "Kapalı");
+      setPreviewText("bankInstallment", compareBank ? formatMoney(bankResult.installment) : "Kapalı");
+      renderComparison();
+      renderCashflow();
     };
 
     const applyScenario = (changedByUser = false) => {
@@ -348,17 +956,19 @@ c:I[7123,[],"default",1]
 
       if (!changedByUser) {
         const bankAmount = Math.max(0, parseNumber(field("assetPrice")?.value) - parseNumber(field("downPayment")?.value));
+        const bankConfig = getBankConfig(assetType, bankField("housingStatus")?.value || "yok");
         if (bankField("amount")) {
           bankField("amount").value = String(bankAmount);
           formatThousandsInput(bankField("amount"));
         }
-        if (bankField("rate")) bankField("rate").value = String(preset.bankRate);
-        if (bankField("term")) bankField("term").value = String(preset.bankTerm);
+        if (bankField("rate")) bankField("rate").value = String(preset.bankRate || bankConfig.defaultRate);
+        if (bankField("term")) bankField("term").value = String(preset.bankTerm || bankConfig.defaultTerm);
       }
 
       updateBankPanelVisibility();
       updateDeliveryBar();
       syncCompanySelect();
+      syncComparisonInputs();
       syncSummary();
     };
 
@@ -390,7 +1000,20 @@ c:I[7123,[],"default",1]
       const totalPaid = downPayment + serviceFeeAmount + monthly * term;
       const waitingCost = delivery * rent;
       const netCost = totalPaid + waitingCost - assetPrice;
-      const bankComparison = parseNumber(bankField("amount")?.value) * 1.08;
+      const assetType = activeSegmentValue("assetType") || "Konut";
+      const bankAmount = parseNumber(bankField("amount")?.value);
+      const bankRate = parseNumber(bankField("rate")?.value);
+      const bankTerm = parseNumber(bankField("term")?.value);
+      const housingStatus = bankField("housingStatus")?.value || "yok";
+      const bankConfig = getBankConfig(assetType, housingStatus);
+      const bankResult = calculateCreditModule({
+        principal: bankAmount,
+        rate: bankRate,
+        term: bankTerm,
+        fee: bankConfig.fee,
+        bsmv: bankConfig.bsmv,
+        kkdf: bankConfig.kkdf,
+      });
       const panel = document.querySelector("[data-result-panel]");
       if (!panel) return;
 
@@ -399,13 +1022,18 @@ c:I[7123,[],"default",1]
         ["Net maliyet", formatMoney(netCost)],
         ["Toplam ödeme", formatMoney(totalPaid)],
         ["Hizmet bedeli", formatMoney(serviceFeeAmount)],
-        ["Banka kıyası", compareBank ? formatMoney(bankComparison) : "Kapalı"],
+        ["Kredi taksiti", compareBank ? formatMoney(bankResult.installment) : "Kapalı"],
+        ["Kredi toplam geri ödeme", compareBank ? formatMoney(bankResult.totalRepayment) : "Kapalı"],
+        ["Net ele geçen kredi", compareBank ? formatMoney(bankResult.netDisbursed) : "Kapalı"],
       ]
         .map(([label, value]) => '<div><span class="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">' + label + '</span><strong class="mt-2 block text-xl font-bold text-slate-900">' + value + "</strong></div>")
         .join("");
 
       pulse(panel, "choice-pop", 520);
+      syncComparisonInputs();
       syncSummary();
+      renderComparison();
+      renderCashflow();
     };
 
     const openLoginModal = () => {
@@ -453,6 +1081,17 @@ c:I[7123,[],"default",1]
         pulse(segmentButton);
         acknowledge(calculatorCard, summaryPanel);
         applyScenario();
+        return;
+      }
+
+      const calcViewTab = target.closest("[data-calc-view-tab]");
+      if (calcViewTab instanceof HTMLElement && calculator) {
+        pulse(calcViewTab);
+        setCalcView(calcViewTab.dataset.calcViewTab || "main");
+        window.setTimeout(() => {
+          const focusTarget = calcViewTab.dataset.calcViewTab === "comparison" ? document.querySelector("#comparison") : calculator;
+          focusTarget?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 40);
         return;
       }
 
@@ -552,8 +1191,10 @@ c:I[7123,[],"default",1]
         pulse(compareCta);
         const compareToggle = calculator.querySelector('[data-toggle="compareBank"]');
         if (compareToggle) setToggle(compareToggle, true);
+        setCalcView("comparison");
         window.setTimeout(() => {
-          calculator.scrollIntoView({ behavior: "smooth", block: "start" });
+          const comparisonSection = document.querySelector("#comparison");
+          (comparisonSection || calculator).scrollIntoView({ behavior: "smooth", block: "start" });
           focusCalculator();
           updateBankPanelVisibility();
           syncSummary();
@@ -596,6 +1237,30 @@ c:I[7123,[],"default",1]
         } catch (error) {
           console.warn("copy failed", error);
         }
+        return;
+      }
+
+      const downloadCashflowButton = target.closest("[data-download-cashflow]");
+      if (downloadCashflowButton instanceof HTMLElement) {
+        pulse(downloadCashflowButton);
+        const body = document.querySelector("[data-cashflow-body]");
+        const rows = body?.dataset.csv ? JSON.parse(body.dataset.csv) : [];
+        const csv = ["Ay,Aylik Taksit,Net Nakit Akisi,Bugunku Deger"]
+          .concat(
+            rows.map((row) =>
+              [row.month, Math.round(row.payment || 0), Math.round(row.net || 0), Math.round(row.pv || 0)].join(","),
+            ),
+          )
+          .join("\\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "nakit-akisi.csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
         return;
       }
 
@@ -653,6 +1318,15 @@ c:I[7123,[],"default",1]
     document.addEventListener("input", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) return;
+      if (target.matches("[data-compare-input]")) {
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(target.dataset.compareInput)) {
+          formatThousandsInput(target);
+        }
+        syncFromComparisonInput(target);
+        updateDeliveryBar();
+        syncSummary();
+        return;
+      }
       if (target.matches("[data-limit-field]")) {
         if (integerLimitFields.includes(target.dataset.limitField)) {
           formatThousandsInput(target);
@@ -673,12 +1347,25 @@ c:I[7123,[],"default",1]
       if (!(target instanceof HTMLSelectElement)) return;
       if (target.matches("[data-limit-field]")) {
         syncLoanLimit();
+        return;
+      }
+      if (target.matches('[data-bank-field="housingStatus"]')) {
+        updateBankPanelVisibility();
+        syncSummary();
       }
     });
 
     document.addEventListener("focusout", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+      if (target instanceof HTMLInputElement && target.matches("[data-compare-input]")) {
+        if (["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(target.dataset.compareInput)) {
+          formatThousandsInput(target);
+        }
+        syncFromComparisonInput(target);
+        syncSummary();
+        return;
+      }
       if (target instanceof HTMLInputElement && target.matches("[data-limit-field]")) {
         if (integerLimitFields.includes(target.dataset.limitField)) {
           formatThousandsInput(target);
@@ -701,6 +1388,9 @@ c:I[7123,[],"default",1]
 
     const scrollToHash = () => {
       if (!location.hash) return;
+      if (location.hash === "#comparison") {
+        setCalcView("comparison");
+      }
       const target = document.querySelector(location.hash);
       if (!(target instanceof HTMLElement)) return;
       const run = () => {
@@ -717,9 +1407,17 @@ c:I[7123,[],"default",1]
         formatThousandsInput(input);
       }
     });
+    document.querySelectorAll("[data-compare-input]").forEach((input) => {
+      if (input instanceof HTMLInputElement && ["assetPrice", "downPayment", "monthlyPayment", "rent", "bankAmount"].includes(input.dataset.compareInput)) {
+        formatThousandsInput(input);
+      }
+    });
 
     syncCompanySelect();
+    updateBankPanelVisibility();
+    setCalcView("main");
     applyScenario();
+    syncComparisonInputs();
     document.querySelectorAll("[data-limit-field]").forEach((input) => {
       if (input instanceof HTMLInputElement && integerLimitFields.includes(input.dataset.limitField)) {
         formatThousandsInput(input);
@@ -730,43 +1428,68 @@ c:I[7123,[],"default",1]
     scrollToHash();
   });
 })();
-9:["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$17"}}]
-a:["$","$L18",null,{"children":["$","$19",null,{"name":"Next.MetadataOutlet","children":"$@1a"}]}]
-b:["$","$1","h",{"children":[null,["$","$L1b",null,{"children":"$L1c"}],["$","div",null,{"hidden":true,"children":["$","$L1d",null,{"children":["$","$19",null,{"name":"Next.Metadata","children":"$L1e"}]}]}],null]}]
-d:["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":[["$","rect",null,{"x":"5","y":"3.5","width":"14","height":"17","rx":"2.5","stroke":"currentColor","strokeWidth":"1.8"}],["$","path",null,{"d":"M8 8h8M8 12h2m4 0h2M8 16h2m4 0h2","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}]]}]}]
-e:["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Hesaplama"}]
-f:["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"Net maliyetinizi anında hesaplayın"}]
-10:["$","a","Karşılaştır",{"href":"#calculator","data-compare-cta":true,"data-login-button":"$undefined","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":[["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":[["$","path",null,{"d":"M7 18V9M12 18V5M17 18v-7","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}],["$","path",null,{"d":"M5 18.5h14","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}]]}]}],["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Karşılaştır"}],["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"2 teklifi yan yana kıyaslayın"}]]}]
-11:["$","a","Firmalar",{"href":"#faq","data-compare-cta":"$undefined","data-login-button":"$undefined","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":[["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":[["$","path",null,{"d":"M6 20V7.5L12 4l6 3.5V20","stroke":"currentColor","strokeWidth":"1.8"}],["$","path",null,{"d":"M9 10h.01M15 10h.01M9 14h.01M15 14h.01M11 20v-3h2v3","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}]]}]}],["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Firmalar"}],["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"BDDK lisanslı 9 firma"}]]}]
-12:["$","a","Danışmanlık AI",{"href":"#login","data-compare-cta":"$undefined","data-login-button":true,"className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":[["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M7 16.5H5a2 2 0 0 1-2-2v-6A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v6a2 2 0 0 1-2 2h-4.5L10 20v-3.5H7Z","stroke":"currentColor","strokeLinejoin":"round","strokeWidth":"1.8"}]}]}],["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Danışmanlık AI"}],["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"Ücretsiz teklif talebi oluşturun"}]]}]
-13:["$","section",null,{"id":"loanLimit","className":"page-container mt-8 scroll-mt-24","data-loan-limit":true,"children":["$","div",null,{"className":"grid items-start gap-7 lg:grid-cols-[1.08fr_0.92fr]","children":[["$","div",null,{"className":"min-h-[348px] rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","children":[["$","div",null,{"className":"flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4","children":[["$","div",null,{"children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Kredi limit modülü"}],["$","h2",null,{"className":"mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]","children":"Konut, taşıt ve ihtiyaç limitini görün"}]]}],["$","div",null,{"className":"grid grid-cols-3 gap-1 rounded-[14px] bg-[#eef3f8] p-1","children":[["$","button",null,{"className":"rounded-[11px] px-4 py-3 text-[14px] font-semibold transition-all duration-300 text-[#526071] hover:bg-white hover:text-[#182133] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white data-[active=true]:shadow-[0_10px_22px_rgba(24,160,90,0.22)]","data-active":"true","data-limit-tab-button":"housing","type":"button","children":"Konut"}],["$","button",null,{"className":"rounded-[11px] px-4 py-3 text-[14px] font-semibold transition-all duration-300 text-[#526071] hover:bg-white hover:text-[#182133] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white data-[active=true]:shadow-[0_10px_22px_rgba(24,160,90,0.22)]","data-active":"false","data-limit-tab-button":"vehicle","type":"button","children":"Taşıt"}],["$","button",null,{"className":"rounded-[11px] px-4 py-3 text-[14px] font-semibold transition-all duration-300 text-[#526071] hover:bg-white hover:text-[#182133] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white data-[active=true]:shadow-[0_10px_22px_rgba(24,160,90,0.22)]","data-active":"false","data-limit-tab-button":"need","type":"button","children":"İhtiyaç"}]]}]]}],["$","div",null,{"className":"mt-5 flex min-h-[250px] flex-col","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-3","data-limit-panel":"housing","children":[["$","label",null,{"children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Ekspertiz Değeri (TL)"}],["$","input",null,{"defaultValue":"6.500.000","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"housingValue","inputMode":"numeric","placeholder":"6.500.000"}]]}],["$","label",null,{"children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Enerji Sınıfı"}],["$","select",null,{"defaultValue":"A-B","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"energyClass","children":[["$","option",null,{"value":"A-B","children":"A - B"}],["$","option",null,{"value":"C","children":"C"}],["$","option",null,{"value":"Diger","children":"Diğer"}]]}]]}],["$","label",null,{"children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Konut Sahipliği"}],["$","select",null,{"defaultValue":"yok","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"homeOwnership","children":[["$","option",null,{"value":"yok","children":"Evi yok"}],["$","option",null,{"value":"var","children":"Evi var"}]]}]]}]]}],["$","div",null,{"className":"hidden w-full max-w-[360px] gap-5","data-limit-panel":"vehicle","children":["$","label",null,{"className":"max-w-[360px]","children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Taşıt Değeri (TL)"}],["$","input",null,{"defaultValue":"1.250.000","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"vehicleValue","inputMode":"numeric","placeholder":"1.250.000"}]]}]}],"$L1f"]}]]}],"$L20"]}]}]
-14:["$","section",null,{"id":"calculator","className":"page-container relative z-20 mt-8 scroll-mt-24","data-calculator":true,"children":["$","div",null,{"className":"grid items-start gap-7 lg:grid-cols-[1.14fr_0.86fr]","children":[["$","div",null,{"className":"space-y-6","children":[["$","div",null,{"className":"rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","data-calculator-card":true,"children":[["$","div",null,{"className":"flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4","children":[["$","h2",null,{"className":"text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]","children":"Tasarruf Finansmanı Maliyet Hesaplayıcı"}],["$","button",null,{"className":"rounded-full bg-[#e9fbef] px-4 py-2 text-[14px] font-medium text-[#179253] transition-all duration-300 hover:bg-[#dcf7e6]","data-fill-example":true,"type":"button","children":"Örnek Senaryoyu Doldur"}]]}],["$","div",null,{"className":"mt-5 grid gap-6","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-[1fr_1fr_1.08fr]","children":[["$","div",null,{"children":[["$","span",null,{"className":"form-label","children":"Varlık Tipi"}],["$","div",null,{"className":"grid grid-cols-2 rounded-[14px] bg-[#eef3f8] p-1","children":[["$","button",null,{"className":"segment-button active","data-segment":"assetType","data-value":"Konut","type":"button","children":"⌂ Konut"}],["$","button",null,{"className":"segment-button","data-segment":"assetType","data-value":"Araba","type":"button","children":"▭ Araba"}]]}]]}],["$","div",null,{"children":[["$","span",null,{"className":"form-label","children":"Finansman Modeli"}],["$","div",null,{"className":"grid grid-cols-2 rounded-[14px] bg-[#eef3f8] p-1","children":[["$","button",null,{"className":"segment-button active","data-segment":"model","data-value":"cekilissiz","type":"button","children":"Çekilişsiz"}],["$","button",null,{"className":"segment-button","data-segment":"model","data-value":"cekilisli","type":"button","children":"Çekilişli"}]]}]]}],["$","div",null,{"className":"relative","data-company-select":true,"children":[["$","span",null,{"className":"form-label","children":"Şirket Seçimi"}],["$","input",null,{"data-field":"company","type":"hidden","defaultValue":"Diğer"}],["$","button",null,{"aria-expanded":"false","aria-haspopup":"listbox","className":"form-control flex !h-[56px] w-full items-center justify-between !rounded-[16px] !bg-[#f9fbfe] !font-medium text-[#1b2433] transition-all duration-200 hover:border-[#bfd0df]","data-company-trigger":true,"type":"button","children":[["$","span",null,{"data-company-label":true,"children":"Diğer"}],["$","span",null,{"className":"text-[13px] text-[#8a98ac] transition-transform duration-200","data-company-chevron":true,"children":"˅"}]]}],["$","div",null,{"className":"absolute left-0 right-0 top-[calc(100%+8px)] z-30 hidden overflow-hidden rounded-[18px] border border-[#d9e3ee] bg-white py-1 shadow-[0_22px_48px_rgba(27,36,51,0.16)]","data-company-menu":true,"role":"listbox","children":[["$","button","Eminevim",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Eminevim","type":"button","children":"Eminevim"}],["$","button","Fuzul Ev",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Fuzul Ev","type":"button","children":"Fuzul Ev"}],["$","button","Katılımevim",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Katılımevim","type":"button","children":"Katılımevim"}],"$L21","$L22","$L23","$L24","$L25","$L26","$L27"]}]]}]]}],"$L28","$L29","$L2a","$L2b","$L2c"]}]]}],"$L2d"]}],"$L2e"]}]}]
-15:["$","section",null,{"id":"faq","className":"page-container mt-12","children":[["$","div",null,{"className":"mx-auto max-w-3xl text-center","children":[["$","h2",null,{"className":"text-3xl font-black tracking-[-0.04em] text-slate-950","children":"Sıkça Sorulan Sorular"}],["$","p",null,{"className":"mt-3 text-base text-slate-600","children":"Sistem hakkında merak edilen temel kavramlar ve hesaplama mantığı."}]]}],["$","div",null,{"className":"mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white soft-shadow","children":[["$","details","Tasarruf finansmanı sistemi nedir?",{"className":"group border-b border-slate-200 last:border-b-0","open":true,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Tasarruf finansmanı sistemi nedir?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Düzenli ödeme ve belirli teslim koşullarıyla konut veya taşıt edinmeye yönelik, maliyeti hizmet bedeli ve zaman etkisiyle oluşan bir finansman modelidir."}]]}],["$","details","Net maliyet neyi gösterir?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Net maliyet neyi gösterir?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Peşinat, taksitler, hizmet bedeli, teslim zamanı ve paranın zaman değerini birlikte değerlendirerek bugünkü ekonomik yükü gösterir."}]]}],["$","details","Çekilişli ve çekilişsiz model farkı nedir?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Çekilişli ve çekilişsiz model farkı nedir?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Çekilişli modelde teslim sırası kura veya grup yapısına bağlıdır; çekilişsiz modelde teslim zamanı sözleşme şartlarıyla daha öngörülebilirdir."}]]}],["$","details","Hizmet bedeli hesaplamaya nasıl girer?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Hizmet bedeli hesaplamaya nasıl girer?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Hizmet bedeli genellikle sözleşme tutarı üzerinden oranla hesaplanır ve ödeme şekline göre nakit akışına eklenir."}]]}],["$","details","Banka kredisi karşılaştırması neden gerekli?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Banka kredisi karşılaştırması neden gerekli?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],"$L2f"]}],"$L30","$L31","$L32"]}]]}]
-16:["$","section",null,{"id":"blog","className":"page-container mt-14","children":[["$","div",null,{"className":"mb-7 flex items-end justify-between gap-5","children":[["$","div",null,{"children":[["$","h2",null,{"className":"text-3xl font-black tracking-[-0.04em] text-slate-950","children":"Blog"}],["$","p",null,{"className":"mt-2 text-base text-slate-600","children":"Karar vermeden önce okunacak kısa rehberler."}]]}],["$","a",null,{"className":"hidden text-sm font-black text-[var(--green-dark)] sm:block","href":"#blog","data-blog-all":true,"children":"Tüm Yazılar"}]]}],["$","div",null,{"className":"grid gap-5 lg:grid-cols-3","children":[["$","article","Tasarruf finansmanı şirketlerinde maliyet nerede oluşur?",{"className":"rounded-2xl border border-slate-200 bg-white p-6 soft-shadow","data-blog-card":true,"children":[["$","div",null,{"className":"flex gap-2 text-xs font-black uppercase tracking-wide text-slate-400","children":[["$","span",null,{"children":"Mart 2026"}],["$","span",null,{"children":"Analiz"}]]}],["$","h3",null,{"className":"mt-4 text-xl font-black leading-tight text-slate-950","children":"Tasarruf finansmanı şirketlerinde maliyet nerede oluşur?"}],["$","p",null,{"className":"mt-3 text-[15px] leading-7 text-slate-600","children":"Hizmet bedeli, teslim zamanı ve grup yapısının toplam maliyete etkisini sade bir çerçevede inceleyin."}],["$","p",null,{"className":"mt-3 hidden rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600","data-blog-detail":true,"children":"Bu yazı önizlemesi, kullanıcıyı hesaplama yapmadan önce kritik sözleşme kalemlerini kontrol etmeye yönlendirir."}],["$","a",null,{"className":"mt-5 inline-flex text-sm font-black text-[var(--green-dark)]","href":"#blog","data-blog-read":true,"children":"Devamını Oku →"}]]}],["$","article","Sözleşme şartlarını okurken nelere dikkat edilmeli?",{"className":"rounded-2xl border border-slate-200 bg-white p-6 soft-shadow","data-blog-card":true,"children":[["$","div",null,{"className":"flex gap-2 text-xs font-black uppercase tracking-wide text-slate-400","children":[["$","span",null,{"children":"Aralık 2025"}],["$","span",null,{"children":"Regülasyon"}]]}],["$","h3",null,{"className":"mt-4 text-xl font-black leading-tight text-slate-950","children":"Sözleşme şartlarını okurken nelere dikkat edilmeli?"}],["$","p",null,{"className":"mt-3 text-[15px] leading-7 text-slate-600","children":"Teslim koşulu, ödeme planı ve ek maliyet başlıklarını karşılaştırırken kullanılabilecek temel kontrol listesi."}],["$","p",null,{"className":"mt-3 hidden rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600","data-blog-detail":true,"children":"Bu yazı önizlemesi, kullanıcıyı hesaplama yapmadan önce kritik sözleşme kalemlerini kontrol etmeye yönlendirir."}],["$","a",null,{"className":"mt-5 inline-flex text-sm font-black text-[var(--green-dark)]","href":"#blog","data-blog-read":true,"children":"Devamını Oku →"}]]}],["$","article","Kısa teslim vaadi gerçek maliyeti nasıl etkiler?",{"className":"rounded-2xl border border-slate-200 bg-white p-6 soft-shadow","data-blog-card":true,"children":[["$","div",null,{"className":"flex gap-2 text-xs font-black uppercase tracking-wide text-slate-400","children":[["$","span",null,{"children":"Kasım 2025"}],["$","span",null,{"children":"Rehber"}]]}],["$","h3",null,{"className":"mt-4 text-xl font-black leading-tight text-slate-950","children":"Kısa teslim vaadi gerçek maliyeti nasıl etkiler?"}],["$","p",null,{"className":"mt-3 text-[15px] leading-7 text-slate-600","children":"Erken teslim senaryolarında kira etkisi, peşinat ve taksit dengesini birlikte değerlendirmek gerekir."}],["$","p",null,{"className":"mt-3 hidden rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600","data-blog-detail":true,"children":"Bu yazı önizlemesi, kullanıcıyı hesaplama yapmadan önce kritik sözleşme kalemlerini kontrol etmeye yönlendirir."}],["$","a",null,{"className":"mt-5 inline-flex text-sm font-black text-[var(--green-dark)]","href":"#blog","data-blog-read":true,"children":"Devamını Oku →"}]]}]]}]]}]
-1f:["$","div",null,{"className":"hidden w-full max-w-[360px] gap-5","data-limit-panel":"need","children":["$","label",null,{"className":"max-w-[360px]","children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"İstenen Kredi Tutarı (TL)"}],["$","input",null,{"defaultValue":"180.000","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"needValue","inputMode":"numeric","placeholder":"180.000"}]]}]}]
-20:["$","aside",null,{"className":"min-h-[348px] rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","children":[["$","div",null,{"className":"border-b border-[#e8eef5] pb-4","children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Sonuç"}],["$","h3",null,{"className":"mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433]","data-limit-preview":"title","children":"Konut kredi modülü"}]]}],["$","div",null,{"className":"mt-5 grid gap-4","data-limit-summary":"housing","children":[["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#cfeedd] bg-[#ecfbf2]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Kredi Oranı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#136f45]","data-limit-preview":"housingRatio","children":"%80,0"}]]}],["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#e6edf5] bg-[#f8fbff]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Azami Kredi Tutarı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#182133]","data-limit-preview":"housingAmount","children":"₺5.200.000"}]]}]]}],["$","div",null,{"className":"mt-5 hidden grid gap-4","data-limit-summary":"vehicle","children":[["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#cfeedd] bg-[#ecfbf2]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Azami Kredi Tutarı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#136f45]","data-limit-preview":"vehicleAmount","children":"₺250.000"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-[14px] font-medium text-[#617086]","data-limit-preview":"vehicleMessage","children":"Uygulanan oran: %20,0"}]]}],["$","div",null,{"className":"mt-5 hidden grid gap-4","data-limit-summary":"need","children":[["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#cfeedd] bg-[#ecfbf2]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Azami Vade"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#136f45]","data-limit-preview":"needTerm","children":"24 ay"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-[14px] font-medium text-[#617086]","data-limit-preview":"needMessage","children":"125.000,01 - 250.000 TL bandı için 24 ay"}]]}]]}]
-21:["$","button","Sinpaş YTS",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Sinpaş YTS","type":"button","children":"Sinpaş YTS"}]
-22:["$","button","Emlak Katılım Tasarruf Finansmanı",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Emlak Katılım Tasarruf Finansmanı","type":"button","children":"Emlak Katılım Tasarruf Finansmanı"}]
-23:["$","button","Birevim",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Birevim","type":"button","children":"Birevim"}]
-24:["$","button","İyi Finans",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"İyi Finans","type":"button","children":"İyi Finans"}]
-25:["$","button","İmece",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"İmece","type":"button","children":"İmece"}]
-26:["$","button","Albayrak Finans",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Albayrak Finans","type":"button","children":"Albayrak Finans"}]
-27:["$","button","Diğer",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Diğer","type":"button","children":"Diğer"}]
-28:["$","div",null,{"className":"border-t border-[#e8eef5] pt-6","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-2 lg:grid-cols-4","children":[["$","label","assetPrice",{"children":[["$","span",null,{"className":"form-label","children":"Evin Fiyatı (TL) *"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"3.000.000","defaultValue":"3.000.000","data-field":"assetPrice"}]]}],["$","label","downPayment",{"children":[["$","span",null,{"className":"form-label","children":"Peşinat (TL)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"1.000.000","defaultValue":"1.000.000","data-field":"downPayment"}]]}],["$","label","term",{"children":[["$","span",null,{"className":"form-label","children":"Taksit (Ay) *"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"48","defaultValue":"48","data-field":"term"}]]}],["$","label","monthlyPayment",{"children":[["$","span",null,{"className":"form-label","children":"Aylık Ödeme *"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"41.667","defaultValue":"41.667","data-field":"monthlyPayment"}]]}]]}],["$","div",null,{"className":"mt-5 flex flex-wrap gap-8","children":[["$","button",null,{"className":"flex items-center gap-3 text-left text-[15px] font-medium text-slate-600","data-toggle":"escalating","data-on":"false","type":"button","children":[["$","span",null,{"className":"relative h-6 w-11 rounded-full transition-all duration-300 bg-[#d7e3ef]","children":["$","span",null,{"className":"absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-300 left-1"}]}],"Artışlı Taksit Planı"]}],["$","button",null,{"className":"flex items-center gap-3 text-left text-[15px] font-medium text-slate-600","data-toggle":"manualPlan","data-on":"false","type":"button","children":[["$","span",null,{"className":"relative h-6 w-11 rounded-full transition-all duration-300 bg-[#d7e3ef]","children":["$","span",null,{"className":"absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-300 left-1"}]}],"Manuel Plan Oluştur"]}]]}]]}]
-29:["$","div",null,{"className":"border-t border-[#e8eef5] pt-6","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-3","children":[["$","label","delivery",{"children":[["$","span",null,{"className":"form-label","children":"Teslim Ayı"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"12","defaultValue":"12","data-field":"delivery"}]]}],["$","label","serviceFee",{"children":[["$","span",null,{"className":"form-label","children":"Hizmet Bedeli (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"11.8","defaultValue":"11.8","data-field":"serviceFee"}]]}],["$","label","rent",{"children":[["$","span",null,{"className":"form-label","children":"Kira (TL/Ay)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"25.000","defaultValue":"25.000","data-field":"rent"}]]}]]}],["$","div",null,{"className":"mt-3 flex justify-center","children":["$","div",null,{"className":"w-full max-w-[116px]","children":["$","div",null,{"className":"h-1.5 rounded-full bg-[#dce6ef]","children":["$","div",null,{"className":"h-1.5 rounded-full bg-[#19a15b] transition-all duration-300","data-delivery-bar":true,"style":{"width":"62%"}}]}]}]}]]}]
-2a:["$","details",null,{"className":"border-t border-[#e8eef5] pt-6","children":[["$","summary",null,{"className":"cursor-pointer text-[14px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Gelişmiş Parametreler"}],["$","div",null,{"className":"mt-5 grid gap-5 md:grid-cols-3","children":[["$","label","inflation",{"children":[["$","span",null,{"className":"form-label","children":"Yıllık Enflasyon (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"32.0","defaultValue":"32","data-field":"inflation"}]]}],["$","label","creditRate",{"children":[["$","span",null,{"className":"form-label","children":"Kredi Faizi (% / ay)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"3.19","defaultValue":"3.19","data-field":"creditRate"}]]}],["$","label","yearlyIncrease",{"children":[["$","span",null,{"className":"form-label","children":"Yıllık Taksit Artışı (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"15.0","defaultValue":"15","data-field":"yearlyIncrease"}]]}]]}]]}]
-2b:["$","div",null,{"className":"border-t border-[#e8eef5] pt-4","children":[["$","div",null,{"className":"mb-5","children":["$","button",null,{"className":"flex items-center gap-3 text-left text-[15px] font-medium text-slate-600","data-toggle":"compareBank","data-on":"true","type":"button","children":[["$","span",null,{"className":"relative h-6 w-11 rounded-full transition-all duration-300 bg-[#1ab067]","children":["$","span",null,{"className":"absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-300 left-6"}]}],"Tasarruf Finansmanı ile Konut Kredisini Kıyasla"]}]}],["$","div",null,{"className":"rounded-[18px] border border-[#dbe6f1] bg-[#f9fbfe] p-5","data-bank-panel":true,"children":[["$","div",null,{"className":"flex items-center gap-3 text-[#263246]","children":[["$","span",null,{"className":"grid h-8 w-8 place-items-center rounded-xl bg-[#ecfff3] text-[#1aa35d]","children":"⌂"}],["$","h3",null,{"className":"text-[16px] font-bold","children":"Konut Kredisi Karşılaştırması"}]]}],["$","div",null,{"className":"mt-6 grid gap-4 md:grid-cols-[1.15fr_0.6fr_0.6fr]","children":[["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Kredi Tutarı (TL)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"amount","defaultValue":"2.000.000"}]]}],["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Aylık Faiz (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"rate","defaultValue":"2.8"}]]}],["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Vade (Ay)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"term","defaultValue":"120"}]]}]]}],["$","div",null,{"className":"mt-5","children":[["$","span",null,{"className":"form-label","children":"Hesaplanan Taksit (TL)"}],["$","div",null,{"className":"rounded-[14px] border border-[#cdeedc] bg-[#e8fbef] px-5 py-3 text-[16px] font-bold text-[#177d4e]","data-preview":"bankInstallment","children":"₺58.114"}]]}]]}]]}]
-2c:["$","div",null,{"className":"border-t border-[#e8eef5] pt-5","children":[["$","p",null,{"className":"mb-4 hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-700","data-form-error":true}],["$","button",null,{"className":"h-[50px] w-full rounded-[13px] bg-[#16a05a] text-[15px] font-bold text-white shadow-[0_16px_28px_rgba(22,160,90,0.18)] transition-all duration-300 hover:bg-[#12874b]","data-calculate":true,"type":"button","children":"HESAPLA VE SONUÇLARI GÖSTER"}]]}]
-2d:["$","div",null,{"className":"grid gap-5 md:grid-cols-2","children":[["$","article",null,{"className":"rounded-[18px] border p-5 shadow-[0_14px_34px_rgba(31,43,37,0.05)] border-[#dae2ff] bg-[linear-gradient(180deg,#f7f8ff_0%,#f2f5ff_100%)]","children":[["$","div",null,{"className":"flex items-start justify-between gap-3","children":[["$","div",null,{"className":"grid h-10 w-10 place-items-center rounded-xl text-lg bg-[#e7ebff] text-[#6366f1]","children":"◔"}],["$","span",null,{"className":"rounded-full border px-2.5 py-1 text-[11px] font-semibold bg-[#f1f3ff] text-[#6366f1] border-[#d9ddff]","children":"Üyelere Özel"}]]}],["$","h3",null,{"className":"mt-6 text-[18px] font-bold text-[#1a2435]","children":"Çekiliş Simülasyonu"}],["$","p",null,{"className":"mt-3 text-[14px] leading-7 text-[#768399]","children":"Çekilişli sistemde binlerce teslim ayı senaryosunu saniyeler içinde analiz edin, şansa değil veriye dayalı karar verin."}],["$","button",null,{"className":"mt-5 text-[14px] font-semibold transition-colors hover:opacity-80 text-[#6366f1]","type":"button","children":["Simülasyonu Başlat"," →"]}]]}],["$","article",null,{"className":"rounded-[18px] border p-5 shadow-[0_14px_34px_rgba(31,43,37,0.05)] border-[#c8f4de] bg-[linear-gradient(180deg,#f3fff8_0%,#effcf6_100%)]","children":[["$","div",null,{"className":"flex items-start justify-between gap-3","children":[["$","div",null,{"className":"grid h-10 w-10 place-items-center rounded-xl text-lg bg-[#dff8ec] text-[#18a05a]","children":"⌘"}],["$","span",null,{"className":"rounded-full border px-2.5 py-1 text-[11px] font-semibold bg-[#effdf5] text-[#18a05a] border-[#c8f4de]","children":"Üyelere Özel"}]]}],["$","h3",null,{"className":"mt-6 text-[18px] font-bold text-[#1a2435]","children":"Peşinat Optimizasyonu"}],["$","p",null,{"className":"mt-3 text-[14px] leading-7 text-[#768399]","children":"Farklı peşinat senaryolarını otomatik test ederek Net Bugünkü Maliyet'i en aza indiren optimum tutarı bulun."}],["$","button",null,{"className":"mt-5 text-[14px] font-semibold transition-colors hover:opacity-80 text-[#18a05a]","type":"button","children":["Oranları Ayarla"," →"]}]]}]]}]
-2e:["$","aside",null,{"className":"self-start rounded-[26px] border border-[#dce7e2] bg-white p-6 shadow-[0_18px_48px_rgba(31,43,37,0.08)]","data-summary-panel":true,"children":[["$","div",null,{"className":"flex items-center gap-3 border-b border-[#e8eef5] pb-5","children":[["$","span",null,{"className":"grid h-8 w-8 place-items-center rounded-xl bg-[#ecfff3] text-[#1aa35d]","children":"⌗"}],["$","h3",null,{"className":"text-[18px] font-bold text-[#1c2433]","children":"Hesaplama Özeti"}]]}],["$","div",null,{"className":"mt-5 rounded-[16px] border border-[#cfeedd] bg-[#eafbf1] px-5 py-4 text-center shadow-[0_10px_24px_rgba(24,160,90,0.08)]","children":[["$","span",null,{"className":"block text-[14px] font-bold uppercase tracking-[0.05em] text-[#168b53]","children":"Toplam Geri Ödeme (Nominal)"}],["$","strong",null,{"className":"mt-2 block text-[20px] font-bold text-[#136f45] transition-all duration-300","data-preview":"totalNominal","children":"₺3.225.016"}]]}],["$","div",null,{"className":"mt-4 grid grid-cols-2 gap-3","children":[["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-center shadow-[0_6px_18px_rgba(27,39,51,0.04)]","children":[["$","span",null,{"className":"block text-[14px] text-[#73829a]","children":"Vade (Ay)"}],["$","strong",null,{"className":"mt-2 block text-[18px] font-bold text-[#152032] transition-all duration-300","data-preview":"term","children":"48"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-center shadow-[0_6px_18px_rgba(27,39,51,0.04)]","children":[["$","span",null,{"className":"block text-[14px] text-[#73829a]","children":"Teslim Ayı"}],["$","strong",null,{"className":"mt-2 block text-[18px] font-bold text-[#152032] transition-all duration-300","data-preview":"delivery","children":"13"}]]}]]}],["$","div",null,{"className":"mt-5 rounded-[18px] border border-[#dbe6f1] bg-white overflow-hidden","children":[["$","div",null,{"className":"px-5 py-4","children":[["$","h4",null,{"className":"text-[16px] font-bold text-[#243045]","children":"NET MALİYET (NBM) DETAYI"}],["$","div",null,{"className":"mt-3","children":[["$","div",null,{"className":"grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-5 last:border-0 last:pb-0","children":[["$","span",null,{"className":"text-[15px] text-[#748299]","children":"Finansmanın Bugünkü Değeri (Fayda)"}],["$","strong",null,{"className":"text-[15px] font-bold transition-all duration-300 text-[#17a35e]","data-preview":"benefitPv","children":"₺2.294.607"}]]}],["$","div",null,{"className":"grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-5 last:border-0 last:pb-0","children":[["$","span",null,{"className":"text-[15px] text-[#748299]","children":"Org. Ücreti + Peşinat"}],["$","strong",null,{"className":"text-[15px] font-bold transition-all duration-300 text-[#ff4d4f]","data-preview":"orgAndDown","children":"₺1.225.000"}]]}],["$","div",null,{"className":"grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-5 last:border-0 last:pb-0","children":[["$","span",null,{"className":"text-[15px] text-[#748299]","children":"Aylık Ödemeler (PV)"}],["$","strong",null,{"className":"text-[15px] font-bold transition-all duration-300 text-[#ff4d4f]","data-preview":"paymentsPv","children":"₺1.256.653"}]]}]]}]]}],["$","div",null,{"className":"border-t border-[#dbe6f1] bg-[#f8fbff] px-5 py-5 text-center","children":[["$","span",null,{"className":"block text-[13px] font-bold uppercase tracking-[0.06em] text-[#74829a]","children":"Net Başlangıç Maliyeti"}],["$","strong",null,{"className":"mt-2 block text-[22px] font-bold text-[#1c2433] transition-all duration-300","data-preview":"netInitialCost","children":"₺187.046"}],["$","button",null,{"className":"mt-4 inline-flex items-center gap-2 text-[14px] font-medium text-[#179253]","data-net-info":true,"type":"button","children":["Net Maliyet Ne İfade Eder? ","$L33"]}]]}]]}],"$L34","$L35"]}]
-2f:["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Aynı peşinat ve benzer varlık değeriyle kredi seçeneğinin toplam ve bugünkü maliyeti görüldüğünde karar daha netleşir."}]
-30:["$","details","Kira veya fırsat maliyeti neden soruluyor?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Kira veya fırsat maliyeti neden soruluyor?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Teslim alınana kadar geçen sürede ödenen kira veya kaçırılan kullanım faydası gerçek maliyeti etkileyen önemli bir değişkendir."}]]}]
-31:["$","details","Lisanslı firma bilgisi neden önemli?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Lisanslı firma bilgisi neden önemli?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Finansman şirketinin düzenleyici çerçevede çalışması, tüketici açısından hukuki güven ve şeffaflık beklentisini artırır."}]]}]
-32:["$","details","Sonuçlar kesin teklif yerine geçer mi?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Sonuçlar kesin teklif yerine geçer mi?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Hayır. Hesaplama karar desteği sağlar; nihai şartlar firma sözleşmesi, kampanya ve güncel piyasa koşullarıyla doğrulanmalıdır."}]]}]
-33:["$","span",null,{"children":"⌄"}]
-34:["$","div",null,{"className":"mt-6 flex flex-wrap gap-3","children":[["$","button",null,{"className":"flex-1 rounded-[12px] bg-[#ef2a2a] px-5 py-3 text-[15px] font-bold text-white shadow-[0_10px_22px_rgba(239,42,42,0.18)] transition-all duration-300 hover:bg-[#d91e1e]","data-download-pdf":true,"type":"button","children":"PDF İndir"}],["$","button",null,{"className":"flex-1 rounded-[12px] border border-[#dce5ef] bg-white px-5 py-3 text-[15px] font-medium text-[#49556a] transition-all duration-300 hover:border-[#c7d4e2] hover:bg-[#f9fbfe]","data-copy-link":true,"type":"button","children":"Linki Kopyala"}]]}]
-35:["$","div",null,{"className":"mt-5 hidden grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 transition md:grid-cols-2","data-result-panel":true}]
-1c:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-36:I[6869,[],"IconMark"]
-1a:null
-1e:[["$","title","0",{"children":"Finansman Maliyet Hesaplama"}],["$","meta","1",{"name":"description","content":"Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin."}],["$","link","2",{"rel":"icon","href":"/finans/favicon.svg"}],["$","$L36","3",{}]]
+0:{"P":null,"c":["",""],"q":"","i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/finans/_next/static/chunks/0z90yro31yg10.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/finans/_next/static/chunks/0dbhjjzl8qfwv.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"tr","children":["$","body",null,{"children":[["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$4"}}]]}]}]]}],{"children":["$L5",{},null,false,null]},null,false,null],"$L6",false]],"m":"$undefined","G":["$7",["$L8"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"LKwh0oRfP1_o9EpllW9ZF"}
+12:I[97367,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"ViewportBoundary"]
+14:I[97367,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"MetadataBoundary"]
+15:"$Sreact.suspense"
+5:["$","$1","c",{"children":[[["$","header",null,{"className":"sticky top-0 z-50 border-b border-[#dce6df] bg-white/95 shadow-[0_3px_14px_rgba(31,41,55,0.06)] backdrop-blur","children":[["$","div",null,{"className":"page-container flex min-h-[72px] items-center justify-between gap-6","children":[["$","a",null,{"href":"/finans/","className":"flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]","children":[["$","span",null,{"className":"relative h-8 w-8","aria-hidden":"true","children":[["$","span",null,{"className":"absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]"}],["$","span",null,{"className":"absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]"}]]}],"Tasarruf Finansmanı"]}],["$","div",null,{"className":"hidden items-center gap-8 lg:flex","children":[["$","nav",null,{"className":"hidden items-center gap-1 lg:flex","aria-label":"Ana menü","children":[["$","a","home",{"href":"/finans/","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 bg-[#e9fbef] text-[#1b804d]","children":"Ana Sayfa"}],["$","a","firms",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Firmalar"}],["$","a","faq",{"href":"/finans/#faq","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Nasıl Çalışır?"}],["$","a","about",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Hakkımızda"}],["$","a","blog",{"href":"/finans/#blog","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Blog"}],["$","a","data",{"href":"/finans/veri","className":"rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 text-[#3e4958] hover:bg-[#f5f8f6] hover:text-[#182132]","children":"Endeks"}]]}],["$","div",null,{"className":"hidden h-8 w-px bg-[#e4e9ee] lg:block"}],["$","div",null,{"className":"hidden items-center gap-3 lg:flex","children":[["$","a",null,{"className":"rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]","href":"/finans/teklifleri-karsilastir","children":"Teklifleri Karşılaştır"}],["$","a",null,{"className":"rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]]}]]}],["$","button",null,{"className":"rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 lg:hidden","data-mobile-menu-button":true,"type":"button","aria-expanded":"false","children":"Menü"}]]}],["$","div",null,{"className":"hidden border-t border-slate-200 bg-white lg:hidden","data-mobile-menu":true,"children":["$","div",null,{"className":"page-container grid gap-2 py-4","children":[[["$","a","home",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/","children":"Ana Sayfa"}],["$","a","firms",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Firmalar"}],"$L9","$La","$Lb","$Lc"],"$Ld","$Le"]}]}]]}],"$Lf","$L10"],null,"$L11"]}]
+6:["$","$1","h",{"children":[null,["$","$L12",null,{"children":"$L13"}],["$","div",null,{"hidden":true,"children":["$","$L14",null,{"children":["$","$15",null,{"name":"Next.Metadata","children":"$L16"}]}]}],null]}]
+8:["$","link","0",{"rel":"stylesheet","href":"/finans/_next/static/chunks/0z90yro31yg10.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:I[97367,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
+9:["$","a","faq",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#faq","children":"Nasıl Çalışır?"}]
+a:["$","a","about",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#blog","children":"Hakkımızda"}]
+b:["$","a","blog",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/#blog","children":"Blog"}]
+c:["$","a","data",{"className":"rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]","href":"/finans/veri","children":"Endeks"}]
+d:["$","a",null,{"className":"rounded-xl bg-[#3a7bf6] px-4 py-3 text-center text-sm font-semibold text-white","href":"/finans/teklifleri-karsilastir","children":"Teklifleri Karşılaştır"}]
+e:["$","a",null,{"className":"rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]","href":"#login","data-login-button":true,"children":"Giriş Yap"}]
+f:["$","main",null,{"children":[["$","section",null,{"className":"page-container mt-5","children":["$","div",null,{"className":"overflow-hidden rounded-[30px] border border-[#dcefe4] bg-white shadow-[0_12px_34px_rgba(36,61,50,0.07)]","children":["$","div",null,{"className":"relative grid min-h-[472px] gap-10 px-6 py-7 md:px-10 md:py-9 lg:grid-cols-[1.03fr_0.97fr] lg:px-12 lg:py-10","children":[["$","div",null,{"className":"absolute inset-0 bg-[radial-gradient(circle_at_7%_14%,rgba(104,246,189,0.22),transparent_22%),radial-gradient(circle_at_88%_82%,rgba(118,242,201,0.18),transparent_20%),linear-gradient(180deg,#f8fffb_0%,#f9fbff_100%)]"}],["$","div",null,{"className":"absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(28,164,102,0.12)_1px,transparent_1px)] [background-size:20px_20px]"}],["$","div",null,{"className":"relative z-10 flex min-h-[320px] flex-col justify-center pt-2","children":[["$","span",null,{"className":"mb-6 inline-flex w-fit rounded-full border border-[#d8f5e5] bg-[#f4fff8] px-4 py-2 text-[14px] font-semibold text-[#228a52] shadow-[0_6px_16px_rgba(22,160,90,0.07)]","children":"Banka Kredisi ile Karşılaştırmalı Analiz"}],["$","h1",null,{"className":"max-w-[560px] text-[clamp(44px,6vw,72px)] font-black leading-[0.9] tracking-[-0.065em] text-[#09132a]","children":["Tasarruf",["$","br",null,{}],"Finansmanının",["$","br",null,{}],["$","span",null,{"className":"text-[#189b57]","children":"Gerçek Maliyetini"}],["$","br",null,{}],"Hesaplayın"]}],["$","p",null,{"className":"mt-6 max-w-[590px] text-[18px] leading-8 text-[#55657b]","children":[["$","span",null,{"className":"font-bold text-[#1c9857]","children":"Enflasyondan"}]," arındırılmış net maliyet analizi, banka kredisi karşılaştırması ve peşinat optimizasyonu"," ","tek hesaplamada."]}],["$","p",null,{"className":"mt-4 max-w-[480px] text-[14px] leading-7 text-[#718198]","children":"Sözleşme koşullarını tek ekranda görün, toplam yükü aynı zeminde ölçün ve kararınızı sayısal güvenle verin."}]]}],["$","div",null,{"className":"relative z-10 flex items-center justify-center lg:justify-end","children":[["$","div",null,{"className":"pointer-events-none absolute inset-y-3 right-0 hidden w-[94%] rounded-[34px] bg-[radial-gradient(circle_at_84%_83%,rgba(92,236,180,0.28),transparent_25%),linear-gradient(145deg,rgba(219,250,233,0.62),rgba(247,251,255,0.08))] lg:block"}],["$","div",null,{"className":"pointer-events-none absolute right-[8%] top-[2%] hidden h-[90%] w-[68%] lg:block","children":[["$","div",null,{"className":"absolute right-[10%] top-[1%] h-[61%] w-[58%] rotate-[18deg] rounded-[18px] bg-[linear-gradient(180deg,rgba(163,192,197,0.22),rgba(104,145,150,0.38))]"}],["$","div",null,{"className":"absolute right-[22%] top-[8%] h-[8%] w-[8%] rounded-t-[5px] bg-white/80 shadow-[0_8px_14px_rgba(19,37,30,0.08)]"}],["$","div",null,{"className":"absolute right-[31%] top-[44%] h-[26%] w-[34%] rounded-[16px] bg-white/60 shadow-[0_18px_38px_rgba(36,62,50,0.12)]"}],["$","div",null,{"className":"absolute bottom-[8%] right-[4%] h-[22%] w-[36%] rounded-[999px_999px_18px_18px] bg-[linear-gradient(90deg,rgba(238,255,249,0.96),rgba(163,234,210,0.94))] opacity-95"}],["$","div",null,{"className":"absolute bottom-[2%] right-[6%] h-[20%] w-[38%] rounded-full bg-[radial-gradient(circle,rgba(93,235,182,0.34),transparent_68%)] blur-2xl"}]]}],["$","div",null,{"className":"grid w-full max-w-[460px] gap-4 sm:grid-cols-2 lg:translate-x-[6px]","children":[["$","a","Hesaplama",{"href":"#calculator","data-compare-cta":"$undefined","data-login-button":"$undefined","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":["$L17","$L18","$L19"]}],"$L1a","$L1b","$L1c"]}]]}]]}]}]}],"$L1d","$L1e","$L1f","$L20"]}]
+10:["$","footer",null,{"id":"footer","className":"mt-16 border-t border-slate-200 bg-white","children":[["$","div",null,{"className":"page-container border-b border-slate-200 py-10","children":[["$","h2",null,{"className":"text-xl font-black text-slate-950","children":"Tasarruf finansmanı sistemi nasıl okunmalı?"}],["$","p",null,{"className":"mt-4 max-w-5xl text-sm leading-7 text-slate-600","children":"Bu sayfa, birikime dayalı finansman tekliflerini sadece nominal toplam ödeme ile değil; peşinat, teslim süresi, hizmet bedeli, kira etkisi, banka kredisi alternatifi ve piyasa veri sinyalleriyle birlikte değerlendirmek için hazırlanmıştır."}]]}],["$","div",null,{"className":"page-container grid gap-10 py-12 lg:grid-cols-[1.2fr_repeat(4,1fr)]","children":[["$","div",null,{"children":[["$","div",null,{"className":"flex items-center gap-3 text-lg font-black text-[var(--green-dark)]","children":[["$","span",null,{"className":"grid h-9 w-9 place-items-center rounded-lg bg-[var(--green-soft)] text-[var(--green)]","children":"▥"}],"Finansman Rehberi"]}],["$","p",null,{"className":"mt-4 max-w-sm text-sm leading-7 text-slate-600","children":"Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar desteğiyle inceleyin."}]]}],[["$","div","Sayfalar",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Sayfalar"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Ana Sayfa",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/","children":"Ana Sayfa"}]}],["$","li","Endeks",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/veri","children":"Endeks"}]}],["$","li","Teklifleri Karşılaştır",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/teklifleri-karsilastir","children":"Teklifleri Karşılaştır"}]}],["$","li","Nasıl Çalışır?",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/#faq","children":"Nasıl Çalışır?"}]}],["$","li","Blog",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/#blog","children":"Blog"}]}]]}]]}],["$","div","Araçlar",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Araçlar"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Maliyet Hesaplama",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/#calculator","children":"Maliyet Hesaplama"}]}],["$","li","Teklifleri Karşılaştır",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/teklifleri-karsilastir","children":"Teklifleri Karşılaştır"}]}],["$","li","Piyasa Veri Paneli",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/veri","children":"Piyasa Veri Paneli"}]}],["$","li","Kredi Matematiği Testi",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"/finans/kredi-test","children":"Kredi Matematiği Testi"}]}]]}]]}],["$","div","İletişim",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"İletişim"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","bilgi@example.com",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"mailto:bilgi@example.com","children":"bilgi@example.com"}]}],["$","li","Sorularınız için bize ulaşın",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Sorularınız için bize ulaşın"}]}]]}]]}],["$","div","Yasal",{"children":[["$","h2",null,{"className":"text-sm font-black text-slate-950","children":"Yasal"}],["$","ul",null,{"className":"mt-4 grid gap-3 text-sm text-slate-600","children":[["$","li","Kullanım Koşulları",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Kullanım Koşulları"}]}],"$L21","$L22"]}]]}]]]}],"$L23"]}]
+11:["$","$L24",null,{"children":["$","$15",null,{"name":"Next.MetadataOutlet","children":"$@25"}]}]
+17:["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":[["$","rect",null,{"x":"5","y":"3.5","width":"14","height":"17","rx":"2.5","stroke":"currentColor","strokeWidth":"1.8"}],["$","path",null,{"d":"M8 8h8M8 12h2m4 0h2M8 16h2m4 0h2","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}]]}]}]
+18:["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Hesaplama"}]
+19:["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"Net maliyetinizi anında hesaplayın"}]
+1a:["$","a","Karşılaştır",{"href":"#calculator","data-compare-cta":true,"data-login-button":"$undefined","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":[["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":[["$","path",null,{"d":"M7 18V9M12 18V5M17 18v-7","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}],["$","path",null,{"d":"M5 18.5h14","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}]]}]}],["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Karşılaştır"}],["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"2 teklifi yan yana kıyaslayın"}]]}]
+1b:["$","a","Firmalar",{"href":"#faq","data-compare-cta":"$undefined","data-login-button":"$undefined","className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":[["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":[["$","path",null,{"d":"M6 20V7.5L12 4l6 3.5V20","stroke":"currentColor","strokeWidth":"1.8"}],["$","path",null,{"d":"M9 10h.01M15 10h.01M9 14h.01M15 14h.01M11 20v-3h2v3","stroke":"currentColor","strokeLinecap":"round","strokeWidth":"1.8"}]]}]}],["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Firmalar"}],["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"BDDK lisanslı 9 firma"}]]}]
+1c:["$","a","Danışmanlık AI",{"href":"#login","data-compare-cta":"$undefined","data-login-button":true,"className":"group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]","children":[["$","div",null,{"className":"mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]","children":["$","svg",null,{"aria-hidden":"true","className":"h-5 w-5","fill":"none","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M7 16.5H5a2 2 0 0 1-2-2v-6A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v6a2 2 0 0 1-2 2h-4.5L10 20v-3.5H7Z","stroke":"currentColor","strokeLinejoin":"round","strokeWidth":"1.8"}]}]}],["$","h2",null,{"className":"text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]","children":"Danışmanlık AI"}],["$","p",null,{"className":"mx-auto mt-3 max-w-[190px] text-[14px] font-medium leading-6 text-[#617086]","children":"Ücretsiz teklif talebi oluşturun"}]]}]
+1d:["$","section",null,{"id":"loanLimit","className":"page-container mt-8 scroll-mt-24","data-loan-limit":true,"children":["$","div",null,{"className":"grid items-start gap-7 lg:grid-cols-[1.08fr_0.92fr]","children":[["$","div",null,{"className":"min-h-[348px] rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","children":[["$","div",null,{"className":"flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4","children":[["$","div",null,{"children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Kredi limit modülü"}],["$","h2",null,{"className":"mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]","children":"Konut, taşıt ve ihtiyaç limitini görün"}]]}],["$","div",null,{"className":"grid grid-cols-3 gap-1 rounded-[14px] bg-[#eef3f8] p-1","children":[["$","button",null,{"className":"rounded-[11px] px-4 py-3 text-[14px] font-semibold transition-all duration-300 text-[#526071] hover:bg-white hover:text-[#182133] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white data-[active=true]:shadow-[0_10px_22px_rgba(24,160,90,0.22)]","data-active":"true","data-limit-tab-button":"housing","type":"button","children":"Konut"}],["$","button",null,{"className":"rounded-[11px] px-4 py-3 text-[14px] font-semibold transition-all duration-300 text-[#526071] hover:bg-white hover:text-[#182133] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white data-[active=true]:shadow-[0_10px_22px_rgba(24,160,90,0.22)]","data-active":"false","data-limit-tab-button":"vehicle","type":"button","children":"Taşıt"}],["$","button",null,{"className":"rounded-[11px] px-4 py-3 text-[14px] font-semibold transition-all duration-300 text-[#526071] hover:bg-white hover:text-[#182133] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white data-[active=true]:shadow-[0_10px_22px_rgba(24,160,90,0.22)]","data-active":"false","data-limit-tab-button":"need","type":"button","children":"İhtiyaç"}]]}]]}],["$","div",null,{"className":"mt-5 flex min-h-[250px] flex-col","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-3","data-limit-panel":"housing","children":[["$","label",null,{"children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Ekspertiz Değeri (TL)"}],["$","input",null,{"defaultValue":"6.500.000","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"housingValue","inputMode":"numeric","placeholder":"6.500.000"}]]}],["$","label",null,{"children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Enerji Sınıfı"}],["$","select",null,{"defaultValue":"A-B","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"energyClass","children":[["$","option",null,{"value":"A-B","children":"A - B"}],["$","option",null,{"value":"C","children":"C"}],["$","option",null,{"value":"Diger","children":"Diğer"}]]}]]}],["$","label",null,{"children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Konut Sahipliği"}],["$","select",null,{"defaultValue":"yok","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"homeOwnership","children":[["$","option",null,{"value":"yok","children":"Evi yok"}],["$","option",null,{"value":"var","children":"Evi var"}]]}]]}]]}],["$","div",null,{"className":"hidden w-full max-w-[360px] gap-5","data-limit-panel":"vehicle","children":["$","label",null,{"className":"max-w-[360px]","children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"Taşıt Değeri (TL)"}],["$","input",null,{"defaultValue":"1.250.000","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"vehicleValue","inputMode":"numeric","placeholder":"1.250.000"}]]}]}],"$L26"]}]]}],"$L27"]}]}]
+1e:["$","section",null,{"id":"calculator","className":"page-container relative z-20 mt-8 scroll-mt-24","data-calculator":true,"children":[["$","div",null,{"className":"mb-5 flex flex-wrap items-center justify-between gap-4 rounded-[22px] border border-[#dce7e2] bg-white px-5 py-4 shadow-[0_12px_30px_rgba(31,43,37,0.06)]","children":[["$","div",null,{"children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Modül seçimi"}],["$","p",null,{"className":"mt-1 text-sm text-[#6f7d94]","children":"İstersen hesaplayıcıda kal, istersen teklif kıyas görünümüne geç."}]]}],["$","div",null,{"className":"grid grid-cols-2 gap-1 rounded-[14px] bg-[#eef3f8] p-1","data-calc-view-switcher":true,"children":[["$","button",null,{"className":"segment-button active !px-5","data-calc-view-tab":"main","type":"button","children":"Hesaplayıcı"}],["$","button",null,{"className":"segment-button !px-5","data-calc-view-tab":"comparison","type":"button","children":"Teklif Kıyas"}]]}]]}],["$","div",null,{"className":"grid items-start gap-7 lg:grid-cols-[1.14fr_0.86fr]","data-calc-view-panel":"main","children":[["$","div",null,{"className":"space-y-6","children":[["$","div",null,{"className":"rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","data-calculator-card":true,"children":[["$","div",null,{"className":"flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4","children":[["$","h2",null,{"className":"text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]","children":"Tasarruf Finansmanı Maliyet Hesaplayıcı"}],["$","button",null,{"className":"rounded-full bg-[#e9fbef] px-4 py-2 text-[14px] font-medium text-[#179253] transition-all duration-300 hover:bg-[#dcf7e6]","data-fill-example":true,"type":"button","children":"Örnek Senaryoyu Doldur"}]]}],["$","div",null,{"className":"mt-5 grid gap-6","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-[1fr_1fr_1.08fr]","children":[["$","div",null,{"children":[["$","span",null,{"className":"form-label","children":"Varlık Tipi"}],["$","div",null,{"className":"grid grid-cols-2 rounded-[14px] bg-[#eef3f8] p-1","children":[["$","button",null,{"className":"segment-button active","data-segment":"assetType","data-value":"Konut","type":"button","children":"⌂ Konut"}],["$","button",null,{"className":"segment-button","data-segment":"assetType","data-value":"Araba","type":"button","children":"▭ Araba"}]]}]]}],["$","div",null,{"children":[["$","span",null,{"className":"form-label","children":"Finansman Modeli"}],["$","div",null,{"className":"grid grid-cols-2 rounded-[14px] bg-[#eef3f8] p-1","children":[["$","button",null,{"className":"segment-button active","data-segment":"model","data-value":"cekilissiz","type":"button","children":"Çekilişsiz"}],["$","button",null,{"className":"segment-button","data-segment":"model","data-value":"cekilisli","type":"button","children":"Çekilişli"}]]}]]}],["$","div",null,{"className":"relative","data-company-select":true,"children":[["$","span",null,{"className":"form-label","children":"Şirket Seçimi"}],["$","input",null,{"data-field":"company","type":"hidden","defaultValue":"Diğer"}],["$","button",null,{"aria-expanded":"false","aria-haspopup":"listbox","className":"form-control flex !h-[56px] w-full items-center justify-between !rounded-[16px] !bg-[#f9fbfe] !font-medium text-[#1b2433] transition-all duration-200 hover:border-[#bfd0df]","data-company-trigger":true,"type":"button","children":[["$","span",null,{"data-company-label":true,"children":"Diğer"}],["$","span",null,{"className":"text-[13px] text-[#8a98ac] transition-transform duration-200","data-company-chevron":true,"children":"˅"}]]}],["$","div",null,{"className":"absolute left-0 right-0 top-[calc(100%+8px)] z-30 hidden overflow-hidden rounded-[18px] border border-[#d9e3ee] bg-white py-1 shadow-[0_22px_48px_rgba(27,36,51,0.16)]","data-company-menu":true,"role":"listbox","children":[["$","button","Eminevim",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Eminevim","type":"button","children":"Eminevim"}],"$L28","$L29","$L2a","$L2b","$L2c","$L2d","$L2e","$L2f","$L30"]}]]}]]}],"$L31","$L32","$L33","$L34","$L35"]}]]}],"$L36"]}],"$L37"]}],"$L38"]}]
+1f:["$","section",null,{"id":"faq","className":"page-container mt-12","children":[["$","div",null,{"className":"mx-auto max-w-3xl text-center","children":[["$","h2",null,{"className":"text-3xl font-black tracking-[-0.04em] text-slate-950","children":"Sıkça Sorulan Sorular"}],["$","p",null,{"className":"mt-3 text-base text-slate-600","children":"Sistem hakkında merak edilen temel kavramlar ve hesaplama mantığı."}]]}],["$","div",null,{"className":"mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white soft-shadow","children":[["$","details","Tasarruf finansmanı sistemi nedir?",{"className":"group border-b border-slate-200 last:border-b-0","open":true,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Tasarruf finansmanı sistemi nedir?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Düzenli ödeme ve belirli teslim koşullarıyla konut veya taşıt edinmeye yönelik, maliyeti hizmet bedeli ve zaman etkisiyle oluşan bir finansman modelidir."}]]}],["$","details","Net maliyet neyi gösterir?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Net maliyet neyi gösterir?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Peşinat, taksitler, hizmet bedeli, teslim zamanı ve paranın zaman değerini birlikte değerlendirerek bugünkü ekonomik yükü gösterir."}]]}],["$","details","Çekilişli ve çekilişsiz model farkı nedir?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Çekilişli ve çekilişsiz model farkı nedir?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Çekilişli modelde teslim sırası kura veya grup yapısına bağlıdır; çekilişsiz modelde teslim zamanı sözleşme şartlarıyla daha öngörülebilirdir."}]]}],["$","details","Hizmet bedeli hesaplamaya nasıl girer?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Hizmet bedeli hesaplamaya nasıl girer?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Hizmet bedeli genellikle sözleşme tutarı üzerinden oranla hesaplanır ve ödeme şekline göre nakit akışına eklenir."}]]}],["$","details","Banka kredisi karşılaştırması neden gerekli?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Banka kredisi karşılaştırması neden gerekli?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],"$L39"]}],"$L3a","$L3b","$L3c"]}]]}]
+20:["$","section",null,{"id":"blog","className":"page-container mt-14","children":[["$","div",null,{"className":"mb-7 flex items-end justify-between gap-5","children":[["$","div",null,{"children":[["$","h2",null,{"className":"text-3xl font-black tracking-[-0.04em] text-slate-950","children":"Blog"}],["$","p",null,{"className":"mt-2 text-base text-slate-600","children":"Karar vermeden önce okunacak kısa rehberler."}]]}],["$","a",null,{"className":"hidden text-sm font-black text-[var(--green-dark)] sm:block","href":"#blog","data-blog-all":true,"children":"Tüm Yazılar"}]]}],["$","div",null,{"className":"grid gap-5 lg:grid-cols-3","children":[["$","article","Tasarruf finansmanı şirketlerinde maliyet nerede oluşur?",{"className":"rounded-2xl border border-slate-200 bg-white p-6 soft-shadow","data-blog-card":true,"children":[["$","div",null,{"className":"flex gap-2 text-xs font-black uppercase tracking-wide text-slate-400","children":[["$","span",null,{"children":"Mart 2026"}],["$","span",null,{"children":"Analiz"}]]}],["$","h3",null,{"className":"mt-4 text-xl font-black leading-tight text-slate-950","children":"Tasarruf finansmanı şirketlerinde maliyet nerede oluşur?"}],["$","p",null,{"className":"mt-3 text-[15px] leading-7 text-slate-600","children":"Hizmet bedeli, teslim zamanı ve grup yapısının toplam maliyete etkisini sade bir çerçevede inceleyin."}],["$","p",null,{"className":"mt-3 hidden rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600","data-blog-detail":true,"children":"Bu yazı önizlemesi, kullanıcıyı hesaplama yapmadan önce kritik sözleşme kalemlerini kontrol etmeye yönlendirir."}],["$","a",null,{"className":"mt-5 inline-flex text-sm font-black text-[var(--green-dark)]","href":"#blog","data-blog-read":true,"children":"Devamını Oku →"}]]}],["$","article","Sözleşme şartlarını okurken nelere dikkat edilmeli?",{"className":"rounded-2xl border border-slate-200 bg-white p-6 soft-shadow","data-blog-card":true,"children":[["$","div",null,{"className":"flex gap-2 text-xs font-black uppercase tracking-wide text-slate-400","children":[["$","span",null,{"children":"Aralık 2025"}],["$","span",null,{"children":"Regülasyon"}]]}],["$","h3",null,{"className":"mt-4 text-xl font-black leading-tight text-slate-950","children":"Sözleşme şartlarını okurken nelere dikkat edilmeli?"}],["$","p",null,{"className":"mt-3 text-[15px] leading-7 text-slate-600","children":"Teslim koşulu, ödeme planı ve ek maliyet başlıklarını karşılaştırırken kullanılabilecek temel kontrol listesi."}],["$","p",null,{"className":"mt-3 hidden rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600","data-blog-detail":true,"children":"Bu yazı önizlemesi, kullanıcıyı hesaplama yapmadan önce kritik sözleşme kalemlerini kontrol etmeye yönlendirir."}],["$","a",null,{"className":"mt-5 inline-flex text-sm font-black text-[var(--green-dark)]","href":"#blog","data-blog-read":true,"children":"Devamını Oku →"}]]}],["$","article","Kısa teslim vaadi gerçek maliyeti nasıl etkiler?",{"className":"rounded-2xl border border-slate-200 bg-white p-6 soft-shadow","data-blog-card":true,"children":[["$","div",null,{"className":"flex gap-2 text-xs font-black uppercase tracking-wide text-slate-400","children":[["$","span",null,{"children":"Kasım 2025"}],["$","span",null,{"children":"Rehber"}]]}],["$","h3",null,{"className":"mt-4 text-xl font-black leading-tight text-slate-950","children":"Kısa teslim vaadi gerçek maliyeti nasıl etkiler?"}],["$","p",null,{"className":"mt-3 text-[15px] leading-7 text-slate-600","children":"Erken teslim senaryolarında kira etkisi, peşinat ve taksit dengesini birlikte değerlendirmek gerekir."}],["$","p",null,{"className":"mt-3 hidden rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600","data-blog-detail":true,"children":"Bu yazı önizlemesi, kullanıcıyı hesaplama yapmadan önce kritik sözleşme kalemlerini kontrol etmeye yönlendirir."}],["$","a",null,{"className":"mt-5 inline-flex text-sm font-black text-[var(--green-dark)]","href":"#blog","data-blog-read":true,"children":"Devamını Oku →"}]]}]]}]]}]
+21:["$","li","Gizlilik Politikası",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"Gizlilik Politikası"}]}]
+22:["$","li","KVKK Aydınlatma Metni",{"children":["$","a",null,{"className":"transition hover:text-[var(--green-dark)]","href":"#footer","children":"KVKK Aydınlatma Metni"}]}]
+23:["$","div",null,{"className":"border-t border-slate-200 py-5 text-center text-sm text-slate-500","children":"© 2026 Finansman Rehberi. Tüm hakları saklıdır."}]
+26:["$","div",null,{"className":"hidden w-full max-w-[360px] gap-5","data-limit-panel":"need","children":["$","label",null,{"className":"max-w-[360px]","children":[["$","span",null,{"className":"mb-2 block text-[12px] font-bold uppercase tracking-[0.08em] text-[#72819a]","children":"İstenen Kredi Tutarı (TL)"}],["$","input",null,{"defaultValue":"180.000","className":"form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","data-limit-field":"needValue","inputMode":"numeric","placeholder":"180.000"}]]}]}]
+27:["$","aside",null,{"className":"min-h-[348px] rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","children":[["$","div",null,{"className":"border-b border-[#e8eef5] pb-4","children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Sonuç"}],["$","h3",null,{"className":"mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433]","data-limit-preview":"title","children":"Konut kredi modülü"}]]}],["$","div",null,{"className":"mt-5 grid gap-4","data-limit-summary":"housing","children":[["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#cfeedd] bg-[#ecfbf2]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Kredi Oranı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#136f45]","data-limit-preview":"housingRatio","children":"%80,0"}]]}],["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#e6edf5] bg-[#f8fbff]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Azami Kredi Tutarı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#182133]","data-limit-preview":"housingAmount","children":"₺5.200.000"}]]}]]}],["$","div",null,{"className":"mt-5 hidden grid gap-4","data-limit-summary":"vehicle","children":[["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#cfeedd] bg-[#ecfbf2]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Azami Kredi Tutarı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#136f45]","data-limit-preview":"vehicleAmount","children":"₺250.000"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-[14px] font-medium text-[#617086]","data-limit-preview":"vehicleMessage","children":"Uygulanan oran: %20,0"}]]}],["$","div",null,{"className":"mt-5 hidden grid gap-4","data-limit-summary":"need","children":[["$","div",null,{"className":"rounded-[16px] border px-5 py-4 shadow-[0_6px_18px_rgba(27,39,51,0.04)] border-[#cfeedd] bg-[#ecfbf2]","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Azami Vade"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.05em] text-[#136f45]","data-limit-preview":"needTerm","children":"24 ay"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-[14px] font-medium text-[#617086]","data-limit-preview":"needMessage","children":"125.000,01 - 250.000 TL bandı için 24 ay"}]]}]]}]
+28:["$","button","Fuzul Ev",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Fuzul Ev","type":"button","children":"Fuzul Ev"}]
+29:["$","button","Katılımevim",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Katılımevim","type":"button","children":"Katılımevim"}]
+2a:["$","button","Sinpaş YTS",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Sinpaş YTS","type":"button","children":"Sinpaş YTS"}]
+2b:["$","button","Emlak Katılım Tasarruf Finansmanı",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Emlak Katılım Tasarruf Finansmanı","type":"button","children":"Emlak Katılım Tasarruf Finansmanı"}]
+2c:["$","button","Birevim",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Birevim","type":"button","children":"Birevim"}]
+2d:["$","button","İyi Finans",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"İyi Finans","type":"button","children":"İyi Finans"}]
+2e:["$","button","İmece",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"İmece","type":"button","children":"İmece"}]
+2f:["$","button","Albayrak Finans",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Albayrak Finans","type":"button","children":"Albayrak Finans"}]
+30:["$","button","Diğer",{"className":"flex w-full items-center px-4 py-2.5 text-left text-[15px] font-medium text-[#213046] transition-colors duration-150 hover:bg-[#f3f8ff] data-[active=true]:bg-[#edf6ff] data-[active=true]:text-[#1454d1]","data-company-option":true,"data-value":"Diğer","type":"button","children":"Diğer"}]
+31:["$","div",null,{"className":"border-t border-[#e8eef5] pt-6","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-2 lg:grid-cols-4","children":[["$","label","assetPrice",{"children":[["$","span",null,{"className":"form-label","children":"Evin Fiyatı (TL) *"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"3.000.000","defaultValue":"3.000.000","data-field":"assetPrice"}]]}],["$","label","downPayment",{"children":[["$","span",null,{"className":"form-label","children":"Peşinat (TL)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"1.000.000","defaultValue":"1.000.000","data-field":"downPayment"}]]}],["$","label","term",{"children":[["$","span",null,{"className":"form-label","children":"Taksit (Ay) *"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"48","defaultValue":"48","data-field":"term"}]]}],["$","label","monthlyPayment",{"children":[["$","span",null,{"className":"form-label","children":"Aylık Ödeme *"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"41.667","defaultValue":"41.667","data-field":"monthlyPayment"}]]}]]}],["$","div",null,{"className":"mt-5 flex flex-wrap gap-8","children":[["$","button",null,{"className":"flex items-center gap-3 text-left text-[15px] font-medium text-slate-600","data-toggle":"escalating","data-on":"false","type":"button","children":[["$","span",null,{"className":"relative h-6 w-11 rounded-full transition-all duration-300 bg-[#d7e3ef]","children":["$","span",null,{"className":"absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-300 left-1"}]}],"Artışlı Taksit Planı"]}],["$","button",null,{"className":"flex items-center gap-3 text-left text-[15px] font-medium text-slate-600","data-toggle":"manualPlan","data-on":"false","type":"button","children":[["$","span",null,{"className":"relative h-6 w-11 rounded-full transition-all duration-300 bg-[#d7e3ef]","children":["$","span",null,{"className":"absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-300 left-1"}]}],"Manuel Plan Oluştur"]}]]}]]}]
+32:["$","div",null,{"className":"border-t border-[#e8eef5] pt-6","children":[["$","div",null,{"className":"grid gap-5 md:grid-cols-3","children":[["$","label","delivery",{"children":[["$","span",null,{"className":"form-label","children":"Teslim Ayı"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"12","defaultValue":"12","data-field":"delivery"}]]}],["$","label","serviceFee",{"children":[["$","span",null,{"className":"form-label","children":"Hizmet Bedeli (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"11.8","defaultValue":"11.8","data-field":"serviceFee"}]]}],["$","label","rent",{"children":[["$","span",null,{"className":"form-label","children":"Kira (TL/Ay)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"25.000","defaultValue":"25.000","data-field":"rent"}]]}]]}],["$","div",null,{"className":"mt-3 flex justify-center","children":["$","div",null,{"className":"w-full max-w-[116px]","children":["$","div",null,{"className":"h-1.5 rounded-full bg-[#dce6ef]","children":["$","div",null,{"className":"h-1.5 rounded-full bg-[#19a15b] transition-all duration-300","data-delivery-bar":true,"style":{"width":"62%"}}]}]}]}]]}]
+33:["$","details",null,{"className":"border-t border-[#e8eef5] pt-6","children":[["$","summary",null,{"className":"cursor-pointer text-[14px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Gelişmiş Parametreler"}],["$","div",null,{"className":"mt-5 grid gap-5 md:grid-cols-3","children":[["$","label","inflation",{"children":[["$","span",null,{"className":"form-label","children":"Yıllık Enflasyon (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"32.0","defaultValue":"32","data-field":"inflation"}]]}],["$","label","creditRate",{"children":[["$","span",null,{"className":"form-label","children":"Kredi Faizi (% / ay)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"3.19","defaultValue":"3.19","data-field":"creditRate"}]]}],["$","label","yearlyIncrease",{"children":[["$","span",null,{"className":"form-label","children":"Yıllık Taksit Artışı (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-[#f9fbfe] !font-medium","placeholder":"15.0","defaultValue":"15","data-field":"yearlyIncrease"}]]}]]}]]}]
+34:["$","div",null,{"className":"border-t border-[#e8eef5] pt-4","children":[["$","div",null,{"className":"mb-5","children":["$","button",null,{"className":"flex items-center gap-3 text-left text-[15px] font-medium text-slate-600","data-toggle":"compareBank","data-on":"true","type":"button","children":[["$","span",null,{"className":"relative h-6 w-11 rounded-full transition-all duration-300 bg-[#1ab067]","children":["$","span",null,{"className":"absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-300 left-6"}]}],"Tasarruf Finansmanı ile Banka Kredisini Kıyasla"]}]}],["$","div",null,{"className":"rounded-[18px] border border-[#dbe6f1] bg-[#f9fbfe] p-5","data-bank-panel":true,"children":[["$","div",null,{"className":"flex items-center gap-3 text-[#263246]","children":[["$","span",null,{"className":"grid h-8 w-8 place-items-center rounded-xl bg-[#ecfff3] text-[#1aa35d]","children":"⌂"}],["$","h3",null,{"className":"text-[16px] font-bold","data-preview":"bankPanelTitle","children":"Konut Kredisi Karşılaştırması"}]]}],["$","div",null,{"className":"mt-6 grid gap-4 md:grid-cols-[1.15fr_0.6fr_0.6fr]","children":[["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Kredi Tutarı (TL)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"amount","defaultValue":"2.000.000"}]]}],["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Aylık Faiz (%)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"rate","defaultValue":"2.85"}]]}],["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Vade (Ay)"}],["$","input",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"term","defaultValue":"60"}]]}]]}],["$","div",null,{"className":"mt-4 hidden max-w-[260px]","data-bank-housing-status":true,"children":["$","label",null,{"children":[["$","span",null,{"className":"form-label","children":"Konut Sahipliği"}],["$","select",null,{"className":"form-control !h-[40px] !rounded-[14px] !bg-white !font-medium","data-bank-field":"housingStatus","defaultValue":"yok","children":[["$","option",null,{"value":"yok","children":"Evi yok"}],["$","option",null,{"value":"var","children":"Evi var"}]]}]]}]}],["$","div",null,{"className":"mt-5","children":[["$","span",null,{"className":"form-label","children":"Hesaplanan Taksit (TL)"}],["$","div",null,{"className":"rounded-[14px] border border-[#cdeedc] bg-[#e8fbef] px-5 py-3 text-[16px] font-bold text-[#177d4e]","data-preview":"bankInstallment","children":"₺17.490"}]]}]]}]]}]
+35:["$","div",null,{"className":"border-t border-[#e8eef5] pt-5","children":[["$","p",null,{"className":"mb-4 hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-700","data-form-error":true}],["$","button",null,{"className":"h-[50px] w-full rounded-[13px] bg-[#16a05a] text-[15px] font-bold text-white shadow-[0_16px_28px_rgba(22,160,90,0.18)] transition-all duration-300 hover:bg-[#12874b]","data-calculate":true,"type":"button","children":"HESAPLA VE SONUÇLARI GÖSTER"}]]}]
+36:["$","div",null,{"className":"grid gap-5 md:grid-cols-2","children":[["$","article",null,{"className":"rounded-[18px] border p-5 shadow-[0_14px_34px_rgba(31,43,37,0.05)] border-[#dae2ff] bg-[linear-gradient(180deg,#f7f8ff_0%,#f2f5ff_100%)]","children":[["$","div",null,{"className":"flex items-start justify-between gap-3","children":[["$","div",null,{"className":"grid h-10 w-10 place-items-center rounded-xl text-lg bg-[#e7ebff] text-[#6366f1]","children":"◔"}],["$","span",null,{"className":"rounded-full border px-2.5 py-1 text-[11px] font-semibold bg-[#f1f3ff] text-[#6366f1] border-[#d9ddff]","children":"Üyelere Özel"}]]}],["$","h3",null,{"className":"mt-6 text-[18px] font-bold text-[#1a2435]","children":"Çekiliş Simülasyonu"}],["$","p",null,{"className":"mt-3 text-[14px] leading-7 text-[#768399]","children":"Çekilişli sistemde binlerce teslim ayı senaryosunu saniyeler içinde analiz edin, şansa değil veriye dayalı karar verin."}],["$","button",null,{"className":"mt-5 text-[14px] font-semibold transition-colors hover:opacity-80 text-[#6366f1]","type":"button","children":["Simülasyonu Başlat"," →"]}]]}],["$","article",null,{"className":"rounded-[18px] border p-5 shadow-[0_14px_34px_rgba(31,43,37,0.05)] border-[#c8f4de] bg-[linear-gradient(180deg,#f3fff8_0%,#effcf6_100%)]","children":[["$","div",null,{"className":"flex items-start justify-between gap-3","children":[["$","div",null,{"className":"grid h-10 w-10 place-items-center rounded-xl text-lg bg-[#dff8ec] text-[#18a05a]","children":"⌘"}],["$","span",null,{"className":"rounded-full border px-2.5 py-1 text-[11px] font-semibold bg-[#effdf5] text-[#18a05a] border-[#c8f4de]","children":"Üyelere Özel"}]]}],["$","h3",null,{"className":"mt-6 text-[18px] font-bold text-[#1a2435]","children":"Peşinat Optimizasyonu"}],["$","p",null,{"className":"mt-3 text-[14px] leading-7 text-[#768399]","children":"Farklı peşinat senaryolarını otomatik test ederek Net Bugünkü Maliyet'i en aza indiren optimum tutarı bulun."}],["$","button",null,{"className":"mt-5 text-[14px] font-semibold transition-colors hover:opacity-80 text-[#18a05a]","type":"button","children":["Oranları Ayarla"," →"]}]]}]]}]
+37:["$","aside",null,{"className":"self-start rounded-[26px] border border-[#dce7e2] bg-white p-6 shadow-[0_18px_48px_rgba(31,43,37,0.08)]","data-summary-panel":true,"children":[["$","div",null,{"className":"flex items-center gap-3 border-b border-[#e8eef5] pb-5","children":[["$","span",null,{"className":"grid h-8 w-8 place-items-center rounded-xl bg-[#ecfff3] text-[#1aa35d]","children":"⌗"}],["$","h3",null,{"className":"text-[18px] font-bold text-[#1c2433]","children":"Hesaplama Özeti"}]]}],["$","div",null,{"className":"mt-5 rounded-[16px] border border-[#cfeedd] bg-[#eafbf1] px-5 py-4 text-center shadow-[0_10px_24px_rgba(24,160,90,0.08)]","children":[["$","span",null,{"className":"block text-[14px] font-bold uppercase tracking-[0.05em] text-[#168b53]","children":"Toplam Geri Ödeme (Nominal)"}],["$","strong",null,{"className":"mt-2 block text-[20px] font-bold text-[#136f45] transition-all duration-300","data-preview":"totalNominal","children":"₺3.225.016"}]]}],["$","div",null,{"className":"mt-4 grid grid-cols-2 gap-3","children":[["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-center shadow-[0_6px_18px_rgba(27,39,51,0.04)]","children":[["$","span",null,{"className":"block text-[14px] text-[#73829a]","children":"Vade (Ay)"}],["$","strong",null,{"className":"mt-2 block text-[18px] font-bold text-[#152032] transition-all duration-300","data-preview":"term","children":"48"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-center shadow-[0_6px_18px_rgba(27,39,51,0.04)]","children":[["$","span",null,{"className":"block text-[14px] text-[#73829a]","children":"Teslim Ayı"}],["$","strong",null,{"className":"mt-2 block text-[18px] font-bold text-[#152032] transition-all duration-300","data-preview":"delivery","children":"13"}]]}]]}],["$","div",null,{"className":"mt-5 overflow-hidden rounded-[18px] border border-[#dbe6f1] bg-white","children":[["$","div",null,{"className":"px-5 py-4","children":[["$","h4",null,{"className":"text-[16px] font-bold text-[#243045]","children":"NET MALİYET (NBM) DETAYI"}],["$","div",null,{"className":"mt-3","children":[["$","div",null,{"className":"grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-5 last:border-0 last:pb-0","children":[["$","span",null,{"className":"text-[15px] text-[#748299]","children":"Finansmanın Bugünkü Değeri (Fayda)"}],["$","strong",null,{"className":"text-[15px] font-bold transition-all duration-300 text-[#17a35e]","data-preview":"benefitPv","children":"₺2.294.607"}]]}],["$","div",null,{"className":"grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-5 last:border-0 last:pb-0","children":[["$","span",null,{"className":"text-[15px] text-[#748299]","children":"Org. Ücreti + Peşinat"}],["$","strong",null,{"className":"text-[15px] font-bold transition-all duration-300 text-[#ff4d4f]","data-preview":"orgAndDown","children":"₺1.225.000"}]]}],["$","div",null,{"className":"grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-5 last:border-0 last:pb-0","children":[["$","span",null,{"className":"text-[15px] text-[#748299]","children":"Aylık Ödemeler (PV)"}],["$","strong",null,{"className":"text-[15px] font-bold transition-all duration-300 text-[#ff4d4f]","data-preview":"paymentsPv","children":"₺1.256.653"}]]}]]}]]}],["$","div",null,{"className":"border-t border-[#dbe6f1] bg-[#f8fbff] px-5 py-5 text-center","children":[["$","span",null,{"className":"block text-[13px] font-bold uppercase tracking-[0.06em] text-[#74829a]","children":"Net Başlangıç Maliyeti"}],["$","strong",null,{"className":"mt-2 block text-[22px] font-bold text-[#1c2433] transition-all duration-300","data-preview":"netInitialCost","children":"₺187.046"}],["$","button",null,{"className":"mt-4 inline-flex items-center gap-2 text-[14px] font-medium text-[#179253]","data-net-info":true,"type":"button","children":["Net Maliyet Ne İfade Eder? ","$L3d"]}]]}]]}],"$L3e","$L3f"]}]
+38:["$","div",null,{"className":"mt-7 hidden space-y-6","data-calc-view-panel":"comparison","children":[["$","div",null,{"id":"comparison","className":"rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","children":[["$","div",null,{"className":"flex flex-wrap items-end justify-between gap-4 border-b border-[#e8eef5] pb-4","children":["$","div",null,{"children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Teklif kıyas modülü"}],["$","h3",null,{"className":"mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]","children":"Banka kredisi ile tasarruf finansmanını aynı zeminde karşılaştırın"}]]}]}],["$","div",null,{"className":"mt-5 rounded-[20px] border border-[#dbe6f1] bg-[#fbfdff] p-5","children":["$","div",null,{"className":"grid gap-4 md:grid-cols-2 xl:grid-cols-4","children":[["$","label","assetPrice",{"children":[["$","span",null,{"className":"form-label","children":"Ev değeri"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"assetPrice","defaultValue":"3.000.000"}]]}],["$","label","downPayment",{"children":[["$","span",null,{"className":"form-label","children":"Peşinat"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"downPayment","defaultValue":"1.000.000"}]]}],["$","label","term",{"children":[["$","span",null,{"className":"form-label","children":"Vade (Ay)"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"term","defaultValue":"48"}]]}],["$","label","monthlyPayment",{"children":[["$","span",null,{"className":"form-label","children":"Aylık ödeme"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"monthlyPayment","defaultValue":"41.667"}]]}],["$","label","delivery",{"children":[["$","span",null,{"className":"form-label","children":"Teslim ayı"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"delivery","defaultValue":"12"}]]}],["$","label","serviceFee",{"children":[["$","span",null,{"className":"form-label","children":"Hizmet bedeli (%)"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"serviceFee","defaultValue":"11.8"}]]}],["$","label","rent",{"children":[["$","span",null,{"className":"form-label","children":"Kira"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"rent","defaultValue":"25.000"}]]}],["$","label","bankAmount",{"children":[["$","span",null,{"className":"form-label","children":"Kredi tutarı"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"bankAmount","defaultValue":"2.000.000"}]]}],["$","label","bankRate",{"children":[["$","span",null,{"className":"form-label","children":"Kredi faizi (%)"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"bankRate","defaultValue":"2.85"}]]}],["$","label","bankTerm",{"children":[["$","span",null,{"className":"form-label","children":"Kredi vadesi"}],["$","input",null,{"className":"form-control !h-[42px] !rounded-[14px] !bg-white !font-medium","data-compare-input":"bankTerm","defaultValue":"60"}]]}]]}]}],["$","div",null,{"className":"mt-5 grid gap-5 xl:grid-cols-[1fr_1fr_0.8fr]","children":[["$","article",null,{"className":"rounded-[20px] border border-[#dbe6f1] bg-[#fbfdff] p-5 shadow-[0_12px_28px_rgba(27,39,51,0.05)]","children":[["$","div",null,{"className":"flex items-center justify-between gap-3","children":[["$","div",null,{"children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Senaryo A"}],["$","h4",null,{"className":"mt-1 text-[17px] font-bold text-[#1c2433]","children":"Banka Kredisi"}]]}],["$","span",null,{"className":"rounded-full bg-[#eef4ff] px-3 py-1 text-[12px] font-semibold text-[#3b63d1]","children":"Kredi"}]]}],"$L40","$L41"]}],"$L42","$L43"]}]]}],"$L44"]}]
+39:["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Aynı peşinat ve benzer varlık değeriyle kredi seçeneğinin toplam ve bugünkü maliyeti görüldüğünde karar daha netleşir."}]
+3a:["$","details","Kira veya fırsat maliyeti neden soruluyor?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Kira veya fırsat maliyeti neden soruluyor?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Teslim alınana kadar geçen sürede ödenen kira veya kaçırılan kullanım faydası gerçek maliyeti etkileyen önemli bir değişkendir."}]]}]
+3b:["$","details","Lisanslı firma bilgisi neden önemli?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Lisanslı firma bilgisi neden önemli?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Finansman şirketinin düzenleyici çerçevede çalışması, tüketici açısından hukuki güven ve şeffaflık beklentisini artırır."}]]}]
+3c:["$","details","Sonuçlar kesin teklif yerine geçer mi?",{"className":"group border-b border-slate-200 last:border-b-0","open":false,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-black text-slate-950","children":["Sonuçlar kesin teklif yerine geçer mi?",["$","span",null,{"className":"text-xl text-[var(--green)] transition group-open:rotate-45","children":"+"}]]}],["$","p",null,{"className":"px-6 pb-6 text-[15px] leading-7 text-slate-600","children":"Hayır. Hesaplama karar desteği sağlar; nihai şartlar firma sözleşmesi, kampanya ve güncel piyasa koşullarıyla doğrulanmalıdır."}]]}]
+3d:["$","span",null,{"children":"⌄"}]
+3e:["$","div",null,{"className":"mt-6 flex flex-wrap gap-3","children":[["$","button",null,{"className":"flex-1 rounded-[12px] bg-[#ef2a2a] px-5 py-3 text-[15px] font-bold text-white shadow-[0_10px_22px_rgba(239,42,42,0.18)] transition-all duration-300 hover:bg-[#d91e1e]","data-download-pdf":true,"type":"button","children":"PDF İndir"}],["$","button",null,{"className":"flex-1 rounded-[12px] border border-[#dce5ef] bg-white px-5 py-3 text-[15px] font-medium text-[#49556a] transition-all duration-300 hover:border-[#c7d4e2] hover:bg-[#f9fbfe]","data-copy-link":true,"type":"button","children":"Linki Kopyala"}]]}]
+3f:["$","div",null,{"className":"mt-5 hidden grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 transition md:grid-cols-2","data-result-panel":true}]
+40:["$","div",null,{"className":"mt-4 grid gap-4 md:grid-cols-2","children":[["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Başlangıç Çıkışı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]","data-compare-bank-initial":true,"children":"TL 1.000.000"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Finansman Tutarı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]","data-compare-bank-financed":true,"children":"TL 2.000.000"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Aylık Taksit"}],["$","strong",null,{"className":"mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#182133]","data-compare-bank-installment":true,"children":"TL 58.114"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Toplam Geri Ödeme"}],["$","strong",null,{"className":"mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#182133]","data-compare-bank-total":true,"children":"TL 3.428.000"}]]}]]}]
+41:["$","div",null,{"className":"mt-4 rounded-[18px] border border-[#d8e3f1] bg-[#f7fbff] px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Bugünkü Değer Skoru"}],["$","strong",null,{"className":"mt-2 block text-[28px] font-black tracking-[-0.05em] text-[#1a2435]","data-compare-bank-npv":true,"children":"TL 0"}]]}]
+42:["$","article",null,{"className":"rounded-[20px] border border-[#d6efe2] bg-[linear-gradient(180deg,#fbfffd_0%,#f6fff9_100%)] p-5 shadow-[0_12px_28px_rgba(24,160,90,0.07)]","children":[["$","div",null,{"className":"flex items-center justify-between gap-3","children":[["$","div",null,{"children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#6c8b78]","children":"Senaryo B"}],["$","h4",null,{"className":"mt-1 text-[17px] font-bold text-[#1c2433]","children":"Tasarruf Finansmanı"}]]}],["$","span",null,{"className":"rounded-full bg-[#ebfbf1] px-3 py-1 text-[12px] font-semibold text-[#168b53]","children":"NBM"}]]}],["$","div",null,{"className":"mt-4 grid gap-4 md:grid-cols-2","children":[["$","div",null,{"className":"rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Başlangıç Çıkışı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#136f45]","data-compare-savings-initial":true,"children":"TL 1.225.000"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Finansman Tutarı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#136f45]","data-compare-savings-financed":true,"children":"TL 2.000.000"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Aylık Ödeme"}],["$","strong",null,{"className":"mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#136f45]","data-compare-savings-installment":true,"children":"TL 41.667"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#d6efe2] bg-white px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Teslim Ayı"}],["$","strong",null,{"className":"mt-2 block text-[22px] font-black tracking-[-0.04em] text-[#136f45]","data-compare-savings-delivery":true,"children":"12. ay"}]]}]]}],["$","div",null,{"className":"mt-4 rounded-[18px] border border-[#cdeedc] bg-[#e8fbef] px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#168b53]","children":"Bugünkü Değer Skoru"}],["$","strong",null,{"className":"mt-2 block text-[28px] font-black tracking-[-0.05em] text-[#136f45]","data-compare-savings-npv":true,"children":"TL 0"}]]}]]}]
+43:["$","article",null,{"className":"rounded-[20px] border border-[#e6edf5] bg-white p-5 shadow-[0_12px_28px_rgba(27,39,51,0.05)]","children":[["$","span",null,{"className":"text-[12px] font-bold uppercase tracking-[0.1em] text-[#7b8aa2]","children":"Teslim otomasyonu"}],["$","h4",null,{"className":"mt-1 text-[17px] font-bold text-[#1c2433]","children":"Otomatik teslim senaryosu"}],["$","div",null,{"className":"mt-4 space-y-4","children":[["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Önerilen Teslim"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]","data-compare-auto-delivery":true,"children":"5. ay"}]]}],["$","div",null,{"className":"rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Skor Farkı"}],["$","strong",null,{"className":"mt-2 block text-[24px] font-black tracking-[-0.04em] text-[#182133]","data-compare-best-delta":true,"children":"TL 0"}]]}]]}],["$","div",null,{"className":"mt-4 rounded-[18px] border border-[#dce7e2] bg-[#fcfffd] px-4 py-4","children":[["$","span",null,{"className":"block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":"Öne Çıkan Tercih"}],["$","strong",null,{"className":"mt-2 block text-[18px] font-bold text-[#1c2433]","data-compare-best":true,"children":"Tasarruf finansmanı daha avantajlı"}]]}]]}]
+44:["$","details",null,{"className":"rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6","data-cashflow-details":true,"children":[["$","summary",null,{"className":"flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-bold tracking-[-0.03em] text-[#1c2433]","children":[["$","span",null,{"children":"Detaylı Nakit Akışı Tablosunu Gör"}],["$","span",null,{"className":"text-[#97a5b8]","children":"⌄"}]]}],["$","div",null,{"className":"mt-5 space-y-4","children":[["$","p",null,{"className":"rounded-[14px] border border-[#edf2f7] bg-[#fbfdff] px-4 py-3 text-sm leading-6 text-[#6f7d94]","children":"Aşağıdaki tablo nominal Türk Lirası cinsinden cepten çıkan tutarları ve bunların bugünkü değer etkisini gösterir."}],["$","div",null,{"className":"overflow-x-auto rounded-[18px] border border-[#edf2f7]","children":["$","table",null,{"className":"min-w-full text-left","children":[["$","thead",null,{"className":"bg-[#f8fbff]","children":["$","tr",null,{"className":"text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]","children":[["$","th",null,{"className":"px-5 py-4","children":"Ay"}],["$","th",null,{"className":"px-5 py-4","children":"Aylık Taksit"}],["$","th",null,{"className":"px-5 py-4","children":"Net Nakit Akışı"}],["$","th",null,{"className":"px-5 py-4","children":"Bugünkü Değer"}]]}]}],["$","tbody",null,{"data-cashflow-body":true,"children":["$","tr",null,{"className":"border-t border-[#edf2f7]","children":[["$","td",null,{"className":"px-5 py-4 text-sm text-[#1c2433]","children":"0"}],["$","td",null,{"className":"px-5 py-4 text-sm text-[#ff4d4f]","children":"-TL 1.225.000"}],["$","td",null,{"className":"px-5 py-4 text-sm text-[#ff4d4f]","children":"-TL 1.225.000"}],["$","td",null,{"className":"px-5 py-4 text-sm font-semibold text-[#ff4d4f]","children":"-TL 1.225.000"}]]}]}]]}]}],["$","div",null,{"className":"flex flex-wrap items-center justify-between gap-4 text-sm text-[#708096]","children":[["$","span",null,{"data-cashflow-footnote":true,"children":"İlk 18 satır gösteriliyor."}],["$","button",null,{"className":"rounded-[12px] bg-[#16a05a] px-5 py-3 text-[14px] font-bold text-white shadow-[0_12px_22px_rgba(22,160,90,0.18)] transition-all duration-300 hover:bg-[#12874b]","data-download-cashflow":true,"type":"button","children":"Excel Olarak İndir"}]]}]]}]]}]
+13:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+45:I[27201,["/finans/_next/static/chunks/0dbhjjzl8qfwv.js"],"IconMark"]
+16:[["$","title","0",{"children":"Finansman Maliyet Hesaplama"}],["$","meta","1",{"name":"description","content":"Tasarruf finansmanı maliyetini hesaplayın, teklifleri karşılaştırın ve kararınızı netleştirin."}],["$","link","2",{"rel":"icon","href":"/finans/favicon.svg"}],["$","$L45","3",{}]]
+25:null

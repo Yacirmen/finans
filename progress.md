@@ -3,150 +3,150 @@
 Last updated: 2026-04-24  
 Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 
-## 1. Şu ana kadar yapılanlar
+## 1. Su ana kadar yapilanlar
 
-- Ana site akışı oturdu:
+- Ana site akisi oturdu:
   - `Header`
   - `Hero`
-  - `Kredi Limit Modülü`
-  - `Tasarruf Finansmanı Maliyet Hesaplayıcısı`
+  - `Kredi Limit Mod�l�`
+  - `Tasarruf Finansmanı Maliyet Hesaplayicisi`
   - `SSS`
   - `Blog`
   - `Footer`
-- `/veri` sayfası canlı ve ana tasarım diliyle uyumlu.
-- `/teklifleri-karsilastir` sayfası ayrı route olarak çalışıyor.
-- Compare sayfası tek motorlu karar destek ekranına dönüştürüldü.
-- Compare hesapları `lib/comparisonEngine.ts` üzerinden çalışıyor.
-- Banka kredisi kıyası `lib/loanEngine.ts` ile güçlendirildi.
-- Sonuç kartlarında NBM kırılımı, risk ve banka kredisi farkı görünür hale getirildi.
-- Nakit akışı tabloları teklif bazında üretiliyor ve CSV export veriyor.
-- Şirket bazlı tahmini parametre sistemi kuruldu.
-- Yeni `/kredi-test` sayfası eklendi:
-  - referans HTML kredi matematiği
+- `/veri` sayfasi canli ve ana tasarim diliyle uyumlu.
+- `/teklifleri-karsilastir` sayfasi ayri route olarak �alisiyor.
+- Compare sayfasi tek motorlu karar destek ekranina d�n�st�r�ld�.
+- Compare hesaplari `lib/comparisonEngine.ts` �zerinden �alisiyor.
+- Banka kredisi kiyasi `lib/loanEngine.ts` ile g��lendirildi.
+- Sonu� kartlarinda NBM kirilimi, risk ve banka kredisi farki g�r�n�r hale getirildi.
+- Nakit akisi tablolari teklif bazinda �retiliyor ve CSV export veriyor.
+- Sirket bazli tahmini parametre sistemi kuruldu.
+- Yeni `/kredi-test` sayfasi eklendi:
+  - referans HTML kredi matematigi
   - proje kredi motoru
   - fark analizi
-  - ödeme planı fark analizi
+  - �deme plani fark analizi
 
-## 2. Hangi dosyalarda ne değişti
+## 2. Hangi dosyalarda ne degisti
 
-### Route / sayfa dosyaları
+### Route / sayfa dosyalari
 
 - `C:\Users\PC\Desktop\tasarrufinansman\app\layout.tsx`
-  - Metadata Türkçesi düzeltildi.
-  - Global `InteractionScript` tek noktada kaldı.
+  - Metadata T�rk�esi d�zeltildi.
+  - Global `InteractionScript` tek noktada kaldi.
 - `C:\Users\PC\Desktop\tasarrufinansman\app\veri\page.tsx`
-  - Türkçe karakterler düzeltildi.
+  - T�rk�e karakterler d�zeltildi.
 - `C:\Users\PC\Desktop\tasarrufinansman\app\teklifleri-karsilastir\page.tsx`
   - Compare route temiz fallback ile korunuyor.
 - `C:\Users\PC\Desktop\tasarrufinansman\app\kredi-test\page.tsx`
-  - Yeni kredi matematiği test alanı route’u eklendi.
+  - Yeni kredi matematigi test alani route�u eklendi.
 
-### Bileşenler
+### Bilesenler
 
 - `C:\Users\PC\Desktop\tasarrufinansman\components\Header.tsx`
   - Header metinleri temizlendi.
-  - Compare CTA düzgün Türkçe ile korundu.
+  - Compare CTA d�zg�n T�rk�e ile korundu.
 - `C:\Users\PC\Desktop\tasarrufinansman\components\OfferComparisonPage.tsx`
-  - Tam React kontrollü compare sayfası kuruldu.
-  - Sonuç kartları, karar özeti ve kredi ödeme planı eklendi.
+  - Tam React kontroll� compare sayfasi kuruldu.
+  - Sonu� kartlari, karar �zeti ve kredi �deme plani eklendi.
 - `C:\Users\PC\Desktop\tasarrufinansman\components\LoanMathTestPage.tsx`
-  - Referans HTML ve proje motorunu yan yana gösteren yeni test alanı eklendi.
+  - Referans HTML ve proje motorunu yan yana g�steren yeni test alani eklendi.
 - `C:\Users\PC\Desktop\tasarrufinansman\components\InteractionScript.tsx`
-  - Compare DOM fallback başlangıcı no-op halde tutuluyor.
-  - Compare sayfası artık bu script’e bağlı değil.
+  - Compare DOM fallback baslangici no-op halde tutuluyor.
+  - Compare sayfasi artik bu script�e bagli degil.
 
-### Motor / hesap katmanı
+### Motor / hesap katmani
 
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\loanEngine.ts`
-  - Referans HTML kredi matematiği taşındı.
-  - PMT, vergili aylık faiz, ödeme planı, IRR/RATE, efektif yıllık maliyet burada.
+  - Referans HTML kredi matematigi tasindi.
+  - PMT, vergili aylık faiz, �deme plani, IRR/RATE, efektif yıllık maliyet burada.
   - Referans motor ve proje motoru fark analizi burada.
 - `C:\Users\PC\Desktop\tasarrufinansman\lib\comparisonEngine.ts`
-  - Teklif motoru, NBM, risk, gecikme maliyeti, şirket parametreleri ve `loanEngine` bağlantısı burada.
+  - Teklif motoru, NBM, risk, gecikme maliyeti, sirket parametreleri ve `loanEngine` baglantisi burada.
 
-### Dokümantasyon
+### Dok�mantasyon
 
 - `C:\Users\PC\Desktop\tasarrufinansman\README.md`
-  - Hesap motoru, kredi test alanı ve compare akışı güncellendi.
+  - Hesap motoru, kredi test alani ve compare akisi g�ncellendi.
 - `C:\Users\PC\Desktop\tasarrufinansman\progress.md`
-  - Bu dosya güncellendi.
+  - Bu dosya g�ncellendi.
 
-## 3. Sayfada çalışan özellikler
+## 3. Sayfada �alisan �zellikler
 
 ### Ana sayfa
 
-- Header linkleri çalışıyor.
-- Hero CTA’ları çalışıyor.
-- Kredi limit modülü çalışıyor:
+- Header linkleri �alisiyor.
+- Hero CTA�lari �alisiyor.
+- Kredi limit mod�l� �alisiyor:
   - Konut
-  - Taşıt
-  - İhtiyaç
-- Ana hesaplayıcı çalışıyor.
-- Banka kredisi kıyas paneli çalışıyor.
+  - Tasit
+  - Ihtiya�
+- Ana hesaplayici �alisiyor.
+- Banka kredisi kiyas paneli �alisiyor.
 
-### Teklifleri Karşılaştır sayfası
+### Teklifleri Karşılaştır sayfasi
 
-- `Konut / Araba` seçimi çalışıyor.
-- `Teklif 1 / Teklif 2` bağımsız state ile çalışıyor.
-- `Çekilişsiz / Çekilişli` seçimleri çalışıyor.
-- Şirket seçimi sonucu etkiliyor:
-  - hizmet bedeli varsayılanı
-  - teslim hızı
+- `Konut / Araba` se�imi �alisiyor.
+- `Teklif 1 / Teklif 2` bagimsiz state ile �alisiyor.
+- `�ekilissiz / �ekilisli` se�imleri �alisiyor.
+- Sirket se�imi sonuçu etkiliyor:
+  - hizmet bedeli varsayilani
+  - teslim hizi
   - risk cezası
   - kampanya indirimi
-- Düz plan çalışıyor.
-- Artışlı plan çalışıyor.
-- Manuel plan çalışıyor.
-- Teslim ayı kira etkisini değiştiriyor.
-- Kredi kıyası aktif/pasif çalışıyor.
-- `TÜM TEKLİFLERİ HESAPLA` sonuç üretiyor.
-- Kazanan teklif otomatik vurgulanıyor.
-- Çekilişli teklif için iyi / ortalama / kötü senaryo üretiliyor.
-- NBM kırılımı gösteriliyor:
+- D�z plan �alisiyor.
+- Artışlı plan �alisiyor.
+- Manuel plan �alisiyor.
+- Teslim ayi kira etkisini degistiriyor.
+- Kredi kiyasi aktif/pasif �alisiyor.
+- `T�M TEKLIFLERI HESAPLA` sonu� �retiyor.
+- Kazanan teklif otomatik vurgulaniyor.
+- �ekilisli teklif i�in iyi / ortalama / k�t� senaryo �retiliyor.
+- NBM kirilimi g�steriliyor:
   - Peşinat PV
   - Hizmet bedeli PV
   - Taksitler PV
   - Kira PV
   - Toplam NBM
-- Karar skoru gösteriliyor.
-- Risk seviyesi gösteriliyor.
-- Karar yorumu gösteriliyor.
-- Banka kredisi için ödeme planı tablosu gösteriliyor.
-- Nakit akışı tablosu teklif bazında oluşuyor.
-- CSV export çalışıyor.
+- Karar skoru g�steriliyor.
+- Risk seviyesi g�steriliyor.
+- Karar yorumu g�steriliyor.
+- Banka kredisi i�in �deme plani tablosu g�steriliyor.
+- Nakit akisi tablosu teklif bazinda olusuyor.
+- CSV export �alisiyor.
 
-### Kredi Matematiği Test Alanı
+### Kredi Matematigi Test Alani
 
-- Kredi türü presetleri çalışıyor:
+- Kredi t�r� presetleri �alisiyor:
   - Konut - Evi Olmayan
   - Konut - Evi Olan
-  - Taşıt
-  - İhtiyaç
-- Aynı inputlarla iki motor yan yana hesap yapıyor:
-  - Referans HTML Matematiği
+  - Tasit
+  - Ihtiya�
+- Ayni inputlarla iki motor yan yana hesap yapiyor:
+  - Referans HTML Matematigi
   - Mevcut Proje Kredi Motoru
-- Fark analizi tablosu çalışıyor.
-- Ödeme planı fark analizi çalışıyor.
-- `İlk 12 Ay / Tüm Plan` geçişi çalışıyor.
+- Fark analizi tablosu �alisiyor.
+- �deme plani fark analizi �alisiyor.
+- `Ilk 12 Ay / T�m Plan` ge�isi �alisiyor.
 
-## 4. Eksik kalan özellikler
+## 4. Eksik kalan �zellikler
 
-- `InteractionScript.tsx` içindeki compare’a ait eski yardımcı fonksiyonlar dosyada duruyor; çağrılmıyor ama fiziksel temizlik yapılmalı.
-- Şirket parametreleri şu an tahmini.
-- `.xlsx` export yok; CSV sağlam çalışıyor.
-- Ana sayfa kredi kıyas paneli henüz `loanEngine` detay çıktılarının tamamını göstermiyor.
-- Compare sayfasında input maskeleme ve sayı formatlama UX’i daha da rafine edilebilir.
+- `InteractionScript.tsx` i�indeki compare�a ait eski yardimci fonksiyonlar dosyada duruyor; �agrilmiyor ama fiziksel temizlik yapilmali.
+- Sirket parametreleri su an tahmini.
+- `.xlsx` export yok; CSV saglam �alisiyor.
+- Ana sayfa kredi kiyas paneli hen�z `loanEngine` detay �iktilarinin tamamini g�stermiyor.
+- Compare sayfasinda input maskeleme ve sayi formatlama UX�i daha da rafine edilebilir.
 
 ## 5. Bilinen buglar
 
-- Workspace içinde geçici dosyalar duruyor:
+- Workspace i�inde ge�ici dosyalar duruyor:
   - `.tmp-chrome*`
   - `tmp_compare.xlsx`
-- Eski bileşenlerde tek tük mojibake kalıntısı olabilir; ana hedef dosyalar ve yeni kredi test alanı temizlendi.
+- Eski bilesenlerde tek t�k mojibake kalintisi olabilir; ana hedef dosyalar ve yeni kredi test alani temizlendi.
 
-## 6. Hesap motorunda şu an kullanılan formüller
+## 6. Hesap motorunda su an kullanilan form�ller
 
-### Referans HTML’den taşınan kredi matematiği
+### Referans HTML�den tasinan kredi matematigi
 
 - nominal aylık oran:
   - `nominalRate = monthlyRatePct / 100`
@@ -154,25 +154,25 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
   - `effectiveMonthlyRate = nominalRate * (1 + (BSMV + KKDF) / 100)`
 - PMT:
   - `payment = principal * rate * (1 + rate)^term / ((1 + rate)^term - 1)`
-- net ele geçen kredi:
+- net ele ge�en kredi:
   - `netDisbursed = principal - fee`
-- dönemsel faiz:
+- d�nemsel faiz:
   - `interest = remainingPrincipal * nominalRate`
-- dönemsel KKDF:
+- d�nemsel KKDF:
   - `kkdfAmount = interest * kkdf / 100`
-- dönemsel BSMV:
+- d�nemsel BSMV:
   - `bsmvAmount = interest * bsmv / 100`
-- anapara ödemesi:
+- anapara �demesi:
   - `principalPayment = payment - interest - kkdfAmount - bsmvAmount`
 - kalan anapara:
   - `remainingPrincipal = remainingPrincipal - principalPayment`
 - toplam faiz:
   - `sum(interest)`
-- toplam taksit ödemesi:
+- toplam taksit �demesi:
   - `payment * term`
-- referans HTML toplam geri ödeme:
+- referans HTML toplam geri �deme:
   - `totalWithInterest + fee`
-- düzeltilmiş proje toplam geri ödeme:
+- d�zeltilmis proje toplam geri �deme:
   - `totalInstallmentPayment + fee`
 - toplam kredi maliyeti:
   - `totalRepayment - netDisbursed`
@@ -181,17 +181,17 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 - efektif yıllık maliyet:
   - `Math.pow(1 + monthlyCostRate, 12) - 1`
 
-### Tasarruf finansmanı tarafı
+### Tasarruf finansmanı tarafi
 
-#### Aylık indirgeme oranı
+#### Aylık indirgeme orani
 
 `monthlyDiscountRate = Math.pow(1 + annualInflationRate / 100, 1 / 12) - 1`
 
-#### Bugünkü değer
+#### Bug�nk� değer
 
 `PV = amount / Math.pow(1 + monthlyDiscountRate, month)`
 
-#### Düz plan
+#### D�z plan
 
 `installment = baseMonthlyPayment`
 
@@ -201,13 +201,13 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 
 #### Manuel plan
 
-- kullanıcı değerleri satır satır veya virgülle girer
+- kullanici değerleri satir satir veya virg�lle girer
 - eksik aylar son değer ile doldurulur
-- tamamen hatalıysa düz plan fallback olur
+- tamamen hataliysa d�z plan fallback olur
 
 #### Kira motoru
 
-- teslim ayına kadar kira oluşur
+- teslim ayina kadar kira olusur
 - teslimden sonra kira `0`
 - her 12 ayda enflasyon kadar artar
 
@@ -219,13 +219,13 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 
 `NBM = peşinat PV + hizmet bedeli PV + taksitler PV + kira PV`
 
-#### Çekilişli senaryo seti
+#### �ekilisli senaryo seti
 
 - iyi teslim:
   - `goodDelivery = Math.max(1, Math.round(expectedDelivery * 0.6 * deliverySpeedFactor))`
 - ortalama teslim:
   - `averageDelivery = expectedDelivery`
-- kötü teslim:
+- k�t� teslim:
   - `badDelivery = Math.min(term, Math.round(expectedDelivery * (1.4 + Math.max(riskFactor - 1, 0) * 0.25)))`
 
 #### Risk
@@ -242,28 +242,28 @@ Project root: `C:\Users\PC\Desktop\tasarrufinansman`
 
 `riskPenalty = risk * riskWeight * companyRiskFactor`
 
-## 7. Devam etmek için önerilen sıradaki adımlar
+## 7. Devam etmek i�in �nerilen siradaki adimlar
 
-1. `InteractionScript.tsx` içindeki compare’a ait ölü kodu tamamen kaldır.
-2. Ana sayfa banka kıyas panelini `loanEngine` ile aynı detay seviyesine çıkar.
-3. Şirket parametrelerini gerçek veriyle besle.
-4. Input formatlama ve validation UX’ini daha profesyonel hale getir.
-5. CSV yanında gerçek `.xlsx` export ekle.
-6. Geçici dosyaları çalışma klasöründen temizle.
+1. `InteractionScript.tsx` i�indeki compare�a ait �l� kodu tamamen kaldir.
+2. Ana sayfa banka kiyas panelini `loanEngine` ile ayni detay seviyesine �ikar.
+3. Sirket parametrelerini ger�ek veriyle besle.
+4. Input formatlama ve validation UX�ini daha profesyonel hale getir.
+5. CSV yaninda ger�ek `.xlsx` export ekle.
+6. Ge�ici dosyalari �alisma klas�r�nden temizle.
 
 ## 8. Test edilen senaryolar
 
-- Düz çekilişsiz plan
+- D�z �ekilissiz plan
 - Artışlı taksitli plan
 - Manuel plan
-- Çekilişli iyi / ortalama / kötü senaryo
-- Geç teslim kaynaklı kira maliyeti
-- Yüksek hizmet bedelli teklif
-- Banka kredisi kıyası açık / kapalı
-- Farklı şirket seçimi ile sonuç değişimi
-- Kredi ana para / masraf / efektif maliyet hesapları
-- Kredi test alanı presetleri:
+- �ekilisli iyi / ortalama / k�t� senaryo
+- Ge� teslim kaynakli kira maliyeti
+- Y�ksek hizmet bedelli teklif
+- Banka kredisi kiyasi a�ik / kapali
+- Farkli sirket se�imi ile sonu� degisimi
+- Kredi ana para / masraf / efektif maliyet hesaplari
+- Kredi test alani presetleri:
   - Konut - Evi Olmayan
   - Konut - Evi Olan
-  - Taşıt
-  - İhtiyaç
+  - Tasit
+  - Ihtiya�
