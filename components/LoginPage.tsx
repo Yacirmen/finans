@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { withBasePath } from "../lib/sitePaths";
 
 const features = [
   {
@@ -48,14 +49,12 @@ export function LoginPage() {
         <div className="grid min-h-[680px] items-center gap-12 lg:grid-cols-[0.96fr_1fr]">
           <section className="rounded-[30px] bg-white/95 p-7 shadow-[0_24px_58px_rgba(15,23,42,0.08)] md:p-10">
             <div className="text-center">
-              <span className="mx-auto block h-12 w-12">
-                <span className="relative block h-full w-full" aria-hidden="true">
-                  <span className="absolute left-[6px] top-[12px] h-[5px] w-[34px] -rotate-45 rounded-full bg-[#1aa55a]" />
-                  <span className="absolute bottom-[5px] left-[9px] h-[14px] w-2 rounded-full bg-[#1aa55a]" />
-                  <span className="absolute bottom-[5px] left-[21px] h-[22px] w-2 rounded-full bg-[#1aa55a]" />
-                  <span className="absolute bottom-[5px] left-[33px] h-[17px] w-2 rounded-full bg-[#1aa55a]" />
-                </span>
-              </span>
+              <img
+                src={withBasePath("/logo.jpg")}
+                alt=""
+                aria-hidden="true"
+                className="mx-auto h-16 w-16 rounded-[16px] object-cover shadow-[0_10px_22px_rgba(15,23,42,0.08)]"
+              />
               <h1 className="mt-6 text-[28px] font-black leading-[1.02] tracking-[-0.05em] text-[#07111f]">
                 Tasarruf Finansmanı
                 <span className="block text-[#138746]">Maliyet Hesaplayıcı</span>

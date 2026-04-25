@@ -29,12 +29,12 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
           href={withBasePath("/")}
           className="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]"
         >
-          <span className="relative h-8 w-8" aria-hidden="true">
-            <span className="absolute left-[3px] top-[7px] h-[3px] w-[21px] -rotate-45 rounded-full bg-[#1db25f]" />
-            <span className="absolute bottom-[2px] left-[4px] h-[11px] w-1.5 rounded-full bg-[#1db25f]" />
-            <span className="absolute bottom-[2px] left-[12px] h-[17px] w-1.5 rounded-full bg-[#1db25f]" />
-            <span className="absolute bottom-[2px] left-[20px] h-[13px] w-1.5 rounded-full bg-[#1db25f]" />
-          </span>
+          <img
+            src={withBasePath("/logo.jpg")}
+            alt=""
+            aria-hidden="true"
+            className="h-10 w-10 rounded-[10px] object-cover"
+          />
           Tasarruf Finansmanı
         </a>
 
