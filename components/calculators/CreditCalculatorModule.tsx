@@ -19,9 +19,9 @@ type CreditFormState = {
 const modulePresets: Record<CreditModuleKey, LoanInput & { inflation: number; label: string }> = {
   "konut-ilk-evim": {
     label: "KONUT İLK EVİM",
-    principal: 800000,
-    term: 120,
-    rate: 3,
+    principal: 5_000_000,
+    term: 84,
+    rate: 2.7,
     inflation: 25,
     fee: 0,
     bsmv: 0,
@@ -29,7 +29,7 @@ const modulePresets: Record<CreditModuleKey, LoanInput & { inflation: number; la
   },
   "konut-evi-olan": {
     label: "KONUT EVİ OLAN",
-    principal: 500000,
+    principal: 500_000,
     term: 60,
     rate: 2.85,
     inflation: 25,
@@ -39,7 +39,7 @@ const modulePresets: Record<CreditModuleKey, LoanInput & { inflation: number; la
   },
   tasit: {
     label: "TAŞIT",
-    principal: 100000,
+    principal: 100_000,
     term: 12,
     rate: 3.45,
     inflation: 25,
@@ -49,7 +49,7 @@ const modulePresets: Record<CreditModuleKey, LoanInput & { inflation: number; la
   },
   ihtiyac: {
     label: "İHTİYAÇ",
-    principal: 100000,
+    principal: 100_000,
     term: 12,
     rate: 4.19,
     inflation: 25,
@@ -59,18 +59,18 @@ const modulePresets: Record<CreditModuleKey, LoanInput & { inflation: number; la
   },
 };
 
-function monthlyDiscountRate(inflation: number) {
-  return Math.pow(1 + inflation / 100, 1 / 12) - 1;
+function monthlyDiscountRateFromReference(inflation: number) {
+  return Math.max(0, inflation || 0) / 12 / 100;
 }
 
-function presentValue(amount: number, month: number, rate: number) {
-  return amount / Math.pow(1 + rate, month);
-}
+function buildNetPresentValue(summary: ReturnType<typeof calculateLoanSummary>, inflation: number) {
+  const discount = monthlyDiscountRateFromReference(inflation);
+  const paymentPresentValue = summary.schedule.reduce((sum, row) => {
+    const divisor = Math.pow(1 + discount, row.period);
+    return sum + row.payment / (Number.isFinite(divisor) && divisor > 0 ? divisor : 1);
+  }, 0);
 
-function buildNetCost(summary: ReturnType<typeof calculateLoanSummary>, inflation: number) {
-  const discount = monthlyDiscountRate(inflation);
-  const paymentPv = summary.schedule.reduce((sum, row) => sum + presentValue(row.payment, row.period, discount), 0);
-  return paymentPv + summary.fee - summary.netDisbursed;
+  return summary.netDisbursed - paymentPresentValue;
 }
 
 function presetToForm(preset: CreditModuleKey): CreditFormState {
@@ -104,7 +104,10 @@ export function CreditCalculatorModule() {
 
   const input = useMemo(() => formToLoanInput(submitted), [submitted]);
   const summary = useMemo(() => calculateLoanSummary(input), [input]);
-  const netCost = useMemo(() => buildNetCost(summary, Number(submitted.inflation || 0)), [summary, submitted.inflation]);
+  const netPresentValue = useMemo(
+    () => buildNetPresentValue(summary, Number(submitted.inflation || 0)),
+    [summary, submitted.inflation],
+  );
 
   const applyPreset = (nextPreset: CreditModuleKey) => {
     const nextForm = presetToForm(nextPreset);
@@ -126,7 +129,7 @@ export function CreditCalculatorModule() {
       <section className="rounded-[24px] border border-[#dce7e2] bg-white p-5 shadow-[0_14px_34px_rgba(31,43,37,0.06)] md:p-6">
         <h1 className="text-[30px] font-bold tracking-[-0.04em] text-[#172133]">Kredi Hesaplama Modülü</h1>
         <p className="mt-3 max-w-[900px] text-[14px] leading-7 text-[#6f7d94]">
-          Kredi taksiti, net maliyet, toplam geri ödeme ve detaylı ödeme planını tek ekranda görün. Hesaplama
+          Kredi taksiti, net bugünkü değer, toplam geri ödeme ve detaylı ödeme planını tek ekranda görün. Hesaplama
           motoru BSMV ve KKDF etkisini dönemsel olarak dikkate alır.
         </p>
       </section>
@@ -193,22 +196,28 @@ export function CreditCalculatorModule() {
         </article>
 
         <div className="grid gap-5">
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="rounded-[18px] border border-[#d8e2ff] bg-[linear-gradient(135deg,#fff,#f3f7ff)] p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
+              <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#1f4fd8]">Net Bugünkü Değer</span>
+              <strong className="mt-2 block text-[25px] font-black tracking-[-0.04em] text-[#1f4fd8]">
+                {formatTry(netPresentValue)}
+              </strong>
+            </div>
             <div className="rounded-[18px] border border-[#dce7e2] bg-white p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
               <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Taksit Tutarı</span>
-              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#172133]">
+              <strong className="mt-2 block text-[25px] font-black tracking-[-0.04em] text-[#172133]">
                 {formatTry(summary.monthlyPayment)}
               </strong>
             </div>
             <div className="rounded-[18px] border border-[#dce7e2] bg-white p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
               <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Yıllık Faiz Maliyeti</span>
-              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#172133]">
+              <strong className="mt-2 block text-[25px] font-black tracking-[-0.04em] text-[#172133]">
                 {formatPercentTr(summary.effectiveAnnualCost * 100)}
               </strong>
             </div>
             <div className="rounded-[18px] border border-[#d2efdf] bg-[#effdf5] p-4 shadow-[0_10px_24px_rgba(31,43,37,0.04)]">
               <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#168b53]">Kullandırım Sonrası Ele Geçen</span>
-              <strong className="mt-2 block text-[28px] font-black tracking-[-0.04em] text-[#0f5636]">
+              <strong className="mt-2 block text-[25px] font-black tracking-[-0.04em] text-[#0f5636]">
                 {formatTry(summary.netDisbursed)}
               </strong>
             </div>
@@ -218,11 +227,15 @@ export function CreditCalculatorModule() {
             <h2 className="text-[20px] font-bold tracking-[-0.03em] text-[#172133]">Sonuçlar</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {[
-                ["Net Maliyet", formatTry(netCost)],
+                ["Net Bugünkü Değer", formatTry(netPresentValue)],
                 ["Toplam Geri Ödeme", formatTry(summary.totalRepayment)],
+                ["Toplam Taksit Ödemesi", formatTry(summary.totalInstallmentPayment)],
+                ["Toplam Faizli Geri Ödeme", formatTry(summary.totalWithInterest)],
                 ["Toplam Faiz", formatTry(summary.totalInterest)],
                 ["Toplam KKDF", formatTry(summary.totalKKDF)],
                 ["Toplam BSMV", formatTry(summary.totalBSMV)],
+                ["Toplam Kredi Maliyeti", formatTry(summary.totalCreditCost)],
+                ["Efektif Aylık Maliyet", formatPercentTr(summary.effectiveMonthlyCostRate * 100)],
                 ["Kredi Hariç Masraf", formatTry(summary.fee)],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-[14px] border border-[#e6edf4] bg-[#fbfdff] px-4 py-3">
