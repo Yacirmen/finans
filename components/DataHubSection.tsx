@@ -8,6 +8,7 @@ import {
   sourceCatalog,
   topIndexDrivers,
 } from "../lib/marketData";
+import { MarketSlider } from "./MarketSlider";
 import { withBasePath } from "../lib/sitePaths";
 
 const numberFormatter = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
@@ -433,7 +434,7 @@ function AutoAndSources() {
 export function DataHubSection() {
   return (
     <main className="overflow-hidden bg-[#f6f8fb] pb-16">
-      <MarketTicker />
+      <MarketSlider />
       <HeroIndex />
       <section className="page-container mt-8 grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
         <DriverBoard />

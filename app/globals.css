@@ -216,6 +216,45 @@ a {
   box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
 }
 
+.market-slider {
+  width: 100%;
+  overflow: hidden;
+  background: #0f172a;
+  color: #fff;
+  border-block: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.market-slider-track {
+  display: inline-flex;
+  min-width: max-content;
+  gap: 18px;
+  padding: 14px 18px;
+  white-space: nowrap;
+  animation: market-slider-scroll 34s linear infinite;
+}
+
+.market-slider-card {
+  display: inline-flex;
+  width: 248px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.78);
+  padding: 14px 16px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+}
+
+@keyframes market-slider-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .market-ticker {
   width: 100%;
   overflow: hidden;

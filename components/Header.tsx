@@ -8,6 +8,7 @@ const primaryNavItems = [
   { key: "about", label: "Hakkımızda", href: withBasePath("/#faq") },
   { key: "blog", label: "Blog", href: withBasePath("/#blog") },
   { key: "data", label: "Endeks", href: withBasePath("/veri") },
+  { key: "profile", label: "Profil", href: withBasePath("/profil") },
 ] as const;
 
 const calculatorChildren = [
@@ -15,7 +16,7 @@ const calculatorChildren = [
   { label: "Kredi Hesaplama Modülü", href: withBasePath("/kredi-hesaplama") },
 ] as const;
 
-type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare";
+type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare" | "profile";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -102,11 +103,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
 
           <div className="hidden items-center gap-3 lg:flex">
             <a
-              className={`rounded-[12px] px-[22px] py-[11px] text-[14px] font-semibold transition-all duration-300 ${
-                active === "compare"
-                  ? "bg-[#3a7bf6] text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)]"
-                  : "bg-[#3a7bf6] text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] hover:-translate-y-0.5 hover:bg-[#2f69d8]"
-              }`}
+              className="rounded-[12px] bg-[#3a7bf6] px-[22px] py-[11px] text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(58,123,246,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2f69d8]"
               href={withBasePath("/teklifleri-karsilastir")}
             >
               Teklifleri Karşılaştır
@@ -133,11 +130,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
       {mobileOpen ? (
         <div className="border-t border-slate-200 bg-white lg:hidden">
           <div className="page-container grid gap-2 py-4">
-            <a
-              className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]"
-              href={withBasePath("/")}
-              onClick={() => setMobileOpen(false)}
-            >
+            <a className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href={withBasePath("/")}>
               Ana Sayfa
             </a>
 

@@ -1,187 +1,98 @@
 # Project Progress
 
-Last updated: 2026-04-25  
-Project root: `C:\Users\PC\Desktop\tasarrufinansman`
+Last updated: 2026-04-25
 
 ## 1. Bu turda yapılanlar
 
-- Header menüsü yeniden düzenlendi.
-  - `Firmalar` kaldırıldı.
-  - `Nasıl Çalışır?` kaldırıldı.
-  - `Hesaplama Modülü` ana menüsü eklendi.
-  - Altında:
-    - `Kredi Limit Modülü`
-    - `Kredi Hesaplama Modülü`
-      linkleri eklendi.
-- Ana sayfadaki eski kredi limit teaser bloğu kaldırıldı.
-  - Yerine gerçek modüllere yönlendiren temiz bir “Hesaplama modülleri” alanı geldi.
-- Yeni sayfalar eklendi:
-  - `/kredi-hesaplama`
-  - `/kredi-limit`
-  - `/engine-test`
-- `Teklifleri Karşılaştır` sayfası yeni referans modül mantığına göre sadeleştirildi ve React kontrollü hale getirildi.
-- `Kredi Matematiği Test Alanı` korundu ve görünür metinleri temizlendi.
-- `README.md` ve kullanıcıya görünen kritik metin katmanları temiz Türkçe ile yeniden yazıldı.
+- Teklif karşılaştırma motoru `2-TEKLİFKARŞILAŞTIRMAMODÜLÜ (3).xlsx` içinde tarif edilen NPV mantığına göre yeniden hizalandı.
+- `/teklifleri-karsilastir` sayfasında finansman modeli seçimi kaldırıldı; modül iki şirket teklifini karşılaştıran sade yapıya geçti.
+- Aylık taksit, teslim zamanı, finansman tutarı, organizasyon ücreti + peşinat, toplam geri ödeme, toplam maliyet ve NPV otomatik hesaplanıyor.
+- Daha yüksek NPV senaryosu avantajlı teklif olarak işaretleniyor.
+- Tahmini faiz bilgisi anonim kullanıcı için kilitli kart olarak eklendi.
+- Sayı formatlama yardımcıları temizlendi; TL ve yüzde alanları Türkçe formatla parse/format ediliyor.
+- Endeks bölümüne JSON veriden beslenen React tabanlı market slider eklendi.
+- Market verisini Excel'den JSON'a aktarmak için `npm run update:market` scripti eklendi.
+- Kredi limit modülüne `Profilime Kaydet` akışı eklendi.
+- `/profil` sayfası localStorage kayıtlarını listeleme, silme ve temizleme özelliğiyle eklendi.
+- Ana sayfaya bülten ve uzmanına danış formu eklendi; ikisi de localStorage ile çalışıyor.
+- Footer sosyal linkleri eklendi.
+- Header, footer, blog ve kritik görünür metinlerde Türkçe karakterler temizlendi.
 
-## 2. Hangi dosyalar değişti
+## 2. Değişen dosyalar
 
-### Güncellenen dosyalar
-
-- `app/layout.tsx`
-- `app/kredi-test/page.tsx`
-- `app/teklifleri-karsilastir/page.tsx`
+- `app/page.tsx`
+- `app/veri/page.tsx`
+- `app/profil/page.tsx`
+- `app/globals.css`
 - `components/Header.tsx`
-- `components/HeroSection.tsx`
-- `components/CalculatorSection.tsx`
-- `components/LoanLimitSection.tsx`
-- `components/OfferComparisonPage.tsx`
-- `components/DataHubSection.tsx`
-- `components/FAQSection.tsx`
-- `components/BlogSection.tsx`
 - `components/Footer.tsx`
-- `lib/comparisonEngine.ts`
-- `README.md`
-- `progress.md`
-
-### Eklenen dosyalar
-
-- `app/kredi-hesaplama/page.tsx`
-- `app/kredi-limit/page.tsx`
-- `app/engine-test/page.tsx`
-- `components/calculators/CreditCalculatorModule.tsx`
+- `components/BlogSection.tsx`
+- `components/DataHubSection.tsx`
+- `components/MarketSlider.tsx`
+- `components/NewsletterSignup.tsx`
+- `components/ConsultationSection.tsx`
+- `components/ProfilePage.tsx`
+- `components/OfferComparisonPage.tsx`
 - `components/calculators/CreditLimitCalculatorModule.tsx`
-- `components/EngineTestPage.tsx`
-- `lib/formatters.ts`
-- `lib/companyParams.ts`
-- `lib/calculations/creditLimit.ts`
 - `lib/calculations/offerComparison.ts`
+- `lib/companyParams.ts`
+- `lib/formatters.ts`
+- `lib/loanLimit.ts`
+- `data/market-data.json`
+- `scripts/update-market-data-from-excel.js`
+- `package.json`
+- `package-lock.json`
 
-### Kaldırılan teknik borç dosyaları
+## 3. Teklif karşılaştırma formül eşlemesi
 
-- `components/InteractionScript.tsx`
+- `financingPresentCost = assetValue / (1 + monthlyDiscountRate) ^ deliveryMonth`
+- `downRateFirstInstallment = downPayment / assetValue`
+- `downRateUntilDelivery = (downPayment + deliveryMonth * monthlyInstallment) / assetValue`
+- `organizationFeeAndDownPayment = assetValue * organizationFeeRate / 100 + downPayment`
+- `initialCashOut = downPayment + organizationFeeAndDownPayment`
+- `financeAmount = assetValue - downPayment`
+- `term40 = termMonths * 0.4`
+- `monthlyInstallment = financeAmount / termMonths`
+- `monthlyPaymentsPV = PV(monthlyDiscountRate, termMonths, -monthlyInstallment)`
+- `totalRepayment = monthlyInstallment * termMonths + additionalCost`
+- `totalCost = totalRepayment + initialCashOut`
+- `deliveryMonth = MAX(5, ROUNDUP(termMonths * 0.4 * (1 - downPayment / assetValue), 0))`
+- `rentPV = PV(monthlyDiscountRate, deliveryMonth, -monthlyRent, 0)`
+- `npv = monthlyPaymentsPV + rentPV + organizationFeeAndDownPayment - financingPresentCost`
 
-## 3. CalculatorSection refactor edildi mi?
+Not: Excel'de `initialCashOut` formülü peşinatı ikinci kez topluyor gibi görünüyor. İş kuralı korunarak fonksiyon içinde isimli bırakıldı; gerekirse tek noktadan değiştirilebilir.
 
-Evet.
+## 4. Çalışan özellikler
 
-- Ana sayfa hesaplayıcısı React kontrollü çalışıyor.
-- UI sadece input topluyor.
-- Hesap tarafı `comparisonEngine.ts` üzerinden gidiyor.
-- Örnek senaryo butonu referans değerleri dolduruyor:
-  - `3.000.000 TL`
-  - `1.000.000 TL peşinat`
-  - `48 ay`
-  - `41.667 TL`
-  - `%7,5 hizmet bedeli`
-  - `25.000 TL kira`
-  - `2.000.000 TL kredi`
-  - `%2,80 faiz`
-  - `120 ay`
+- `/teklifleri-karsilastir`: iki senaryo bağımsız state, otomatik taksit/teslim/NPV, kazanan vurgusu, fark tablosu, kilitli tahmini faiz kartı.
+- `/kredi-limit`: konut/taşıt/ihtiyaç limit hesapları, peşinat oranı/tutarı, profil kaydı.
+- `/profil`: kayıt listeleme, kayıt silme, tüm kayıtları temizleme, bülten kayıt alanı.
+- Ana sayfa: bülten formu, uzmanına danış formu, blog kartları.
+- `/veri`: market slider JSON verisiyle render oluyor.
 
-## 4. InteractionScript’ten hangi kodlar silindi?
+## 5. Market slider güncelleme akışı
 
-- Eski DOM fallback hesap katmanı fiziksel olarak kaldırıldı.
-- `components/InteractionScript.tsx` artık projede yok.
-- Compare, kredi-test, engine-test ve ana sayfa hesaplayıcısı script fallback’e bağlı değil.
+1. Excel dosyasını `data/market-upload.xlsx` olarak koy.
+2. `npm run update:market` çalıştır.
+3. Script `data/market-data.json` dosyasını günceller.
+4. `npm run build` al.
+5. Deploy et.
 
-## 5. companyParams entegrasyonu tamam mı?
+Beklenen kolon isimleri esnek tutuldu: `label/value/change/direction/type/sparkline` veya Türkçe karşılıkları okunabilir.
 
-Büyük ölçüde tamam.
+## 6. LocalStorage kalan alanlar
 
-- `lib/companyParams.ts` aktif.
-- Şirket seçimi için bu yapı tutuluyor:
-  - `displayName`
-  - `defaultServiceFeeRate`
-  - `deliverySpeedFactor`
-  - `riskFactor`
-  - `campaignDiscountRate`
-  - `notes`
-- `comparisonEngine.ts` bu yapıdan veri okuyacak şekilde düzenlendi.
+- Profil kayıtları localStorage kullanıyor.
+- Bülten kayıtları localStorage kullanıyor.
+- Uzmanına danış talepleri localStorage kullanıyor.
+- Gerçek auth/backend henüz yok; bu bilinçli olarak mock/local ilerliyor.
 
-## 6. Ana sayfada hedef siteye yaklaştırılan alanlar
-
-- Header spacing ve CTA oranları
-- Hero başlık ve alt başlık hiyerarşisi
-- Hero içindeki bilgi kartları
-- Hesaplayıcı kart oranı
-- Input yüksekliği ve radius dili
-- Sonuç paneli
-- FAQ görünümü
-- Blog kartları
-- Footer boşlukları
-- Kredi limit teaser bloğu yerine gerçek modül yönlendirmesi
-
-## 7. Sayfada çalışan özellikler
-
-### Navigasyon
-
-- `Ana Sayfa`
-- `Hesaplama Modülü`
-  - `Kredi Limit Modülü`
-  - `Kredi Hesaplama Modülü`
-- `Teklifleri Karşılaştır`
-- `Blog`
-- `Hakkımızda`
-- `Endeks`
-- `Giriş Yap`
-
-### Kredi Hesaplama Modülü
-
-- Kredi tipi presetleri çalışıyor:
-  - Konut İlk Evim
-  - Konut Evi Olan
-  - Taşıt
-  - İhtiyaç
-- Girdi değişince hesap güncelleniyor.
-- `Hesapla`
-- `Varsayılana Dön`
-- Ödeme planı tablosu
-- KPI kartları
-- Net maliyet ve toplam geri ödeme
-
-### Kredi Limit Modülü
-
-- Gelir / borç / faiz / vade / masraf girdileri çalışıyor.
-- Maksimum limit hesaplanıyor.
-- Risk seviyesi güncelleniyor.
-- Negatif limit engelleniyor.
-
-### Teklifleri Karşılaştır
-
-- Senaryo A bağımsız state ile çalışıyor.
-- Senaryo B bağımsız state ile çalışıyor.
-- KPI alanı otomatik güncelleniyor:
-  - Daha Mantıklı Senaryo
-  - NPV Farkı
-  - Toplam Maliyet Farkı
-- `Hesapla` butonu sonuç özetine scroll ediyor.
-- `Varsayılanlara Dön` çalışıyor.
-- Karşılaştırma tablosu güncelleniyor.
-
-### Test Sayfaları
-
-- `/kredi-test`
-- `/engine-test`
-
-## 8. Mobil QA sonucu
-
-Kod seviyesi responsive kontrol yapıldı.
-
-Yerinde doğrulanan ana alanlar:
-- Ana sayfa
-- Teklif karşılaştırma sayfası
-- Header hesaplama modülü açılır menüsü
-- Kredi hesaplama sayfası
-
-Not:
-- Gerçek cihaz bazlı tam mobile viewport QA turu henüz bitmedi.
-- Özellikle tablo yoğun ekranlarda son bir görsel mobil tur daha faydalı olur.
-
-## 9. Build / export sonucu
+## 7. Build sonucu
 
 `npm run build` temiz geçti.
 
-Üretilen static route’lar:
+Üretilen static route'lar:
+
 - `/`
 - `/veri`
 - `/teklifleri-karsilastir`
@@ -189,32 +100,10 @@ Not:
 - `/engine-test`
 - `/kredi-hesaplama`
 - `/kredi-limit`
+- `/profil`
 
-`out` doğrulaması:
-- `out/index.html`
-- `out/veri/index.html`
-- `out/teklifleri-karsilastir/index.html`
-- `out/kredi-test/index.html`
-- `out/engine-test/index.html`
-- `out/kredi-hesaplama/index.html`
-- `out/kredi-limit/index.html`
+## 8. Bilinen sınırlamalar
 
-## 10. Hâlâ kalan eksikler
-
-- Compare sayfası işlevsel olarak temizlendi ama hedef HTML’e görsel sıkılık açısından bir tur daha yaklaşabilir.
-- `README.md` ve bazı geliştirici odaklı dosyalarda ek gözden geçirme yapılabilir.
-- Tüm sayfalar için gerçek mobile viewport göz testi tamamlanmalı.
-
-## 11. UI benzerlik checklist’i
-
-- [x] Header hedef yapıya yaklaştı
-- [x] Hero hedef yapıya yaklaştı
-- [x] Ana sayfa hesaplayıcı referans ritme yaklaştı
-- [x] Teklif karşılaştırma yeni sade modül mantığına geçti
-- [x] Kredi hesaplama modülü eklendi
-- [x] Kredi limit modülü eklendi
-- [x] Kredi testi route’u çalışıyor
-- [x] Engine test route’u çalışıyor
-- [x] Footer tamam
-- [x] Eski ana sayfa limit bloğu gerçek modüllerle hizalandı
-- [ ] Son mobil görsel QA tamamlanmalı
+- Tahmini faiz kartı anonim kullanıcıda kilitli; gerçek üyelik/auth bağlanmadı.
+- Market slider canlı veri çekmiyor; GitHub Pages statik olduğu için Excel -> JSON -> build akışı kullanılıyor.
+- `data/market-upload.xlsx` örnek dosyası repoda yok; kullanıcı veri yüklediğinde script çalıştırılmalı.

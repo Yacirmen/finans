@@ -7,7 +7,7 @@ import {
   calculateVehicleLoanLimit,
   type HousingEnergyClass,
 } from "../../lib/loanLimit";
-import { formatNumberTr, formatPercentTr, formatTry } from "../../lib/formatters";
+import { formatPercentTr, formatTry, parseLocaleNumber } from "../../lib/formatters";
 
 type LimitTab = "housing" | "vehicle" | "need";
 
@@ -52,10 +52,11 @@ export function CreditLimitCalculatorModule() {
   const [homeOwnership, setHomeOwnership] = useState<"yok" | "var">("yok");
   const [vehicleValue, setVehicleValue] = useState("1.250.000");
   const [needValue, setNeedValue] = useState("180.000");
+  const [saveMessage, setSaveMessage] = useState("");
 
-  const housingExpertise = useMemo(() => Number(housingValue.replace(/\./g, "").replace(",", ".")) || 0, [housingValue]);
-  const vehicleAmount = useMemo(() => Number(vehicleValue.replace(/\./g, "").replace(",", ".")) || 0, [vehicleValue]);
-  const needAmount = useMemo(() => Number(needValue.replace(/\./g, "").replace(",", ".")) || 0, [needValue]);
+  const housingExpertise = useMemo(() => parseLocaleNumber(housingValue), [housingValue]);
+  const vehicleAmount = useMemo(() => parseLocaleNumber(vehicleValue), [vehicleValue]);
+  const needAmount = useMemo(() => parseLocaleNumber(needValue), [needValue]);
 
   const housingResult = useMemo(
     () => calculateHousingLoanLimit(housingExpertise, energyClass, homeOwnership === "var"),
@@ -66,6 +67,52 @@ export function CreditLimitCalculatorModule() {
 
   const vehicleResult = useMemo(() => calculateVehicleLoanLimit(vehicleAmount), [vehicleAmount]);
   const needTerm = useMemo(() => calculateNeedLoanTerm(needAmount), [needAmount]);
+
+  function saveProfile() {
+    const payload =
+      tab === "housing"
+        ? {
+            module: "Kredi Limit Modülü",
+            type: "Konut",
+            expertiseValue: housingExpertise,
+            maxCreditAmount: housingResult.maxCreditAmount,
+            downPayment: housingDownPayment,
+            downPaymentRatio: housingDownPaymentRatio,
+            ratio: housingResult.ratio,
+            energyClass,
+            homeOwnership,
+          }
+        : tab === "vehicle"
+          ? {
+              module: "Kredi Limit Modülü",
+              type: "Taşıt",
+              vehicleValue: vehicleAmount,
+              maxCreditAmount: vehicleResult.maxCreditAmount,
+              ratio: vehicleResult.ratio,
+              eligible: vehicleResult.eligible,
+            }
+          : {
+              module: "Kredi Limit Modülü",
+              type: "İhtiyaç",
+              requestedAmount: needAmount,
+              maxTerm: needTerm,
+            };
+
+    const existing = JSON.parse(localStorage.getItem("financeProfiles") || "[]") as unknown[];
+    localStorage.setItem(
+      "financeProfiles",
+      JSON.stringify([
+        {
+          id: crypto.randomUUID(),
+          title: `${payload.type} kredi limit kaydı`,
+          createdAt: new Date().toISOString(),
+          payload,
+        },
+        ...existing,
+      ]),
+    );
+    setSaveMessage("Profilinize kaydedildi.");
+  }
 
   return (
     <section id="loanLimit" className="page-container mt-8 scroll-mt-24">
@@ -186,9 +233,7 @@ export function CreditLimitCalculatorModule() {
             <div className="mt-5 grid gap-4">
               <MetricCard label="Azami Kredi Tutarı" value={formatTry(vehicleResult.maxCreditAmount)} tone="green" />
               <div className="rounded-[16px] border border-[#e6edf5] bg-[#f8fbff] px-5 py-4 text-[14px] font-medium text-[#617086]">
-                {vehicleResult.eligible
-                  ? `Uygulanan oran: ${formatPercentTr(vehicleResult.ratio * 100)}`
-                  : vehicleResult.message}
+                {vehicleResult.eligible ? `Uygulanan oran: ${formatPercentTr(vehicleResult.ratio * 100)}` : vehicleResult.message}
               </div>
             </div>
           ) : null}
@@ -205,6 +250,15 @@ export function CreditLimitCalculatorModule() {
               </div>
             </div>
           ) : null}
+
+          <button
+            className="mt-5 w-full rounded-[14px] bg-[#16a05a] px-5 py-3 text-sm font-black text-white shadow-[0_14px_26px_rgba(22,160,90,0.16)] transition hover:-translate-y-0.5"
+            onClick={saveProfile}
+            type="button"
+          >
+            Profilime Kaydet
+          </button>
+          {saveMessage ? <p className="mt-3 text-sm font-semibold text-emerald-700">{saveMessage}</p> : null}
         </aside>
       </div>
     </section>

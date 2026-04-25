@@ -8,6 +8,7 @@ const groups = [
       { label: "Teklifleri Karşılaştır", href: withBasePath("/teklifleri-karsilastir") },
       { label: "Blog", href: withBasePath("/#blog") },
       { label: "Endeks", href: withBasePath("/veri") },
+      { label: "Profil", href: withBasePath("/profil") },
     ],
   },
   {
@@ -37,6 +38,13 @@ const groups = [
   },
 ] as const;
 
+const socialLinks = [
+  { label: "X", href: "https://x.com/tasarrufinans" },
+  { label: "Instagram", href: "https://www.instagram.com/tasarruf.finansman/" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588693012392" },
+  { label: "Kaynak", href: "https://borsaninizinden.com/borsa-isleyisi-ve-yatirim-araclari/" },
+] as const;
+
 export function Footer() {
   return (
     <footer id="footer" className="mt-16 border-t border-slate-200 bg-white">
@@ -58,6 +66,19 @@ export function Footer() {
             Tasarruf finansmanı seçeneklerini gerçek maliyet, zaman etkisi, piyasa endeksi ve karşılaştırmalı karar
             desteğiyle inceleyin.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {socialLinks.map((link) => (
+              <a
+                className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-600 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+                href={link.href}
+                key={link.label}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
         {groups.map(({ title, links }) => (
           <div key={title}>
