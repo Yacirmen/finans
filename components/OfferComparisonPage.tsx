@@ -1,51 +1,86 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import {
+  calculateOfferScenario,
   compareOfferScenarios,
   defaultScenarioA,
   defaultScenarioB,
-  type ComparisonAssetType,
+  type OfferFinancingType,
   type OfferScenarioInput,
   type OfferScenarioResult,
 } from "../lib/calculations/offerComparison";
-import { COMPANY_OPTIONS, companyParams, type CompanyName } from "../lib/companyParams";
-import { formatNumberInput, formatNumberTr, formatPercentTr, formatTry, parseLocaleNumber } from "../lib/formatters";
-import { withBasePath } from "../lib/sitePaths";
+import { parseLocaleNumber } from "../lib/formatters";
 
-type ScenarioKey = "a" | "b";
-type ScenarioForm = Record<"assetValue" | "downPayment" | "orgRate" | "termMonths" | "monthlyDiscountRate" | "monthlyRent", string> & {
-  company: CompanyName;
+type ScenarioKey = "A" | "B";
+type ScenarioForm = Record<"home" | "down" | "org" | "term" | "disc" | "rent", string> & {
+  type: OfferFinancingType;
 };
 
-const isMember = false;
+const inputFields = [
+  { key: "home", label: "Ev Değeri (TL)", decimals: 2 },
+  { key: "down", label: "Peşinat Tutarı (TL)", decimals: 2 },
+  { key: "org", label: "Organizasyon / Sistem Giriş Ücreti Oranı (%)", decimals: 4 },
+  { key: "term", label: "Vade (Ay)", decimals: 0 },
+  { key: "disc", label: "Aylık İskonto Oranı (%)", decimals: 4 },
+  { key: "rent", label: "Teslim Öncesi Kira Ödüyorsanız (TL)", decimals: 2 },
+] as const;
+
+const currencyFormatter = new Intl.NumberFormat("tr-TR", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const percentFormatter = new Intl.NumberFormat("tr-TR", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 4,
+});
+
+function formatTL(value: number) {
+  return `${currencyFormatter.format(Number.isFinite(value) ? value : 0)} TL`;
+}
+
+function formatPercent(value: number) {
+  return `${percentFormatter.format(Number.isFinite(value) ? value : 0)}%`;
+}
+
+function formatInputNumber(value: number, decimals = 2) {
+  return new Intl.NumberFormat("tr-TR", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals,
+  }).format(Number.isFinite(value) ? value : 0);
+}
 
 function toForm(input: OfferScenarioInput): ScenarioForm {
   return {
-    company: input.company,
-    assetValue: formatNumberInput(input.assetValue),
-    downPayment: formatNumberInput(input.downPayment),
-    orgRate: formatNumberTr(input.orgRate),
-    termMonths: formatNumberInput(input.termMonths),
-    monthlyDiscountRate: formatNumberTr(input.monthlyDiscountRate, 8),
-    monthlyRent: formatNumberInput(input.monthlyRent),
+    type: input.type,
+    home: formatInputNumber(input.home, 2),
+    down: formatInputNumber(input.down, 2),
+    org: formatInputNumber(input.org, 4),
+    term: formatInputNumber(input.term, 0),
+    disc: formatInputNumber(input.disc, 4),
+    rent: formatInputNumber(input.rent, 2),
   };
 }
 
-function toInput(assetType: ComparisonAssetType, form: ScenarioForm): OfferScenarioInput {
+function toInput(form: ScenarioForm): OfferScenarioInput {
   return {
-    assetType,
-    company: form.company,
-    assetValue: parseLocaleNumber(form.assetValue),
-    downPayment: parseLocaleNumber(form.downPayment),
-    orgRate: parseLocaleNumber(form.orgRate),
-    termMonths: parseLocaleNumber(form.termMonths),
-    monthlyDiscountRate: parseLocaleNumber(form.monthlyDiscountRate),
-    monthlyRent: parseLocaleNumber(form.monthlyRent),
+    type: form.type,
+    home: parseLocaleNumber(form.home),
+    down: parseLocaleNumber(form.down),
+    org: parseLocaleNumber(form.org),
+    term: parseLocaleNumber(form.term),
+    disc: parseLocaleNumber(form.disc),
+    rent: parseLocaleNumber(form.rent),
   };
 }
 
-function ScenarioField({
+function normalizeForm(form: ScenarioForm): ScenarioForm {
+  const result = calculateOfferScenario(toInput(form));
+  return toForm(result);
+}
+
+function Field({
   label,
   value,
   onChange,
@@ -54,237 +89,252 @@ function ScenarioField({
   label: string;
   value: string;
   onChange: (value: string) => void;
-  onBlur?: () => void;
+  onBlur: () => void;
 }) {
   return (
-    <label className="grid gap-2">
-      <span className="form-label">{label}</span>
-      <input className="form-control !h-[42px] !rounded-[12px] !bg-white !font-medium" value={value} onBlur={onBlur} onChange={(event) => onChange(event.target.value)} />
+    <label className="grid gap-2 md:grid-cols-[1.25fr_1fr] md:items-center">
+      <span className="text-[14px] font-bold text-[#34435d]">{label}</span>
+      <input
+        value={value}
+        onBlur={onBlur}
+        onChange={(event) => onChange(event.target.value)}
+        inputMode="decimal"
+        className="h-12 w-full rounded-[12px] border border-[#d6dfeb] bg-white px-3 text-right text-[16px] text-[#071a3a] outline-none transition focus:border-[#1259b2] focus:ring-4 focus:ring-blue-100"
+      />
     </label>
   );
 }
 
-function ResultLine({ label, value, tone = "default" }: { label: string; value: string; tone?: "default" | "good" | "bad" }) {
-  const color = tone === "good" ? "text-[#0b7a45]" : tone === "bad" ? "text-[#b42318]" : "text-[#081b3a]";
+function ScenarioInputCard({
+  scenario,
+  title,
+  form,
+  onChange,
+  onNormalize,
+  onReset,
+}: {
+  scenario: ScenarioKey;
+  title: string;
+  form: ScenarioForm;
+  onChange: (next: ScenarioForm) => void;
+  onNormalize: () => void;
+  onReset: () => void;
+}) {
+  const update = (field: keyof ScenarioForm, value: string | OfferFinancingType) => {
+    const next = { ...form, [field]: value };
+    if (field === "type") {
+      onChange(normalizeForm(next));
+      return;
+    }
+    onChange(next);
+  };
+
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-[#dde5ef] py-2.5 last:border-b-0">
-      <span className="text-[13px] text-[#43536a]">{label}</span>
-      <b className={`text-[14px] font-bold ${color}`}>{value}</b>
+    <section className="overflow-hidden rounded-[20px] border border-[#e3eaf3] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.08)]">
+      <div className="flex items-center justify-between gap-4 border-b border-[#e3eaf3] px-5 py-[18px]">
+        <h2 className="m-0 text-[20px] font-black tracking-[-0.02em] text-[#071a3a]">{title}</h2>
+        <span className="rounded-full bg-[#1259b2] px-3 py-1.5 text-[12px] font-black text-white">{scenario}</span>
+      </div>
+
+      <div className="grid gap-[13px] p-5">
+        <label className="grid gap-2 md:grid-cols-[1.25fr_1fr] md:items-center">
+          <span className="text-[14px] font-bold text-[#34435d]">Finansman Türü</span>
+          <select
+            value={form.type}
+            onChange={(event) => update("type", event.target.value as OfferFinancingType)}
+            className="h-12 w-full rounded-[12px] border border-[#d6dfeb] bg-white px-3 text-[16px] text-[#071a3a] outline-none transition focus:border-[#1259b2] focus:ring-4 focus:ring-blue-100"
+          >
+            <option value="konut">Konut</option>
+            <option value="arac">Araç</option>
+          </select>
+        </label>
+
+        {inputFields.map((field) => (
+          <Field
+            key={field.key}
+            label={field.label}
+            value={form[field.key]}
+            onBlur={onNormalize}
+            onChange={(value) => update(field.key, value)}
+          />
+        ))}
+
+        <p className="-mt-1 mb-1 text-[12px] text-[#64748b]">Vade sınırı: Konut max 120 ay, Araç max 60 ay.</p>
+
+        <div className="mt-1 flex gap-2.5">
+          <button
+            type="button"
+            onClick={onNormalize}
+            className="rounded-[12px] bg-[#1889f2] px-[18px] py-3 text-[14px] font-black text-white transition hover:-translate-y-0.5 hover:bg-[#126fc8]"
+          >
+            HESAPLA
+          </button>
+          <button
+            type="button"
+            onClick={onReset}
+            className="rounded-[12px] bg-[#e8eef6] px-[18px] py-3 text-[14px] font-black text-[#475569] transition hover:-translate-y-0.5 hover:bg-[#dce6f2]"
+          >
+            TEMİZLE
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResultRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between gap-3 border-b border-[#e3eaf3] py-[13px] text-[16px] last:border-b-0">
+      <span className="text-[#334155]">{label}</span>
+      <b className="text-right font-black text-[#071a3a]">{value}</b>
     </div>
   );
 }
 
-function ScenarioCard({
+function ResultCard({
   title,
-  tag,
-  highlighted,
-  form,
-  onChange,
-  onFormatMoney,
   result,
+  winner,
 }: {
   title: string;
-  tag: string;
-  highlighted: boolean;
-  form: ScenarioForm;
-  onChange: (field: keyof ScenarioForm, value: string) => void;
-  onFormatMoney: (field: keyof ScenarioForm) => void;
   result: OfferScenarioResult;
+  winner: boolean;
 }) {
   return (
-    <article className={`rounded-[16px] border bg-white shadow-[0_8px_24px_rgba(8,27,58,0.07)] ${highlighted ? "border-[#16a05a] ring-1 ring-[#16a05a]" : "border-[#dde5ef]"}`}>
-      <div className="flex items-center justify-between gap-3 border-b border-[#dde5ef] px-5 py-4">
-        <h2 className="text-[22px] font-bold text-[#172133]">{title}</h2>
-        <span className={`rounded-full px-3 py-1 text-[12px] font-extrabold ${highlighted ? "bg-[#078759] text-white" : "bg-[#edf4ff] text-[#1d4f9a]"}`}>
-          {tag}
-        </span>
-      </div>
-
-      <div className="grid gap-4 p-5">
-        <label className="grid gap-2">
-          <span className="form-label">Şirket Seçimi</span>
-          <select className="form-control !h-[42px] !rounded-[12px] !bg-white !font-medium" value={form.company} onChange={(event) => onChange("company", event.target.value as CompanyName)}>
-            {COMPANY_OPTIONS.map((company) => (
-              <option key={company} value={company}>
-                {company}
-              </option>
-            ))}
-          </select>
-          <span className="text-[12px] leading-5 text-[#8492a6]">{companyParams[form.company].notes}</span>
-        </label>
-
-        <div className="grid gap-3 md:grid-cols-2">
-          <ScenarioField label="Varlık Değeri (TL)" value={form.assetValue} onBlur={() => onFormatMoney("assetValue")} onChange={(value) => onChange("assetValue", value)} />
-          <ScenarioField label="Peşinat Tutarı (TL)" value={form.downPayment} onBlur={() => onFormatMoney("downPayment")} onChange={(value) => onChange("downPayment", value)} />
-          <ScenarioField label="Taksit Ayı" value={form.termMonths} onBlur={() => onFormatMoney("termMonths")} onChange={(value) => onChange("termMonths", value)} />
-          <ScenarioField label="Organizasyon Ücreti Oranı (%)" value={form.orgRate} onChange={(value) => onChange("orgRate", value)} />
-          <ScenarioField label="Aylık İskonto Oranı (%)" value={form.monthlyDiscountRate} onChange={(value) => onChange("monthlyDiscountRate", value)} />
-          <ScenarioField label="Teslim Öncesi Kira (TL)" value={form.monthlyRent} onBlur={() => onFormatMoney("monthlyRent")} onChange={(value) => onChange("monthlyRent", value)} />
-        </div>
-
-        <div className="rounded-[14px] border border-[#dde5ef] bg-[#f8fbff] p-4">
-          <ResultLine label="Aylık Taksit" value={formatTry(result.monthlyInstallment)} tone="good" />
-          <ResultLine label="Teslim Zamanı" value={`${result.deliveryMonth}. ay`} />
-          <ResultLine label="Finansman Tutarı" value={formatTry(result.financeAmount)} />
-          <ResultLine label="Org. Ücreti + Peşinat" value={formatTry(result.organizationFeeAndDownPayment)} />
-          <ResultLine label="Toplam Geri Ödeme" value={formatTry(result.totalRepayment)} />
-          <ResultLine label="Toplam Maliyet" value={formatTry(result.totalCost)} />
-          <ResultLine label="NPV / Karar Skoru" value={formatTry(result.npv)} tone="good" />
-        </div>
-
-        <details className="rounded-[14px] border border-[#e5edf5] bg-white px-4 py-3">
-          <summary className="cursor-pointer text-[13px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Gelişmiş detaylar</summary>
-          <div className="mt-3">
-            <ResultLine label="Peşinat oranı ilk taksit ile" value={formatPercentTr(result.downRateFirstInstallment * 100)} />
-            <ResultLine label="Peşinat oranı teslimata kadar" value={formatPercentTr(result.downRateUntilDelivery * 100)} />
-            <ResultLine label="Vade %40 süre" value={`${formatNumberTr(result.term40)} ay`} />
-            <ResultLine label="Tüm taksitlerin bugünkü değeri" value={formatTry(result.monthlyPaymentsPV)} />
-            <ResultLine label="Kira bugünkü değeri" value={formatTry(result.rentPV)} />
-            <ResultLine label="Finansmanın bugünkü maliyeti" value={formatTry(result.financingPresentCost)} />
-          </div>
-        </details>
-
-        <div className="rounded-[14px] border border-[#e6edf5] bg-[#fbfdff] px-4 py-3">
-          <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Tahmini Faiz Bilgisi</span>
-          {isMember && result.estimatedRateEquivalent !== null ? (
-            <strong className="mt-2 block text-[18px] font-black text-[#172133]">{formatPercentTr(result.estimatedRateEquivalent * 100)}</strong>
-          ) : (
-            <p className="mt-2 text-[13px] leading-6 text-[#66768d]">Tahmini faiz bilgisini görebilmek için üye olmanız gerekmektedir.</p>
-          )}
-        </div>
-      </div>
+    <article
+      className={`rounded-[20px] border bg-white p-5 shadow-[0_14px_32px_rgba(15,23,42,0.08)] ${
+        winner ? "border-[2px] border-[rgba(7,134,75,0.3)] bg-[linear-gradient(180deg,#ffffff,#f2fff8)]" : "border-[#e3eaf3]"
+      }`}
+    >
+      <h3 className="mb-4 text-[21px] font-black tracking-[-0.02em] text-[#071a3a]">{title}</h3>
+      <ResultRow label="Finansmanın Bugünkü Maliyeti" value={formatTL(result.financingPV)} />
+      <ResultRow label="Organizasyon/Sistem Giriş Ücreti + Peşinat" value={formatTL(result.orgPlusDown)} />
+      <ResultRow label="Aylık Taksit" value={formatTL(result.monthly)} />
+      <ResultRow label="Evin Teslim Zamanı" value={`${result.deliveryMonth}. Ay`} />
+      <ResultRow label="Tüm Muhtemel Kiraların Bugünkü Değeri" value={formatTL(result.rentsPV)} />
+      <ResultRow label="Toplam Geri Ödeme" value={formatTL(result.totalRepay)} />
+      <ResultRow label="Toplam Maliyet" value={formatTL(result.totalCost)} />
+      <ResultRow label="NPV Hesaplaması" value={formatTL(result.npv)} />
     </article>
   );
 }
 
+function diffClass(diff: number, higherGood = false) {
+  return higherGood
+    ? diff >= 0
+      ? "text-[#07864b]"
+      : "text-[#dc2626]"
+    : diff <= 0
+      ? "text-[#07864b]"
+      : "text-[#dc2626]";
+}
+
 export function OfferComparisonPage() {
-  const summaryRef = useRef<HTMLElement | null>(null);
-  const [assetType, setAssetType] = useState<ComparisonAssetType>("Konut");
   const [formA, setFormA] = useState<ScenarioForm>(() => toForm(defaultScenarioA));
   const [formB, setFormB] = useState<ScenarioForm>(() => toForm(defaultScenarioB));
 
-  const scenarioA = useMemo(() => toInput(assetType, formA), [assetType, formA]);
-  const scenarioB = useMemo(() => toInput(assetType, formB), [assetType, formB]);
-  const comparison = useMemo(() => compareOfferScenarios(scenarioA, scenarioB), [scenarioA, scenarioB]);
+  const comparison = useMemo(() => compareOfferScenarios(toInput(formA), toInput(formB)), [formA, formB]);
+  const { scenarioA, scenarioB } = comparison;
+  const winnerLabel = comparison.winner === "A" ? "Senaryo A" : "Senaryo B";
 
-  const resetDefaults = () => {
-    setAssetType("Konut");
-    setFormA(toForm(defaultScenarioA));
-    setFormB(toForm(defaultScenarioB));
-  };
-
-  const updateScenario = (scenario: ScenarioKey, field: keyof ScenarioForm, value: string) => {
-    const setter = scenario === "a" ? setFormA : setFormB;
-    setter((current) => ({ ...current, [field]: value }));
-  };
-
-  const formatMoneyField = (scenario: ScenarioKey, field: keyof ScenarioForm) => {
-    const setter = scenario === "a" ? setFormA : setFormB;
-    setter((current) => ({ ...current, [field]: formatNumberInput(parseLocaleNumber(current[field])) }));
-  };
-
-  const bestScenario = comparison.winner === "A" ? "Senaryo A" : comparison.winner === "B" ? "Senaryo B" : "Dengede";
+  const tableRows = [
+    ["Finansmanın Bugünkü Maliyeti", scenarioA.financingPV, scenarioB.financingPV, false],
+    ["Organizasyon + Peşinat", scenarioA.orgPlusDown, scenarioB.orgPlusDown, false],
+    ["Tüm Aylık Ödemelerin Bugünkü Değeri", scenarioA.allPaymentsPV, scenarioB.allPaymentsPV, false],
+    ["Tüm Muhtemel Kiraların Bugünkü Değeri", scenarioA.rentsPV, scenarioB.rentsPV, false],
+    ["NPV", scenarioA.npv, scenarioB.npv, true],
+  ] as const;
 
   return (
-    <main className="page-container py-8">
-      <section className="rounded-[22px] border border-[#dce7e2] bg-white p-5 shadow-[0_14px_34px_rgba(31,43,37,0.06)]">
-        <div className="flex flex-wrap items-start justify-between gap-4">
+    <main className="bg-[#f4f7fb]">
+      <div className="mx-auto max-w-[1220px] px-[18px] py-7">
+        <section className="mb-[22px] flex items-end justify-between gap-4 max-[900px]:block">
           <div>
-            <h1 className="text-[30px] font-bold text-[#172133]">Teklifleri Karşılaştır</h1>
-            <p className="mt-3 max-w-[900px] text-[14px] leading-7 text-[#6f7d94]">
-              İki şirket teklifini aynı formülle kıyaslayın; aylık taksit, teslim zamanı, NPV ve toplam maliyeti birlikte görün.
+            <h1 className="m-0 text-[34px] font-black tracking-[-0.03em] text-[#071a3a] max-[900px]:text-[28px]">
+              Teklif Karşılaştırma Modülü
+            </h1>
+            <p className="mt-2 text-[15px] text-[#64748b]">
+              İki tasarruf finansman teklifini bugünkü değer ve NPV mantığıyla karşılaştırır.
             </p>
           </div>
-          <a href={withBasePath("/kredi-test")} className="rounded-[12px] bg-[#eaf1fb] px-4 py-3 text-[14px] font-semibold text-[#1c4e98]">
-            Kredi Testi
-          </a>
-        </div>
-      </section>
+        </section>
 
-      <section className="mt-5 rounded-[18px] border border-[#dde5ef] bg-white p-4 shadow-[0_8px_24px_rgba(8,27,58,0.06)]">
-        <span className="form-label">Karşılaştırılacak Varlık Türü</span>
-        <div className="inline-grid grid-cols-2 gap-1 rounded-[12px] bg-[#eef3f8] p-1">
-          {(["Konut", "Taşıt"] as ComparisonAssetType[]).map((item) => (
-            <button
-              key={item}
-              type="button"
-              data-active={assetType === item}
-              onClick={() => setAssetType(item)}
-              className="rounded-[10px] px-5 py-2.5 text-[14px] font-semibold text-[#526071] data-[active=true]:bg-[#16a05a] data-[active=true]:text-white"
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-      </section>
+        <section className="grid grid-cols-2 gap-[18px] max-[900px]:grid-cols-1">
+          <ScenarioInputCard
+            scenario="A"
+            title="Senaryo A – Evim Sistemleri"
+            form={formA}
+            onChange={setFormA}
+            onNormalize={() => setFormA((current) => normalizeForm(current))}
+            onReset={() => setFormA(toForm(defaultScenarioA))}
+          />
+          <ScenarioInputCard
+            scenario="B"
+            title="Senaryo B – Evim Sistemleri"
+            form={formB}
+            onChange={setFormB}
+            onNormalize={() => setFormB((current) => normalizeForm(current))}
+            onReset={() => setFormB(toForm(defaultScenarioB))}
+          />
+        </section>
 
-      <section className="mt-5 grid gap-4 md:grid-cols-3">
-        <div className="rounded-[16px] border border-[#dde5ef] bg-white px-5 py-4 shadow-[0_8px_24px_rgba(8,27,58,0.06)]">
-          <span className="block text-[12px] font-semibold uppercase tracking-[0.14em] text-[#74829a]">Daha Mantıklı Senaryo</span>
-          <strong className="mt-2 block text-[24px] font-bold text-[#172133]">{bestScenario}</strong>
-        </div>
-        <div className="rounded-[16px] border border-[#dde5ef] bg-white px-5 py-4 shadow-[0_8px_24px_rgba(8,27,58,0.06)]">
-          <span className="block text-[12px] font-semibold uppercase tracking-[0.14em] text-[#74829a]">NPV Farkı</span>
-          <strong className={`mt-2 block text-[24px] font-bold ${comparison.npvDifference >= 0 ? "text-[#0b7a45]" : "text-[#b42318]"}`}>{formatTry(Math.abs(comparison.npvDifference))}</strong>
-        </div>
-        <div className="rounded-[16px] border border-[#dde5ef] bg-white px-5 py-4 shadow-[0_8px_24px_rgba(8,27,58,0.06)]">
-          <span className="block text-[12px] font-semibold uppercase tracking-[0.14em] text-[#74829a]">Toplam Maliyet Farkı</span>
-          <strong className={`mt-2 block text-[24px] font-bold ${comparison.totalCostDifference <= 0 ? "text-[#0b7a45]" : "text-[#b42318]"}`}>{formatTry(Math.abs(comparison.totalCostDifference))}</strong>
-        </div>
-      </section>
+        <section className="my-5 grid grid-cols-3 gap-3.5 max-[900px]:grid-cols-1">
+          <div className="rounded-[18px] border border-[#e3eaf3] bg-white p-[18px] shadow-[0_14px_32px_rgba(15,23,42,0.08)]">
+            <span className="mb-2.5 block text-[14px] font-black text-[#53627c]">Daha Mantıklı Teklif</span>
+            <strong className="text-[25px] font-black text-[#07864b]">{winnerLabel}</strong>
+          </div>
+          <div className="rounded-[18px] border border-[#e3eaf3] bg-white p-[18px] shadow-[0_14px_32px_rgba(15,23,42,0.08)]">
+            <span className="mb-2.5 block text-[14px] font-black text-[#53627c]">NPV Farkı</span>
+            <strong className="text-[25px] font-black text-[#1259b2]">{formatTL(comparison.npvDiff)}</strong>
+          </div>
+          <div className="rounded-[18px] border border-[#e3eaf3] bg-white p-[18px] shadow-[0_14px_32px_rgba(15,23,42,0.08)]">
+            <span className="mb-2.5 block text-[14px] font-black text-[#53627c]">En Düşük Toplam Maliyet</span>
+            <strong className="text-[25px] font-black text-[#c55b00]">{formatTL(comparison.bestCost)}</strong>
+          </div>
+        </section>
 
-      <section className="mt-5 grid gap-5 lg:grid-cols-2">
-        <ScenarioCard title="Senaryo A - Evim Sistemleri" tag={comparison.winner === "A" ? "Daha Mantıklı" : "Senaryo A"} highlighted={comparison.winner === "A"} form={formA} onChange={(field, value) => updateScenario("a", field, value)} onFormatMoney={(field) => formatMoneyField("a", field)} result={comparison.scenarioA} />
-        <ScenarioCard title="Senaryo B - Evim Sistemleri" tag={comparison.winner === "B" ? "Daha Mantıklı" : "Senaryo B"} highlighted={comparison.winner === "B"} form={formB} onChange={(field, value) => updateScenario("b", field, value)} onFormatMoney={(field) => formatMoneyField("b", field)} result={comparison.scenarioB} />
-      </section>
+        <section className="grid grid-cols-2 gap-[18px] max-[900px]:grid-cols-1">
+          <ResultCard title="Senaryo A Sonuçları" result={scenarioA} winner={comparison.winner === "A"} />
+          <ResultCard title="Senaryo B Sonuçları" result={scenarioB} winner={comparison.winner === "B"} />
+        </section>
 
-      <div className="mt-5 flex flex-wrap gap-3">
-        <button type="button" onClick={() => summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })} className="rounded-[12px] bg-[#1d74f5] px-5 py-3 text-[14px] font-semibold text-white">
-          Hesapla
-        </button>
-        <button type="button" onClick={resetDefaults} className="rounded-[12px] bg-[#eaf1fb] px-5 py-3 text-[14px] font-semibold text-[#1c4e98]">
-          Varsayılanlara Dön
-        </button>
-      </div>
-
-      <section ref={summaryRef} className="mt-5 rounded-[18px] border border-[#dde5ef] bg-white shadow-[0_8px_24px_rgba(8,27,58,0.06)]">
-        <div className="flex items-center justify-between gap-3 border-b border-[#dde5ef] px-5 py-4">
-          <h2 className="text-[24px] font-bold text-[#172133]">Karşılaştırma Özeti</h2>
-          <span className="rounded-full bg-[#1d74f5] px-3 py-1 text-[12px] font-extrabold text-white">Otomatik</span>
-        </div>
-        <div className="overflow-x-auto p-5">
-          <table className="min-w-[760px] text-left text-[13px]">
-            <thead className="bg-[#fbfdff] text-[11px] font-bold uppercase tracking-[0.08em] text-[#74829a]">
-              <tr>
-                <th className="px-4 py-3">Kalem</th>
-                <th className="px-4 py-3">Senaryo A</th>
-                <th className="px-4 py-3">Senaryo B</th>
-                <th className="px-4 py-3">Fark (A - B)</th>
+        <section className="mt-[18px] overflow-auto rounded-[20px] border border-[#e3eaf3] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.08)]">
+          <h2 className="m-0 border-b border-[#e3eaf3] px-5 py-[18px] text-[21px] font-black text-[#071a3a]">
+            Karşılaştırma Özeti
+          </h2>
+          <table className="w-full min-w-[780px] border-collapse text-[14px]">
+            <thead>
+              <tr className="bg-[#f8fafc] text-[13px] uppercase tracking-[0.02em] text-[#334155]">
+                <th className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-left">Kalem</th>
+                <th className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-right">Senaryo A</th>
+                <th className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-right">Senaryo B</th>
+                <th className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-right">Fark (A-B)</th>
               </tr>
             </thead>
             <tbody>
-              {[
-                ["NPV Hesaplaması", comparison.scenarioA.npv, comparison.scenarioB.npv],
-                ["Toplam Maliyet", comparison.scenarioA.totalCost, comparison.scenarioB.totalCost],
-                ["Aylık Taksit", comparison.scenarioA.monthlyInstallment, comparison.scenarioB.monthlyInstallment],
-              ].map(([label, a, b]) => (
-                <tr className="border-t border-[#edf2f7]" key={String(label)}>
-                  <td className="px-4 py-3">{label}</td>
-                  <td className="px-4 py-3">{formatTry(Number(a))}</td>
-                  <td className="px-4 py-3">{formatTry(Number(b))}</td>
-                  <td className={`px-4 py-3 ${Number(a) - Number(b) >= 0 ? "text-[#0b7a45]" : "text-[#b42318]"}`}>{formatTry(Number(a) - Number(b))}</td>
-                </tr>
-              ))}
-              <tr className="border-t border-[#edf2f7]">
-                <td className="px-4 py-3">Teslim Zamanı</td>
-                <td className="px-4 py-3">{comparison.scenarioA.deliveryMonth}. ay</td>
-                <td className="px-4 py-3">{comparison.scenarioB.deliveryMonth}. ay</td>
-                <td className="px-4 py-3">{comparison.scenarioA.deliveryMonth - comparison.scenarioB.deliveryMonth} ay</td>
-              </tr>
+              {tableRows.map(([label, a, b, higherGood]) => {
+                const diff = a - b;
+                return (
+                  <tr key={label}>
+                    <td className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-left font-bold text-[#071a3a]">
+                      {label}
+                    </td>
+                    <td className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-right font-bold text-[#071a3a]">
+                      {formatTL(a)}
+                    </td>
+                    <td className="border-b border-[#e3eaf3] px-[15px] py-[13px] text-right font-bold text-[#071a3a]">
+                      {formatTL(b)}
+                    </td>
+                    <td className={`border-b border-[#e3eaf3] px-[15px] py-[13px] text-right font-black ${diffClass(diff, higherGood)}`}>
+                      {formatTL(diff)}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }

@@ -50,10 +50,10 @@ export function LoginPage() {
           <section className="rounded-[30px] bg-white/95 p-7 shadow-[0_24px_58px_rgba(15,23,42,0.08)] md:p-10">
             <div className="text-center">
               <img
-                src={withBasePath("/logo.jpg")}
+                src={withBasePath("/logo.png")}
                 alt=""
                 aria-hidden="true"
-                className="mx-auto h-16 w-16 rounded-[16px] object-cover shadow-[0_10px_22px_rgba(15,23,42,0.08)]"
+                className="mx-auto h-20 w-20 rounded-[20px] object-cover shadow-[0_12px_26px_rgba(15,23,42,0.1)]"
               />
               <h1 className="mt-6 text-[28px] font-black leading-[1.02] tracking-[-0.05em] text-[#07111f]">
                 Tasarruf Finansmanı

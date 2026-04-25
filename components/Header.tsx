@@ -30,12 +30,15 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
           className="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]"
         >
           <img
-            src={withBasePath("/logo.jpg")}
+            src={withBasePath("/logo.png")}
             alt=""
             aria-hidden="true"
-            className="h-10 w-10 rounded-[10px] object-cover"
+            className="h-12 w-12 rounded-[12px] object-cover"
           />
-          Tasarruf Finansmanı
+          <span className="flex items-baseline text-[20px] font-black tracking-[-0.055em] md:text-[22px]">
+            <span className="text-[#071a3a]">Tasarruf</span>
+            <span className="ml-1 text-[#ef3f23]">finans</span>
+          </span>
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -132,7 +135,11 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
       {mobileOpen ? (
         <div className="border-t border-slate-200 bg-white lg:hidden">
           <div className="page-container grid gap-2 py-4">
-            <a className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]" href={withBasePath("/")}>
+            <a
+              className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f3f7f4]"
+              href={withBasePath("/")}
+              onClick={() => setMobileOpen(false)}
+            >
               Ana Sayfa
             </a>
 
