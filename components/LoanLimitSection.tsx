@@ -26,7 +26,7 @@ const moduleCards = [
 export function LoanLimitSection() {
   return (
     <section id="loanLimit" className="page-container mt-8 scroll-mt-24">
-      <div className="rounded-[28px] border border-[#dce7e2] bg-white p-6 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-7">
+      <div className="rounded-[28px] border border-[#f0dfd2] bg-white p-6 shadow-[0_18px_48px_rgba(77,48,31,0.07)] md:p-7">
         <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#e8eef5] pb-5">
           <div className="max-w-[700px]">
             <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#7b8aa2]">
@@ -48,14 +48,14 @@ export function LoanLimitSection() {
               key={card.href}
               className={`rounded-[22px] border px-5 py-5 shadow-[0_10px_24px_rgba(27,39,51,0.05)] ${
                 card.tone === "green"
-                  ? "border-[#dceee2] bg-[linear-gradient(180deg,#ffffff_0%,#f8fffb_100%)]"
+                  ? "border-[#f3ddce] bg-[linear-gradient(180deg,#ffffff_0%,#fff8f2_100%)]"
                   : "border-[#dfe8f5] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)]"
               }`}
             >
               <span
                 className={`inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] ${
                   card.tone === "green"
-                    ? "bg-[#eafbf1] text-[#168b53]"
+                    ? "bg-[#fff0e3] text-[#a94612]"
                     : "bg-[#eaf1fb] text-[#1c4e98]"
                 }`}
               >
@@ -67,7 +67,7 @@ export function LoanLimitSection() {
                 href={card.href}
                 className={`mt-5 inline-flex rounded-[14px] px-5 py-3 text-[14px] font-semibold transition-all duration-300 ${
                   card.tone === "green"
-                    ? "bg-[#16a05a] text-white shadow-[0_14px_24px_rgba(22,160,90,0.16)] hover:-translate-y-0.5 hover:bg-[#12874b]"
+                    ? "bg-[#f47a2a] text-white shadow-[0_14px_24px_rgba(244,122,42,0.18)] hover:-translate-y-0.5 hover:bg-[#d85f17]"
                     : "bg-[#3a7bf6] text-white shadow-[0_14px_24px_rgba(58,123,246,0.18)] hover:-translate-y-0.5 hover:bg-[#2f69d8]"
                 }`}
               >

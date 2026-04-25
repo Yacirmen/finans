@@ -6,7 +6,7 @@ import { withBasePath } from "../lib/sitePaths";
 const features = [
   {
     icon: "⚡",
-    tone: "bg-[#d9fbe5] text-[#16a05a]",
+    tone: "bg-[#fff0e3] text-[#f47a2a]",
     title: "Sınırsız Analiz",
     text: "Tüm şirket ve senaryolar için limitsiz hesaplama yapın, karşılaştırın.",
   },
@@ -45,7 +45,7 @@ export function LoginPage() {
 
   return (
     <main className="min-h-screen bg-[#f6f8fb] px-4 py-10">
-      <section className="mx-auto min-h-[780px] w-full max-w-[1120px] overflow-hidden rounded-[34px] bg-[linear-gradient(125deg,#dbffe8_0%,#ffffff_43%,#e7f3ff_100%)] px-6 py-10 md:px-10 lg:px-12 lg:py-16">
+      <section className="mx-auto min-h-[780px] w-full max-w-[1120px] overflow-hidden rounded-[34px] bg-[linear-gradient(125deg,#fff0e3_0%,#ffffff_43%,#e7f3ff_100%)] px-6 py-10 md:px-10 lg:px-12 lg:py-16">
         <div className="grid min-h-[680px] items-center gap-12 lg:grid-cols-[0.96fr_1fr]">
           <section className="rounded-[30px] bg-white/95 p-7 shadow-[0_24px_58px_rgba(15,23,42,0.08)] md:p-10">
             <div className="text-center">
@@ -57,20 +57,20 @@ export function LoginPage() {
               />
               <h1 className="mt-6 text-[28px] font-black leading-[1.02] tracking-[-0.05em] text-[#07111f]">
                 Tasarruf Finansmanı
-                <span className="block text-[#138746]">Maliyet Hesaplayıcı</span>
+                <span className="block text-[#c45719]">Maliyet Hesaplayıcı</span>
               </h1>
             </div>
 
             <div className="mt-9 grid grid-cols-2 rounded-[14px] bg-[#f0f2f6] p-1.5">
               <button
-                className={`h-11 rounded-[11px] text-[13px] font-black transition ${mode === "login" ? "bg-white text-[#138746] shadow-sm" : "text-[#667085]"}`}
+                className={`h-11 rounded-[11px] text-[13px] font-black transition ${mode === "login" ? "bg-white text-[#a94612] shadow-sm" : "text-[#667085]"}`}
                 onClick={() => setMode("login")}
                 type="button"
               >
                 Giriş Yap
               </button>
               <button
-                className={`h-11 rounded-[11px] text-[13px] font-black transition ${mode === "register" ? "bg-white text-[#138746] shadow-sm" : "text-[#667085]"}`}
+                className={`h-11 rounded-[11px] text-[13px] font-black transition ${mode === "register" ? "bg-white text-[#a94612] shadow-sm" : "text-[#667085]"}`}
                 onClick={() => setMode("register")}
                 type="button"
               >
@@ -96,7 +96,7 @@ export function LoginPage() {
               <label className="block">
                 <span className="text-[12px] font-black uppercase tracking-[0.1em] text-[#667085]">E-posta Adresi</span>
                 <input
-                  className="mt-2 h-[54px] w-full rounded-[12px] border border-[#d7e0ea] bg-white px-4 text-[15px] font-semibold text-[#1f2937] outline-none transition focus:border-[#16a05a] focus:ring-4 focus:ring-emerald-100"
+                  className="mt-2 h-[54px] w-full rounded-[12px] border border-[#d7e0ea] bg-white px-4 text-[15px] font-semibold text-[#1f2937] outline-none transition focus:border-[#f47a2a] focus:ring-4 focus:ring-[#fff0e3]"
                   inputMode="email"
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="ornek@mail.com"
@@ -107,12 +107,12 @@ export function LoginPage() {
               <label className="block">
                 <span className="flex items-center justify-between text-[12px] font-black uppercase tracking-[0.1em] text-[#667085]">
                   Şifre
-                  <a className="normal-case tracking-normal text-[#138746]" href="#forgot">
+                  <a className="normal-case tracking-normal text-[#a94612]" href="#forgot">
                     Şifremi unuttum?
                   </a>
                 </span>
                 <input
-                  className="mt-2 h-[54px] w-full rounded-[12px] border border-[#d7e0ea] bg-white px-4 text-[15px] font-semibold text-[#1f2937] outline-none transition focus:border-[#16a05a] focus:ring-4 focus:ring-emerald-100"
+                  className="mt-2 h-[54px] w-full rounded-[12px] border border-[#d7e0ea] bg-white px-4 text-[15px] font-semibold text-[#1f2937] outline-none transition focus:border-[#f47a2a] focus:ring-4 focus:ring-[#fff0e3]"
                   onChange={(event) => setPassword(event.target.value)}
                   placeholder="••••••••"
                   type="password"
@@ -121,19 +121,19 @@ export function LoginPage() {
               </label>
 
               <button
-                className="mt-6 h-[56px] rounded-[13px] bg-[#18a750] text-[16px] font-black text-white shadow-[0_14px_26px_rgba(22,160,90,0.22)] transition hover:-translate-y-0.5 hover:bg-[#138d45]"
+                className="mt-6 h-[56px] rounded-[13px] bg-[#f47a2a] text-[16px] font-black text-white shadow-[0_14px_26px_rgba(244,122,42,0.22)] transition hover:-translate-y-0.5 hover:bg-[#d85f17]"
                 type="submit"
               >
                 {mode === "login" ? "Giriş Yap" : "Kayıt Ol"}
               </button>
-              {message ? <p className="text-center text-sm font-bold text-[#138746]">{message}</p> : null}
+              {message ? <p className="text-center text-sm font-bold text-[#a94612]">{message}</p> : null}
             </form>
           </section>
 
           <section>
             <h2 className="max-w-[560px] text-[clamp(36px,5vw,58px)] font-black leading-[0.95] tracking-[-0.06em] text-[#07111f]">
               Üye Olun, Tasarruf Finansmanı
-              <span className="block text-[#16a05a]">Planınızı Optimize Edin</span>
+              <span className="block text-[#f47a2a]">Planınızı Optimize Edin</span>
             </h2>
             <p className="mt-5 max-w-[520px] text-[18px] font-medium leading-8 text-[#344054]">
               Faizsiz sistemlerin tüm gizli maliyetlerini ve fırsatlarını profesyonel araçlarla keşfedin.

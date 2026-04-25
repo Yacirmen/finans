@@ -71,9 +71,9 @@ function FeatureCard({
   return (
     <a
       href={href}
-      className="group relative rounded-[26px] border border-[#e5f0ea] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(39,57,49,0.11)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(39,57,49,0.16)]"
+      className="group relative rounded-[26px] border border-[#f6dfcf] bg-white/94 px-6 py-7 text-center shadow-[0_18px_40px_rgba(77,48,31,0.09)] backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(77,48,31,0.14)]"
     >
-      <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#cbf3dd] bg-[linear-gradient(180deg,#f4fff8_0%,#effdf6_100%)] text-[#16a05a] shadow-[0_10px_22px_rgba(24,160,90,0.08)] transition-transform duration-300 group-hover:scale-[1.03]">
+      <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-[18px] border border-[#ffd8bd] bg-[linear-gradient(180deg,#fffaf6_0%,#fff0e3_100%)] text-[#f47a2a] shadow-[0_10px_22px_rgba(244,122,42,0.1)] transition-transform duration-300 group-hover:scale-[1.03]">
         {icon}
       </div>
       <h2 className="text-[17px] font-extrabold tracking-[-0.03em] text-[#182133]">{title}</h2>
@@ -85,13 +85,13 @@ function FeatureCard({
 export function HeroSection() {
   return (
     <section className="page-container mt-5">
-      <div className="overflow-hidden rounded-[30px] border border-[#dcefe4] bg-white shadow-[0_12px_34px_rgba(36,61,50,0.07)]">
+      <div className="overflow-hidden rounded-[30px] border border-[#f1dfd1] bg-white shadow-[0_12px_34px_rgba(77,48,31,0.07)]">
         <div className="relative grid min-h-[472px] gap-10 px-6 py-7 md:px-10 md:py-9 lg:grid-cols-[1.03fr_0.97fr] lg:px-12 lg:py-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_7%_14%,rgba(104,246,189,0.22),transparent_22%),radial-gradient(circle_at_88%_82%,rgba(118,242,201,0.18),transparent_20%),linear-gradient(180deg,#f8fffb_0%,#f9fbff_100%)]" />
-          <div className="absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(28,164,102,0.12)_1px,transparent_1px)] [background-size:20px_20px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_7%_14%,rgba(255,198,154,0.34),transparent_22%),radial-gradient(circle_at_88%_82%,rgba(244,122,42,0.16),transparent_20%),linear-gradient(180deg,#fffaf6_0%,#f9fbff_100%)]" />
+          <div className="absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(244,122,42,0.14)_1px,transparent_1px)] [background-size:20px_20px]" />
 
           <div className="relative z-10 flex min-h-[320px] flex-col justify-center pt-2">
-            <span className="mb-6 inline-flex w-fit rounded-full border border-[#d8f5e5] bg-[#f4fff8] px-4 py-2 text-[14px] font-semibold text-[#228a52] shadow-[0_6px_16px_rgba(22,160,90,0.07)]">
+            <span className="mb-6 inline-flex w-fit rounded-full border border-[#ffd8bd] bg-[#fff4ea] px-4 py-2 text-[14px] font-semibold text-[#a94612] shadow-[0_6px_16px_rgba(244,122,42,0.09)]">
               Banka Kredisi ile Karşılaştırmalı Analiz
             </span>
 
@@ -100,13 +100,13 @@ export function HeroSection() {
               <br />
               Finansmanının
               <br />
-              <span className="text-[#189b57]">Gerçek Maliyetini</span>
+              <span className="text-[#f47a2a]">Gerçek Maliyetini</span>
               <br />
               Hesaplayın
             </h1>
 
             <p className="mt-6 max-w-[590px] text-[18px] leading-8 text-[#55657b]">
-              <span className="font-bold text-[#1c9857]">Enflasyondan</span> arındırılmış net maliyet analizi, banka
+              <span className="font-bold text-[#c45719]">Enflasyondan</span> arındırılmış net maliyet analizi, banka
               kredisi karşılaştırması ve peşinat optimizasyonu tek hesaplamada.
             </p>
 
@@ -116,13 +116,13 @@ export function HeroSection() {
           </div>
 
           <div className="relative z-10 flex items-center justify-center lg:justify-end">
-            <div className="pointer-events-none absolute inset-y-3 right-0 hidden w-[94%] rounded-[34px] bg-[radial-gradient(circle_at_84%_83%,rgba(92,236,180,0.28),transparent_25%),linear-gradient(145deg,rgba(219,250,233,0.62),rgba(247,251,255,0.08))] lg:block" />
+            <div className="pointer-events-none absolute inset-y-3 right-0 hidden w-[94%] rounded-[34px] bg-[radial-gradient(circle_at_84%_83%,rgba(255,184,132,0.26),transparent_25%),linear-gradient(145deg,rgba(255,238,224,0.68),rgba(247,251,255,0.08))] lg:block" />
             <div className="pointer-events-none absolute right-[8%] top-[2%] hidden h-[90%] w-[68%] lg:block">
               <div className="absolute right-[10%] top-[1%] h-[61%] w-[58%] rotate-[18deg] rounded-[18px] bg-[linear-gradient(180deg,rgba(163,192,197,0.22),rgba(104,145,150,0.38))]" />
               <div className="absolute right-[22%] top-[8%] h-[8%] w-[8%] rounded-t-[5px] bg-white/80 shadow-[0_8px_14px_rgba(19,37,30,0.08)]" />
               <div className="absolute right-[31%] top-[44%] h-[26%] w-[34%] rounded-[16px] bg-white/60 shadow-[0_18px_38px_rgba(36,62,50,0.12)]" />
-              <div className="absolute bottom-[8%] right-[4%] h-[22%] w-[36%] rounded-[999px_999px_18px_18px] bg-[linear-gradient(90deg,rgba(238,255,249,0.96),rgba(163,234,210,0.94))] opacity-95" />
-              <div className="absolute bottom-[2%] right-[6%] h-[20%] w-[38%] rounded-full bg-[radial-gradient(circle,rgba(93,235,182,0.34),transparent_68%)] blur-2xl" />
+              <div className="absolute bottom-[8%] right-[4%] h-[22%] w-[36%] rounded-[999px_999px_18px_18px] bg-[linear-gradient(90deg,rgba(255,250,246,0.96),rgba(255,195,151,0.86))] opacity-95" />
+              <div className="absolute bottom-[2%] right-[6%] h-[20%] w-[38%] rounded-full bg-[radial-gradient(circle,rgba(244,122,42,0.26),transparent_68%)] blur-2xl" />
             </div>
 
             <div className="grid w-full max-w-[460px] gap-4 sm:grid-cols-2 lg:translate-x-[6px]">

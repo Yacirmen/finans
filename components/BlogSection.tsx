@@ -45,16 +45,16 @@ export function BlogSection() {
       </div>
 
       <div className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
-        <article className="rounded-[24px] border border-emerald-100 bg-white p-7 shadow-[0_18px_42px_rgba(15,23,42,0.07)]">
+        <article className="rounded-[24px] border border-[#ffd8bd] bg-white p-7 shadow-[0_18px_42px_rgba(77,48,31,0.07)]">
           <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-wide">
             <span className="text-slate-400">{featured.date}</span>
-            <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-emerald-700">{featured.category}</span>
+            <span className="rounded-full bg-[#fff0e3] px-2 py-0.5 text-[#a94612]">{featured.category}</span>
           </div>
           <h3 className="mt-5 max-w-2xl text-[clamp(26px,4vw,40px)] font-black leading-[1.04] tracking-[-0.05em] text-slate-950">
             {featured.title}
           </h3>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600">{featured.excerpt}</p>
-          <a className="mt-6 inline-flex rounded-xl bg-[#16a05a] px-5 py-3 text-sm font-black text-white shadow-[0_14px_26px_rgba(22,160,90,0.16)]" href="#blog">
+          <a className="mt-6 inline-flex rounded-xl bg-[#f47a2a] px-5 py-3 text-sm font-black text-white shadow-[0_14px_26px_rgba(244,122,42,0.16)]" href="#blog">
             Devamını Oku
           </a>
         </article>

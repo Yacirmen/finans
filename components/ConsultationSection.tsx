@@ -37,7 +37,7 @@ export function ConsultationSection() {
     <section className="page-container mt-14">
       <div className="grid gap-6 rounded-[26px] border border-slate-200 bg-white p-6 shadow-[0_18px_42px_rgba(15,23,42,0.06)] lg:grid-cols-[0.8fr_1.2fr] md:p-8">
         <div>
-          <span className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">Danışmanlık</span>
+          <span className="text-xs font-black uppercase tracking-[0.16em] text-[#a94612]">Danışmanlık</span>
           <h2 className="mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950">Uzmanına Danış</h2>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             Kayıt, ücret olmaksızın teklif talebinizi oluşturun. Bilgiler şimdilik sadece bu tarayıcıda saklanır.
@@ -55,10 +55,10 @@ export function ConsultationSection() {
           <input className="form-control" placeholder="Peşinat" value={form.downPayment} onChange={(event) => setField("downPayment", event.target.value)} />
           <input className="form-control" placeholder="Taksit ayı" value={form.term} onChange={(event) => setField("term", event.target.value)} />
           <input className="form-control" placeholder="Notunuz" value={form.note} onChange={(event) => setField("note", event.target.value)} />
-          <button className="rounded-[14px] bg-[#16a05a] px-6 py-3 text-sm font-black text-white shadow-[0_14px_26px_rgba(22,160,90,0.18)] md:col-span-2" type="submit">
+          <button className="rounded-[14px] bg-[#f47a2a] px-6 py-3 text-sm font-black text-white shadow-[0_14px_26px_rgba(244,122,42,0.18)] md:col-span-2" type="submit">
             Talebi Kaydet
           </button>
-          {saved ? <p className="text-sm font-semibold text-emerald-700 md:col-span-2">Talebiniz kaydedildi.</p> : null}
+          {saved ? <p className="text-sm font-semibold text-[#a94612] md:col-span-2">Talebiniz kaydedildi.</p> : null}
         </form>
       </div>
     </section>
