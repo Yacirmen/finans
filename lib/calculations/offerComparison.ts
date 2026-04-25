@@ -1,6 +1,6 @@
 import { companyParams, type CompanyName } from "../companyParams";
 
-export type ComparisonAssetType = "Konut" | "Taşıt";
+export type ComparisonAssetType = "Konut" | "Taşıt" | "konut" | "arac";
 
 export type OfferScenarioInput = {
   assetType: ComparisonAssetType;
@@ -16,6 +16,25 @@ export type OfferScenarioInput = {
 
 export type OfferScenarioResult = {
   input: OfferScenarioInput;
+  type: "konut" | "arac";
+  home: number;
+  down: number;
+  org: number;
+  term: number;
+  disc: number;
+  rent: number;
+  deliveryMonth: number;
+  financingPV: number;
+  firstDownRatio: number;
+  monthly: number;
+  allPaymentsPV: number;
+  orgPlusDown: number;
+  startOut: number;
+  credit: number;
+  totalRepay: number;
+  totalCost: number;
+  rentsPV: number;
+  npv: number;
   downRateFirstInstallment: number;
   downRateUntilDelivery: number;
   organizationFee: number;
@@ -27,11 +46,8 @@ export type OfferScenarioResult = {
   monthlyPaymentsPV: number;
   totalRepayment: number;
   totalInterestAndCosts: number;
-  totalCost: number;
-  deliveryMonth: number;
   rentPV: number;
   financingPresentCost: number;
-  npv: number;
   estimatedRateEquivalent: number | null;
   warnings: string[];
 };
@@ -39,9 +55,11 @@ export type OfferScenarioResult = {
 export type OfferComparisonResult = {
   scenarioA: OfferScenarioResult;
   scenarioB: OfferScenarioResult;
-  winner: "A" | "B" | null;
+  winner: "A" | "B";
   npvDifference: number;
+  npvDiff: number;
   totalCostDifference: number;
+  bestCost: number;
 };
 
 export const defaultScenarioA: OfferScenarioInput = {
@@ -51,7 +69,7 @@ export const defaultScenarioA: OfferScenarioInput = {
   downPayment: 0,
   orgRate: 8.5,
   termMonths: 84,
-  monthlyDiscountRate: 2.0833333333333335,
+  monthlyDiscountRate: 2.0833333333333336,
   monthlyRent: 25_000,
 };
 
@@ -62,19 +80,28 @@ export const defaultScenarioB: OfferScenarioInput = {
   downPayment: 750_000,
   orgRate: 8.5,
   termMonths: 48,
-  monthlyDiscountRate: 2.0833333333333335,
+  monthlyDiscountRate: 2.0833333333333336,
   monthlyRent: 25_000,
 };
 
-function clampTerm(assetType: ComparisonAssetType, term: number) {
-  const maxTerm = assetType === "Taşıt" ? 60 : 120;
+function normalizeType(assetType: ComparisonAssetType): "konut" | "arac" {
+  return assetType === "Taşıt" || assetType === "arac" ? "arac" : "konut";
+}
+
+function clampTerm(type: "konut" | "arac", term: number) {
+  const maxTerm = type === "arac" ? 60 : 120;
   return Math.max(1, Math.min(maxTerm, Math.round(term || 1)));
 }
 
-function excelPresentValue(payment: number, rate: number, months: number) {
-  if (!payment || !months) return 0;
-  if (!rate) return payment * months;
-  return payment * ((1 - Math.pow(1 + rate, -months)) / rate);
+export function pv(rate: number, nper: number, pmt: number, fv = 0) {
+  if (!Number.isFinite(rate) || !Number.isFinite(nper) || !Number.isFinite(pmt) || !Number.isFinite(fv)) return 0;
+  if (nper <= 0) return 0;
+
+  if (rate === 0) {
+    return -(pmt * nper + fv);
+  }
+
+  return -(pmt * (1 - Math.pow(1 + rate, -nper)) / rate + fv * Math.pow(1 + rate, -nper));
 }
 
 export function calculateEstimatedBankRateEquivalent() {
@@ -83,58 +110,74 @@ export function calculateEstimatedBankRateEquivalent() {
 }
 
 export function calculateOfferScenario(input: OfferScenarioInput): OfferScenarioResult {
+  const type = normalizeType(input.assetType);
   const params = companyParams[input.company];
-  const assetType = input.assetType;
-  const assetValue = Math.max(0, input.assetValue || 0);
-  const downPayment = Math.max(0, input.downPayment || 0);
-  const termMonths = clampTerm(assetType, input.termMonths);
-  const monthlyDiscountRate = Math.max(0, input.monthlyDiscountRate || 0) / 100;
-  const monthlyRent = Math.max(0, input.monthlyRent || 0);
+  const home = Math.max(0, input.assetValue || 0);
+  const down = Math.min(Math.max(0, input.downPayment || 0), home);
+  const term = clampTerm(type, input.termMonths);
+  const disc = Math.max(0, input.monthlyDiscountRate || 0);
+  const monthlyDiscountRate = disc / 100;
+  const rent = Math.max(0, input.monthlyRent || 0);
   const additionalCost = Math.max(0, input.additionalCost || 0);
-  const orgRate = Math.max(0, input.orgRate || params.defaultServiceFeeRate || 0);
+  const org = Math.max(0, input.orgRate || params.defaultServiceFeeRate || 0);
   const warnings: string[] = [];
 
-  if (input.termMonths !== termMonths) {
-    warnings.push(assetType === "Taşıt" ? "Taşıt için vade 60 ay ile sınırlandı." : "Konut için vade 120 ay ile sınırlandı.");
+  if (input.termMonths !== term) {
+    warnings.push(type === "arac" ? "Araç için vade 60 ay ile sınırlandı." : "Konut için vade 120 ay ile sınırlandı.");
   }
 
-  const downRateFirstInstallment = assetValue > 0 ? downPayment / assetValue : 0;
-  const financeAmount = Math.max(0, assetValue - downPayment);
-  const monthlyInstallment = financeAmount / termMonths;
-  const deliveryBase = Math.ceil(termMonths * 0.4 * (1 - downRateFirstInstallment));
-  const deliveryMonth = Math.max(5, Math.min(termMonths, deliveryBase));
-  const downRateUntilDelivery = assetValue > 0 ? (downPayment + deliveryMonth * monthlyInstallment) / assetValue : 0;
+  if ((input.downPayment || 0) > home) {
+    warnings.push("Peşinat varlık değerini aşamaz; varlık değerine eşitlendi.");
+  }
 
-  const organizationFee = assetValue * (orgRate / 100);
-  const organizationFeeAndDownPayment = organizationFee + downPayment;
-  const initialCashOut = downPayment + organizationFeeAndDownPayment;
-  const term40 = termMonths * 0.4;
-  const monthlyPaymentsPV = excelPresentValue(monthlyInstallment, monthlyDiscountRate, termMonths);
-  const totalRepayment = monthlyInstallment * termMonths + additionalCost;
-  const totalInterestAndCosts = additionalCost;
-  const totalCost = totalRepayment + initialCashOut;
-  const rentPV = excelPresentValue(monthlyRent, monthlyDiscountRate, deliveryMonth);
-  const financingPresentCost = assetValue / Math.pow(1 + monthlyDiscountRate, deliveryMonth);
-  const npv = monthlyPaymentsPV + rentPV + organizationFeeAndDownPayment - financingPresentCost;
+  const firstDownRatio = home > 0 ? down / home : 0;
+  const deliveryMonth = Math.max(5, Math.ceil(term * 0.4 * (1 - firstDownRatio)));
+  const financingPV = home / Math.pow(1 + monthlyDiscountRate, deliveryMonth);
+  const credit = Math.max(0, home - down);
+  const monthly = credit / term;
+  const allPaymentsPV = pv(monthlyDiscountRate, term, -monthly);
+  const orgPlusDown = home * org / 100 + down;
+  const startOut = down + orgPlusDown;
+  const totalRepay = monthly * term + additionalCost;
+  const totalCost = totalRepay + startOut;
+  const rentsPV = pv(monthlyDiscountRate, deliveryMonth, -rent, 0);
+  const npv = allPaymentsPV + rentsPV + orgPlusDown - financingPV;
+  const downRateUntilDelivery = home > 0 ? (down + deliveryMonth * monthly) / home : 0;
 
   return {
-    input: { ...input, orgRate, termMonths },
-    downRateFirstInstallment,
-    downRateUntilDelivery,
-    organizationFee,
-    organizationFeeAndDownPayment,
-    initialCashOut,
-    financeAmount,
-    term40,
-    monthlyInstallment,
-    monthlyPaymentsPV,
-    totalRepayment,
-    totalInterestAndCosts,
-    totalCost,
+    input: { ...input, assetType: type === "arac" ? "Taşıt" : "Konut", downPayment: down, orgRate: org, termMonths: term },
+    type,
+    home,
+    down,
+    org,
+    term,
+    disc,
+    rent,
     deliveryMonth,
-    rentPV,
-    financingPresentCost,
+    financingPV,
+    firstDownRatio,
+    monthly,
+    allPaymentsPV,
+    orgPlusDown,
+    startOut,
+    credit,
+    totalRepay,
+    totalCost,
+    rentsPV,
     npv,
+    downRateFirstInstallment: firstDownRatio,
+    downRateUntilDelivery,
+    organizationFee: home * org / 100,
+    organizationFeeAndDownPayment: orgPlusDown,
+    initialCashOut: startOut,
+    financeAmount: credit,
+    term40: term * 0.4,
+    monthlyInstallment: monthly,
+    monthlyPaymentsPV: allPaymentsPV,
+    totalRepayment: totalRepay,
+    totalInterestAndCosts: additionalCost,
+    rentPV: rentsPV,
+    financingPresentCost: financingPV,
     estimatedRateEquivalent: calculateEstimatedBankRateEquivalent(),
     warnings,
   };
@@ -146,18 +189,16 @@ export function compareOfferScenarios(
 ): OfferComparisonResult {
   const resultA = calculateOfferScenario(scenarioA);
   const resultB = calculateOfferScenario(scenarioB);
-
-  let winner: "A" | "B" | null = null;
-  if (resultA.npv > resultB.npv) winner = "A";
-  else if (resultB.npv > resultA.npv) winner = "B";
-  else if (resultA.totalCost < resultB.totalCost) winner = "A";
-  else if (resultB.totalCost < resultA.totalCost) winner = "B";
+  const winner = resultA.npv >= resultB.npv ? "A" : "B";
+  const npvDifference = resultA.npv - resultB.npv;
 
   return {
     scenarioA: resultA,
     scenarioB: resultB,
     winner,
-    npvDifference: resultA.npv - resultB.npv,
+    npvDifference,
+    npvDiff: Math.abs(npvDifference),
     totalCostDifference: resultA.totalCost - resultB.totalCost,
+    bestCost: Math.min(resultA.totalCost, resultB.totalCost),
   };
 }

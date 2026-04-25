@@ -16,7 +16,7 @@ const calculatorChildren = [
   { label: "Kredi Hesaplama Modülü", href: withBasePath("/kredi-hesaplama") },
 ] as const;
 
-type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare" | "profile";
+type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare" | "profile" | "login";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -109,8 +109,10 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               Teklifleri Karşılaştır
             </a>
             <a
-              className="rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold text-[#116537] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f4fff8]"
-              href="#login"
+              className={`rounded-[12px] border border-[#1ca353] px-[23px] py-[11px] text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
+                active === "login" ? "bg-[#f4fff8] text-[#116537]" : "text-[#116537] hover:bg-[#f4fff8]"
+              }`}
+              href={withBasePath("/login")}
             >
               Giriş Yap
             </a>
@@ -181,7 +183,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
             </a>
             <a
               className="rounded-xl border border-[#1ca353] px-4 py-3 text-center text-sm font-semibold text-[#116537]"
-              href="#login"
+              href={withBasePath("/login")}
               onClick={() => setMobileOpen(false)}
             >
               Giriş Yap
