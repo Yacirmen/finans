@@ -258,6 +258,10 @@ export function CreditLimitCalculatorModule() {
           >
             Profilime Kaydet
           </button>
+          <p className="mt-3 text-[13px] leading-6 text-[#66758c]">
+            Size özel en uygun hesaplama ve yönlendirme için sonucu kaydedin; ardından profilinizde e-posta ve telefon
+            bilgilerinizi tamamlayın.
+          </p>
           {saveMessage ? <p className="mt-3 text-sm font-semibold text-emerald-700">{saveMessage}</p> : null}
         </aside>
       </div>
