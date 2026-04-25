@@ -219,31 +219,37 @@ a {
 .market-slider {
   width: 100%;
   overflow: hidden;
-  background: #0f172a;
-  color: #fff;
-  border-block: 1px solid rgba(148, 163, 184, 0.22);
+  background: linear-gradient(180deg, #f8fafc 0%, #eef5f1 100%);
+  border-block: 1px solid rgba(203, 213, 225, 0.72);
+  padding: 18px 0;
 }
 
 .market-slider-track {
   display: inline-flex;
   min-width: max-content;
   gap: 18px;
-  padding: 14px 18px;
+  padding: 0 18px;
   white-space: nowrap;
-  animation: market-slider-scroll 34s linear infinite;
+  animation: market-slider-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.market-slider:hover .market-slider-track {
+  animation-play-state: paused;
 }
 
 .market-slider-card {
   display: inline-flex;
-  width: 248px;
+  width: 240px;
+  min-height: 88px;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  gap: 14px;
+  border: 1px solid #dde7f0;
   border-radius: 18px;
-  background: rgba(15, 23, 42, 0.78);
-  padding: 14px 16px;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+  background: #ffffff;
+  padding: 16px 18px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
 @keyframes market-slider-scroll {
@@ -251,38 +257,7 @@ a {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
-  }
-}
-
-.market-ticker {
-  width: 100%;
-  overflow: hidden;
-  background: #0f172a;
-  color: #fff;
-}
-
-.ticker-track {
-  display: inline-flex;
-  gap: 40px;
-  min-width: max-content;
-  padding: 10px 0;
-  white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  animation: ticker-scroll 28s linear infinite;
-}
-
-.ticker-track span {
-  flex: 0 0 auto;
-}
-
-@keyframes ticker-scroll {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
+    transform: translateX(-33.333%);
   }
 }
 

@@ -12,10 +12,10 @@ type MarketItem = {
 };
 
 function buildSparkline(points: number[] = []) {
-  if (points.length < 2) return "M0 22 L120 22";
+  if (points.length < 2) return "0,28 140,28";
 
-  const width = 120;
-  const height = 38;
+  const width = 140;
+  const height = 46;
   const min = Math.min(...points);
   const max = Math.max(...points);
   const range = max - min || 1;
@@ -23,8 +23,8 @@ function buildSparkline(points: number[] = []) {
   return points
     .map((point, index) => {
       const x = (index / (points.length - 1)) * width;
-      const y = height - ((point - min) / range) * (height - 8) - 4;
-      return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+      const y = height - ((point - min) / range) * (height - 12) - 6;
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
     })
     .join(" ");
 }
@@ -32,20 +32,37 @@ function buildSparkline(points: number[] = []) {
 function MarketCard({ item }: { item: MarketItem }) {
   const isUp = item.direction === "up";
   const isDown = item.direction === "down";
-  const toneClass = isUp ? "text-emerald-300" : isDown ? "text-rose-300" : "text-slate-300";
-  const stroke = isUp ? "#6ee7b7" : isDown ? "#fda4af" : "#cbd5e1";
+  const color = isUp ? "#16a05a" : isDown ? "#ef4444" : "#64748b";
+  const fillId = `spark-${item.label.replace(/[^a-zA-Z0-9]/g, "")}-${item.direction}`;
 
   return (
     <article className="market-slider-card">
-      <div>
-        <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400">{item.label}</span>
-        <strong className="mt-1 block text-[20px] font-black tracking-[-0.04em] text-white">{item.value}</strong>
-        <span className={`mt-1 inline-flex text-xs font-bold ${toneClass}`}>
+      <div className="min-w-0">
+        <span className="block text-[12px] font-black uppercase tracking-[0.12em] text-[#64748b]">{item.label}</span>
+        <strong className="mt-1 block text-[24px] font-black leading-none tracking-[-0.055em] text-[#0f172a]">
+          {item.value}
+        </strong>
+        <span className="mt-2 inline-flex items-center gap-1 text-[12px] font-black" style={{ color }}>
           {isUp ? "▲" : isDown ? "▼" : "•"} {item.change}
         </span>
       </div>
-      <svg viewBox="0 0 120 42" aria-hidden="true" className="h-[42px] w-[120px]">
-        <path d={buildSparkline(item.sparkline)} fill="none" stroke={stroke} strokeLinecap="round" strokeWidth="3" />
+
+      <svg viewBox="0 0 140 50" aria-hidden="true" className="h-[50px] w-[140px] shrink-0">
+        <defs>
+          <linearGradient id={fillId} x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor={color} stopOpacity="0.2" />
+            <stop offset="100%" stopColor={color} stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <polyline
+          fill="none"
+          points={buildSparkline(item.sparkline)}
+          stroke={color}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="3"
+        />
+        <polygon fill={`url(#${fillId})`} points={`0,50 ${buildSparkline(item.sparkline)} 140,50`} />
       </svg>
     </article>
   );
@@ -53,7 +70,7 @@ function MarketCard({ item }: { item: MarketItem }) {
 
 export function MarketSlider() {
   const items = marketData as MarketItem[];
-  const duplicated = [...items, ...items];
+  const duplicated = [...items, ...items, ...items];
 
   return (
     <section className="market-slider" aria-label="Piyasa göstergeleri">

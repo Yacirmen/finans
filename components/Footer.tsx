@@ -42,7 +42,6 @@ const socialLinks = [
   { label: "X", href: "https://x.com/tasarrufinans" },
   { label: "Instagram", href: "https://www.instagram.com/tasarruf.finansman/" },
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588693012392" },
-  { label: "Kaynak", href: "https://borsaninizinden.com/borsa-isleyisi-ve-yatirim-araclari/" },
 ] as const;
 
 export function Footer() {
