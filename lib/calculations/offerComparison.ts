@@ -59,8 +59,6 @@ export function pv(rate: number, nper: number, pmt: number, fv = 0) {
     return 0;
   }
 
-  if (nper <= 0) return 0;
-
   if (rate === 0) {
     return -(pmt * nper + fv);
   }

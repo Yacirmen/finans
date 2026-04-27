@@ -6,7 +6,6 @@ import { withBasePath } from "../lib/sitePaths";
 const primaryNavItems = [
   { key: "home", label: "Ana Sayfa", href: withBasePath("/") },
   { key: "about", label: "Hakkımızda", href: withBasePath("/#faq") },
-  { key: "blog", label: "Blog", href: withBasePath("/#blog") },
   { key: "data", label: "Endeks", href: withBasePath("/veri") },
   { key: "profile", label: "Profil", href: withBasePath("/profil") },
 ] as const;
@@ -15,22 +14,40 @@ const calculatorChildren = [
   { label: "Tasarruf Finansmanı Maliyet Hesaplayıcı", href: withBasePath("/tasarruf-finansman-hesaplama") },
   { label: "Kredi Limit Modülü", href: withBasePath("/kredi-limit") },
   { label: "Kredi Hesaplama Modülü", href: withBasePath("/kredi-hesaplama") },
-  { label: "Çekilişli Model ve Kredi Karşılaştırma", href: withBasePath("/cekilisli-kredi-karsilastir") },
+  { label: "Çekilişsiz Model ve Kredi Karşılaştırma", href: withBasePath("/cekilisli-kredi-karsilastir") },
 ] as const;
 
-type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare" | "profile" | "login";
+const blogChildren = [
+  { label: "Tasarruf", href: withBasePath("/blog?kategori=tasarruf") },
+  { label: "Finans", href: withBasePath("/blog?kategori=finans") },
+  { label: "Tasarruf Finansman", href: withBasePath("/blog?kategori=tasarruf-finansman") },
+] as const;
+
+const campaignChildren = [
+  { label: "Konut Kredisi Karşılaştırması", href: withBasePath("/kampanyalar/konut-kredisi") },
+] as const;
+
+type ActiveNav =
+  | "home"
+  | "calculator"
+  | "about"
+  | "blog"
+  | "campaigns"
+  | "data"
+  | "compare"
+  | "profile"
+  | "login";
 
 export function Header({ active = "home" }: { active?: ActiveNav }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [calculatorOpen, setCalculatorOpen] = useState(false);
+  const [blogOpen, setBlogOpen] = useState(false);
+  const [campaignOpen, setCampaignOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#d9e4ee] bg-white/95 shadow-[0_3px_14px_rgba(15,35,70,0.07)] backdrop-blur">
       <div className="page-container flex min-h-[72px] items-center justify-between gap-6">
-        <a
-          href={withBasePath("/")}
-          className="flex items-center gap-3 text-[15px] font-semibold text-[#158147] md:text-[16px]"
-        >
+        <a href={withBasePath("/")} className="flex items-center gap-3 text-[15px] font-semibold md:text-[16px]">
           <img
             src={withBasePath("/logo.png")}
             alt=""
@@ -88,9 +105,91 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               </button>
 
               {calculatorOpen ? (
-                <div className="absolute left-0 top-full z-50 w-[260px] pt-2">
+                <div className="absolute left-0 top-full z-50 w-[280px] pt-2">
                   <div className="rounded-[18px] border border-[#d9e4ee] bg-white p-2 shadow-[0_18px_34px_rgba(15,35,70,0.12)]">
                     {calculatorChildren.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#f4f8ff] hover:text-[#0b2443]"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setBlogOpen(true)}
+              onMouseLeave={() => setBlogOpen(false)}
+              onFocusCapture={() => setBlogOpen(true)}
+              onBlurCapture={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  setBlogOpen(false);
+                }
+              }}
+            >
+              <button
+                type="button"
+                className={`flex items-center gap-2 rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
+                  active === "blog"
+                    ? "bg-[#eaf3ff] text-[#0b3a6f]"
+                    : "text-[#3e4958] hover:bg-[#f4f8ff] hover:text-[#0b2443]"
+                }`}
+                onClick={() => setBlogOpen((current) => !current)}
+              >
+                Blog
+                <span className={`text-[10px] transition-transform ${blogOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+
+              {blogOpen ? (
+                <div className="absolute left-0 top-full z-50 w-[220px] pt-2">
+                  <div className="rounded-[18px] border border-[#d9e4ee] bg-white p-2 shadow-[0_18px_34px_rgba(15,35,70,0.12)]">
+                    {blogChildren.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#f4f8ff] hover:text-[#0b2443]"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setCampaignOpen(true)}
+              onMouseLeave={() => setCampaignOpen(false)}
+              onFocusCapture={() => setCampaignOpen(true)}
+              onBlurCapture={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  setCampaignOpen(false);
+                }
+              }}
+            >
+              <button
+                type="button"
+                className={`flex items-center gap-2 rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
+                  active === "campaigns"
+                    ? "bg-[#eaf3ff] text-[#0b3a6f]"
+                    : "text-[#3e4958] hover:bg-[#f4f8ff] hover:text-[#0b2443]"
+                }`}
+                onClick={() => setCampaignOpen((current) => !current)}
+              >
+                Kampanyalar
+                <span className={`text-[10px] transition-transform ${campaignOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+
+              {campaignOpen ? (
+                <div className="absolute left-0 top-full z-50 w-[260px] pt-2">
+                  <div className="rounded-[18px] border border-[#d9e4ee] bg-white p-2 shadow-[0_18px_34px_rgba(15,35,70,0.12)]">
+                    {campaignChildren.map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
@@ -158,6 +257,56 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               {calculatorOpen ? (
                 <div className="mt-3 grid gap-2">
                   {calculatorChildren.map((item) => (
+                    <a
+                      key={item.href}
+                      className="rounded-xl bg-[#f8fbff] px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#eef4fb]"
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="rounded-[16px] border border-[#e8eef5] px-3 py-3">
+              <button
+                type="button"
+                className="flex w-full items-center justify-between text-sm font-semibold text-slate-800"
+                onClick={() => setBlogOpen((current) => !current)}
+              >
+                Blog
+                <span className={`text-[10px] transition-transform ${blogOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+              {blogOpen ? (
+                <div className="mt-3 grid gap-2">
+                  {blogChildren.map((item) => (
+                    <a
+                      key={item.href}
+                      className="rounded-xl bg-[#f8fbff] px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#eef4fb]"
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="rounded-[16px] border border-[#e8eef5] px-3 py-3">
+              <button
+                type="button"
+                className="flex w-full items-center justify-between text-sm font-semibold text-slate-800"
+                onClick={() => setCampaignOpen((current) => !current)}
+              >
+                Kampanyalar
+                <span className={`text-[10px] transition-transform ${campaignOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+              {campaignOpen ? (
+                <div className="mt-3 grid gap-2">
+                  {campaignChildren.map((item) => (
                     <a
                       key={item.href}
                       className="rounded-xl bg-[#f8fbff] px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#eef4fb]"

@@ -7,7 +7,7 @@ import {
   calculateVehicleLoanLimit,
   type HousingEnergyClass,
 } from "../../lib/loanLimit";
-import { formatPercentTr, formatTry, parseLocaleNumber } from "../../lib/formatters";
+import { formatNumberInput, formatPercentTr, formatTry, parseLocaleNumber } from "../../lib/formatters";
 
 type LimitTab = "housing" | "vehicle" | "need";
 
@@ -43,6 +43,11 @@ function MetricCard({
       </strong>
     </div>
   );
+}
+
+function formatLimitInput(value: string) {
+  const parsed = parseLocaleNumber(value);
+  return parsed > 0 ? formatNumberInput(parsed, 0) : "";
 }
 
 export function CreditLimitCalculatorModule() {
@@ -146,7 +151,7 @@ export function CreditLimitCalculatorModule() {
                   <InputLabel>Ekspertiz Değeri (TL)</InputLabel>
                   <input
                     value={housingValue}
-                    onChange={(event) => setHousingValue(event.target.value)}
+                    onChange={(event) => setHousingValue(formatLimitInput(event.target.value))}
                     className="form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium"
                     inputMode="numeric"
                     placeholder="6.500.000"
@@ -186,7 +191,7 @@ export function CreditLimitCalculatorModule() {
                   <InputLabel>Taşıt Değeri (TL)</InputLabel>
                   <input
                     value={vehicleValue}
-                    onChange={(event) => setVehicleValue(event.target.value)}
+                    onChange={(event) => setVehicleValue(formatLimitInput(event.target.value))}
                     className="form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium"
                     inputMode="numeric"
                     placeholder="1.250.000"
@@ -201,7 +206,7 @@ export function CreditLimitCalculatorModule() {
                   <InputLabel>İstenen Kredi Tutarı (TL)</InputLabel>
                   <input
                     value={needValue}
-                    onChange={(event) => setNeedValue(event.target.value)}
+                    onChange={(event) => setNeedValue(formatLimitInput(event.target.value))}
                     className="form-control !h-[44px] !rounded-[14px] !bg-[#f9fbfe] !font-medium"
                     inputMode="numeric"
                     placeholder="180.000"

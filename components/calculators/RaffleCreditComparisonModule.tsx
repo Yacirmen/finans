@@ -104,7 +104,7 @@ function calculate(form: FormState) {
   const krOdePV = excelPV(iskonto, vade, -krTaksit);
   const tfNpv = tfOdePV + tfOrg - tfFinPV;
   const krNpv = krOdePV + krOrg - krFinPV + masraf;
-  const better = tfNpv < krNpv ? "Çekilişli Sistem Daha Faydalı" : "Kredi Kullanımı Daha Faydalı";
+  const better = tfNpv < krNpv ? "Çekilişsiz Sistem Daha Faydalı" : "Kredi Kullanımı Daha Faydalı";
 
   let paid = 0;
   let mantikliAy = "Bulunamadı";
@@ -123,7 +123,7 @@ function calculate(form: FormState) {
       return tfTaksit / Math.pow(1 + iskonto, period);
     }).reduce((sum, item) => sum + item, 0);
     const npv = rentPv + futurePlanPv + firstOut - financePv;
-    const decision = npv < krNpv ? "Çekilişli Sistem" : "Kredi Kullan";
+    const decision = npv < krNpv ? "Çekilişsiz Sistem" : "Kredi Kullan";
 
     if (!found && decision === "Kredi Kullan") {
       mantikliAy = `${month}. ay`;
@@ -164,7 +164,7 @@ export function RaffleCreditComparisonModule() {
             </div>
             <div>
               <h1 className="m-0 text-[32px] font-black leading-[1.1] tracking-[-0.03em] text-white">
-                Çekilişli Model vs Kredi Hesaplama
+                Çekilişsiz Model vs Kredi Hesaplama
               </h1>
               <p className="mt-1 text-[13px] font-bold text-slate-300">
                 Tasarruf finansman ve kredi senaryosu karşılaştırma aracı
@@ -202,7 +202,7 @@ export function RaffleCreditComparisonModule() {
               </div>
 
               <p className="mb-3 mt-2 flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.11em] text-[#344054] before:h-[7px] before:w-[7px] before:rounded-full before:bg-[#d9a441]">
-                Çekilişli Tasarruf Finansman
+                Çekilişsiz Tasarruf Finansman
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -261,7 +261,7 @@ export function RaffleCreditComparisonModule() {
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-3.5 max-[980px]:grid-cols-1">
-                  <ScenarioResult title="Çekilişli Tasarruf Finansman Modeli" result={result.tf} delivery={result.teslim} />
+                  <ScenarioResult title="Çekilişsiz Tasarruf Finansman Modeli" result={result.tf} delivery={result.teslim} />
                   <ScenarioResult title="Kredi Kullanma Senaryosu" result={result.kr} masraf={result.kr.masraf} />
                 </div>
               </div>
@@ -299,7 +299,7 @@ export function RaffleCreditComparisonModule() {
                         <td className="whitespace-nowrap border-b border-[#edf2f7] px-[13px] py-3 text-right">{row.probability ? formatPct(row.probability) : "-"}</td>
                         <td className="whitespace-nowrap border-b border-[#edf2f7] px-[13px] py-3 text-right">{formatTL(row.npv)}</td>
                         <td className="whitespace-nowrap border-b border-[#edf2f7] px-[13px] py-3 text-right">
-                          <span className={`rounded-full px-2.5 py-1.5 text-xs font-black ${row.decision === "Çekilişli Sistem" ? "bg-[#e8f7f1] text-[#047857]" : "bg-[#eaf2ff] text-[#155eef]"}`}>
+                          <span className={`rounded-full px-2.5 py-1.5 text-xs font-black ${row.decision === "Çekilişsiz Sistem" ? "bg-[#e8f7f1] text-[#047857]" : "bg-[#eaf2ff] text-[#155eef]"}`}>
                             {row.decision}
                           </span>
                         </td>

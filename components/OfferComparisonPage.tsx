@@ -10,7 +10,6 @@ import {
   type OfferScenarioInput,
   type OfferScenarioResult,
 } from "../lib/calculations/offerComparison";
-import { parseLocaleNumber } from "../lib/formatters";
 
 type ScenarioKey = "A" | "B";
 type ScenarioForm = Record<"home" | "down" | "org" | "term" | "disc" | "rent", string> & {
@@ -26,68 +25,84 @@ const inputFields = [
   { key: "rent", label: "Teslim Öncesi Kira Ödüyorsanız (TL)", decimals: 2 },
 ] as const;
 
-const currencyFormatter = new Intl.NumberFormat("tr-TR", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
-
-const percentFormatter = new Intl.NumberFormat("tr-TR", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 4,
-});
-
-function formatTL(value: number) {
-  return `${currencyFormatter.format(Number.isFinite(value) ? value : 0)} TL`;
+function parseTR(value: string | number | null | undefined) {
+  return Number.parseFloat(String(value || "").replace(/\s/g, "").replace(/\./g, "").replace(",", ".")) || 0;
 }
 
-function formatPercent(value: number) {
-  return `${percentFormatter.format(Number.isFinite(value) ? value : 0)}%`;
-}
-
-function formatInputNumber(value: number, decimals = 2) {
-  return new Intl.NumberFormat("tr-TR", {
+function inputFmt(value: number, decimals = 2) {
+  return (Number.isFinite(value) ? value : 0).toLocaleString("tr-TR", {
     minimumFractionDigits: 0,
     maximumFractionDigits: decimals,
-  }).format(Number.isFinite(value) ? value : 0);
+  });
+}
+
+function formatLiveInput(value: string, decimals = 2) {
+  const raw = String(value).replace(/[^0-9,.]/g, "");
+  if (raw === "") return "";
+
+  const lastComma = raw.lastIndexOf(",");
+  let integerPart = "";
+  let fractionPart = "";
+  let hasDecimal = false;
+
+  if (decimals > 0 && lastComma >= 0) {
+    hasDecimal = true;
+    integerPart = raw.slice(0, lastComma).replace(/[,.]/g, "");
+    fractionPart = raw.slice(lastComma + 1).replace(/[,.]/g, "").slice(0, decimals);
+  } else {
+    integerPart = raw.replace(/[,.]/g, "");
+  }
+
+  if (integerPart === "") integerPart = "0";
+  const formatted = Number(integerPart).toLocaleString("tr-TR");
+  return hasDecimal ? `${formatted},${fractionPart}` : formatted;
+}
+
+function formatTL(value: number) {
+  return `${(Number.isFinite(value) ? value : 0).toLocaleString("tr-TR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })} TL`;
 }
 
 function toForm(input: OfferScenarioInput): ScenarioForm {
   return {
     type: input.type,
-    home: formatInputNumber(input.home, 2),
-    down: formatInputNumber(input.down, 2),
-    org: formatInputNumber(input.org, 4),
-    term: formatInputNumber(input.term, 0),
-    disc: formatInputNumber(input.disc, 4),
-    rent: formatInputNumber(input.rent, 2),
+    home: inputFmt(input.home, 2),
+    down: inputFmt(input.down, 2),
+    org: inputFmt(input.org, 4),
+    term: inputFmt(input.term, 0),
+    disc: inputFmt(input.disc, 4),
+    rent: inputFmt(input.rent, 2),
   };
 }
 
 function toInput(form: ScenarioForm): OfferScenarioInput {
   return {
     type: form.type,
-    home: parseLocaleNumber(form.home),
-    down: parseLocaleNumber(form.down),
-    org: parseLocaleNumber(form.org),
-    term: parseLocaleNumber(form.term),
-    disc: parseLocaleNumber(form.disc),
-    rent: parseLocaleNumber(form.rent),
+    home: parseTR(form.home),
+    down: parseTR(form.down),
+    org: parseTR(form.org),
+    term: parseTR(form.term),
+    disc: parseTR(form.disc),
+    rent: parseTR(form.rent),
   };
 }
 
 function normalizeForm(form: ScenarioForm): ScenarioForm {
-  const result = calculateOfferScenario(toInput(form));
-  return toForm(result);
+  return toForm(calculateOfferScenario(toInput(form)));
 }
 
 function Field({
   label,
   value,
+  decimals,
   onChange,
   onBlur,
 }: {
   label: string;
   value: string;
+  decimals: number;
   onChange: (value: string) => void;
   onBlur: () => void;
 }) {
@@ -95,11 +110,11 @@ function Field({
     <label className="grid gap-2 md:grid-cols-[1.25fr_1fr] md:items-center">
       <span className="text-[14px] font-bold text-[#34435d]">{label}</span>
       <input
-        value={value}
-        onBlur={onBlur}
-        onChange={(event) => onChange(event.target.value)}
-        inputMode="decimal"
         className="h-12 w-full rounded-[12px] border border-[#d6dfeb] bg-white px-3 text-right text-[16px] text-[#071a3a] outline-none transition focus:border-[#1259b2] focus:ring-4 focus:ring-blue-100"
+        inputMode="decimal"
+        onBlur={onBlur}
+        onChange={(event) => onChange(formatLiveInput(event.target.value, decimals))}
+        value={value}
       />
     </label>
   );
@@ -110,14 +125,14 @@ function ScenarioInputCard({
   title,
   form,
   onChange,
-  onNormalize,
+  onCalculate,
   onReset,
 }: {
   scenario: ScenarioKey;
   title: string;
   form: ScenarioForm;
   onChange: (next: ScenarioForm) => void;
-  onNormalize: () => void;
+  onCalculate: () => void;
   onReset: () => void;
 }) {
   const update = (field: keyof ScenarioForm, value: string | OfferFinancingType) => {
@@ -140,9 +155,9 @@ function ScenarioInputCard({
         <label className="grid gap-2 md:grid-cols-[1.25fr_1fr] md:items-center">
           <span className="text-[14px] font-bold text-[#34435d]">Finansman Türü</span>
           <select
-            value={form.type}
-            onChange={(event) => update("type", event.target.value as OfferFinancingType)}
             className="h-12 w-full rounded-[12px] border border-[#d6dfeb] bg-white px-3 text-[16px] text-[#071a3a] outline-none transition focus:border-[#1259b2] focus:ring-4 focus:ring-blue-100"
+            onChange={(event) => update("type", event.target.value as OfferFinancingType)}
+            value={form.type}
           >
             <option value="konut">Konut</option>
             <option value="arac">Araç</option>
@@ -151,11 +166,12 @@ function ScenarioInputCard({
 
         {inputFields.map((field) => (
           <Field
+            decimals={field.decimals}
             key={field.key}
             label={field.label}
-            value={form[field.key]}
-            onBlur={onNormalize}
+            onBlur={onCalculate}
             onChange={(value) => update(field.key, value)}
+            value={form[field.key]}
           />
         ))}
 
@@ -163,16 +179,16 @@ function ScenarioInputCard({
 
         <div className="mt-1 flex gap-2.5">
           <button
-            type="button"
-            onClick={onNormalize}
             className="rounded-[12px] bg-[#1889f2] px-[18px] py-3 text-[14px] font-black text-white transition hover:-translate-y-0.5 hover:bg-[#126fc8]"
+            onClick={onCalculate}
+            type="button"
           >
             HESAPLA
           </button>
           <button
-            type="button"
-            onClick={onReset}
             className="rounded-[12px] bg-[#e8eef6] px-[18px] py-3 text-[14px] font-black text-[#475569] transition hover:-translate-y-0.5 hover:bg-[#dce6f2]"
+            onClick={onReset}
+            type="button"
           >
             TEMİZLE
           </button>
@@ -191,15 +207,7 @@ function ResultRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function ResultCard({
-  title,
-  result,
-  winner,
-}: {
-  title: string;
-  result: OfferScenarioResult;
-  winner: boolean;
-}) {
+function ResultCard({ title, result, winner }: { title: string; result: OfferScenarioResult; winner: boolean }) {
   return (
     <article
       className={`rounded-[20px] border bg-white p-5 shadow-[0_14px_32px_rgba(15,23,42,0.08)] ${
@@ -220,13 +228,8 @@ function ResultCard({
 }
 
 function diffClass(diff: number, higherGood = false) {
-  return higherGood
-    ? diff >= 0
-      ? "text-[#07864b]"
-      : "text-[#dc2626]"
-    : diff <= 0
-      ? "text-[#07864b]"
-      : "text-[#dc2626]";
+  if (higherGood) return diff >= 0 ? "text-[#07864b]" : "text-[#dc2626]";
+  return diff <= 0 ? "text-[#07864b]" : "text-[#dc2626]";
 }
 
 export function OfferComparisonPage() {
@@ -261,20 +264,20 @@ export function OfferComparisonPage() {
 
         <section className="grid grid-cols-2 gap-[18px] max-[900px]:grid-cols-1">
           <ScenarioInputCard
+            form={formA}
+            onCalculate={() => setFormA((current) => normalizeForm(current))}
+            onChange={setFormA}
+            onReset={() => setFormA(toForm(defaultScenarioA))}
             scenario="A"
             title="Senaryo A – Evim Sistemleri"
-            form={formA}
-            onChange={setFormA}
-            onNormalize={() => setFormA((current) => normalizeForm(current))}
-            onReset={() => setFormA(toForm(defaultScenarioA))}
           />
           <ScenarioInputCard
+            form={formB}
+            onCalculate={() => setFormB((current) => normalizeForm(current))}
+            onChange={setFormB}
+            onReset={() => setFormB(toForm(defaultScenarioB))}
             scenario="B"
             title="Senaryo B – Evim Sistemleri"
-            form={formB}
-            onChange={setFormB}
-            onNormalize={() => setFormB((current) => normalizeForm(current))}
-            onReset={() => setFormB(toForm(defaultScenarioB))}
           />
         </section>
 
@@ -294,8 +297,8 @@ export function OfferComparisonPage() {
         </section>
 
         <section className="grid grid-cols-2 gap-[18px] max-[900px]:grid-cols-1">
-          <ResultCard title="Senaryo A Sonuçları" result={scenarioA} winner={comparison.winner === "A"} />
-          <ResultCard title="Senaryo B Sonuçları" result={scenarioB} winner={comparison.winner === "B"} />
+          <ResultCard result={scenarioA} title="Senaryo A Sonuçları" winner={comparison.winner === "A"} />
+          <ResultCard result={scenarioB} title="Senaryo B Sonuçları" winner={comparison.winner === "B"} />
         </section>
 
         <section className="mt-[18px] overflow-auto rounded-[20px] border border-[#e3eaf3] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.08)]">
