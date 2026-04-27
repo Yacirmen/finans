@@ -40,39 +40,39 @@ const groups = [
 const socialLinks = [
   {
     label: "LinkedIn",
-    short: "in",
+    icon: withBasePath("/social/linkedin.svg"),
     href: "https://www.linkedin.com/in/tasarruf-finansman-546579406/",
     className: "bg-[#0a66c2] text-white",
   },
   {
     label: "Facebook",
-    short: "f",
+    icon: withBasePath("/social/facebook.svg"),
     href: "https://www.facebook.com/profile.php?id=61588693012392",
     className: "bg-[#1877f2] text-white",
   },
   {
     label: "X",
-    short: "𝕏",
+    icon: withBasePath("/social/x.svg"),
     href: "https://x.com/tasarrufinans",
-    className: "bg-black text-white",
+    className: "bg-[#111827] text-white",
   },
   {
     label: "Instagram",
-    short: "◎",
+    icon: withBasePath("/social/instagram.svg"),
     href: "https://www.instagram.com/tasarruf.finansman/?hl=tr",
-    className: "bg-gradient-to-br from-[#833ab4] via-[#e1306c] to-[#f77737] text-white",
+    className: "bg-gradient-to-br from-[#6d28d9] via-[#db2777] to-[#fb923c] text-white",
   },
   {
     label: "YouTube",
-    short: "▶",
+    icon: withBasePath("/social/youtube.svg"),
     href: "https://www.youtube.com/@Tasarrufinans",
     className: "bg-[#ff0000] text-white",
   },
   {
     label: "TikTok",
-    short: "♪",
+    icon: withBasePath("/social/tiktok.svg"),
     href: "https://www.tiktok.com/@tasarrufinans",
-    className: "bg-black text-white",
+    className: "bg-[#050505] text-white",
   },
 ] as const;
 
@@ -101,18 +101,18 @@ export function Footer() {
             desteğiyle inceleyin.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-slate-200 pt-5">
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-5">
             {socialLinks.map((link) => (
               <a
                 aria-label={link.label}
-                className={`grid h-11 w-11 place-items-center rounded-[10px] text-[18px] font-black shadow-[0_10px_22px_rgba(15,23,42,0.12)] transition hover:-translate-y-0.5 ${link.className}`}
+                className={`grid h-11 w-11 place-items-center rounded-[12px] shadow-[0_10px_22px_rgba(15,23,42,0.13)] ring-1 ring-black/5 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,0.18)] ${link.className}`}
                 href={link.href}
                 key={link.label}
                 rel="noopener noreferrer"
                 target="_blank"
                 title={link.label}
               >
-                {link.short}
+                <img alt="" aria-hidden="true" className="h-5 w-5 brightness-0 invert" src={link.icon} />
               </a>
             ))}
           </div>
