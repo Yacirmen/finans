@@ -46,8 +46,10 @@ function MetricCard({
 }
 
 function formatLimitInput(value: string) {
-  const parsed = parseLocaleNumber(value);
-  return parsed > 0 ? formatNumberInput(parsed, 0) : "";
+  const digits = value.replace(/[^\d]/g, "");
+  if (!digits) return "";
+
+  return formatNumberInput(Number(digits), 0);
 }
 
 export function CreditLimitCalculatorModule() {
