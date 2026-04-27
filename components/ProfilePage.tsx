@@ -22,7 +22,7 @@ type ConsultationRequest = {
 };
 
 const fieldClass =
-  "mt-2 h-[46px] w-full rounded-[11px] border border-[#d8e1ea] bg-[#fbfcfe] px-4 text-[14px] font-medium text-[#1c2433] outline-none transition focus:border-[#16a05a] focus:bg-white focus:ring-4 focus:ring-emerald-100";
+  "mt-2 h-[46px] w-full rounded-[11px] border border-[#d8e1ea] bg-[#fbfcfe] px-4 text-[14px] font-medium text-[#1c2433] outline-none transition focus:border-[#155eef] focus:bg-white focus:ring-4 focus:ring-[#eaf3ff]";
 
 function readJson<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -128,7 +128,7 @@ export function ProfilePage() {
                 <Field label="Telefon Numarası" onChange={setPhone} placeholder="05XX XXX XX XX" value={phone} />
                 <div>
                   <button
-                    className="rounded-[11px] bg-[#16a05a] px-5 py-3 text-[14px] font-black text-white shadow-[0_12px_24px_rgba(22,160,90,0.16)] transition hover:-translate-y-0.5"
+                    className="rounded-[11px] bg-[#0b3a6f] px-5 py-3 text-[14px] font-black text-white shadow-[0_12px_24px_rgba(11,58,111,0.18)] transition hover:-translate-y-0.5 hover:bg-[#155eef]"
                     onClick={saveInfo}
                     type="button"
                   >
@@ -173,12 +173,12 @@ export function ProfilePage() {
           </div>
 
           <aside className="grid gap-5">
-            <section className="rounded-[16px] bg-[#18a750] p-6 text-white shadow-[0_18px_34px_rgba(22,160,90,0.22)]">
+            <section className="rounded-[16px] bg-[#0b3a6f] p-6 text-white shadow-[0_18px_34px_rgba(11,58,111,0.22)]">
               <h2 className="text-[20px] font-black tracking-[-0.035em]">Üyelik Durumu</h2>
               <p className="mt-3 text-[13px] font-semibold leading-5 text-white/90">
                 Üyeliğiniz aktif. Tüm hesaplama ve karşılaştırma özelliklerine sınırsız erişiminiz var.
               </p>
-              <div className="mt-5 rounded-[11px] bg-[#108440] px-4 py-3 text-[13px] font-black uppercase tracking-[0.06em]">
+              <div className="mt-5 rounded-[11px] bg-[#155eef] px-4 py-3 text-[13px] font-black uppercase tracking-[0.06em]">
                 ● Premium Plan
               </div>
             </section>
@@ -190,14 +190,14 @@ export function ProfilePage() {
                   <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-[#f3f0ff] text-[13px] font-black text-[#6d5dfc]">G</span>
                   <span className="text-[13px] font-black text-[#111827]">Google</span>
                 </div>
-                <span className="rounded-md bg-[#e9fbef] px-2 py-1 text-[10px] font-black text-[#16a05a]">BAĞLI</span>
+                <span className="rounded-md bg-[#eaf3ff] px-2 py-1 text-[10px] font-black text-[#0b3a6f]">BAĞLI</span>
               </div>
             </section>
           </aside>
         </div>
 
         {message ? (
-          <div className="mt-6 rounded-[14px] border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-bold text-emerald-700">
+          <div className="mt-6 rounded-[14px] border border-[#bfd2ef] bg-[#eaf3ff] px-5 py-4 text-sm font-bold text-[#0b3a6f]">
             {message}
           </div>
         ) : null}

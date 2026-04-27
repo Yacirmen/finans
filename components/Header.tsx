@@ -12,8 +12,10 @@ const primaryNavItems = [
 ] as const;
 
 const calculatorChildren = [
+  { label: "Tasarruf Finansmanı Maliyet Hesaplayıcı", href: withBasePath("/tasarruf-finansman-hesaplama") },
   { label: "Kredi Limit Modülü", href: withBasePath("/kredi-limit") },
   { label: "Kredi Hesaplama Modülü", href: withBasePath("/kredi-hesaplama") },
+  { label: "Çekilişli Model ve Kredi Karşılaştırma", href: withBasePath("/cekilisli-kredi-karsilastir") },
 ] as const;
 
 type ActiveNav = "home" | "calculator" | "about" | "blog" | "data" | "compare" | "profile" | "login";
@@ -23,7 +25,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
   const [calculatorOpen, setCalculatorOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#f0dfd2] bg-white/95 shadow-[0_3px_14px_rgba(77,48,31,0.06)] backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[#d9e4ee] bg-white/95 shadow-[0_3px_14px_rgba(15,35,70,0.07)] backdrop-blur">
       <div className="page-container flex min-h-[72px] items-center justify-between gap-6">
         <a
           href={withBasePath("/")}
@@ -35,10 +37,11 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
             aria-hidden="true"
             className="h-12 w-12 rounded-[12px] object-cover"
           />
-          <span className="flex items-baseline text-[20px] font-black tracking-[-0.055em] md:text-[22px]">
-            <span className="text-[#071a3a]">Tasarruf</span>
-            <span className="ml-1 text-[#ef3f23]">finans</span>
-          </span>
+          <img
+            src={withBasePath("/logo-wordmark-cropped.png")}
+            alt="Tasarruf finans"
+            className="h-8 w-auto object-contain md:h-10"
+          />
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -51,8 +54,8 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
                   href={item.href}
                   className={`rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
                     isActive
-                      ? "bg-[#fff0e3] text-[#a94612]"
-                      : "text-[#3e4958] hover:bg-[#fff6ef] hover:text-[#182132]"
+                      ? "bg-[#eaf3ff] text-[#0b3a6f]"
+                      : "text-[#3e4958] hover:bg-[#f4f8ff] hover:text-[#0b2443]"
                   }`}
                 >
                   {item.label}
@@ -75,8 +78,8 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
                 type="button"
                 className={`flex items-center gap-2 rounded-[9px] px-[14px] py-[9px] text-[14px] font-medium transition-all duration-300 ${
                   active === "calculator"
-                    ? "bg-[#fff0e3] text-[#a94612]"
-                    : "text-[#3e4958] hover:bg-[#fff6ef] hover:text-[#182132]"
+                    ? "bg-[#eaf3ff] text-[#0b3a6f]"
+                    : "text-[#3e4958] hover:bg-[#f4f8ff] hover:text-[#0b2443]"
                 }`}
                 onClick={() => setCalculatorOpen((current) => !current)}
               >
@@ -86,12 +89,12 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
 
               {calculatorOpen ? (
                 <div className="absolute left-0 top-full z-50 w-[260px] pt-2">
-                  <div className="rounded-[18px] border border-[#f0dfd2] bg-white p-2 shadow-[0_18px_34px_rgba(77,48,31,0.12)]">
+                  <div className="rounded-[18px] border border-[#d9e4ee] bg-white p-2 shadow-[0_18px_34px_rgba(15,35,70,0.12)]">
                     {calculatorChildren.map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
-                        className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#fff6ef] hover:text-[#182132]"
+                        className="block rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#3e4958] transition-colors hover:bg-[#f4f8ff] hover:text-[#0b2443]"
                       >
                         {item.label}
                       </a>
@@ -112,8 +115,8 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               Teklifleri Karşılaştır
             </a>
             <a
-              className={`rounded-[12px] border border-[#f47a2a] px-[23px] py-[11px] text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
-                active === "login" ? "bg-[#fff0e3] text-[#a94612]" : "text-[#a94612] hover:bg-[#fff0e3]"
+              className={`rounded-[12px] border border-[#0b3a6f] px-[23px] py-[11px] text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
+                active === "login" ? "bg-[#eaf3ff] text-[#0b3a6f]" : "text-[#0b3a6f] hover:bg-[#eaf3ff]"
               }`}
               href={withBasePath("/login")}
             >
@@ -136,7 +139,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
         <div className="border-t border-slate-200 bg-white lg:hidden">
           <div className="page-container grid gap-2 py-4">
             <a
-              className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#fff6ef]"
+              className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f4f8ff]"
               href={withBasePath("/")}
               onClick={() => setMobileOpen(false)}
             >
@@ -172,7 +175,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               .filter((item) => item.key !== "home")
               .map((item) => (
                 <a
-                  className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#fff6ef]"
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-[#f4f8ff]"
                   href={item.href}
                   key={item.key}
                   onClick={() => setMobileOpen(false)}
@@ -189,7 +192,7 @@ export function Header({ active = "home" }: { active?: ActiveNav }) {
               Teklifleri Karşılaştır
             </a>
             <a
-              className="rounded-xl border border-[#f47a2a] px-4 py-3 text-center text-sm font-semibold text-[#a94612]"
+              className="rounded-xl border border-[#0b3a6f] px-4 py-3 text-center text-sm font-semibold text-[#0b3a6f]"
               href={withBasePath("/login")}
               onClick={() => setMobileOpen(false)}
             >

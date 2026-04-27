@@ -1,5 +1,4 @@
 import { BlogSection } from "../components/BlogSection";
-import { CalculatorSection } from "../components/CalculatorSection";
 import { ConsultationSection } from "../components/ConsultationSection";
 import { FAQSection } from "../components/FAQSection";
 import { Footer } from "../components/Footer";
@@ -15,7 +14,6 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <LoanLimitSection />
-        <CalculatorSection />
         <FAQSection />
         <NewsletterSignup />
         <ConsultationSection />

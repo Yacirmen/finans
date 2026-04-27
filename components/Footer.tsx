@@ -68,7 +68,7 @@ export function Footer() {
           <div className="mt-5 flex flex-wrap gap-2">
             {socialLinks.map((link) => (
               <a
-                className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-600 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+                className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-600 transition hover:border-[#bfd2ef] hover:bg-[#eaf3ff] hover:text-[#0b3a6f]"
                 href={link.href}
                 key={link.label}
                 rel="noopener noreferrer"

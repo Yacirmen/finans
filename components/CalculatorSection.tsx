@@ -52,7 +52,7 @@ function SegmentGroup({
             onClick={() => onChange(option.value)}
             className={`rounded-[12px] px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
               active
-                ? "bg-[#f47a2a] text-white shadow-[0_10px_18px_rgba(244,122,42,0.18)]"
+                ? "bg-[#155eef] text-white shadow-[0_10px_18px_rgba(21,94,239,0.18)]"
                 : "text-[#51627b] hover:bg-white/70"
             }`}
           >
@@ -79,7 +79,7 @@ function ToggleField({
       onClick={() => onChange(!checked)}
       className="flex items-center gap-3 text-left text-[14px] font-medium text-[#5d6b80]"
     >
-      <span className={`relative h-6 w-11 rounded-full transition-all ${checked ? "bg-[#f47a2a]" : "bg-[#d7e3ef]"}`}>
+      <span className={`relative h-6 w-11 rounded-full transition-all ${checked ? "bg-[#155eef]" : "bg-[#d7e3ef]"}`}>
         <span
           className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all ${checked ? "left-6" : "left-1"}`}
         />
@@ -140,7 +140,7 @@ function SummaryLine({
   value: string;
   tone?: "default" | "green" | "red";
 }) {
-  const color = tone === "green" ? "text-[#c45719]" : tone === "red" ? "text-[#e05044]" : "text-[#1c2433]";
+  const color = tone === "green" ? "text-[#0b3a6f]" : tone === "red" ? "text-[#e05044]" : "text-[#1c2433]";
   return (
     <div className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-4 last:border-b-0 last:pb-0">
       <span className="text-[14px] text-[#748299]">{label}</span>
@@ -153,7 +153,7 @@ function ExampleScenarioCard({ onApply }: { onApply: () => void }) {
   return (
     <aside className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
       <div className="flex items-start gap-3">
-        <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#fff0e3] text-[#f47a2a]">⚡</span>
+        <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#eaf3ff] text-[#155eef]">⚡</span>
         <div>
           <h3 className="text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Hemen Dene</h3>
           <p className="mt-2 text-[14px] leading-6 text-[#66758c]">
@@ -187,7 +187,7 @@ function ExampleScenarioCard({ onApply }: { onApply: () => void }) {
       <button
         type="button"
         onClick={onApply}
-        className="mt-5 w-full rounded-[14px] bg-[#f47a2a] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_14px_28px_rgba(244,122,42,0.18)] transition hover:-translate-y-0.5 hover:bg-[#d85f17]"
+        className="mt-5 w-full rounded-[14px] bg-[#0b3a6f] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_14px_28px_rgba(11,58,111,0.20)] transition hover:-translate-y-0.5 hover:bg-[#07172f]"
       >
         Bu Senaryoyu Hesapla
       </button>
@@ -200,7 +200,7 @@ function ResultPanel({ result }: { result: OfferResult | null }) {
     return (
       <aside className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
         <div className="flex items-center gap-3 border-b border-[#e8eef5] pb-4">
-          <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#fff0e3] text-[#f47a2a]">▣</span>
+          <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#eaf3ff] text-[#155eef]">▣</span>
           <div>
             <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Karar özeti</span>
             <h3 className="mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Sonuç bekleniyor</h3>
@@ -220,16 +220,16 @@ function ResultPanel({ result }: { result: OfferResult | null }) {
   return (
     <aside className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
       <div className="flex items-center gap-3 border-b border-[#e8eef5] pb-4">
-        <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#fff0e3] text-[#f47a2a]">▣</span>
+        <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#eaf3ff] text-[#155eef]">▣</span>
         <div>
           <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Hesaplama Özeti</span>
           <h3 className="mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Net bugünkü maliyet görünümü</h3>
         </div>
       </div>
 
-      <div className="mt-5 rounded-[18px] border border-[#ffd8bd] bg-[#fff0e3] px-4 py-4 text-center">
-        <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#168b53]">Toplam geri ödeme (nominal)</span>
-        <strong className="mt-1.5 block text-[28px] font-black tracking-[-0.05em] text-[#0f5636]">{formatMoney(result.totalNominalOutflow)}</strong>
+      <div className="mt-5 rounded-[18px] border border-[#bfd2ef] bg-[#eaf3ff] px-4 py-4 text-center">
+        <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#0b3a6f]">Toplam geri ödeme (nominal)</span>
+        <strong className="mt-1.5 block text-[28px] font-black tracking-[-0.05em] text-[#07172f]">{formatMoney(result.totalNominalOutflow)}</strong>
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
@@ -351,7 +351,7 @@ export function CalculatorSection() {
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4">
             <h2 className="text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]">Tasarruf Finansmanı Maliyet Hesaplayıcı</h2>
             <button
-              className="rounded-full bg-[#fff0e3] px-4 py-2 text-[14px] font-medium text-[#a94612] transition-all duration-300 hover:bg-[#ffe4cf]"
+              className="rounded-full bg-[#eaf3ff] px-4 py-2 text-[14px] font-medium text-[#0b3a6f] transition-all duration-300 hover:bg-[#dceaff]"
               onClick={handleExample}
               type="button"
             >
@@ -495,7 +495,7 @@ export function CalculatorSection() {
             </div>
 
             {warnings.length ? (
-              <div className="rounded-[16px] border border-[#f2d7a7] bg-[#fff9e8] px-4 py-3 text-[13px] leading-6 text-[#8a6413]">
+              <div className="rounded-[16px] border border-[#d9e4ee] bg-[#f8fbff] px-4 py-3 text-[13px] leading-6 text-[#0b3a6f]">
                 {warnings.map((warning) => (
                   <p key={warning}>{warning}</p>
                 ))}
@@ -503,7 +503,7 @@ export function CalculatorSection() {
             ) : null}
 
             <button
-              className="rounded-[16px] bg-[#f47a2a] px-6 py-4 text-[16px] font-semibold text-white shadow-[0_16px_30px_rgba(244,122,42,0.18)] transition hover:-translate-y-0.5 hover:bg-[#d85f17]"
+              className="rounded-[16px] bg-[#0b3a6f] px-6 py-4 text-[16px] font-semibold text-white shadow-[0_16px_30px_rgba(11,58,111,0.20)] transition hover:-translate-y-0.5 hover:bg-[#07172f]"
               onClick={handleCalculate}
               type="button"
             >

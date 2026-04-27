@@ -276,7 +276,7 @@ export function LoanMathTestPage() {
 
       <section className="mt-8 space-y-5">
         <div className="max-w-[920px]">
-          <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#16a05a]">Fark Analizi</span>
+          <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0b3a6f]">Fark Analizi</span>
           <h2 className="mt-1 text-[28px] font-bold tracking-[-0.04em] text-[#172133]">
             Referans HTML ile proje motorunu satır satır kontrol edin
           </h2>
@@ -327,7 +327,7 @@ export function LoanMathTestPage() {
       <section className="mt-8 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="max-w-[900px]">
-            <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#16a05a]">Ödeme Planı</span>
+            <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0b3a6f]">Ödeme Planı</span>
             <h2 className="mt-1 text-[28px] font-bold tracking-[-0.04em] text-[#172133]">
               Referans ve proje amortisman planını karşılaştırın
             </h2>
@@ -343,7 +343,7 @@ export function LoanMathTestPage() {
               onClick={() => setShowAllRows(false)}
               className={`rounded-[12px] px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
                 !showAllRows
-                  ? "bg-[#16a05a] text-white shadow-[0_10px_18px_rgba(22,160,90,0.18)]"
+                  ? "bg-[#0b3a6f] text-white shadow-[0_10px_18px_rgba(11,58,111,0.18)]"
                   : "text-[#51627b] hover:bg-white/70"
               }`}
             >
@@ -354,7 +354,7 @@ export function LoanMathTestPage() {
               onClick={() => setShowAllRows(true)}
               className={`rounded-[12px] px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
                 showAllRows
-                  ? "bg-[#16a05a] text-white shadow-[0_10px_18px_rgba(22,160,90,0.18)]"
+                  ? "bg-[#0b3a6f] text-white shadow-[0_10px_18px_rgba(11,58,111,0.18)]"
                   : "text-[#51627b] hover:bg-white/70"
               }`}
             >

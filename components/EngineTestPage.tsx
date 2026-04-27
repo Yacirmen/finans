@@ -164,7 +164,7 @@ export function EngineTestPage() {
           >
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#16a05a]">{scenario.assetType}</p>
+                <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#0b3a6f]">{scenario.assetType}</p>
                 <h2 className="mt-1 text-[24px] font-bold tracking-[-0.03em] text-[#172133]">{scenario.title}</h2>
                 <p className="mt-2 max-w-[820px] text-[14px] leading-6 text-[#66758c]">{scenario.expected}</p>
               </div>
