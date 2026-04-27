@@ -40,8 +40,11 @@ const groups = [
 
 const socialLinks = [
   { label: "X", href: "https://x.com/tasarrufinans" },
-  { label: "Instagram", href: "https://www.instagram.com/tasarruf.finansman/" },
+  { label: "YouTube", href: "https://www.youtube.com/@Tasarrufinans" },
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588693012392" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tasarruf-finansman-546579406/" },
+  { label: "TikTok", href: "https://www.tiktok.com/@tasarrufinans" },
+  { label: "Instagram", href: "https://www.instagram.com/tasarruf.finansman/?hl=tr" },
 ] as const;
 
 export function Footer() {
