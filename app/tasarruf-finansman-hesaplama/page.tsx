@@ -6,7 +6,7 @@ export default function SavingsFinanceCalculatorPage() {
   return (
     <>
       <Header active="calculator" />
-      <main className="bg-[linear-gradient(180deg,#fff7f1_0%,#f6f8fb_42%,#ffffff_100%)] pb-14 pt-8">
+      <main className="bg-[radial-gradient(circle_at_top_left,#e6f2ff_0%,#f7faff_35%,#f4f7fb_100%)] pb-14 pt-8">
         <CalculatorSection />
       </main>
       <Footer />

@@ -1,521 +1,393 @@
 "use client";
 
-import { type ReactNode, useMemo, useRef, useState } from "react";
-import {
-  DEFAULT_OFFER,
-  calculateOffer,
-  formatMoney,
-  formatPercent,
-  type AssetType,
-  type OfferResult,
-  type OfferState,
-} from "../lib/comparisonEngine";
-import { COMPANY_OPTIONS, companyParams, type CompanyName } from "../lib/companyParams";
+import { useMemo, useState } from "react";
 
-const exampleOffer: OfferState = {
-  ...DEFAULT_OFFER,
-  model: "cekilissiz",
-  company: "Diğer",
-  assetPrice: "3.000.000",
-  downPayment: "1.000.000",
-  term: "48",
-  monthlyPayment: "41.667",
-  delivery: "12",
-  serviceFee: "7,5",
-  rent: "25.000",
-  bankAmount: "2.000.000",
-  bankRate: "2,80",
-  bankTerm: "120",
-  compareBank: true,
+type PlannerInputs = {
+  vade: string;
+  finansman: string;
+  pesinat: string;
+  enflasyon: string;
+  kira: string;
+  org: string;
 };
 
-function SegmentGroup({
-  value,
-  onChange,
-  options,
-}: {
-  value: string;
-  onChange: (value: string) => void;
-  options: Array<{ label: string; value: string }>;
-}) {
-  return (
-    <div
-      className="grid rounded-[14px] bg-[#eef3f8] p-1"
-      style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
-    >
-      {options.map((option) => {
-        const active = option.value === value;
-        return (
-          <button
-            key={option.value}
-            type="button"
-            onClick={() => onChange(option.value)}
-            className={`rounded-[12px] px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
-              active
-                ? "bg-[#155eef] text-white shadow-[0_10px_18px_rgba(21,94,239,0.18)]"
-                : "text-[#51627b] hover:bg-white/70"
-            }`}
-          >
-            {option.label}
-          </button>
-        );
-      })}
-    </div>
-  );
+type ParsedInputs = {
+  vade: number;
+  finansman: number;
+  pesinat: number;
+  enflasyon: number;
+  kira: number;
+  org: number;
+  bsmv: number;
+  kkdf: number;
+};
+
+type PlanRow = {
+  period: number;
+  installment: number;
+  paidAmount: number;
+  paidRatio: number;
+  rent: number;
+  cashFlowPv: number;
+  initialOutIfBelowThreshold: number;
+  remainingFinanceCost: number;
+  paymentsPv: number;
+  npv: number;
+  manual: boolean;
+};
+
+type ComputedPlan = {
+  inputs: ParsedInputs;
+  rows: PlanRow[];
+  deliveryMonth: number;
+  monthlyInstallment: number;
+  organizationAndDownPayment: number;
+  selectedRow: PlanRow;
+  bestRow: PlanRow;
+};
+
+const defaultInputs: PlannerInputs = {
+  vade: "60",
+  finansman: "5.000.000,00",
+  pesinat: "2.000.000,00",
+  enflasyon: "25,00",
+  kira: "25.000,00",
+  org: "0,085",
+};
+
+function parseTR(value: string | number | null | undefined) {
+  if (value == null) return 0;
+  const cleaned = String(value)
+    .replace(/₺|%|\s/g, "")
+    .replace(/\./g, "")
+    .replace(",", ".");
+  const parsed = Number.parseFloat(cleaned);
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
-function ToggleField({
-  checked,
-  label,
-  onChange,
-}: {
-  checked: boolean;
-  label: string;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => onChange(!checked)}
-      className="flex items-center gap-3 text-left text-[14px] font-medium text-[#5d6b80]"
-    >
-      <span className={`relative h-6 w-11 rounded-full transition-all ${checked ? "bg-[#155eef]" : "bg-[#d7e3ef]"}`}>
-        <span
-          className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all ${checked ? "left-6" : "left-1"}`}
-        />
-      </span>
-      {label}
-    </button>
-  );
+function formatNumber(value: number, decimals = 0) {
+  return new Intl.NumberFormat("tr-TR", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(Number.isFinite(value) ? value : 0);
 }
 
-function InputLabel({ children }: { children: ReactNode }) {
-  return <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">{children}</span>;
+function formatTL(value: number) {
+  return `₺${formatNumber(value, 2)}`;
 }
 
-function Field({
-  label,
-  value,
-  onChange,
-  placeholder,
-  help,
-  textarea,
-}: {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  help?: string;
-  textarea?: boolean;
-}) {
-  return (
-    <label className="grid gap-2">
-      <InputLabel>{label}</InputLabel>
-      {textarea ? (
-        <textarea
-          className="form-control min-h-[88px] !rounded-[14px] !bg-[#f9fbfe] !py-3 text-[14px] font-medium"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          placeholder={placeholder}
-        />
-      ) : (
-        <input
-          className="form-control !h-[46px] !rounded-[14px] !bg-[#f9fbfe] !font-medium"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          placeholder={placeholder}
-        />
-      )}
-      {help ? <span className="text-[12px] leading-5 text-[#8492a6]">{help}</span> : null}
-    </label>
-  );
+function formatPercent(value: number) {
+  return `${formatNumber(value * 100, 2)}%`;
 }
 
-function SummaryLine({
-  label,
-  value,
-  tone = "default",
-}: {
-  label: string;
-  value: string;
-  tone?: "default" | "green" | "red";
-}) {
-  const color = tone === "green" ? "text-[#0b3a6f]" : tone === "red" ? "text-[#e05044]" : "text-[#1c2433]";
-  return (
-    <div className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-[#edf2f7] py-4 last:border-b-0 last:pb-0">
-      <span className="text-[14px] text-[#748299]">{label}</span>
-      <strong className={`text-[15px] font-bold ${color}`}>{value}</strong>
-    </div>
-  );
+function excelPV(rate: number, nper: number, pmt = 0, fv = 0, type = 0) {
+  if (!Number.isFinite(rate) || !Number.isFinite(nper)) return 0;
+  if (Math.abs(rate) < 1e-12) return -(fv + pmt * nper);
+  const pvif = Math.pow(1 + rate, nper);
+  return -(fv + (pmt * (1 + rate * type) * (pvif - 1)) / rate) / pvif;
 }
 
-function ExampleScenarioCard({ onApply }: { onApply: () => void }) {
-  return (
-    <aside className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
-      <div className="flex items-start gap-3">
-        <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#eaf3ff] text-[#155eef]">⚡</span>
-        <div>
-          <h3 className="text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Hemen Dene</h3>
-          <p className="mt-2 text-[14px] leading-6 text-[#66758c]">
-            Referans örnek senaryoyu tek tıkla doldur, sonra sonuç panelinde net bugünkü maliyeti gör.
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-5 rounded-[18px] border border-[#dce7e2] bg-[#fbfefd] p-4">
-        <div className="grid gap-3 text-[14px] text-[#5c6d84]">
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Varlık</span><strong className="text-[#172133]">Konut</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Model</span><strong className="text-[#172133]">Çekilişsiz</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Sözleşme Tutarı</span><strong className="text-[#172133]">₺3.000.000</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Peşinat</span><strong className="text-[#172133]">₺1.000.000</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Vade</span><strong className="text-[#172133]">48 ay</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Aylık Ödeme</span><strong className="text-[#172133]">₺41.667</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Organizasyon Ücreti</span><strong className="text-[#172133]">%7,5</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Kira</span><strong className="text-[#172133]">₺25.000/ay</strong></div>
-        </div>
-      </div>
-
-      <div className="mt-5 rounded-[18px] border border-[#dce7e2] bg-[#f8fbff] p-4">
-        <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Banka Kredisi</span>
-        <div className="mt-3 grid gap-2 text-[14px] text-[#5c6d84]">
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Kredi Tutarı</span><strong className="text-[#172133]">₺2.000.000</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Aylık Faiz</span><strong className="text-[#172133]">%2,80</strong></div>
-          <div className="grid grid-cols-[1fr_auto] gap-3"><span>Vade</span><strong className="text-[#172133]">120 ay</strong></div>
-        </div>
-      </div>
-
-      <button
-        type="button"
-        onClick={onApply}
-        className="mt-5 w-full rounded-[14px] bg-[#0b3a6f] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_14px_28px_rgba(11,58,111,0.20)] transition hover:-translate-y-0.5 hover:bg-[#07172f]"
-      >
-        Bu Senaryoyu Hesapla
-      </button>
-    </aside>
-  );
+function parseInputs(inputs: PlannerInputs): ParsedInputs {
+  return {
+    vade: Math.max(1, Math.round(parseTR(inputs.vade))),
+    finansman: Math.max(0, parseTR(inputs.finansman)),
+    pesinat: Math.max(0, parseTR(inputs.pesinat)),
+    enflasyon: parseTR(inputs.enflasyon),
+    kira: Math.max(0, parseTR(inputs.kira)),
+    org: Math.max(0, parseTR(inputs.org)),
+    bsmv: 0,
+    kkdf: 0,
+  };
 }
 
-function ResultPanel({ result }: { result: OfferResult | null }) {
-  if (!result) {
-    return (
-      <aside className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
-        <div className="flex items-center gap-3 border-b border-[#e8eef5] pb-4">
-          <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#eaf3ff] text-[#155eef]">▣</span>
-          <div>
-            <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Karar özeti</span>
-            <h3 className="mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Sonuç bekleniyor</h3>
-          </div>
-        </div>
-        <div className="mt-5 rounded-[18px] border border-dashed border-[#d9e4ee] bg-[#fbfdff] p-5 text-[14px] leading-7 text-[#72819a]">
-          Formu doldurup <strong>Hesapla ve Sonuçları Göster</strong> dediğinde NBM kırılımı, banka kredisi kıyası ve
-          karar yorumu burada oluşur.
-        </div>
-      </aside>
-    );
+function computePlan(inputs: PlannerInputs, manualInstallments: Record<number, number>): ComputedPlan {
+  const x = parseInputs(inputs);
+  const vade = x.vade;
+  const fin = x.finansman;
+  const pes = Math.min(x.pesinat, fin);
+  const netFinancing = Math.max(0, fin - pes);
+  const organizationAndDownPayment = pes + fin * x.org * (1 + x.bsmv + x.kkdf);
+  const monthlyDiscount = x.enflasyon / 12 / 100;
+  const deliveryMonth = Math.max(5, Math.ceil(vade * 0.4 * (1 - pes / Math.max(fin, 1))));
+  const monthlyInstallment = vade ? netFinancing / vade : 0;
+
+  const rows: PlanRow[] = [];
+  let previousPaid = 0;
+
+  for (let period = 0; period <= vade; period += 1) {
+    let installment = 0;
+    let paidAmount = 0;
+    let paidRatio = 0;
+    let rent = 0;
+    let cashFlowPv = 0;
+    let initialOutIfBelowThreshold = 0;
+    let remainingFinanceCost = 0;
+    let paymentsPv = 0;
+    let npv = 0;
+
+    if (period === 0) {
+      installment = fin * x.org + pes;
+      paidAmount = pes;
+      paidRatio = fin ? paidAmount / fin : 0;
+      rent = 0;
+      cashFlowPv = -installment;
+      initialOutIfBelowThreshold = paidRatio < 0.4 ? -cashFlowPv : 0;
+      remainingFinanceCost = fin - paidAmount;
+      paymentsPv = excelPV(monthlyDiscount, period, -x.kira, 0) + excelPV(monthlyDiscount, vade, -monthlyInstallment, 0);
+      npv = paymentsPv + initialOutIfBelowThreshold - remainingFinanceCost;
+    } else {
+      const basePaid = period === 1 ? pes : previousPaid;
+      const remaining = Math.max(0, fin - basePaid);
+      const automaticInstallment = Math.max(0.01, remaining / (vade - period + 1));
+      installment =
+        manualInstallments[period] !== undefined && manualInstallments[period] !== null
+          ? Math.max(0, manualInstallments[period])
+          : automaticInstallment;
+      paidAmount = Math.min(fin, basePaid + installment);
+      paidRatio = fin ? paidAmount / fin : 0;
+      rent = paidRatio < 0.4 ? x.kira * Math.pow(1 + x.enflasyon / 100, Math.floor((period - 1) / 12)) : 0;
+      cashFlowPv = excelPV(monthlyDiscount, period, 0, installment + rent);
+      initialOutIfBelowThreshold = paidRatio < 0.4 ? rows[0]?.initialOutIfBelowThreshold || 0 : 0;
+      remainingFinanceCost = fin - paidAmount;
+      paymentsPv = excelPV(monthlyDiscount, period, -x.kira, 0) + excelPV(monthlyDiscount, vade, -monthlyInstallment, 0);
+      npv = paymentsPv + initialOutIfBelowThreshold - remainingFinanceCost;
+    }
+
+    previousPaid = paidAmount;
+    rows.push({
+      period,
+      installment,
+      paidAmount,
+      paidRatio,
+      rent,
+      cashFlowPv,
+      initialOutIfBelowThreshold,
+      remainingFinanceCost,
+      paymentsPv,
+      npv,
+      manual: manualInstallments[period] !== undefined,
+    });
   }
 
-  const breakdown = result.selectedScenario.nbmBreakdown;
-  const loan = result.loanComparison?.summary;
+  const selectedRow = rows[Math.min(deliveryMonth, rows.length - 1)] || rows[0];
+  const bestRow = rows.reduce((best, row) => (row.npv > best.npv ? row : best), rows[0]);
 
-  return (
-    <aside className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
-      <div className="flex items-center gap-3 border-b border-[#e8eef5] pb-4">
-        <span className="grid h-10 w-10 place-items-center rounded-[14px] bg-[#eaf3ff] text-[#155eef]">▣</span>
-        <div>
-          <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">Hesaplama Özeti</span>
-          <h3 className="mt-1 text-[18px] font-bold tracking-[-0.03em] text-[#172133]">Net bugünkü maliyet görünümü</h3>
-        </div>
-      </div>
+  return {
+    inputs: { ...x, pesinat: pes },
+    rows,
+    deliveryMonth,
+    monthlyInstallment,
+    organizationAndDownPayment,
+    selectedRow,
+    bestRow,
+  };
+}
 
-      <div className="mt-5 rounded-[18px] border border-[#bfd2ef] bg-[#eaf3ff] px-4 py-4 text-center">
-        <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#0b3a6f]">Toplam geri ödeme (nominal)</span>
-        <strong className="mt-1.5 block text-[28px] font-black tracking-[-0.05em] text-[#07172f]">{formatMoney(result.totalNominalOutflow)}</strong>
-      </div>
-
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        <div className="rounded-[14px] border border-[#e3ebf4] bg-[#f8fbff] px-4 py-3 text-center">
-          <span className="block text-[12px] text-[#7b8aa2]">Vade (Ay)</span>
-          <strong className="mt-1.5 block text-[18px] font-black text-[#1c2433]">{result.selectedScenario.cashflow.length - 1}</strong>
-        </div>
-        <div className="rounded-[14px] border border-[#e3ebf4] bg-[#f8fbff] px-4 py-3 text-center">
-          <span className="block text-[12px] text-[#7b8aa2]">Teslim Ayı</span>
-          <strong className="mt-1.5 block text-[18px] font-black text-[#1c2433]">{result.selectedScenario.deliveryMonth}</strong>
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-[18px] border border-[#dce7e2] bg-white">
-        <div className="border-b border-[#e7eef5] px-4 py-3">
-          <h4 className="text-[13px] font-bold uppercase tracking-[0.06em] text-[#1c2433]">Net maliyet (NBM) detayı</h4>
-        </div>
-        <div className="px-4 py-2">
-          <SummaryLine label="Peşinat PV" value={formatMoney(breakdown.downPaymentPv)} tone="red" />
-          <SummaryLine label="Hizmet Bedeli PV" value={formatMoney(breakdown.serviceFeePv)} tone="red" />
-          <SummaryLine label="Taksitler PV" value={formatMoney(breakdown.installmentsPv)} tone="red" />
-          <SummaryLine label="Kira PV" value={formatMoney(breakdown.rentPv)} tone="red" />
-          <SummaryLine label="Toplam NBM" value={formatMoney(result.totalNBM)} tone="green" />
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-[18px] border border-[#dce7e2] bg-[#fbfdff] px-4 py-4">
-        <div className="grid gap-3">
-          {result.commentary.map((line) => (
-            <p key={line} className="text-[13px] leading-6 text-[#5e6f85]">
-              {line}
-            </p>
-          ))}
-          {result.riskWarning ? (
-            <p className="rounded-[14px] border border-[#f4dfa3] bg-[#fff7df] px-4 py-3 text-[13px] leading-6 text-[#8b6b18]">
-              {result.riskWarning}
-            </p>
-          ) : null}
-        </div>
-      </div>
-
-      {loan ? (
-        <div className="mt-4 rounded-[18px] border border-[#dce7e2] bg-[#fbfdff] px-4 py-4">
-          <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#74829a]">Banka kredisi kıyası</span>
-          <div className="mt-3 grid gap-3 md:grid-cols-2">
-            {[
-              ["Kredi ana para", formatMoney(loan.principal)],
-              ["Net ele geçen kredi", formatMoney(loan.netDisbursed)],
-              ["Aylık taksit", formatMoney(loan.monthlyPayment)],
-              ["Toplam taksit ödemesi", formatMoney(loan.totalInstallmentPayment)],
-              ["Toplam faiz", formatMoney(loan.totalInterest)],
-              ["Toplam KKDF", formatMoney(loan.totalKKDF)],
-              ["Toplam BSMV", formatMoney(loan.totalBSMV)],
-              ["Kredi hariç masraf", formatMoney(loan.fee)],
-              ["Toplam geri ödeme", formatMoney(loan.totalRepayment)],
-              ["Toplam kredi maliyeti", formatMoney(loan.totalCreditCost)],
-              ["Efektif aylık maliyet", formatPercent(loan.effectiveMonthlyCostRate * 100, 2)],
-              ["Efektif yıllık maliyet", formatPercent(loan.effectiveAnnualCost * 100, 2)],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-[13px] border border-[#e3ebf4] bg-white px-4 py-3">
-                <span className="block text-[12px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]">{label}</span>
-                <strong className="mt-2 block text-[16px] font-black text-[#172133]">{value}</strong>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-    </aside>
-  );
+function normalizeInput(name: keyof PlannerInputs, value: string) {
+  const numberValue = parseTR(value);
+  if (name === "vade") return formatNumber(Math.max(1, Math.round(numberValue)), 0);
+  if (name === "org") return formatNumber(numberValue, 3);
+  return formatNumber(numberValue, 2);
 }
 
 export function CalculatorSection() {
-  const [assetType, setAssetType] = useState<AssetType>("Konut");
-  const [offer, setOffer] = useState<OfferState>(exampleOffer);
-  const [result, setResult] = useState<OfferResult | null>(() => calculateOffer("Konut", exampleOffer));
-  const [warnings, setWarnings] = useState<string[]>([]);
-  const resultRef = useRef<HTMLDivElement | null>(null);
+  const [inputs, setInputs] = useState<PlannerInputs>(defaultInputs);
+  const [manualInstallments, setManualInstallments] = useState<Record<number, number>>({});
 
-  const companyNote = useMemo(() => companyParams[offer.company].notes, [offer.company]);
-  const priceLabel = assetType === "Konut" ? "Evin Fiyatı (TL)" : "Araç Fiyatı (TL)";
+  const computed = useMemo(() => computePlan(inputs, manualInstallments), [inputs, manualInstallments]);
 
-  const updateOffer = <T extends keyof OfferState>(key: T, value: OfferState[T]) => {
-    setOffer((current) => {
-      if (key === "company") {
-        const nextCompany = value as CompanyName;
-        const previousDefault = `${companyParams[current.company].defaultServiceFeeRate}`.replace(".", ",");
-        const nextDefault = `${companyParams[nextCompany].defaultServiceFeeRate}`.replace(".", ",");
-        return {
-          ...current,
-          company: nextCompany,
-          serviceFee: !current.serviceFee || current.serviceFee === previousDefault ? nextDefault : current.serviceFee,
-        };
-      }
+  function setField(name: keyof PlannerInputs, value: string) {
+    setInputs((current) => ({ ...current, [name]: value }));
+  }
 
-      return { ...current, [key]: value };
-    });
-  };
+  function resetDefaults() {
+    setManualInstallments({});
+    setInputs(defaultInputs);
+  }
 
-  const handleExample = () => {
-    setAssetType("Konut");
-    setOffer(exampleOffer);
-    const next = calculateOffer("Konut", exampleOffer);
-    setResult(next);
-    setWarnings(next.warnings);
-    window.setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
-  };
+  function setManualInstallment(period: number, value: string) {
+    const parsed = parseTR(value);
+    setManualInstallments((current) => ({
+      ...current,
+      [period]: parsed,
+    }));
+  }
 
-  const handleCalculate = () => {
-    const next = calculateOffer(assetType, offer);
-    setResult(next);
-    setWarnings(next.warnings);
-    window.setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
-  };
+  const visibleRows = computed.rows;
 
   return (
-    <section id="calculator" className="page-container relative z-20 mt-8 scroll-mt-24">
-      <div className="grid items-start gap-7 lg:grid-cols-[1.14fr_0.86fr]">
-        <div className="rounded-[26px] border border-[#dce7e2] bg-white p-5 shadow-[0_18px_48px_rgba(31,43,37,0.08)] md:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eef5] pb-4">
-            <h2 className="text-[18px] font-bold tracking-[-0.03em] text-[#1c2433] md:text-[20px]">Tasarruf Finansmanı Maliyet Hesaplayıcı</h2>
-            <button
-              className="rounded-full bg-[#eaf3ff] px-4 py-2 text-[14px] font-medium text-[#0b3a6f] transition-all duration-300 hover:bg-[#dceaff]"
-              onClick={handleExample}
-              type="button"
-            >
-              Örnek Senaryoyu Doldur
-            </button>
+    <section id="calculator" className="page-container py-10">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-5">
+        <div>
+          <p className="text-[12px] font-black uppercase tracking-[0.16em] text-[#0f5ea8]">Premium hesaplama aracı</p>
+          <h1 className="mt-2 text-[34px] font-black leading-[1.05] tracking-[-0.05em] text-[#0b2443]">
+            Tasarruf Finansman Hesaplama
+          </h1>
+          <p className="mt-2 text-[15px] leading-7 text-[#64748b]">
+            Girişleri değiştirin; teslim ayı, taksit, NPV ve ödeme planı anında güncellensin.
+          </p>
+        </div>
+        <span className="rounded-full bg-[#0b2443] px-4 py-3 text-[13px] font-bold text-white shadow-[0_22px_60px_rgba(15,23,42,0.10)]">
+          Bankacılık arayüzü · Canlı hesaplama
+        </span>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
+        <aside className="self-start rounded-[26px] border border-[#e2e8f0]/90 bg-white/90 p-6 shadow-[0_22px_60px_rgba(15,23,42,0.10)] backdrop-blur lg:sticky lg:top-5">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-[18px] font-black text-[#0f172a]">Girişler</h2>
+            <span className="text-[12px] font-semibold text-[#64748b]">A1:B20</span>
           </div>
 
-          <div className="mt-5 grid gap-6">
-            <div className="grid gap-5 md:grid-cols-[1fr_1fr_1.08fr]">
-              <div>
-                <InputLabel>Varlık Tipi</InputLabel>
-                <div className="mt-2">
-                  <SegmentGroup
-                    value={assetType}
-                    onChange={(value) => setAssetType(value as AssetType)}
-                    options={[
-                      { label: "Konut", value: "Konut" },
-                      { label: "Araba", value: "Araba" },
-                    ]}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <InputLabel>Finansman Modeli</InputLabel>
-                <div className="mt-2">
-                  <SegmentGroup
-                    value={offer.model}
-                    onChange={(value) => updateOffer("model", value as OfferState["model"])}
-                    options={[
-                      { label: "Çekilişsiz", value: "cekilissiz" },
-                      { label: "Çekilişli", value: "cekilisli" },
-                    ]}
-                  />
-                </div>
-              </div>
-
-              <label className="grid gap-2">
-                <InputLabel>Şirket Seçimi</InputLabel>
-                <select
-                  className="form-control !h-[56px] !rounded-[16px] !bg-[#f9fbfe] !font-medium"
-                  value={offer.company}
-                  onChange={(event) => updateOffer("company", event.target.value as CompanyName)}
-                >
-                  {COMPANY_OPTIONS.map((company) => (
-                    <option key={company} value={company}>
-                      {company}
-                    </option>
-                  ))}
-                </select>
-                <span className="text-[12px] leading-5 text-[#8492a6]">{companyNote}</span>
+          <div className="grid gap-3">
+            <div className="grid grid-cols-2 gap-3">
+              <label className="block">
+                <span className="mb-2 block text-[13px] font-bold text-[#334155]">Finansman Vadesi</span>
+                <input
+                  className="h-[46px] w-full rounded-[15px] border border-[#e2e8f0] bg-[#f8fafc] px-3 text-[15px] font-bold text-[#0f172a] outline-none transition focus:border-[#2f80ed] focus:bg-white focus:ring-4 focus:ring-[#2f80ed]/10"
+                  value={inputs.vade}
+                  onBlur={() => setField("vade", normalizeInput("vade", inputs.vade))}
+                  onChange={(event) => setField("vade", event.target.value)}
+                />
+              </label>
+              <label className="block">
+                <span className="mb-2 block text-[13px] font-bold text-[#334155]">Tasarruf Finansman Teslim Ayı</span>
+                <input
+                  className="h-[46px] w-full rounded-[15px] border border-[#e2e8f0] bg-[#eef4fb] px-3 text-[15px] font-bold text-[#475569] outline-none"
+                  readOnly
+                  value={`${computed.deliveryMonth}. Ay`}
+                />
               </label>
             </div>
 
-            <div className="border-t border-[#e8eef5] pt-6">
-              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-                <Field label={priceLabel} value={offer.assetPrice} onChange={(value) => updateOffer("assetPrice", value)} placeholder="3.000.000" />
-                <Field label="Peşinat (TL)" value={offer.downPayment} onChange={(value) => updateOffer("downPayment", value)} placeholder="1.000.000" />
-                <Field
-                  label="Taksit / Vade (Ay)"
-                  value={offer.term}
-                  onChange={(value) => updateOffer("term", value)}
-                  placeholder="48"
-                  help={assetType === "Konut" ? "Konutlarda max 120 ay." : "Araçlarda max 60 ay."}
+            {[
+              ["finansman", "Finansman Tutarı"],
+              ["pesinat", "Peşinat Tutarı"],
+              ["enflasyon", "Enflasyon"],
+              ["kira", "Kira"],
+              ["org", "Organizasyon Ücreti Oranı"],
+            ].map(([name, label]) => (
+              <label className="block" key={name}>
+                <span className="mb-2 block text-[13px] font-bold text-[#334155]">{label}</span>
+                <input
+                  className="h-[46px] w-full rounded-[15px] border border-[#e2e8f0] bg-[#f8fafc] px-3 text-[15px] font-bold text-[#0f172a] outline-none transition focus:border-[#2f80ed] focus:bg-white focus:ring-4 focus:ring-[#2f80ed]/10"
+                  value={inputs[name as keyof PlannerInputs]}
+                  onBlur={() => setField(name as keyof PlannerInputs, normalizeInput(name as keyof PlannerInputs, inputs[name as keyof PlannerInputs]))}
+                  onChange={(event) => setField(name as keyof PlannerInputs, event.target.value)}
                 />
-                <Field label="Aylık Ödeme" value={offer.monthlyPayment} onChange={(value) => updateOffer("monthlyPayment", value)} placeholder="41.667" />
-              </div>
+              </label>
+            ))}
+          </div>
 
-              <div className="mt-5 flex flex-wrap gap-8">
-                <ToggleField checked={offer.escalating} label="Artışlı Taksit Planı" onChange={(checked) => updateOffer("escalating", checked)} />
-                <ToggleField checked={offer.manualPlan} label="Manuel Plan Oluştur" onChange={(checked) => updateOffer("manualPlan", checked)} />
-              </div>
-            </div>
-
-            {offer.manualPlan ? (
-              <Field
-                textarea
-                label="Manuel Plan"
-                value={offer.manualPlanText}
-                onChange={(value) => updateOffer("manualPlanText", value)}
-                placeholder="41.667, 41.667, 55.000 veya satır satır girin"
-              />
-            ) : null}
-
-            <div className="border-t border-[#e8eef5] pt-6">
-              <div className="grid gap-5 md:grid-cols-3">
-                <Field label="Tahmini Teslimat" value={offer.delivery} onChange={(value) => updateOffer("delivery", value)} placeholder="12" />
-                <Field label="Hizmet Bedeli / Organizasyon Ücreti (%)" value={offer.serviceFee} onChange={(value) => updateOffer("serviceFee", value)} placeholder="7,5" />
-                <Field label="Kira (TL/ay)" value={offer.rent} onChange={(value) => updateOffer("rent", value)} placeholder="25.000" />
-              </div>
-            </div>
-
-            <div className="rounded-[18px] border border-[#e4ecf4] bg-[#fbfdff] p-4">
-              <button
-                className="flex w-full items-center justify-between text-left text-[13px] font-bold uppercase tracking-[0.08em] text-[#7b8aa2]"
-                onClick={() => updateOffer("advancedOpen", !offer.advancedOpen)}
-                type="button"
-              >
-                Gelişmiş Parametreler
-                <span>{offer.advancedOpen ? "−" : "+"}</span>
-              </button>
-              {offer.advancedOpen ? (
-                <div className="mt-4 grid gap-4 md:grid-cols-3">
-                  <Field label="Yıllık Enflasyon (%)" value={offer.inflation} onChange={(value) => updateOffer("inflation", value)} placeholder="25" />
-                  <Field label="Kredi Faizi (% / ay)" value={offer.creditRate} onChange={(value) => updateOffer("creditRate", value)} placeholder="3,19" />
-                  <Field label="Yıllık Taksit Artışı (%)" value={offer.yearlyIncrease} onChange={(value) => updateOffer("yearlyIncrease", value)} placeholder="15" />
-                </div>
-              ) : null}
-            </div>
-
-            <div className="rounded-[18px] border border-[#dce7e2] bg-[#fbfdff] p-4">
-              <ToggleField
-                checked={offer.compareBank}
-                label="Tasarruf Finansmanı ile Konut Kredisini Kıyasla"
-                onChange={(checked) => updateOffer("compareBank", checked)}
-              />
-              {offer.compareBank ? (
-                <>
-                  <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr_0.7fr_0.7fr]">
-                    <Field label="Kredi Tutarı (TL)" value={offer.bankAmount} onChange={(value) => updateOffer("bankAmount", value)} placeholder="2.000.000" />
-                    <Field label="Aylık Faiz (%)" value={offer.bankRate} onChange={(value) => updateOffer("bankRate", value)} placeholder="2,80" />
-                    <Field label="Vade (Ay)" value={offer.bankTerm} onChange={(value) => updateOffer("bankTerm", value)} placeholder="120" />
-                  </div>
-                  {assetType === "Konut" ? (
-                    <label className="mt-4 grid gap-2 md:max-w-[360px]">
-                      <InputLabel>Konut Sahipliği</InputLabel>
-                      <select
-                        className="form-control !h-[44px] !rounded-[14px] !bg-white !font-medium"
-                        value={offer.bankHousingStatus}
-                        onChange={(event) =>
-                          updateOffer("bankHousingStatus", event.target.value as OfferState["bankHousingStatus"])
-                        }
-                      >
-                        <option value="yok">Evi yok</option>
-                        <option value="var">Evi var</option>
-                      </select>
-                    </label>
-                  ) : null}
-                </>
-              ) : null}
-            </div>
-
-            {warnings.length ? (
-              <div className="rounded-[16px] border border-[#d9e4ee] bg-[#f8fbff] px-4 py-3 text-[13px] leading-6 text-[#0b3a6f]">
-                {warnings.map((warning) => (
-                  <p key={warning}>{warning}</p>
-                ))}
-              </div>
-            ) : null}
-
+          <div className="mt-4 flex gap-3">
             <button
-              className="rounded-[16px] bg-[#0b3a6f] px-6 py-4 text-[16px] font-semibold text-white shadow-[0_16px_30px_rgba(11,58,111,0.20)] transition hover:-translate-y-0.5 hover:bg-[#07172f]"
-              onClick={handleCalculate}
+              className="h-[46px] flex-1 rounded-[15px] bg-[linear-gradient(135deg,#0b3a6f,#0f5ea8)] px-4 text-[14px] font-black text-white shadow-[0_14px_26px_rgba(11,58,111,0.18)] transition hover:-translate-y-0.5"
               type="button"
             >
-              Hesapla ve Sonuçları Göster
+              Hesapla
+            </button>
+            <button
+              className="h-[46px] rounded-[15px] bg-[#eef4fb] px-4 text-[14px] font-black text-[#0b3a6f] transition hover:-translate-y-0.5"
+              onClick={resetDefaults}
+              type="button"
+            >
+              Sıfırla
             </button>
           </div>
-        </div>
+        </aside>
 
-        <div className="space-y-6" ref={resultRef}>
-          <ExampleScenarioCard onApply={handleExample} />
-          <ResultPanel result={result} />
-        </div>
+        <main className="rounded-[26px] border border-[#e2e8f0]/90 bg-white/90 p-6 shadow-[0_22px_60px_rgba(15,23,42,0.10)] backdrop-blur">
+          <div className="mb-5 flex items-center justify-between">
+            <h2 className="text-[18px] font-black text-[#0f172a]">Sonuçlar</h2>
+            <span className="inline-flex rounded-full bg-[#e9f7ef] px-3 py-2 text-[12px] font-black text-[#047857]">Güncel</span>
+          </div>
+
+          <div className="mb-5 grid gap-4 md:grid-cols-3">
+            <div className="rounded-[22px] bg-[linear-gradient(135deg,#0b3a6f,#0f5ea8)] p-5 text-white">
+              <small className="block text-[12px] font-bold text-white/85">Net Bugünkü Değer</small>
+              <strong className="mt-3 block text-[26px] font-black tracking-[-0.04em]">{formatTL(computed.selectedRow.npv)}</strong>
+            </div>
+            <div className="rounded-[22px] border border-[#e2e8f0] bg-[linear-gradient(180deg,#fff,#f8fbff)] p-5">
+              <small className="block text-[12px] font-bold text-[#64748b]">Taksit Tutarı</small>
+              <strong className="mt-3 block text-[26px] font-black tracking-[-0.04em] text-[#0b2443]">
+                {formatTL(computed.monthlyInstallment)}
+              </strong>
+            </div>
+            <div className="rounded-[22px] border border-[#e2e8f0] bg-[linear-gradient(180deg,#fff,#f8fbff)] p-5">
+              <small className="block text-[12px] font-bold text-[#64748b]">Kredinin Mantıklı Olacağı Ay</small>
+              <strong className="mt-3 block text-[26px] font-black tracking-[-0.04em] text-[#0b2443]">
+                {computed.bestRow.period}. Ay
+              </strong>
+            </div>
+          </div>
+
+          <div className="mb-5 grid gap-3 md:grid-cols-4">
+            {[
+              ["Organizasyon + Peşinat", formatTL(computed.organizationAndDownPayment)],
+              ["Finansmanın Bugünkü Maliyeti", formatTL(computed.selectedRow.remainingFinanceCost)],
+              ["Ödemelerin Bugünkü Maliyeti", formatTL(computed.selectedRow.paymentsPv)],
+              ["Tasarruf Finansman Teslim Ayı", `${computed.deliveryMonth}. Ay`],
+            ].map(([label, value]) => (
+              <div className="rounded-[18px] border border-[#e2e8f0] bg-[#f8fafc] p-4" key={label}>
+                <small className="block text-[11px] font-bold text-[#64748b]">{label}</small>
+                <b className="mt-2 block text-[15px] text-[#0f172a]">{value}</b>
+              </div>
+            ))}
+          </div>
+
+          <div className="overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white">
+            <div className="flex items-center justify-between border-b border-[#e2e8f0] px-5 py-4">
+              <h3 className="text-[17px] font-black text-[#0f172a]">Gösterilecek Plan</h3>
+              <span className="text-[13px] font-semibold text-[#64748b]">{visibleRows.length} dönem</span>
+            </div>
+            <div className="max-h-[520px] overflow-auto">
+              <table className="w-full border-separate border-spacing-0">
+                <thead>
+                  <tr>
+                    <th className="sticky top-0 z-10 border-b border-[#e2e8f0] bg-[#f1f5f9] p-3 text-center text-[12px] font-bold text-[#334155]">
+                      Dönem
+                    </th>
+                    <th className="sticky top-0 z-10 border-b border-[#e2e8f0] bg-[#f1f5f9] p-3 text-right text-[12px] font-bold text-[#334155]">
+                      Taksit Tutarı
+                    </th>
+                    <th className="sticky top-0 z-10 border-b border-[#e2e8f0] bg-[#f1f5f9] p-3 text-right text-[12px] font-bold text-[#334155]">
+                      Ödenen %
+                    </th>
+                    <th className="sticky top-0 z-10 border-b border-[#e2e8f0] bg-[#f1f5f9] p-3 text-right text-[12px] font-bold text-[#334155]">
+                      NPV
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visibleRows.map((row) => (
+                    <tr key={row.period} className="even:bg-[#fbfdff]">
+                      <td className="border-b border-[#edf2f7] bg-inherit p-3 text-center text-[13px]">{row.period}</td>
+                      <td className="border-b border-[#edf2f7] bg-inherit p-3 text-right text-[13px]">
+                        {row.period === 0 ? (
+                          formatTL(row.installment)
+                        ) : (
+                          <input
+                            className="w-[132px] rounded-[12px] border border-[#dbe5f0] bg-white px-3 py-2 text-right text-[13px] font-black text-[#0b2443] outline-none transition focus:border-[#2f80ed] focus:ring-4 focus:ring-[#2f80ed]/10"
+                            value={formatNumber(row.installment, 2)}
+                            onChange={(event) => setManualInstallment(row.period, event.target.value)}
+                          />
+                        )}
+                      </td>
+                      <td className="border-b border-[#edf2f7] bg-inherit p-3 text-right text-[13px]">{formatPercent(row.paidRatio)}</td>
+                      <td
+                        className={`border-b border-[#edf2f7] bg-inherit p-3 text-right text-[13px] font-bold ${
+                          row.npv < 0 ? "text-[#b91c1c]" : "text-[#047857]"
+                        }`}
+                      >
+                        {formatTL(row.npv)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
       </div>
     </section>
   );
